@@ -1,0 +1,29 @@
+body {
+    font-family:"Trebuchet MS", Arial, Verdana;
+}
+
+.register_form li {
+    list-style:none;
+    margin:0px 0px 5px 0px;
+}
+
+.register_form ul {
+    padding:0px;
+    margin:0px;
+}
+
+.register_form label {
+    margin:0px 0px 0px 0px;
+}
+
+.register_form input {
+
+}
+
+.register_form select {
+
+}
+
+.register_form input#submit {
+
+}

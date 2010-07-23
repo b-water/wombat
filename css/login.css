@@ -1,0 +1,80 @@
+/* 
+    Document   : login
+    Created on : 02.04.2010, 02:46:59
+    Author     : nico
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+
+
+#login {
+    background-color:#D1D5D4;
+    width:300px;
+    color:#fff;
+    margin:10px auto 0px auto;
+    padding:20px;
+    -moz-border-radius:10px;
+    font-size:12px;
+    -moz-box-shadow: 0 1px 5px rgba(0,0,0,0.5);
+}
+
+#login input[type=text], #login input[type=password] {
+    -moz-background-clip:border;
+    -moz-background-inline-policy:continuous;
+    -moz-background-origin:padding;
+    border:1px solid #E5E5E5;
+    font-size:14px;
+    margin-bottom:16px;
+    margin-right:6px;
+    margin-top:2px;
+    padding:3px;
+    width:97%;
+}
+
+#login input[type=button], #login input[type=submit] {
+    background: #C61D24 url('../bilder/buttonlogingradient.jpg') left center repeat-x;
+    display: inline-block;
+    padding: 4px 10px 6px;
+    color: #fff;
+    text-decoration: none;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+    -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+    text-shadow: 0 -1px 1px rgba(0,0,0,0.25);
+    border: 0 none;
+    cursor: pointer;
+    text-align:center;
+    font-size:14px;
+}
+
+#login a {
+    background: #C61D24 url('../bilder/buttonlogingradient.jpg') left center repeat-x;
+    display: inline-block;
+    padding: 7px 10px 9px;
+    color: #fff;
+    text-decoration: none;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+    -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+    text-shadow: 0 -1px 1px rgba(0,0,0,0.25);
+    border: 0 none;
+    cursor: pointer;
+    text-align:center;
+    font-size:14px;
+}
+
+#login label {
+    display:block;
+    color:#262626;
+    font-size:14px;
+    top:8px;
+    left:7px;
+}
+
+.loginlogo {
+    display:block;
+    margin:auto;
+}

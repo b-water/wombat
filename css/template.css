@@ -1,0 +1,36 @@
+/*
+    Document   : template
+    Created on : 01.04.2010, 20:08:57
+    Author     : nico
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+html, body {
+    font-family:'Arial';
+    background-color:#F2F2F0;
+}
+
+/**************************************
+           Allgemeine Klassen
+**************************************/
+
+.invisible {visibility:hidden;}
+.absolute {position:absolute;}
+.relative {position:relative;}
+.full {overflow:hidden;}
+
+div#container {
+    margin: 40px auto 0px auto;
+    width:850px;
+    color:#69635e;
+}
+
+.right {
+    display:block;
+    float:right;
+}
+
+.clear {
+    clear:both;
+}

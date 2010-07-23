@@ -1,0 +1,112 @@
+/* 
+    Document   : table
+    Created on : 27.03.2010, 19:49:17
+    Author     : nico
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/***********************************************************************************************************
+* Layout für die benutzten Tabellen im DROM */
+
+div#content {
+    float:left;
+    width:600px;
+}
+
+/*
+table.tablesorter {
+    font-family:arial;
+    background-color: #CDCDCD;
+    margin:10px 0pt 15px;
+    font-size: 8pt;
+    width: 100%;
+    text-align: left;
+}
+table.tablesorter thead tr th, table.tablesorter tfoot tr th {
+    background-color: #e6EEEE;
+    border: 1px solid #FFF;
+    font-size: 8pt;
+    padding: 4px;
+}
+
+#filme tr.highlight {
+    background-color:red;
+}
+table.tablesorter thead tr .header {
+    background-image: url(../bilder/bg.gif);
+    background-repeat: no-repeat;
+    background-position: center right;
+    cursor: pointer;
+    color:#333;
+}
+
+#navigation {
+    margin:20px 0px 0px 0px;
+    text-align:center;
+}
+
+#navigation img {
+    display:block;
+    float:left;
+    margin:1px 0px 0px 0px;
+    padding:0px 3px 0px 0px;
+}
+
+#navigation input {
+    display:block;
+    float:left;
+    margin: 0px 3px 0px 3px;
+}
+
+
+
+table.tablesorter tbody td {
+    color: #3D3D3D;
+    padding: 4px;
+    background-color: #FFF;
+    vertical-align: top;
+}
+table.tablesorter tbody tr.odd td {
+    background-color:#F0F0F6;
+}
+table.tablesorter thead tr .headerSortUp {
+    background-image: url(../bilder/asc.gif);
+}
+table.tablesorter thead tr .headerSortDown {
+    background-image: url(../bilder/desc.gif);
+}
+table.tablesorter thead tr .headerSortDown, table.tablesorter thead tr .headerSortUp {
+    background-color: #8dbdd8;
+}
+
+table img.image {
+    display:block;
+    float:left;
+    margin:0px 3px 0px 0px;
+}
+
+table span.data {
+    display:block;
+    float:left;
+    padding-top:1px;
+}
+
+table a:link.film-edit img, a:visited.film-edit img {
+    border:0 none;
+}
+
+table a:link.film-edit, a:visited.film-edit {
+    display:block;
+    text-align:center;
+}
+
+table a:link.film-delete, a:visited.film-delete {
+    display:block;
+    text-align:center;
+}
+
+table a:link.film-delete img, a:visited.film-delete img {
+    border:0 none;
+}
+*/
