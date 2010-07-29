@@ -22,7 +22,7 @@
     // Datenbank Verbindung herstellen
 
     $db = Database::getInstance($host, $user, $password);
-    $db = Database::select_db($database);
+    $db->select_db($database);
     
     dbconnect($host,$user,$password);
     dbselect($database);

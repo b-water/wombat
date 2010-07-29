@@ -1,13 +1,13 @@
 <?php
 
 /**
- * Erweitert mysqli um das
- * Singleton Pattern Design
+ *
+ *
  * 
  */
 class Database extends mysqli
 {
-    protected $instance = null;
+    protected static $instance = null;
     private function __construct($host, $user, $password)
     {
         parent::__construct($host, $user, $password);
@@ -19,7 +19,7 @@ class Database extends mysqli
      * @param   string  $password
      * @return  mysqli
      */
-    public function getInstance($host, $user, $password)
+    public static function getInstance($host, $user, $password)
     {
         if (self::$instance == null)
             self::$instance = new Database($host, $user, $password);
