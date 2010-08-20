@@ -11,22 +11,36 @@
  * @param   string  $passwort
  */
 
-if (isset($benutzer) && isset($passwort))
+if (isset($_POST['benutzername']) && isset($_POST['passwort']))
 {
-    $sql = "SELECT * FROM benutzer WHERE BENUTZER = '".$benutzer."' AND PASSWORT = '".$passwort."';";
-    $query = mysql_query($sql);
-    while ($row = mysql_fetch_assoc($query))
+    $query = "SELECT * FROM benutzer WHERE benutzername = '".$_POST['benutzername']."' AND passwort = '".$_POST['passwort']."';";
+
+    $result = $db->query($query);
+
+
+    echo 'test';
+    $sql = $result->fetch_assoc();
+
+    echo '<pre>';
+    print_r($sql);
+    echo '</pre>';
+
+    
+
+    while ($row = $result->fetch_assoc())
     {
+        echo 'FUUUUCKKK OFFFFF!';
         if(!empty($row))
         {
-            if($row['BENUTZER'] == $benutzer && $row['PASSWORT'] == $passwort)
+            if($row['benutzername'] == $benutzer && $row['passwort'] == $passwort)
             {
-                $_SESSION['login'] = TRUE;
-                $_SESSION['user']['name'] = $row['BENUTZER'];
-                $_SESSION['user']['id'] = $row['ID'];
+                $_SESSION['benutzer']['benutzername'] = $row['benutzername'];
+                $_SESSION['benutzer']['id'] = $row['id'];
+                unset($_SESSION['login']);
             }
         }
     }
+
 }
 
 

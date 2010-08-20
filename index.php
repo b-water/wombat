@@ -7,25 +7,23 @@
  * Copyright : Nico Schmitz 2010, Alle Rechte vorbehalten!
  ************************************************************************************************/
 
-    // Starten der Session
-    session_set_cookie_params('', '', '', TRUE);
-    session_start();
+    // Starten der Session falls noch nicht geschehen
+    if(!isset($_SESSION))
+    {
+        session_set_cookie_params('', '', '', TRUE);
+        session_start();
+    }
 
     // Einbinden von Bibliotheken, Klassen und Skripten
     require_once('libs/Smarty.class.php');
     require_once('classes/database.php');
-    include('php/database.php');
     include('php/anmeldung.php');
     include('config/config.php');
    
 
     // Datenbank Verbindung herstellen
-
     $db = Database::getInstance($host, $user, $password);
     $db->select_db($database);
-    
-    dbconnect($host,$user,$password);
-    dbselect($database);
 
     // Smarty Initalisieren
     $smarty = new Smarty;
@@ -34,23 +32,15 @@
     $template = 'template.tpl';
 
     // Überprüfen auf Login, falls nicht wird auf Login umgelenkt
-    if(!isset($_SESSION) || empty($_SESSION['login']) || $_SESSION['login'] == 0)
+    if(empty($_SESSION['login']))
     {
-
-        $_SESSION['login'] = FALSE;
-        $benutzer = isset($_POST['benutzer']) ? $_POST['benutzer'] : '';
-        $passwort = isset($_POST['passwort']) ? $_POST['passwort'] : '';
+        $_SESSION['login'] = TRUE;
 
         // Einbinden des Skriptes zur Anmeldung
         include('php/anmeldung.php');
-    } 
-    else
-    {
-        $_SESSION['login'] = TRUE;
     }
 
-
-
+    // Einbinden des Skriptes für die aktuelle Webseite
     if(isset($_REQUEST['menu']) && !empty($_REQUEST['menu']))
     {
         $registrieren = FALSE;
@@ -66,13 +56,9 @@
         }
     }
 
-
-    $smarty->assign('session',$_SESSION);
-    $smarty->assign('request',$_REQUEST);
-    $smarty->assign('lorem',$lorem);
+    // Smarty Variables Assign
     $smarty->assign('musik',$musik);
-    $smarty->assign('menu',$_REQUEST['menu']);
-    $smarty->assign('login',$_SESSION['login']);
+    $smarty->assign('anmeldung',$_SESSION['login']);
     $smarty->display($template);
 
 ?>

@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.26, created on 2010-06-07 17:22:51
+<?php /* Smarty version 2.6.26, created on 2010-08-17 20:43:42
          compiled from header.tpl */ ?>
 <?php if ($this->_tpl_vars['musik'] == TRUE): ?>
 <cite>

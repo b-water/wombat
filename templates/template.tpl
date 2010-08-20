@@ -27,8 +27,8 @@
         {if $registrieren eq TRUE}
             {include file='registrieren.tpl'}
         {else}
-            {if $login eq FALSE}
-                {include file='login.tpl'}
+            {if $anmeldung eq FALSE}
+                {include file='anmeldung.tpl'}
             {else}
                 <div id="navigation">
                     {* Navigations Bereich Laden *}

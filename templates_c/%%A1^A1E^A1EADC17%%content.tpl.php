@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.26, created on 2010-05-22 19:13:29
+<?php /* Smarty version 2.6.26, created on 2010-08-17 20:43:42
          compiled from content.tpl */ ?>
 
 <?php if ($this->_tpl_vars['menu'] == startseite): ?>

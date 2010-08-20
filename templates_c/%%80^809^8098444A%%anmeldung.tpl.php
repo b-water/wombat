@@ -1,5 +1,5 @@
-<?php /* Smarty version 2.6.26, created on 2010-08-17 20:36:46
-         compiled from login.tpl */ ?>
+<?php /* Smarty version 2.6.26, created on 2010-08-17 21:40:23
+         compiled from anmeldung.tpl */ ?>
 <img src="bilder/loginlogo.jpg" width="400" height="325" class="loginlogo" />
 <div id="login">
     <form method="post" action="index.php">
