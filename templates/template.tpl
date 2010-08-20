@@ -13,7 +13,7 @@
         <link rel="stylesheet" href="css/content.css" type="text/css" media="all" />
         <link rel="stylesheet" href="css/header.css" type="text/css" media="all" />
         <link rel="stylesheet" href="css/footer.css" type="text/css" media="all" />
-        <link rel="stylesheet" href="css/login.css" type="text/css" media="all" />
+        <link rel="stylesheet" href="css/anmeldung.css" type="text/css" media="all" />
         <link rel="stylesheet" href="css/navigation.css" type="text/css" media="all" />
         <link rel="stylesheet" href="css/jquery.tablesorter.pager.css" type="text/css" media="all" />
         <script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>
@@ -21,7 +21,8 @@
         <script type="text/javascript" src="js/jquery.tablesorter.pager.js"></script>
         <script type="text/javascript" src="js/jquery.metadata.js"></script>
         <script type="text/javascript" src="js/jquery.tablesorter.js"></script>
-        <script type="text/javascript" src="js/javascript.js"></script>
+        <script type="text/javascript" src="js/template.js"></script>
+        <script type="text/javascript" src="js/anmeldung.js"></script>
     </head>
     <body>
         {if $registrieren eq TRUE}

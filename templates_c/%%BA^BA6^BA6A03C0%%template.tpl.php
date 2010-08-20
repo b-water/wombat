@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.26, created on 2010-08-20 18:37:01
+<?php /* Smarty version 2.6.26, created on 2010-08-20 20:13:06
          compiled from template.tpl */ ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
@@ -15,7 +15,7 @@
         <link rel="stylesheet" href="css/content.css" type="text/css" media="all" />
         <link rel="stylesheet" href="css/header.css" type="text/css" media="all" />
         <link rel="stylesheet" href="css/footer.css" type="text/css" media="all" />
-        <link rel="stylesheet" href="css/login.css" type="text/css" media="all" />
+        <link rel="stylesheet" href="css/anmeldung.css" type="text/css" media="all" />
         <link rel="stylesheet" href="css/navigation.css" type="text/css" media="all" />
         <link rel="stylesheet" href="css/jquery.tablesorter.pager.css" type="text/css" media="all" />
         <script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>
@@ -23,7 +23,8 @@
         <script type="text/javascript" src="js/jquery.tablesorter.pager.js"></script>
         <script type="text/javascript" src="js/jquery.metadata.js"></script>
         <script type="text/javascript" src="js/jquery.tablesorter.js"></script>
-        <script type="text/javascript" src="js/javascript.js"></script>
+        <script type="text/javascript" src="js/template.js"></script>
+        <script type="text/javascript" src="js/anmeldung.js"></script>
     </head>
     <body>
         <?php if ($this->_tpl_vars['registrieren'] == TRUE): ?>

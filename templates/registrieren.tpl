@@ -11,7 +11,7 @@
         <input name="passwort.repeat" id="passwort.repeat" type="password" />
         <div class="right">
             <input type="submit" id="click" value="Absenden" />
-            <a href="index.php?menu=registrieren">Abbrechen</a>
+            <a href="index.php?menu=anmelden">Abbrechen</a>
         </div>
     </form>
     <div class="clear"></div>

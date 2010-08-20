@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.26, created on 2010-07-22 21:32:26
+<?php /* Smarty version 2.6.26, created on 2010-08-20 18:56:45
          compiled from registrieren.tpl */ ?>
 <img src="bilder/loginlogo.jpg" width="400" height="325" class="loginlogo" />
 <div id="login">
@@ -13,7 +13,7 @@
         <input name="passwort.repeat" id="passwort.repeat" type="password" />
         <div class="right">
             <input type="submit" id="click" value="Absenden" />
-            <a href="index.php?menu=registrieren">Abbrechen</a>
+            <a href="index.php?menu=anmelden">Abbrechen</a>
         </div>
     </form>
     <div class="clear"></div>

@@ -9,7 +9,7 @@
 
 
 #login {
-    background-color:#D1D5D4;
+    background-color:#3F3F3F;/*#D1D5D4;*/
     width:300px;
     color:#fff;
     margin:10px auto 0px auto;
@@ -23,7 +23,8 @@
     -moz-background-clip:border;
     -moz-background-inline-policy:continuous;
     -moz-background-origin:padding;
-    border:1px solid #E5E5E5;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
     font-size:14px;
     margin-bottom:16px;
     margin-right:6px;
@@ -33,7 +34,7 @@
 }
 
 #login input[type=button], #login input[type=submit] {
-    background: #C61D24 url('../bilder/buttonlogingradient.jpg') left center repeat-x;
+    background-color: #C61D24;
     display: inline-block;
     padding: 4px 10px 6px;
     color: #fff;
@@ -49,8 +50,16 @@
     font-size:14px;
 }
 
+#login input:hover {
+    background-color:#EFEFEF;
+}
+
+#login input#anmelden:hover, a#registrieren:hover {
+    background-color: #DF1B28;
+}
+
 #login a {
-    background: #C61D24 url('../bilder/buttonlogingradient.jpg') left center repeat-x;
+    background-color: #C61D24;
     display: inline-block;
     padding: 7px 10px 9px;
     color: #fff;
