@@ -17,13 +17,13 @@
     // Einbinden von Bibliotheken, Klassen und Skripten
     require_once('libs/Smarty.class.php');
     require_once('classes/database.php');
-    include('php/anmeldung.php');
     include('config/config.php');
-   
 
     // Datenbank Verbindung herstellen
     $db = Database::getInstance($host, $user, $password);
     $db->select_db($database);
+
+    // Einbinden des Login Skriptes
 
     // Smarty Initalisieren
     $smarty = new Smarty;
@@ -31,14 +31,13 @@
     // Template Datei definieren
     $template = 'template.tpl';
 
-    // Überprüfen auf Login, falls nicht wird auf Login umgelenkt
+    // Überprüfen auf Login, falls nicht wird das Login Skript eingebunden
     if(empty($_SESSION['login']))
     {
-        $_SESSION['login'] = TRUE;
-
-        // Einbinden des Skriptes zur Anmeldung
+        $_SESSION['login'] = FALSE;
         include('php/anmeldung.php');
     }
+    
 
     // Einbinden des Skriptes für die aktuelle Webseite
     if(isset($_REQUEST['menu']) && !empty($_REQUEST['menu']))
@@ -55,6 +54,14 @@
             $smarty->assign('registrieren',$registrieren);  
         }
     }
+
+//    echo '<pre>';
+//    print_r($_SESSION);
+//    echo '</pre>';
+
+//    echo '<pre>';
+//    print_r($_REQUEST);
+//    echo '</pre>';
 
     // Smarty Variables Assign
     $smarty->assign('musik',$musik);

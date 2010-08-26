@@ -19,6 +19,8 @@ html, body {
 .absolute {position:absolute;}
 .relative {position:relative;}
 .full {overflow:hidden;}
+.right {float:right;}
+.clear {clear:both;}
 
 div#container {
     margin: 40px auto 0px auto;
@@ -26,11 +28,9 @@ div#container {
     color:#69635e;
 }
 
-.right {
-    display:block;
-    float:right;
+div.box {
+    width:100%;
 }
 
-.clear {
-    clear:both;
-}
+
+

@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.26, created on 2010-08-20 18:56:45
+<?php /* Smarty version 2.6.26, created on 2010-08-21 18:51:07
          compiled from registrieren.tpl */ ?>
 <img src="bilder/loginlogo.jpg" width="400" height="325" class="loginlogo" />
 <div id="login">

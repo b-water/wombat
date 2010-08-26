@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.26, created on 2010-08-17 20:43:42
+<?php /* Smarty version 2.6.26, created on 2010-08-20 22:26:57
          compiled from navigation.tpl */ ?>
 <a href="#" class="logo"><img src="bilder/logo.jpg" /><h1 class="invisible">Red Wombat</h1></a>
 <div id="menu">
