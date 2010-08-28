@@ -9,6 +9,7 @@
 html, body {
     font-family:'Arial';
     background-color:#F2F2F0;
+    font-size:14px;
 }
 
 /**************************************
@@ -21,6 +22,16 @@ html, body {
 .full {overflow:hidden;}
 .right {float:right;}
 .clear {clear:both;}
+
+p.error {
+    text-align:center;
+    background: url('../bilder/icons/error.png') no-repeat;
+    background-position: 30px 5px;
+    color:#fff;
+    padding:5px;
+    margin-bottom:10px;
+    font-size:14px;
+}
 
 div#container {
     margin: 40px auto 0px auto;

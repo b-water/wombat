@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.26, created on 2010-08-21 18:48:59
+<?php /* Smarty version 2.6.26, created on 2010-08-28 21:50:28
          compiled from template.tpl */ ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
@@ -17,6 +17,7 @@
         <link rel="stylesheet" href="css/footer.css" type="text/css" media="all" />
         <link rel="stylesheet" href="css/anmeldung.css" type="text/css" media="all" />
         <link rel="stylesheet" href="css/navigation.css" type="text/css" media="all" />
+        <link rel="stylesheet" href="css/registrieren.css" type="text/css" media="all" />
         <link rel="stylesheet" href="css/jquery.tablesorter.pager.css" type="text/css" media="all" />
         <script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>
         <script type="text/javascript" src="js/thickbox.js"></script>
@@ -25,6 +26,7 @@
         <script type="text/javascript" src="js/jquery.tablesorter.js"></script>
         <script type="text/javascript" src="js/template.js"></script>
         <script type="text/javascript" src="js/anmeldung.js"></script>
+        <script type="text/javascript" src="js/registrieren.js"></script>
     </head>
     <body>
         <?php if ($this->_tpl_vars['registrieren'] == TRUE): ?>
@@ -34,6 +36,8 @@ $this->_tpl_vars = $_smarty_tpl_vars;
 unset($_smarty_tpl_vars);
  ?>
         <?php else: ?>
+            <p><?php echo $this->_tpl_vars['anmeldung']; ?>
+</p>
             <?php if ($this->_tpl_vars['anmeldung'] == FALSE): ?>
                 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => 'anmeldung.tpl', 'smarty_include_vars' => array()));

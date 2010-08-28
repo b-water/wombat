@@ -18,6 +18,7 @@
     require_once('libs/Smarty.class.php');
     require_once('classes/database.php');
     include('config/config.php');
+    include('php/funktionen.php');
 
     // Datenbank Verbindung herstellen
     $db = Database::getInstance($host, $user, $password);
@@ -32,7 +33,7 @@
     $template = 'template.tpl';
 
     // Überprüfen auf Login, falls nicht wird das Login Skript eingebunden
-    if(empty($_SESSION['login']))
+    if(!isset($_SESSION['benutzer']['id']))
     {
         $_SESSION['login'] = FALSE;
         include('php/anmeldung.php');
@@ -55,9 +56,9 @@
         }
     }
 
-//    echo '<pre>';
-//    print_r($_SESSION);
-//    echo '</pre>';
+    echo '<pre>';
+    print_r($_SESSION);
+    echo '</pre>';
 
 //    echo '<pre>';
 //    print_r($_REQUEST);

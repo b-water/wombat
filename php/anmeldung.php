@@ -10,26 +10,24 @@
  * @param   string  $benutzer
  * @param   string  $passwort
  */
-if (!isset($_REQUEST['menu']) || empty($_REQUEST['menu']))
-{
-    $query = "SELECT * FROM benutzer WHERE benutzername = '".$_POST['benutzername']."' AND passwort = '".$_POST['passwort']."';";
 
-    $result = $db->query($query);
-
-    while ($row = $result->fetch_assoc())
+    if (!isset($_REQUEST['menu']) || empty($_REQUEST['menu']))
     {
-        if(!empty($row))
+        $query = "SELECT * FROM benutzer WHERE benutzername = '".$_POST['benutzername']."' AND passwort = '".$_POST['passwort']."';";
+
+        $result = $db->query($query);
+
+        while ($row = $result->fetch_assoc())
         {
-//            if($row['benutzername'] == $benutzer && $row['passwort'] == $passwort)
-//            {
+            if(!empty($row))
+            {
                 $_SESSION['benutzer']['benutzername'] = $row['benutzername'];
                 $_SESSION['benutzer']['id'] = $row['id'];
                 $_SESSION['login'] = TRUE;
-//            }
+
+            }
         }
     }
-
-}
 
 
 ?>

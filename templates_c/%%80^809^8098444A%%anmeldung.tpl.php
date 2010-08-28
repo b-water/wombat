@@ -1,10 +1,10 @@
-<?php /* Smarty version 2.6.26, created on 2010-08-26 22:06:46
+<?php /* Smarty version 2.6.26, created on 2010-08-28 21:14:32
          compiled from anmeldung.tpl */ ?>
 <img src="bilder/loginlogo.jpg" width="400" height="325" class="loginlogo" />
 <div id="anmeldung">
     <form method="post" action="index.php">
         <div id="label.benutzername" class="absolute"><label class="relative" for="benutzer">Benutzername</label></div>
-        <input name="benutzername" id="benutzername" type="text" />
+        <input name="benutzername" id="benutzername" type="text"  />
         <div id="label.passwort" class="absolute"><label class="relative" for="passwort">Passwort</label></div>
         <input name="passwort" id="passwort" type="password" />
         <div class="box">

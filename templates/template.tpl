@@ -15,6 +15,7 @@
         <link rel="stylesheet" href="css/footer.css" type="text/css" media="all" />
         <link rel="stylesheet" href="css/anmeldung.css" type="text/css" media="all" />
         <link rel="stylesheet" href="css/navigation.css" type="text/css" media="all" />
+        <link rel="stylesheet" href="css/registrieren.css" type="text/css" media="all" />
         <link rel="stylesheet" href="css/jquery.tablesorter.pager.css" type="text/css" media="all" />
         <script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>
         <script type="text/javascript" src="js/thickbox.js"></script>
@@ -23,11 +24,13 @@
         <script type="text/javascript" src="js/jquery.tablesorter.js"></script>
         <script type="text/javascript" src="js/template.js"></script>
         <script type="text/javascript" src="js/anmeldung.js"></script>
+        <script type="text/javascript" src="js/registrieren.js"></script>
     </head>
     <body>
         {if $registrieren eq TRUE}
             {include file='registrieren.tpl'}
         {else}
+            <p>{$anmeldung}</p>
             {if $anmeldung eq FALSE}
                 {include file='anmeldung.tpl'}
             {else}

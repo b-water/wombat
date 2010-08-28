@@ -1,19 +1,34 @@
-<?php /* Smarty version 2.6.26, created on 2010-08-21 18:51:07
+<?php /* Smarty version 2.6.26, created on 2010-08-28 21:25:54
          compiled from registrieren.tpl */ ?>
 <img src="bilder/loginlogo.jpg" width="400" height="325" class="loginlogo" />
-<div id="login">
-    <form method="post" action="index.php">
+<div id="anmeldung">
+    <form method="post" action="index.php?menu=registrieren">
+        <?php if ($this->_tpl_vars['error'] == TRUE): ?>
+            <p class="error"><?php echo $this->_tpl_vars['errormsg']; ?>
+</p>
+        <?php endif; ?>
+        <input type="hidden" id="send" name="send" value="1" />
+        <div id="label.vorname" class="absolute"><label class="relative" for="benutzer">Vorname</label></div>
+        <input name="vorname" id="vorname" type="text" value="<?php echo $this->_tpl_vars['vorname']; ?>
+" />
+        <div id="label.nachname" class="absolute"><label class="relative" for="benutzer">Nachname</label></div>
+        <input name="nachname" id="nachname" type="text" value="<?php echo $this->_tpl_vars['nachname']; ?>
+" />
         <div id="label.benutzername" class="absolute"><label class="relative" for="benutzer">Benutzername</label></div>
-        <input name="benutzer" id="benutzer" type="text" />
-        <div id="label.email" class="absolute"><label class="relative" for="email">E-Mail Adresse</label></div>
-        <input name="email" id="email" type="text" />
+        <input name="benutzername" id="benutzername" type="text" value="<?php echo $this->_tpl_vars['benutzername']; ?>
+" />
         <div id="label.passwort" class="absolute"><label class="relative" for="passwort">Passwort</label></div>
-        <input name="passwort" id="passwort" type="password" />
-        <div id="label.passwort.repeat" class="absolute"><label class="relative" for="passwort.repeat">Passwort wiederholen</label></div>
-        <input name="passwort.repeat" id="passwort.repeat" type="password" />
-        <div class="right">
-            <input type="submit" id="click" value="Absenden" />
-            <a href="index.php?menu=anmelden">Abbrechen</a>
+        <input name="passwort" id="passwort" type="password" value="<?php echo $this->_tpl_vars['passwort']; ?>
+" />
+        <div id="label.passwort_repeat" class="absolute"><label class="relative" for="passwort">Passwort wiederholen</label></div>
+        <input name="passwort_repeat" id="passwort_repeat" type="password" value="<?php echo $this->_tpl_vars['passwort_repeat']; ?>
+" />
+        <div id="label.email" class="absolute"><label class="relative" for="passwort">E-Mail Adresse</label></div>
+        <input name="email" id="email" type="text" value="<?php echo $this->_tpl_vars['email']; ?>
+" />
+        <div class="box">
+            <input type="submit" id="registrieren" value="Registrieren" />
+            <a id="abbruch" href="index.php?=anmelden">Abbruch</a>
         </div>
     </form>
     <div class="clear"></div>

@@ -1,0 +1,33 @@
+/* 
+    Document   : registrieren
+    Created on : 28.08.2010, 18:11:12
+    Author     : nico
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+
+input#passwort, input#passwort_repeat {
+    background: #fff url('../bilder/icons/key.png') no-repeat;
+    background-position: 10px 5px;
+}
+
+input#email {
+    background: #fff url('../bilder/icons/email.png') no-repeat;
+    background-position: 10px 5px;
+}
+
+input#vorname {
+    background: #fff url('../bilder/icons/user_orange.png') no-repeat;
+    background-position: 10px 5px;
+}
+
+input#nachname {
+    background: #fff url('../bilder/icons/user_gray.png') no-repeat;
+    background-position: 10px 5px;
+}
