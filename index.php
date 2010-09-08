@@ -7,12 +7,10 @@
  * Copyright : Nico Schmitz 2010, Alle Rechte vorbehalten!
  ************************************************************************************************/
 
-    // Starten der Session falls noch nicht geschehen
-    if(!isset($_SESSION))
-    {
-        session_set_cookie_params('', '', '', TRUE);
-        session_start();
-    }
+    // Starten der Session
+    session_set_cookie_params('', '', '', TRUE);
+    session_start();
+
 
     // Einbinden von Bibliotheken, Klassen und Skripten
     require_once('libs/Smarty.class.php');
@@ -35,7 +33,7 @@
     // Überprüfen auf Login, falls nicht wird das Login Skript eingebunden
     if(!isset($_SESSION['benutzer']['id']))
     {
-        $_SESSION['login'] = FALSE;
+//        $_SESSION['login'] = FALSE;
         include('php/anmeldung.php');
     }
     
@@ -60,13 +58,14 @@
     print_r($_SESSION);
     echo '</pre>';
 
-//    echo '<pre>';
-//    print_r($_REQUEST);
-//    echo '</pre>';
+
+    echo '<pre>';
+    print_r($_REQUEST);
+    echo '</pre>';
 
     // Smarty Variables Assign
     $smarty->assign('musik',$musik);
-    $smarty->assign('anmeldung',$_SESSION['login']);
+    $smarty->assign('anmeldung',$_SESSION['benutzer']['angemeldet']);
     $smarty->display($template);
 
 ?>

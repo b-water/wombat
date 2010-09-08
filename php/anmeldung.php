@@ -21,9 +21,10 @@
         {
             if(!empty($row))
             {
+                session_regenerate_id();
                 $_SESSION['benutzer']['benutzername'] = $row['benutzername'];
                 $_SESSION['benutzer']['id'] = $row['id'];
-                $_SESSION['login'] = TRUE;
+                $_SESSION['benutzer']['angemeldet'] = TRUE;
 
             }
         }
