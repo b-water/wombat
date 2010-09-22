@@ -14,7 +14,7 @@
     // Einbinden von Bibliotheken, Klassen und Skripten
     require_once('libs/Smarty.class.php');
     require_once('classes/database.php');
-    require_once('classes/benutzer.php');
+    include('classes/benutzer.php');
     include('config/config.php');
     include('php/funktionen.php');
 
@@ -39,6 +39,8 @@
             $benutzer->anmelden($_REQUEST['benutzername'], $_REQUEST['passwort']);
         }
     }
+
+
     
 
     // Einbinden des Skriptes für die aktuelle Webseite
@@ -55,18 +57,23 @@
             $registrieren = TRUE;
             $smarty->assign('registrieren',$registrieren);  
         }
+        if($_REQUEST['menu'] == 'abmelden')
+        {
+            $benutzer = new benutzer();
+            $benutzer->abmelden();
+        }
     }
 
-    echo '<pre>';
-    print_r($_SESSION);
-    echo '</pre>';
+//    echo '<pre>';
+//    print_r($_SESSION);
+//    echo '</pre>';
+//
+//
+//    echo '<pre>';
+//    print_r($_REQUEST);
+//    echo '</pre>';
 
-
-    echo '<pre>';
-    print_r($_REQUEST);
-    echo '</pre>';
-
-    // Smarty Variables Assign
+    // Smarty Variablen Assign
     $smarty->assign('musik',$musik);
     $smarty->assign('anmeldung',$_SESSION['benutzer']['angemeldet']);
     $smarty->display($template);

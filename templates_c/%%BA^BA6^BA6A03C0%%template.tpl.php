@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.26, created on 2010-08-28 21:50:28
+<?php /* Smarty version 2.6.26, created on 2010-09-22 21:35:10
          compiled from template.tpl */ ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
@@ -36,8 +36,6 @@ $this->_tpl_vars = $_smarty_tpl_vars;
 unset($_smarty_tpl_vars);
  ?>
         <?php else: ?>
-            <p><?php echo $this->_tpl_vars['anmeldung']; ?>
-</p>
             <?php if ($this->_tpl_vars['anmeldung'] == FALSE): ?>
                 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => 'anmeldung.tpl', 'smarty_include_vars' => array()));

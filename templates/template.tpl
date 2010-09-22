@@ -30,7 +30,6 @@
         {if $registrieren eq TRUE}
             {include file='registrieren.tpl'}
         {else}
-            <p>{$anmeldung}</p>
             {if $anmeldung eq FALSE}
                 {include file='anmeldung.tpl'}
             {else}
