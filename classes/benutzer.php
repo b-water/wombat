@@ -1,22 +1,37 @@
 <?php
-/* 
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 
 /**
- * Description of benutzer
- *
- * @author nico
+ * 
  */
-class benutzer {
+class benutzer
+{
+    private $benutzername;
+    private $passwort;
+    private $id;
 
-    public $benutzername;
-    protected $passwort;
+
+
+    public function __construct($id=null) {
+        if ($id != null)
+            $this->loadById($id);
+    }
+
+    public function loadById($id) {
+
+    }
 
     public function anmelden($benutzername, $passwort)
     {
-        $query = "SELECT * FROM benutzer WHERE benutzername = '".$benutzername."' AND passwort = '".$passwort."';";
+
+        $this->benutzername = $benutzername;
+        $this->passwort = $passwort;
+
+        $db = Database::getInstance($host, $user, $password);
+        $db->select_db($database);
+
+
+        $query = "SELECT * FROM benutzer WHERE
+            benutzername = '".$this->benutzername."' AND passwort = '".$this->passwort."';";
 
         $result = $db->query($query);
 
@@ -24,13 +39,17 @@ class benutzer {
         {
             if(!empty($row))
             {
+                session_regenerate_id();
                 $_SESSION['benutzer']['benutzername'] = $row['benutzername'];
                 $_SESSION['benutzer']['id'] = $row['id'];
-                $_SESSION['login'] = TRUE;
+                $this->id = $row['id'];
+                $_SESSION['benutzer']['angemeldet'] = TRUE;
 
             }
         }
     }
 
 }
+
+
 ?>

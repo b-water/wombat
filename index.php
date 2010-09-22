@@ -8,13 +8,13 @@
  ************************************************************************************************/
 
     // Starten der Session
-    session_set_cookie_params('', '', '', TRUE);
     session_start();
 
 
     // Einbinden von Bibliotheken, Klassen und Skripten
     require_once('libs/Smarty.class.php');
     require_once('classes/database.php');
+    require_once('classes/benutzer.php');
     include('config/config.php');
     include('php/funktionen.php');
 
@@ -33,8 +33,11 @@
     // Überprüfen auf Login, falls nicht wird das Login Skript eingebunden
     if(!isset($_SESSION['benutzer']['id']))
     {
-//        $_SESSION['login'] = FALSE;
-        include('php/anmeldung.php');
+        if(isset($_REQUEST['benutzername']) && isset($_REQUEST['benutzername']))
+        {
+            $benutzer = new benutzer();
+            $benutzer->anmelden($_REQUEST['benutzername'], $_REQUEST['passwort']);
+        }
     }
     
 
