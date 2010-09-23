@@ -31,7 +31,7 @@
     $template = 'template.tpl';
 
     // Überprüfen auf Login, falls nicht wird das Login Skript eingebunden
-    if(!isset($_SESSION['benutzer']['id']))
+    if(!isset($benutzer->id))
     {
         if(isset($_REQUEST['benutzername']) && isset($_REQUEST['benutzername']))
         {
@@ -40,8 +40,6 @@
         }
     }
 
-
-    
 
     // Einbinden des Skriptes für die aktuelle Webseite
     if(isset($_REQUEST['menu']) && !empty($_REQUEST['menu']))
@@ -55,7 +53,9 @@
         if($_REQUEST['menu'] == 'registrieren')
         {
             $registrieren = TRUE;
-            $smarty->assign('registrieren',$registrieren);  
+            $smarty->assign('registrieren',$registrieren);
+            $benutzer = new benutzer();
+            $benutzer->registrieren($_REQUEST);
         }
         if($_REQUEST['menu'] == 'abmelden')
         {

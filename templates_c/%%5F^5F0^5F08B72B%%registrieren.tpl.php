@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.26, created on 2010-08-28 21:25:54
+<?php /* Smarty version 2.6.26, created on 2010-09-23 22:03:19
          compiled from registrieren.tpl */ ?>
 <img src="bilder/loginlogo.jpg" width="400" height="325" class="loginlogo" />
 <div id="anmeldung">
@@ -31,5 +31,4 @@
             <a id="abbruch" href="index.php?=anmelden">Abbruch</a>
         </div>
     </form>
-    <div class="clear"></div>
 </div>

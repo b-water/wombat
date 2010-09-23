@@ -22,5 +22,4 @@
             <a id="abbruch" href="index.php?=anmelden">Abbruch</a>
         </div>
     </form>
-    <div class="clear"></div>
 </div>
