@@ -8,9 +8,9 @@
 class Database extends mysqli
 {
     protected static $instance = null;
-    private function __construct($host, $user, $password)
+    private function __construct($host, $user, $password, $database)
     {
-        parent::__construct($host, $user, $password);
+        parent::__construct($host, $user, $password, $database);
     }
     /**
      *
@@ -19,10 +19,10 @@ class Database extends mysqli
      * @param   string  $password
      * @return  mysqli
      */
-    public static function getInstance($host, $user, $password)
+    public static function getInstance($host, $user, $password, $database)
     {
         if (self::$instance == null)
-            self::$instance = new Database($host, $user, $password);
+            self::$instance = new Database($host, $user, $password, $database);
         return self::$instance;
     }
 

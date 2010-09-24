@@ -1,4 +1,12 @@
 
+function vorbelegung(id)
+{
+    $('#'+id).focus(function() {
+          document.getElementById('label.'+id).style.display = 'none';
+    });
+}
+
+
 $(document).ready(function()
 {
     // Entfernung des Labels bei den Inputs

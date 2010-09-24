@@ -14,9 +14,11 @@
  *
  * @param   array   $felder     Array das überprüft werden soll
  * @param   array   $pflichtfelder    Array mit den Pflichtfeldern
+ * @return bool
  */
 function Pflichtfeldpruefung($felder, $pflichtfelder)
 {
+    $error = false;
     $error_felder = '';
     foreach($pflichtfelder as $key => $val)
     {
@@ -28,12 +30,7 @@ function Pflichtfeldpruefung($felder, $pflichtfelder)
             }
         }
     }
-
-    if(isset($error))
-    {
-        return $error;
-    }
-
+    return $error;
 }
 
 

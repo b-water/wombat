@@ -19,13 +19,19 @@
     include('php/funktionen.php');
 
     // Datenbank Verbindung herstellen
-    $db = Database::getInstance($host, $user, $password);
-    $db->select_db($database);
+    $db = Database::getInstance($host, $user, $password, $database);
 
-    // Einbinden des Login Skriptes
+    // Benutzer initalisieren
+    if (!isset($benutzer))
+        $benutzer = new Benutzer();
 
+    // Content-Handler
+    if(!isset($content))
+        $content = Array();
+    
     // Smarty Initalisieren
-    $smarty = new Smarty;
+    if(!isset($smarty))
+        $smarty = new Smarty;
 
     // Template Datei definieren
     $template = 'template.tpl';
@@ -35,11 +41,15 @@
     {
         if(isset($_REQUEST['benutzername']) && isset($_REQUEST['benutzername']))
         {
-            $benutzer = new benutzer();
+//            $benutzer = new Benutzer();
             $benutzer->anmelden($_REQUEST['benutzername'], $_REQUEST['passwort']);
         }
     }
-
+    else
+    {
+        die();
+        $benutzer->status = true;
+    }
 
     // Einbinden des Skriptes für die aktuelle Webseite
     if(isset($_REQUEST['menu']) && !empty($_REQUEST['menu']))
@@ -54,12 +64,12 @@
         {
             $registrieren = TRUE;
             $smarty->assign('registrieren',$registrieren);
-            $benutzer = new benutzer();
+//            $benutzer = new Benutzer();
             $benutzer->registrieren($_REQUEST);
         }
         if($_REQUEST['menu'] == 'abmelden')
         {
-            $benutzer = new benutzer();
+//            $benutzer = new Benutzer();
             $benutzer->abmelden();
         }
     }
@@ -74,7 +84,6 @@
 //    echo '</pre>';
 
     // Smarty Variablen Assign
-    $smarty->assign('musik',$musik);
     $smarty->assign('anmeldung',$_SESSION['benutzer']['angemeldet']);
     $smarty->display($template);
 

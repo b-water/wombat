@@ -3,7 +3,7 @@
 /**
  * 
  */
-class benutzer
+class Benutzer
 {
     private $benutzername;
     private $administrator;
@@ -12,8 +12,12 @@ class benutzer
     private $vorname;
     private $nachname;
     private $email;
+    public $status = false;
+    private $db;
+    private $smarty = null;
 
     public function __construct($id=null) {
+        $this->db = Database::getInstance($host, $user, $password, $database);
         if ($id != null)
             $this->loadById($id);
     }
@@ -29,8 +33,9 @@ class benutzer
      * @author  Nico Schmitz
      * @since   19.07.2010 - 22:33 Uhr
      *
-     * @param   string  $benutzername
-     * @param   string  $passwort
+     * @param   string  benutzername
+     * @param   string  passwort
+     * @return  bool    
      */
     public function anmelden($benutzername, $passwort)
     {
@@ -38,26 +43,35 @@ class benutzer
         $this->benutzername = $benutzername;
         $this->passwort = md5($passwort);
 
-        $db = Database::getInstance($host, $user, $password);
-        $smarty = new Smarty;
-//        $smarty->get_registered_object($name); <-- get instance ?
+        if ($this->smarty == null)
+            $this->smarty = new Smarty();
 
         $query = "SELECT * FROM benutzer WHERE
-            benutzername = '".$this->benutzername."' AND passwort = '".$this->passwort."';";
+            benutzername = '".$this->db->escape_string($this->benutzername)."'
+                AND passwort = '".$this->db->escape_string($this->passwort)."';";
 
-        $result = $db->query($query);
+        $ergebnis = $this->db->query($query);
 
-        while ($row = $result->fetch_assoc())
+        while ($daten = $ergebnis->fetch_assoc())
         {
-            if(!empty($row))
+            if(!empty($daten))
             {
                 session_regenerate_id();
-                $_SESSION['benutzer']['benutzername'] = $row['benutzername'];
-                $_SESSION['benutzer']['id'] = $row['id'];
-                $this->id = $row['id'];
-                $_SESSION['benutzer']['angemeldet'] = TRUE;
+                $this->id = $daten['id'];
+                $this->benutzername = $daten['benutzername'];
+                $this->email = $daten['email'];
+                $this->vorname = $daten['vorname'];
+                $this->nachname = $daten['nachname'];
+                $this->status = true;
+                $_SESSION['benutzer']['angemeldet'] = true;
+            }
+            else
+            {
+                return false;
             }
         }
+
+        return true;
     }
 
     /**
@@ -82,8 +96,9 @@ class benutzer
      */
     public function registrieren($data)
     {
-        $db = Database::getInstance($host, $user, $password);
-        $smarty = new Smarty;
+        $db = Database::getInstance($host, $user, $password, $database);
+        if ($this->smarty == null)
+            $this->smarty = new Smarty();
 
         if(array_key_exists('send', $data))
         {
@@ -91,9 +106,8 @@ class benutzer
             // Pflichtfeldprüfung
             $pflichtfelder = array('vorname', 'nachname','benutzername','passwort','passwort_repeat','email');
             $error = Pflichtfeldpruefung($data, $pflichtfelder);
-
             // Wenn die Pflichtfeldprüfung einen fehler fand wird die Error Nachricht generiert
-            if(isset($error) && $error === TRUE)
+            if($error === TRUE)
             {
                 $error_msg = 'Bitte füllen Sie alle Felder aus!';
             }
@@ -134,16 +148,18 @@ class benutzer
                 $this->email = $data['email'];
 
                 $sql = 'INSERT INTO benutzer (vorname,nachname,benutzername,passwort,email)
-                        VALUES("'.$this->vorname.'","'.$this->nachname.'",
-                        "'.$this->benutzername.'","'.$this->passwort.'",
-                        "'.$this->email.'")';
+                        VALUES("'.$this->db->escape_string($this->vorname).'",
+                            "'.$this->db->escape_string($this->nachname).'",
+                        "'.$this->db->escape_string($this->benutzername).'",
+                            "'.$this->db->escape_string($this->passwort).'",
+                        "'.$this->db->escape_string($this->email).'")';
                 
-                $db->query($sql);
+                $this->db->query($sql);
                 session_start();
                 $this->anmelden($this->benutzername, $this->passwort);
-                echo '<pre>';
-                print_r($_SESSION);
-                echo '</pre>';
+                
+//                Debugger::getInstance()->write(print_r($_SESSION, true));
+
             }
         }
     }
