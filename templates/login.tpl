@@ -5,7 +5,7 @@
         <input name="password" id="password" type="password" class="label" title="Passwort" />
         <div class="box">
             <input type="submit" id="login" value="Anmelden" />
-            <a id="registrieren" href="index.php?menu=register">Registrieren</a>
+            <a id="register" href="index.php?menu=register">Registrieren</a>
         </div>
     </form>
 </div>

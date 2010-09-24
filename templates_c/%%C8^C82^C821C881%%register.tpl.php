@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.26, created on 2010-09-24 23:20:46
+<?php /* Smarty version 2.6.26, created on 2010-09-24 23:46:12
          compiled from register.tpl */ ?>
 <img src="images/loginlogo.jpg" width="400" height="325" class="loginlogo" />
 <div id="login">
@@ -22,7 +22,7 @@
 " class="label" title="E-Mail Adresse"/>
         <div class="box">
             <input type="submit" id="register" value="Registrieren" />
-            <a id="abbruch" href="index.php?=login">Abbruch</a>
+            <a id="cancel" href="index.php?=login">Abbruch</a>
         </div>
     </form>
 </div>

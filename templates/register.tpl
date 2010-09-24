@@ -13,7 +13,7 @@
         <input name="email" id="email" type="text" value="{$email}" class="label" title="E-Mail Adresse"/>
         <div class="box">
             <input type="submit" id="register" value="Registrieren" />
-            <a id="abbruch" href="index.php?=login">Abbruch</a>
+            <a id="cancel" href="index.php?=login">Abbruch</a>
         </div>
     </form>
 </div>

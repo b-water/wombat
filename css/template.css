@@ -1,13 +1,15 @@
 /*
     Document   : template
     Created on : 01.04.2010, 20:08:57
-    Author     : nico
-    Description:
-        Purpose of the stylesheet follows.
+    Author     : Nico Schmitz <cofilew@gmail.com>
+    Description: This is the main stylesheet for the
+    RedWombat system.
 */
 
 
-/* reset.css */
+/**************************************
+Resets the default Stylesheet of the different Browsers
+**************************************/
 
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5,
 h6, p, blockquote, pre, a, abbr, address, cite, code, del, dfn,
@@ -41,7 +43,7 @@ html, body {
 }
 
 /**************************************
-           Allgemeine Klassen
+Generic stuff
 **************************************/
 
 .invisible {visibility:hidden;}
@@ -61,6 +63,7 @@ p.error {
     font-size:14px;
 }
 
+
 div#container {
     margin: 40px auto 0px auto;
     width:850px;
@@ -72,8 +75,9 @@ div.box {
 }
 
 
-/* anmeldung.css */
-
+/**************************************
+login
+**************************************/
 
 
 #login {
@@ -100,12 +104,12 @@ div.box {
     padding:3px 3px 5px 35px;
     width:99%;
     border:0;
-
+    color:#262626;
+    font-size:14px;
 }
 
-#login input[type=button], #login input[type=submit] {
+input#login, input#register {
     background-color: #C61D24;
-    display: inline-block;
     padding: 6px 10px 6px;
     color: #fff;
     text-decoration: none;
@@ -115,8 +119,6 @@ div.box {
     -webkit-box-shadow: 0 2px 3px rgba(0,0,0,0.5);
     text-shadow: 0 -1px 1px rgba(0,0,0,0.25);
     border: 0;
-    cursor: pointer;
-    text-align:center;
     font-size:14px;
     width:49%;
 }
@@ -126,7 +128,7 @@ input#username {
     background-position: 10px 5px;
 }
 
-#login input#login:hover, a#register:hover {
+input#login:hover, input#register:hover, a#register:hover, a#cancel:hover {
     background-color: #DF1B28;
 }
 
@@ -141,19 +143,10 @@ input#username {
     -moz-box-shadow: 0 2px 3px rgba(0,0,0,0.5);
     -webkit-box-shadow: 0 2px 3px rgba(0,0,0,0.5);
     text-shadow: 0 -1px 1px rgba(0,0,0,0.25);
-    border: 0 none;
     cursor: pointer;
     text-align:center;
     font-size:14px;
     width:43%;
-}
-
-#login label {
-    display:block;
-    color:#262626;
-    font-size:14px;
-    top:8px;
-    left:35px;
 }
 
 .loginlogo {
@@ -161,14 +154,18 @@ input#username {
     margin:auto;
 }
 
-/* content.css */
+/**************************************
+content
+**************************************/
 
 div#content {
     float:left;
     width:600px;
 }
 
-/* footer.css */
+/**************************************
+footer
+**************************************/
 
 div#footer {
     clear:both;
@@ -179,7 +176,10 @@ div#footer {
     font-size:12px;
 }
 
-/* header.css */
+/**************************************
+header
+**************************************/
+
 div#header {
     background-image:url('../images/border.jpg');
     background-position:top left;
@@ -201,7 +201,9 @@ cite {
     color:#C91715;
 }
 
-/* navigation.css */
+/**************************************
+navigation
+**************************************/
 
 
 div#navigation {
@@ -248,7 +250,9 @@ div#navigation {
     background-color:#c61d24;
 }
 
-/* registrieren.css */
+/**************************************
+register
+**************************************/
 
 
 
@@ -272,14 +276,15 @@ input#name {
     background-position: 10px 5px;
 }
 
-/* sidebar.css */
+/**************************************
+sidebar
+**************************************/
 
 
 #sidebar  {
     width:200px;
     float:left;
     padding:5px;
-    /*margin: 35px 20px auto 20px;*/
 }
 
 
