@@ -3,14 +3,14 @@
 /**
  * 
  */
-class Benutzer
+class User
 {
-    private $benutzername;
+    private $username;
     private $administrator;
-    private $passwort;
+    private $password;
     private $id;
-    private $vorname;
-    private $nachname;
+    private $forename;
+    private $name;
     private $email;
     public $status = false;
     private $db;
@@ -37,33 +37,33 @@ class Benutzer
      * @param   string  passwort
      * @return  bool    
      */
-    public function anmelden($benutzername, $passwort)
+    public function login($username, $password)
     {
         
-        $this->benutzername = $benutzername;
-        $this->passwort = md5($passwort);
+        $this->username = $username;
+        $this->password = md5($password);
 
         if ($this->smarty == null)
             $this->smarty = new Smarty();
 
-        $query = "SELECT * FROM benutzer WHERE
-            benutzername = '".$this->db->escape_string($this->benutzername)."'
-                AND passwort = '".$this->db->escape_string($this->passwort)."';";
+        $query = "SELECT * FROM user WHERE
+            username = '".$this->db->escape_string($this->username)."'
+                AND password = '".$this->db->escape_string($this->password)."';";
 
-        $ergebnis = $this->db->query($query);
+        $result = $this->db->query($query);
 
-        while ($daten = $ergebnis->fetch_assoc())
+        while ($row = $result->fetch_assoc())
         {
-            if(!empty($daten))
+            if(!empty($row))
             {
                 session_regenerate_id();
-                $this->id = $daten['id'];
-                $this->benutzername = $daten['benutzername'];
-                $this->email = $daten['email'];
-                $this->vorname = $daten['vorname'];
-                $this->nachname = $daten['nachname'];
+                $this->id = $row['id'];
+                $this->benutzername = $row['username'];
+                $this->email = $row['email'];
+                $this->forename = $row['forename'];
+                $this->name = $row['name'];
                 $this->status = true;
-                $_SESSION['benutzer']['angemeldet'] = true;
+                $_SESSION['user']['loggedin'] = true;
             }
             else
             {
@@ -81,7 +81,7 @@ class Benutzer
      * @author  Nico Schmitz
      * @since   22.09.2010 - 22:23 Uhr
      */
-    public function abmelden()
+    public function logout()
     {
         session_destroy();
         $hostname = $_SERVER['HTTP_HOST'];
@@ -94,7 +94,7 @@ class Benutzer
      *
      * @param <type> $data 
      */
-    public function registrieren($data)
+    public function register($data)
     {
         $db = Database::getInstance($host, $user, $password, $database);
         if ($this->smarty == null)
@@ -104,7 +104,7 @@ class Benutzer
         {
 
             // Pflichtfeldprüfung
-            $pflichtfelder = array('vorname', 'nachname','benutzername','passwort','passwort_repeat','email');
+            $pflichtfelder = array('forename', 'name','username','password','password_repeat','email');
             $error = Pflichtfeldpruefung($data, $pflichtfelder);
             // Wenn die Pflichtfeldprüfung einen fehler fand wird die Error Nachricht generiert
             if($error === TRUE)

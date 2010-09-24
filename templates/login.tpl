@@ -1,5 +1,3 @@
-<?php /* Smarty version 2.6.26, created on 2010-09-24 23:14:39
-         compiled from login.tpl */ ?>
 <img src="images/loginlogo.jpg" width="400" height="325" class="loginlogo" />
 <div id="login">
     <form method="post" action="index.php">
@@ -10,4 +8,4 @@
             <a id="registrieren" href="index.php?menu=register">Registrieren</a>
         </div>
     </form>
-</div>
+</div>

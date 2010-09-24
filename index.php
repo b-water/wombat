@@ -14,16 +14,12 @@
     // Einbinden von Bibliotheken, Klassen und Skripten
     require_once('libs/Smarty.class.php');
     require_once('classes/database.php');
-    include('classes/benutzer.php');
+    include('classes/user.php');
     include('config/config.php');
-    include('php/funktionen.php');
+    include('php/functions.php');
 
     // Datenbank Verbindung herstellen
     $db = Database::getInstance($host, $user, $password, $database);
-
-    // Benutzer initalisieren
-    if (!isset($benutzer))
-        $benutzer = new Benutzer();
 
     // Content-Handler
     if(!isset($content))
@@ -31,46 +27,41 @@
     
     // Smarty Initalisieren
     if(!isset($smarty))
-        $smarty = new Smarty;
+        $smarty = new Smarty();
 
     // Template Datei definieren
     $template = 'template.tpl';
 
     // Überprüfen auf Login, falls nicht wird das Login Skript eingebunden
-    if(!isset($benutzer->id))
+    if(!isset($user->id))
     {
-        if(isset($_REQUEST['benutzername']) && isset($_REQUEST['benutzername']))
+        if(isset($_REQUEST['username']) && isset($_REQUEST['password']))
         {
-//            $benutzer = new Benutzer();
-            $benutzer->anmelden($_REQUEST['benutzername'], $_REQUEST['passwort']);
+            $user = new User();
+            $user->login($_REQUEST['username'], $_REQUEST['password']);
         }
-    }
-    else
-    {
-        die();
-        $benutzer->status = true;
     }
 
     // Einbinden des Skriptes für die aktuelle Webseite
     if(isset($_REQUEST['menu']) && !empty($_REQUEST['menu']))
     {
-        $registrieren = FALSE;
+        $register = false;
 
         if(file_exists('php/'.$_REQUEST['menu'].'.php'))
         {
             include('php/'.$_REQUEST['menu'].'.php');
         }
-        if($_REQUEST['menu'] == 'registrieren')
+        if($_REQUEST['menu'] == 'register')
         {
-            $registrieren = TRUE;
-            $smarty->assign('registrieren',$registrieren);
-//            $benutzer = new Benutzer();
-            $benutzer->registrieren($_REQUEST);
+            $register = true;
+            $smarty->assign('register',$register);
+            $user = new User();
+            $user->register($_REQUEST);
         }
-        if($_REQUEST['menu'] == 'abmelden')
+        if($_REQUEST['menu'] == 'logout')
         {
-//            $benutzer = new Benutzer();
-            $benutzer->abmelden();
+            $user = new User();
+            $user->logout();
         }
     }
 
@@ -84,7 +75,7 @@
 //    echo '</pre>';
 
     // Smarty Variablen Assign
-    $smarty->assign('anmeldung',$_SESSION['benutzer']['angemeldet']);
+    $smarty->assign('loggedin',$_SESSION['user']['loggedin']);
     $smarty->display($template);
 
 ?>
