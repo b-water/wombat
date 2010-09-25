@@ -1,19 +1,19 @@
 <?php
 
 /************************************************************************************************
- * Skript Name : Red Wombat
- * Skript Author : Nico Schmitz
- * Datum : 01.04.2010
- * Copyright : Nico Schmitz 2010, Alle Rechte vorbehalten!
+ * Script Name : Red Wombat
+ * Script Author : Nico Schmitz
+ * Date : 01.04.2010
+ * Copyright : Nico Schmitz 2010, All right reserved!
  ************************************************************************************************/
 
-    // Starten der Session
+    // Launching Session
     session_start();
 
 
-    // Einbinden von Bibliotheken, Klassen und Skripten
-    require_once('libs/Smarty.class.php');
-    require_once('classes/database.php');
+    // Embedding from Libraries, Classes and other Stuff
+    include('libs/Smarty.class.php');
+    include('classes/database.php');
     include('classes/user.php');
     include('config/config.php');
     include('php/functions.php');
@@ -25,14 +25,13 @@
     if(!isset($content))
         $content = Array();
     
-    // Smarty Initalisieren
-    if(!isset($smarty))
-        $smarty = new Smarty();
+    // initalize Smarty
+    $smarty = new Smarty();
 
-    // Template Datei definieren
+    // define Template file
     $template = 'template.tpl';
 
-    // Überprüfen auf Login, falls nicht wird das Login Skript eingebunden
+    // checking if the user is loggedin
     if(!isset($user->id))
     {
         if(isset($_REQUEST['username']) && isset($_REQUEST['password']))
@@ -42,7 +41,7 @@
         }
     }
 
-    // Einbinden des Skriptes für die aktuelle Webseite
+    // Embedding the script for the acutally website
     if(isset($_REQUEST['menu']) && !empty($_REQUEST['menu']))
     {
         $register = false;
