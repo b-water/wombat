@@ -12,31 +12,23 @@
         <script type="text/javascript" src="js/template.js"></script>
     </head>
     <body>
-        {if $register eq TRUE}
-            {include file='register.tpl'}
-        {else}
-            {if $loggedin eq FALSE}
-                {include file='login.tpl'}
-            {else}
-                <div id="navigation">
-                    {* Navigations Bereich Laden *}
-                    {include file='navigation.tpl'}
-                </div>
-                <div id="container">
-                    <div id="content">
-                        {* Content Bereich Laden *}
-                        {include file='content.tpl'}
-                    </div>
-                    <div id="sidebar">
-                        {* Sidebar Bereich Laden *}
-                        {include file='sidebar.tpl'}
-                    </div>
-                    <div id="footer">
-                        {* Footer Bereich Laden *}
-                        {include file='footer.tpl}
-                    </div>
-                </div>
-            {/if}
-        {/if}
+        <div id="navigation">
+            {* Navigations Bereich Laden *}
+            {include file='navigation.tpl'}
+        </div>
+        <div id="container">
+            <div id="content">
+                {* Content Bereich Laden *}
+                {include file='content.tpl'}
+            </div>
+            <div id="sidebar">
+                {* Sidebar Bereich Laden *}
+                {include file='sidebar.tpl'}
+            </div>
+            <div id="footer">
+                {* Footer Bereich Laden *}
+                {include file='footer.tpl}
+            </div>
+        </div>
     </body>
 </html>

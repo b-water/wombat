@@ -24,7 +24,7 @@
     // Content-Handler
     if(!isset($content))
         $content = Array();
-    
+
     // initalize Smarty
     $smarty = new Smarty();
 
@@ -34,6 +34,10 @@
     // checking if the user is loggedin
     if(!isset($user->id))
     {
+        if($_SESSION['user']['loggedin'] === false)
+        {
+            $template = 'login.tpl';
+        }
         if(isset($_REQUEST['username']) && isset($_REQUEST['password']))
         {
             $user = new User();
@@ -50,13 +54,6 @@
         {
             include('php/'.$_REQUEST['menu'].'.php');
         }
-        if($_REQUEST['menu'] == 'register')
-        {
-            $register = true;
-            $smarty->assign('register',$register);
-            $user = new User();
-            $user->register($_REQUEST);
-        }
         if($_REQUEST['menu'] == 'logout')
         {
             $user = new User();
@@ -64,17 +61,8 @@
         }
     }
 
-//    echo '<pre>';
-//    print_r($_SESSION);
-//    echo '</pre>';
-//
-//
-//    echo '<pre>';
-//    print_r($_REQUEST);
-//    echo '</pre>';
-
-    // Smarty Variablen Assign
-    $smarty->assign('loggedin',$_SESSION['user']['loggedin']);
+    // Smarty varibales assign
+    $smarty->assign('menu', $_REQUEST['menu']);
     $smarty->display($template);
 
 ?>

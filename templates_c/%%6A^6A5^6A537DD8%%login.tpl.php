@@ -1,5 +1,19 @@
-<?php /* Smarty version 2.6.26, created on 2010-09-24 23:38:35
+<?php /* Smarty version 2.6.26, created on 2010-09-26 14:22:38
          compiled from login.tpl */ ?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <title>Red Wombat - Digitale Medien Bibliothek</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="Autor" content="Nico Schmitz" />
+        <meta name="Copyright" content="2010 Nico Schmitz" />
+        <link rel="stylesheet" href="css/template.css" type="text/css" media="all" />
+        <script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>
+        <script type="text/javascript" src="js/jquery.labelify.js"></script>
+        <script type="text/javascript" src="js/template.js"></script>
+    </head>
+    <body>
 <img src="images/loginlogo.jpg" width="400" height="325" class="loginlogo" />
 <div id="login">
     <form method="post" action="index.php">
@@ -7,7 +21,8 @@
         <input name="password" id="password" type="password" class="label" title="Passwort" />
         <div class="box">
             <input type="submit" id="login" value="Anmelden" />
-            <a id="register" href="index.php?menu=register">Registrieren</a>
         </div>
     </form>
-</div>
+</div>
+    </body>
+</html>

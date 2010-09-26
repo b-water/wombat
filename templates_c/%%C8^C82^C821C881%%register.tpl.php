@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.26, created on 2010-09-24 23:46:12
+<?php /* Smarty version 2.6.26, created on 2010-09-26 00:29:42
          compiled from register.tpl */ ?>
 <img src="images/loginlogo.jpg" width="400" height="325" class="loginlogo" />
 <div id="login">
@@ -14,10 +14,10 @@
 " class="label" title="Nachname" />
         <input name="username" id="username" type="text" value="<?php echo $this->_tpl_vars['benutzername']; ?>
 " class="label" title="Benutzername" />
-        <input name="password" id="password" type="password" value="<?php echo $this->_tpl_vars['passwort']; ?>
-" class="label" title="Passwort" />
+<!--        <input name="password" id="password" type="password" value="<?php echo $this->_tpl_vars['passwort']; ?>
+"  />
         <input name="password_repeat" id="password_repeat" type="password" value="<?php echo $this->_tpl_vars['passwort_repeat']; ?>
-" class="label" title="Passwort wiederholen" />
+" title="passwort" />-->
         <input name="email" id="email" type="text" value="<?php echo $this->_tpl_vars['email']; ?>
 " class="label" title="E-Mail Adresse"/>
         <div class="box">
