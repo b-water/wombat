@@ -1,1 +1,0 @@
-{* <p>Copyright 2009-2010 Nico Schmitz, Alle Rechte vorbehalten.</p> *}

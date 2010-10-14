@@ -10,34 +10,24 @@
     // Launching Session
     session_start();
 
-
     // Embedding from Libraries, Classes and other Stuff
     include('libs/Smarty.class.php');
-    include('classes/database.php');
-    include('classes/user.php');
+    include('classes/database.class.php');
+    include('classes/user.class.php');
+    include('classes/movie.class.php');
     include('config/config.php');
     include('php/functions.php');
 
-    // Datenbank Verbindung herstellen
+    // connect to the database
     $db = Database::getInstance($host, $user, $password, $database);
-
-    // Content-Handler
-    if(!isset($content))
-        $content = Array();
 
     // initalize Smarty
     $smarty = new Smarty();
 
-    // define Template file
-    $template = 'template.tpl';
-
     // checking if the user is loggedin
     if(!isset($user->id))
     {
-        if($_SESSION['user']['loggedin'] === false)
-        {
-            $template = 'login.tpl';
-        }
+
         if(isset($_REQUEST['username']) && isset($_REQUEST['password']))
         {
             $user = new User();
@@ -45,7 +35,7 @@
         }
     }
 
-    // Embedding the script for the acutally website
+    // embedding the script for the acutally website
     if(isset($_REQUEST['menu']) && !empty($_REQUEST['menu']))
     {
         $register = false;
@@ -61,8 +51,33 @@
         }
     }
 
-    // Smarty varibales assign
+    foreach($config as $key => $value)
+    {
+        $smarty->assign($key, $config[$key]);
+    }
+
+    // define Template file
+    if(!isset($_SESSION['user']['loggedin']) || $_SESSION['user']['loggedin'] === false )
+    {
+        $template = 'login.tpl';
+    }
+    else
+    {
+        $template = 'template.tpl';
+    }
+
+//        $template = 'movies.tpl';
+
+    // smarty varibales assign
     $smarty->assign('menu', $_REQUEST['menu']);
     $smarty->display($template);
+
+//    echo '<pre>';
+//    print_r($_SESSION);
+//    echo '</pre>';
+
+//    echo '<pre>';
+//    print_r($_REQUEST);
+//    echo '</pre>';
 
 ?>

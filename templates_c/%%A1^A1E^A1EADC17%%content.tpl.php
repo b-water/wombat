@@ -1,21 +1,21 @@
-<?php /* Smarty version 2.6.26, created on 2010-08-20 22:26:57
+<?php /* Smarty version 2.6.26, created on 2010-10-08 13:48:27
          compiled from content.tpl */ ?>
 
-<?php if ($this->_tpl_vars['menu'] == startseite): ?>
+<?php if ($this->_tpl_vars['menu'] == homepage): ?>
     <?php $_smarty_tpl_vars = $this->_tpl_vars;
-$this->_smarty_include(array('smarty_include_tpl_file' => 'startseite.tpl', 'smarty_include_vars' => array()));
+$this->_smarty_include(array('smarty_include_tpl_file' => 'homepage.tpl', 'smarty_include_vars' => array()));
 $this->_tpl_vars = $_smarty_tpl_vars;
 unset($_smarty_tpl_vars);
  ?>
-<?php elseif ($this->_tpl_vars['menu'] == filme): ?>
+<?php elseif ($this->_tpl_vars['menu'] == movies): ?>
     <?php $_smarty_tpl_vars = $this->_tpl_vars;
-$this->_smarty_include(array('smarty_include_tpl_file' => 'filme.tpl', 'smarty_include_vars' => array()));
+$this->_smarty_include(array('smarty_include_tpl_file' => 'movies.tpl', 'smarty_include_vars' => array()));
 $this->_tpl_vars = $_smarty_tpl_vars;
 unset($_smarty_tpl_vars);
  ?>
-<?php elseif ($this->_tpl_vars['menu'] == musik): ?>
+<?php elseif ($this->_tpl_vars['menu'] == music): ?>
     <?php $_smarty_tpl_vars = $this->_tpl_vars;
-$this->_smarty_include(array('smarty_include_tpl_file' => 'musik.tpl', 'smarty_include_vars' => array()));
+$this->_smarty_include(array('smarty_include_tpl_file' => 'music.tpl', 'smarty_include_vars' => array()));
 $this->_tpl_vars = $_smarty_tpl_vars;
 unset($_smarty_tpl_vars);
  ?>
