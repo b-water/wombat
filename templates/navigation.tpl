@@ -6,7 +6,6 @@
         <li><a href="index.php?menu=music" {if $menu == 'music'} class="active" {/if}>Musik</a></li>
         <li><a href="index.php?menu=images" {if $menu == 'images'} class="active" {/if}>Bilder</a></li>
         <li><a href="index.php?menu=configuration" {if $menu == 'configuration'} class="active" {/if}>Einstellungen</a></li>
-        <li><a href="index.php?menu=administrator" {if $menu == 'administrator'} class="active" {/if}>Administrator</a></li>
         <li><a href="index.php?menu=logout">Abmelden</a></li>
     </ul>
 </div>

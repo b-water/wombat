@@ -92,11 +92,6 @@ div#container {
     color:#69635e;
 }
 
-div.box {
-    width:100%;
-}
-
-
 
 /**************************************
                 login
@@ -183,6 +178,7 @@ input#login:hover, input#register:hover, a#register:hover, a#cancel:hover {
 div#content {
     float:left;
     width:700px;
+    margin: 0 0 20px 0;
 }
 
 /*table.movies {
@@ -250,11 +246,15 @@ div#navigation {
 
 #navigation #menu {
     float:right;
-    width:630px;
+    width:570px;
 }
 
 #navigation #menu ul li {
     list-style:none;
+}
+
+#navigation #menu li.movies {
+    background:url('../images/icons/film.png');
 }
 
 #navigation a {
@@ -264,9 +264,9 @@ div#navigation {
 #navigation #menu a:link, #navigation #menu a:visited {
     display:block;
     float:left;
-    background-color:#bdc1c0;
+    background:#bdc1c0 url('../images/icons/film.png') 5px center no-repeat;
     -moz-border-radius: 5px;
-    padding:5px 5px 5px 5px;
+    padding:5px 5px 5px 22px;
     color:#fff;
     text-align:center;
     margin:12px 15px 0px 0px;
@@ -332,6 +332,7 @@ div.labelbox label {
     width:200px;
     float:left;
     padding:5px;
+    margin-right:10px;
 }
 
 /**************************************
@@ -341,6 +342,8 @@ div.labelbox label {
 table {
     font-size:12px;
     width:100%;
+    margin-top:4px;
+
 }
 
 table thead th {
@@ -394,33 +397,53 @@ form#controls {
 }
 
 
-form#controls input[type=text] {
-    -moz-background-clip:border;
-    -moz-background-inline-policy:continuous;
-    -moz-background-origin:padding;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    font-size:14px;
-    margin: 2px 6px 3px 0;
-    padding:3px 3px 5px 35px;
-    border:0;
-    color:#262626;
-    font-size:14px;
+form#controls h3 {
+    border-bottom:1px solid #C61D24;
 }
 
-/* input#register */
+form#controls input[type=text] {
+    color:#262626;
+    font-size:14px;
+    width:100%;
+}
+
+form#controls select {
+    width:100%;
+}
+
+form#controls div.box {
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
 form#controls input[type=button], form#controls input[type=submit] {
     background-color: #C61D24;
     padding: 4px 5px;
-    color: #fff;
+    color: #333;
     text-decoration: none;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
-    text-shadow: 0 -1px 1px rgba(0,0,0,0.25);
+/*    text-shadow: 0 -1px 1px rgba(0,0,0,0.25);*/
     border: 0;
     font-size:14px;
+    width:100%;
+    margin-bottom:10px;
+    cursor:pointer;
+
+}
+
+form#controls input#searchSubmit  {
+    background: #D1D5D4  url('../images/icons/magnifier.png') 40px 7px no-repeat;
+}
+
+form#controls input#add  {
+    background: #D1D5D4 url('../images/icons/add.png') 40px 7px no-repeat;
+}
+
+form#controls input#del  {
+    background: #D1D5D4 url('../images/icons/delete.png') 40px 7px no-repeat;
 }
 
 form#controls input[type=button]:hover, form#controls input[type=submit]:hover {
-    background-color: #DF1B28;
+    background-color: #DF1B28 !important;
 }

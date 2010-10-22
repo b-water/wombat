@@ -1,33 +1,100 @@
 <?php
 
 /**
- * Überprüft ein Array auf leere Pflichtfelder,
- * dazu muss ein Array $pflichtfelder übergeben werden indem
- * alle Pflichtfelder als key drin stehen.
+ * Get all genres from the type of
+ * genre you want
  *
- * @author  Nico Schmitz cofilew@gmail.com
- * @since   28-08-2010 18:46
- *
- * @param   array   $felder     Array das überprüft werden soll
- * @param   array   $pflichtfelder    Array mit den Pflichtfeldern
- * @return bool
+ * @param   string  the typ of genres you want
+ * @return  array   the genres
  */
-function Pflichtfeldpruefung($felder, $pflichtfelder)
+function getGenres($type)
 {
-    $error = false;
-    $error_felder = '';
-    foreach($pflichtfelder as $key => $val)
+    $db = Database::getInstance($host, $user, $password, $database);
+
+    $query = 'SELECT name FROM genres WHERE type = "'.$type.'"';
+    $result = $db->query($query);
+
+    $genres = array();
+
+    while($row = $result->fetch_assoc())
     {
-        if($pflichtfelder[$val] == $felder[$val])
+        if(!empty($row))
         {
-            if($felder[$val] == '')
+            foreach($row as $key => $value)
             {
-                $error = true;
+                $genres[] = $value;
             }
         }
     }
-    return $error;
+
+    if(isset($genres) && !empty($genres))
+    {
+        return $genres;
+    }
+    else
+    {
+        return false;
+    }
 }
 
+/**
+ * Get all formats from the type of
+ * format you want
+ *
+ * @param   string  the typ of formats you want
+ * @return  array   the formats
+ */
+function getFormats($type)
+{
+    $db = Database::getInstance($host, $user, $password, $database);
+
+    $query = 'SELECT name FROM formats WHERE type = "'.$type.'"';
+    $result = $db->query($query);
+
+    $formats = array();
+
+    while($row = $result->fetch_assoc())
+    {
+        if(!empty($row))
+        {
+            foreach($row as $key => $value)
+            {
+                $formats[] = $value;
+            }
+        }
+    }
+
+    if(isset($formats) && !empty($formats))
+    {
+        return $formats;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+
+/**
+ * Converts a MySQL Date into
+ * the German date format.
+ *
+ * @param   string          the date in mysql format
+ * @return  string or bool
+ */
+function german_date($date)
+{
+    if(!empty($date))
+    {
+        $exploded_date = explode('-',$date);
+        $formated_date = $exploded_date['2'].'.'.$exploded_date['1'].'.'.$exploded_date['0'];
+
+        return $formated_date;
+    }
+    else
+    {
+        return false;
+    }
+}
 
 ?>

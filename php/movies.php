@@ -6,6 +6,14 @@
 
     $movie = new movie();
 
+    // get all kind of movie genres for the genre select box
+    $genres = getGenres('movie');
+    $smarty->assign('genres',$genres);
+
+    // get all kind of movie formats for the format select box
+    $formats = getFormats('movie');
+    $smarty->assign('formats',$formats);
+
     $movies = $movie->getMovies();
     $smarty->assign('movies',$movies);
 

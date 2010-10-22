@@ -27,14 +27,13 @@ class User
     }
 
     /**
-     * Meldet einen Benutzer im
-     * System an.
+     * Sign in a user
      *
      * @author  Nico Schmitz
      * @since   19.07.2010 - 22:33 Uhr
      *
-     * @param   string  benutzername
-     * @param   string  passwort
+     * @param   string  username
+     * @param   string  password
      * @return  bool    
      */
     public function login($username, $password)

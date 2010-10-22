@@ -41,13 +41,16 @@ class movie {
     {
 
         // craft the query
-        $query = 'SELECT '.$fields.' FROM movies '.$filter.' '.$orderby.' '.$limit.'';
-
+        if(!empty($_REQUEST['genreFilter']) || !empty($_REQUEST['formatFilter']))
+        {
+            $selection = 'WHERE ';
+            $selection .= (!empty($_REQUEST['genreFilter'])) ? ' genre LIKE "%'.$_REQUEST['genreFilter'].'%"' : '';
+            $selection .= (!empty($_REQUEST['formatFilter'])) ? 'AND format LIKE "%'.$_REQUEST['genreFormat'].'%"' : '';
+        }
+        
+        $query = 'SELECT '.$fields.' FROM movies '.$filter.' '.$selection.' '.$orderby.' '.$limit.'';
         // gather data
         $result = $this->db->query($query);
-
-        // id of the movie
-        $counter = 1;
 
         while($row = $result->fetch_assoc())
         {
@@ -55,14 +58,25 @@ class movie {
             {
                 foreach($row as $key => $value)
                 {
-                    $this->movies[$counter][$key] = $value;
+                    if($key == 'id')
+                    {
+                        $array_key = $value;
+                    }
+                    if($key == 'date')
+                    {
+                        $this->movies[$array_key][$key] = german_date($value);
+                    }
+                    else
+                    {
+                        $this->movies[$array_key][$key] = $value;
+                    }
                 }
             }
             // count up
-            $counter++;
         }
         // returns the array with the movies
         $this->numberofmovies = $counter;
+
         return $this->movies;
     }
 

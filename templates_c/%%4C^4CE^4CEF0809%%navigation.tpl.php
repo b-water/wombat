@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.26, created on 2010-09-26 14:13:46
+<?php /* Smarty version 2.6.26, created on 2010-10-16 23:06:03
          compiled from navigation.tpl */ ?>
 <a href="index.php?menu=<?php echo $this->_tpl_vars['menu']; ?>
 " class="logo"><img src="images/logo.jpg" /><h1 class="invisible">Red Wombat</h1></a>
@@ -9,7 +9,6 @@
         <li><a href="index.php?menu=music" <?php if ($this->_tpl_vars['menu'] == 'music'): ?> class="active" <?php endif; ?>>Musik</a></li>
         <li><a href="index.php?menu=images" <?php if ($this->_tpl_vars['menu'] == 'images'): ?> class="active" <?php endif; ?>>Bilder</a></li>
         <li><a href="index.php?menu=configuration" <?php if ($this->_tpl_vars['menu'] == 'configuration'): ?> class="active" <?php endif; ?>>Einstellungen</a></li>
-        <li><a href="index.php?menu=administrator" <?php if ($this->_tpl_vars['menu'] == 'administrator'): ?> class="active" <?php endif; ?>>Administrator</a></li>
         <li><a href="index.php?menu=logout">Abmelden</a></li>
     </ul>
 </div>

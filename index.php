@@ -11,7 +11,7 @@
     session_start();
 
     // Embedding from Libraries, Classes and other Stuff
-    include('libs/Smarty.class.php');
+    include('library/Smarty/Smarty.class.php');
     include('classes/database.class.php');
     include('classes/user.class.php');
     include('classes/movie.class.php');
@@ -76,8 +76,8 @@
 //    print_r($_SESSION);
 //    echo '</pre>';
 
-//    echo '<pre>';
-//    print_r($_REQUEST);
-//    echo '</pre>';
+    echo '<pre>';
+    print_r($_REQUEST);
+    echo '</pre>';
 
 ?>

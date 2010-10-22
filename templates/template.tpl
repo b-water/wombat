@@ -6,7 +6,12 @@
         <meta name="Author" content="{$author}" />
         <meta name="Copyright" content="{$copyright}" />
         <link rel="stylesheet" href="css/template.css" type="text/css" media="all" />
+        <link rel="stylesheet" href="css/jquery.fancybox-1.3.2.css" type="text/css" media="all" />
         <script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>
+        <script type="text/javascript" src="js/jquery.easing-1.3.pack.js"></script>
+        <script type="text/javascript" src="js/jquery.fancybox-1.3.2.js"></script>
+        <script type="text/javascript" src="js/jquery.fancybox-1.3.2.pack.js"></script>
+        <script type="text/javascript" src="js/jquery.mousewheel-3.0.4.pack.js"></script>
         <script type="text/javascript" src="js/jquery.labelify.js"></script>
         <script type="text/javascript" src="js/template.js"></script>
     </head>
@@ -17,14 +22,14 @@
                 {include file='navigation.tpl'}
             </div>
             <div id="container">
+                <div id="sidebar">
+                    {* Sidebar Bereich Laden *}
+                    {include file='sidebar.tpl'}
+                </div>
                 <div id="content">
                     {* Content Bereich Laden *}
                     {include file='content.tpl'}
 
-                </div>
-                <div id="sidebar">
-                    {* Sidebar Bereich Laden *}
-                    {include file='sidebar.tpl'}
                 </div>
                 <div id="footer">
                     {* Footer Bereich Laden *}

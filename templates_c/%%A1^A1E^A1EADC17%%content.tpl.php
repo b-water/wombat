@@ -1,6 +1,5 @@
-<?php /* Smarty version 2.6.26, created on 2010-10-08 13:48:27
+<?php /* Smarty version 2.6.26, created on 2010-10-15 12:57:58
          compiled from content.tpl */ ?>
-
 <?php if ($this->_tpl_vars['menu'] == homepage): ?>
     <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => 'homepage.tpl', 'smarty_include_vars' => array()));

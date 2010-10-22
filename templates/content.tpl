@@ -1,4 +1,3 @@
-
 {if $menu == homepage}
     {include file='homepage.tpl'}
 {elseif $menu == movies}
