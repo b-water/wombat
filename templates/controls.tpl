@@ -3,9 +3,9 @@
         <input id="add" name="add" type="submit" value="Hinzuf&uuml;gen" />
         <input id="del" name="del" type="submit" value="L&ouml;schen" />
     </div>
-<!--    <div class="box">
+    <div class="box" class="ui-widget">
         <p>Nach Name selektieren:</p>
-        <input id="searchText" name="searchText" type="text" />
+        <input id="searchText" class="ui-widget" name="searchText" type="text" />
         <p>Nach Genre selektieren:</p>
         <select id="genreFilter" name="genreFilter">
             <option></option>
@@ -19,7 +19,7 @@
             {foreach key=id item=format from=$formats}
                 <option id="{$format}">{$format}</option>
             {/foreach}
-        </select>-->
-        <input id="searchSubmit" name="searchSubmit"  type="submit" value="Selektieren" />
-<!--    </div>-->
+        </select>
+        <input id="searchSubmit"  name="searchSubmit"  type="submit" value="Selektieren" />
+    </div>
 </form>

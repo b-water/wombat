@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.26, created on 2010-10-21 23:09:28
+<?php /* Smarty version 2.6.26, created on 2010-10-23 01:43:02
          compiled from controls.tpl */ ?>
 <form id="controls" action="index.php?menu=<?php echo $this->_tpl_vars['menu']; ?>
 " method="POST">
@@ -6,9 +6,9 @@
         <input id="add" name="add" type="submit" value="Hinzuf&uuml;gen" />
         <input id="del" name="del" type="submit" value="L&ouml;schen" />
     </div>
-<!--    <div class="box">
+    <div class="box" class="ui-widget">
         <p>Nach Name selektieren:</p>
-        <input id="searchText" name="searchText" type="text" />
+        <input id="searchText" class="ui-widget" name="searchText" type="text" />
         <p>Nach Genre selektieren:</p>
         <select id="genreFilter" name="genreFilter">
             <option></option>
@@ -30,7 +30,7 @@
 "><?php echo $this->_tpl_vars['format']; ?>
 </option>
             <?php endforeach; endif; unset($_from); ?>
-        </select>-->
-        <input id="searchSubmit" name="searchSubmit"  type="submit" value="Selektieren" />
-<!--    </div>-->
+        </select>
+        <input id="searchSubmit"  name="searchSubmit"  type="submit" value="Selektieren" />
+    </div>
 </form>

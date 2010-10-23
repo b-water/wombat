@@ -1,15 +1,10 @@
-<?php /* Smarty version 2.6.26, created on 2010-10-23 01:43:02
-         compiled from head.tpl */ ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html;  charset=ISO-8859-1"/>
-        <title><?php echo $this->_tpl_vars['title']; ?>
-</title>
-        <meta name="Author" content="<?php echo $this->_tpl_vars['author']; ?>
-" />
-        <meta name="Copyright" content="<?php echo $this->_tpl_vars['copyright']; ?>
-" />
+        <title>{$title}</title>
+        <meta name="Author" content="{$author}" />
+        <meta name="Copyright" content="{$copyright}" />
         <link rel="stylesheet" href="css/template.css" type="text/css" media="all" />
         <link rel="stylesheet" href="css/jquery.fancybox-1.3.2.css" type="text/css" media="all" />
         <script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>
