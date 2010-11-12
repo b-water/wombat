@@ -6,10 +6,6 @@
             {include file='navigation.tpl'}
         </div>
         <div id="container">
-            <div id="sidebar">
-                {* Sidebar Bereich Laden *}
-                {include file='sidebar.tpl'}
-            </div>
             <div id="content">
                 {* Content Bereich Laden *}
                 {include file='content.tpl'}

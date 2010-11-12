@@ -1,12 +1,15 @@
-<?php /* Smarty version 2.6.26, created on 2010-10-23 01:43:02
+<?php /* Smarty version 2.6.26, created on 2010-11-07 17:03:12
          compiled from controls.tpl */ ?>
 <form id="controls" action="index.php?menu=<?php echo $this->_tpl_vars['menu']; ?>
 " method="POST">
     <div class="box">
         <input id="add" name="add" type="submit" value="Hinzuf&uuml;gen" />
+        <input id="change" name="change" type="submit" value="&Auml;ndern" />
         <input id="del" name="del" type="submit" value="L&ouml;schen" />
+        <input id="import" name="import" type="submit" value="Importieren" />
+        <input id="export" name="export" type="submit" value="Exportieren" />
     </div>
-    <div class="box" class="ui-widget">
+    <div class="box">
         <p>Nach Name selektieren:</p>
         <input id="searchText" class="ui-widget" name="searchText" type="text" />
         <p>Nach Genre selektieren:</p>

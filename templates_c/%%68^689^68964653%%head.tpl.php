@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.26, created on 2010-10-23 01:43:02
+<?php /* Smarty version 2.6.26, created on 2010-10-25 17:55:22
          compiled from head.tpl */ ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
@@ -15,6 +15,8 @@
         <script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>
         <script type="text/javascript" src="js/jquery-ui-1.8.5.custom.min.js"></script>
         <script type="text/javascript" src="js/jquery.easing-1.3.pack.js"></script>
+        <script type="text/javascript" src="js/jquery.tablesorter.js"></script>
+        <script type="text/javascript" src="js/jquery.tablesorter.pager.js"></script>
         <script type="text/javascript" src="js/jquery.fancybox-1.3.2.js"></script>
         <script type="text/javascript" src="js/jquery.fancybox-1.3.2.pack.js"></script>
         <script type="text/javascript" src="js/jquery.mousewheel-3.0.4.pack.js"></script>

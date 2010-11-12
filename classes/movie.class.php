@@ -27,6 +27,13 @@ class movie {
         return self::$instance;
     }
 
+    public function craftStatement()
+    {
+        foreach($_REQUEST as $key => $val)
+        {
+        }
+    }
+
 
     /**
      * Gather Movies from Database
@@ -39,7 +46,8 @@ class movie {
      */
     public function getMovies($fields='*',$filter='',$orderby='ORDER BY NAME',$limit='')
     {
-
+        
+       
         // craft the query
         if(!empty($_REQUEST['genreFilter']) || !empty($_REQUEST['formatFilter']))
         {
@@ -74,6 +82,9 @@ class movie {
             }
             // count up
         }
+//        echo '<pre>';
+//        print_r($this->movies);
+//        echo '</pre>';
         // returns the array with the movies
         $this->numberofmovies = $counter;
 

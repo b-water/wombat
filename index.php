@@ -10,13 +10,17 @@
     // Launching Session
     session_start();
 
+    // prints out all error messages
+//    error_reporting(E_ALL);
+
     // Embedding from Libraries, Classes and other Stuff
     include('library/Smarty/Smarty.class.php');
     include('classes/database.class.php');
     include('classes/user.class.php');
     include('classes/movie.class.php');
     include('config/config.php');
-    include('php/functions.php');
+    include('include/functions.php');
+
 
     // connect to the database
     $db = Database::getInstance($host, $user, $password, $database);
@@ -38,11 +42,9 @@
     // embedding the script for the acutally website
     if(isset($_REQUEST['menu']) && !empty($_REQUEST['menu']))
     {
-        $register = false;
-
-        if(file_exists('php/'.$_REQUEST['menu'].'.php'))
+        if(file_exists('include/'.$_REQUEST['menu'].'.php'))
         {
-            include('php/'.$_REQUEST['menu'].'.php');
+            include('include/'.$_REQUEST['menu'].'.php');
         }
         if($_REQUEST['menu'] == 'logout')
         {
@@ -66,17 +68,18 @@
         $template = 'template.tpl';
     }
 
-//        $template = 'movies.tpl';
-
     // smarty varibales assign
-    $smarty->assign('menu', $_REQUEST['menu']);
+    if(isset($_REQUEST['menu']))
+    {
+        $smarty->assign('menu', $_REQUEST['menu']);
+    }
     $smarty->display($template);
 
-//    echo '<pre>';
+//    echo '<pre style="color:#fff;">';
 //    print_r($_SESSION);
 //    echo '</pre>';
 
-//    echo '<pre>';
+//    echo '<pre style="color:#fff;">';
 //    print_r($_REQUEST);
 //    echo '</pre>';
 

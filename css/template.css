@@ -89,6 +89,8 @@ cite {
 div#container {
     padding: 20px;
     width:960px;
+    background-color: #F0F0F0;
+    -moz-border-radius: 5px;
 }
 
 /**************************************
@@ -98,8 +100,7 @@ div#container {
 div#wrapper {
     width:960px;
     margin:auto;
-    background-color: #F0F0F0;
-    -moz-border-radius: 5px;
+
 }
 
 /**************************************
@@ -115,39 +116,29 @@ div#wrapper {
     -moz-border-radius:10px;
 }
 
-
-/*input#login {
-    background-color: #A62424;
-    padding: 6px 10px 6px;
-    color: #fff;
-    text-decoration: none;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    border: 0;
-    font-size:14px;
-    width:99%;
-}*/
-
 #login input[type=text], #login input[type=password] {
     margin: 2px 6px 3px 0;
     padding:3px 3px 5px 35px;
 }
 
-input#username {
-    background-image:url('../images/icons/user_green.png');
+input#username, input#password , input#loginSubmit {
     background-repeat: no-repeat;
     background-position: 10px 5px;
+    margin:15px 0 0 0;
+}
+
+input#username {
+    background-image:url('../images/icons/user_green.png');
 }
 
 input#password {
     background-image:url('../images/icons/key.png');
-    background-repeat: no-repeat;
-    background-position: 10px 5px;
 }
 
-/*input#login:hover, input#register:hover, a#register:hover, a#cancel:hover {
-    background-color: #DF1B28;
-}*/
+input#loginSubmit {
+   background-image:url('../images/icons/door_in.png');
+   background-position: 90px 5px;
+}
 
 /**************************************
                 content
@@ -155,8 +146,7 @@ input#password {
 
 div#content {
     float:left;
-    width:700px;
-    margin: 0 0 20px 0;
+    width:100%;
 }
 
 /**************************************
@@ -184,7 +174,7 @@ div#footer {
 
 div#navigation {
     min-width:100%;
-    height:50px;
+    height:26px;
     margin-top:20px;
 }
 
@@ -207,16 +197,23 @@ div#navigation {
 #menu a:link, #menu a:visited {
     background-repeat: no-repeat;
     background-position: 5px center;
-    background-color:#F0F0F0;
+    background-color:#EAEAEA;
     color:#777;
-    border:1px solid #CFCFCF;
+    border-left:1px solid #CFCFCF;
+    border-right:1px solid #CFCFCF;
+    border-top:1px solid #CFCFCF;
     text-align:center;
-    margin:25px 15px 0 0;
+    margin:0 5px 0 0;
     padding:5px 5px 5px 25px;
     display:block;
     float:left;
-    -moz-border-radius: 5px;
-    text-decoration:none;
+/*    -moz-border-radius: 5px;*/
+    -moz-border-radius-topleft: 5px;
+    -moz-border-radius-topright: 5px;
+        height:15px;
+
+/*    text-decoration:none;*/
+
 
 }
 
@@ -291,62 +288,89 @@ table thead th {
 }
 
 table thead tr {
-    background-color:#C61D24;
-    color:#fff;
+    background-color:#EAEAEA;
     margin:5px;
 }
 
 table th {
     padding:5px;
-    border-right:1px solid #fff;
-    border-bottom:1px solid #fff;
-    border-top:1px solid #fff;
+    border-right:1px solid #DFDFDF;
+    border-bottom:1px solid #DFDFDF;
+    border-top:1px solid #DFDFDF;
+    background-image: url('../images/icons/bg.gif');
+    background-repeat: no-repeat;
+    background-position: center right;
+    cursor: pointer;
 }
 
-table th.name {
-    width:150px;
+th.headerSortDown {
+    background-image: url(../images/icons/desc.gif);
 }
 
-table th.date {
-    width:70px;
+th.headerSortUp {
+    background-image: url(../images/icons/asc.gif);
+} 
+
+table th.delete {
+    cursor: default;
+    border-right:none;
+    background-image:none;
 }
 
-table th.size {
-    width:70px;
+table td.delete {
+    border-right:none;
+}
+
+table th.edit {
+    cursor: default;
+    background-image:none;
+}
+
+table tr.even {
+    background-color:#EAEAEA;
 }
 
 table td {
     padding:5px;
-    border-right:1px solid #fff;
-    border-bottom:1px solid #fff;
+    border-right:1px solid #CFCFCF;
+    border-bottom:1px solid #CFCFCF;
     border-top:1px solid #fff;
     color:#3F3F3F;
+    vertical-align: top;
 }
 
 table tbody td {
-    background-color: #EDEDED;
+    background-color: #F0F0F0;
 }
 
 /**************************************
                 form
 **************************************/
 
-input[type=text], input[type=password] {
+input[type=text], input[type=password], 
+input[type=button], input[type=submit] {
     -moz-border-radius: 5px;
     border:1px solid #CFCFCF;
-    color:#262626;
     width:100%;
     padding:4px;
 }
 
+input[type=text], input[type=password] {
+    color:#262626;
+}
+
 input[type=button], input[type=submit] {
-    -moz-border-radius: 5px;
     color:#777;
     background-color:#F0F0F0;
+    margin-bottom:15px;
+    cursor:pointer;
+}
+
+select {
     border:1px solid #CFCFCF;
-    width:100%;
-    padding:4px;
-    margin-top:6px;
+    -moz-border-radius: 5px;
+    font-size:14px;
+    color:#262626;
 }
 
 input[type=button]:hover, input[type=submit]:hover {
@@ -362,11 +386,6 @@ form#controls {
     margin:0 0 10px 0;
 }
 
-
-form#controls h3 {
-    border-bottom:1px solid #C61D24;
-}
-
 form#controls input[type=text] {
 }
 
@@ -376,35 +395,65 @@ form#controls select {
 
 form#controls div.box {
     overflow: hidden;
-    margin-bottom: 20px;
+    margin:0 0 30px 0;
 }
 
-form#controls input[type=button], form#controls input[type=submit] {
-    padding: 4px 5px;
-    text-decoration: none;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    font-size:14px;
-    width:100%;
-    margin-bottom:10px;
-    cursor:pointer;
-
-}
-
-form#controls input#searchSubmit, form#controls input#add, form#controls input#del {
+form#controls input#searchSubmit, form#controls input#add,
+form#controls input#del, form#controls input#change,
+form#controls input#import, form#controls input#export {
     background-repeat:no-repeat;
     background-position: 25px 7px;
 }
 
 form#controls input#searchSubmit  {
     background-image: url('../images/icons/magnifier.png');
+    margin:10px 0 0 0;
 }
 
 form#controls input#add  {
-    background-image:url('../images/icons/add.png');
+    background-image:url('../images/icons/table_add.png');
 }
 
 form#controls input#del  {
-    background-image:url('../images/icons/delete.png');
+    background-image:url('../images/icons/table_delete.png');
 }
 
+form#controls input#change  {
+    background-image:url('../images/icons/table_edit.png');
+}
+
+form#controls input#export {
+    background-image:url('../images/icons/application_go.png');
+}
+
+form#controls input#import  {
+    background-image:url('../images/icons/application_get.png');
+}
+
+input.pagedisplay {
+    width:25% !important;
+    margin:0 5px 0 5px;
+}
+
+
+img.first, img.prev, img.next, img.last {
+    margin:5px 5px 0 0;
+}
+
+select.pagesize {
+    margin-top:2px;
+}
+
+div#pager {
+    margin:10px 0 0 0;
+    float:right;
+    width:185px;
+}
+
+table.tablesorter thead t{
+
+}
+
+.searchbar {
+    margin-bottom: 10px;
+}
