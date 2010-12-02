@@ -16,11 +16,15 @@ h6, p, blockquote, pre, a, abbr, address, cite, code, del, dfn,
 em, img, ins, kbd, q, samp, strong, sub, sup, var, dl, dt, dd, ol,
 ul, li, fieldset, form, label, legend, table, caption, tbody,
 tfoot, thead, tr, th, td {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	outline: 0;
-	vertical-align: baseline;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    vertical-align: baseline;
+}
+
+input[type=submit] {
+    border:0;
 }
 
 :focus { outline: 0; }
@@ -91,6 +95,7 @@ div#container {
     width:960px;
     background-color: #F0F0F0;
     -moz-border-radius: 5px;
+    overflow:hidden;
 }
 
 /**************************************
@@ -136,8 +141,8 @@ input#password {
 }
 
 input#loginSubmit {
-   background-image:url('../images/icons/door_in.png');
-   background-position: 90px 5px;
+    background-image:url('../images/icons/door_in.png');
+    background-position: 90px 5px;
 }
 
 /**************************************
@@ -339,7 +344,7 @@ table tbody td {
                 form
 **************************************/
 
-input[type=text], input[type=password], 
+/*input[type=text], input[type=password],
 input[type=button], input[type=submit] {
     -moz-border-radius: 5px;
     border:1px solid #CFCFCF;
@@ -367,7 +372,7 @@ select {
 
 input[type=button]:hover, input[type=submit]:hover {
     background-color:#EAEAEA !important;
-}
+}*/
 
 /**************************************
                 controls
@@ -454,39 +459,92 @@ div#pager input.active[type=button]:hover {
 }*/
 
 /* tables */
-/*table.tablesorter {
-    font-family:arial;
-    background-color: #CDCDCD;
-    margin:10px 0pt 15px;
-    font-size: 8pt;
-    width: 100%;
-    text-align: left;
-}
-table.tablesorter thead tr th, table.tablesorter tfoot tr th {
-    background-color: #e6EEEE;
-    border: 1px solid #FFF;
-    font-size: 8pt;
-    padding: 4px;
-}
-table.tablesorter thead tr .header {
-    background-repeat: no-repeat;
-    background-position: center right;
-    cursor: pointer;
-}
-table.tablesorter tbody td {
-    color: #3D3D3D;
-    padding: 4px;
-    background-color: #FFF;
-    vertical-align: top;
-}
-table.tablesorter tbody tr.odd td {
-	background-color:#F0F0F6;
+
+table.tablesorter tbody tr.even td {
+    background-color:#EAEAEA;
 }
 
 table.tablesorter thead tr .headerSortDown, table.tablesorter thead tr .headerSortUp {
-background-color: #8dbdd8;
-}*/
-
-.searchbar {
-    margin-bottom: 10px;
+    background-color: #DFDFDF;
+    border-right:1px solid #BFBFBF;
+    border-bottom:1px solid #BFBFBF;
+    border-top:1px solid #BFBFBF;
 }
+
+form#searchbar {
+    margin-bottom: 10px;
+    clear:both;
+
+}
+
+form#searchbar input[type=text] {
+    width:92%;
+    float:left;
+    height:26px;
+    margin-right:7px;
+    -moz-border-radius:5px;
+    border:1px solid #CFCFCF;
+    padding:4px;
+}
+
+
+/** Awesome Buttons **/
+
+.awesome{
+    background: #222 url(../images/alert-overlay.png) repeat-x;
+    display: inline-block;
+    padding: 5px 10px 6px;
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    line-height: 1;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-box-shadow: 0 1px 3px #999;
+    -webkit-box-shadow: 0 1px 3px #999;
+    text-shadow: 0 -1px 1px #222;
+    border-bottom: 1px solid #222;
+    position: relative;
+    cursor: pointer;
+    -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+    -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+    text-shadow: 0 -1px 1px rgba(0,0,0,0.25);
+    border-bottom: 1px solid rgba(0,0,0,0.25);
+}
+
+.awesome:hover {
+    background-color: #111;
+    color: #fff;
+}
+
+/* Sizes ---------- */
+.small.awesome {
+    font-size: 11px;
+}
+.medium.awesome {
+    font-size: 13px;
+}
+.large.awesome {
+    font-size: 14px;
+    padding: 8px 14px 9px;
+}
+/* Colors ---------- */
+.blue.awesome {
+    background-color: #2daebf;
+}
+.red.awesome {
+    background-color: #e33100;
+}
+.magenta.awesome {
+    background-color: #a9014b;
+}
+.orange.awesome {
+    background-color: #ff5c00;
+}
+.yellow.awesome {
+    background-color: #ffb515;
+}
+
+
+
+

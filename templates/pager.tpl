@@ -1,10 +1,10 @@
 <div id="pager" class="pager">
     <form>
-        <img src="images/icons/first.png" class="first"/>
-        <img src="images/icons/prev.png" class="prev"/>
+        <img src="images/icons/control_start.png" class="first"/>
+        <img src="images/icons/control_rewind.png" class="prev"/>
         <input type="text" class="pagedisplay"/>
-        <img src="images/icons/next.png" class="next"/>
-        <img src="images/icons/last.png" class="last"/>
+        <img src="images/icons/control_fastforward.png" class="next"/>
+        <img src="images/icons/control_end.png" class="last"/>
         <select class="pagesize">
             <option selected="selected"  value="20">20</option>
             <option value="30">30</option>
