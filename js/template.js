@@ -1,26 +1,23 @@
-
 $(document).ready(function()
-{
-    $("input.label").labelify();
-    // call the tablesorter plugin
-    $("table.tablesorter").tablesorter({
-        widthFixed: true,
-        widgets: ['zebra'],
-        headers: {
-            5: { sorter:false },
-            6: { sorter:false }
-        }
+    {
+//        $('input.label').labelify();
+        // call the tablesorter plugin
+        $('table.tablesorter').tablesorter({
+            widthFixed: true,
+            widgets: ['zebra'],
+            headers: {
+                5: {
+                    sorter:false
+                },
+                6: {
+                    sorter:false
+                }
+            }
+        });
+
+        $('table.tablesorter').tablesorterPager({
+            container: $('#pager')
+        });
+    // sort on the first column and third column, order asc
     });
-
-    $("table.tablesorter").tablesorterPager({
-        container: $("#pager")
-    });
-        // sort on the first column and third column, order asc
-
-
-});
-
-
-
-
 
