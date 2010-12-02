@@ -11,22 +11,37 @@
     session_start();
 
     // prints out all error messages
-//    error_reporting(E_ALL);
+    error_reporting(E_ALL);
+
+    // define the constants
+    define('class_path','classes/');
+    define('include_path','include/');
+    define('template_path','templates/');
+    define('library_path','library/');
+
+    // database configuration
+    $host = 'localhost';        // Host oder IP-Adresse
+    $user = 'dbadmin';          // Datenbank User
+    $password = '1234';         // Passwort für den User
+    $database = 'redwombat';    // Datenbank
 
     // Embedding from Libraries, Classes and other Stuff
-    include('library/Smarty/Smarty.class.php');
-    include('classes/database.class.php');
-    include('classes/user.class.php');
-    include('classes/movie.class.php');
-    include('config/config.php');
-    include('include/functions.php');
-
+    require_once(class_path.'autoloader.class.php');
+    require_once(library_path.'Smarty/Smarty.class.php');
+    include_once(include_path.'functions.php');
 
     // connect to the database
     $db = Database::getInstance($host, $user, $password, $database);
 
     // initalize Smarty
     $smarty = new Smarty();
+
+    // create registry object
+    $registry = Registry::getInstance();
+
+    // registers $db and $smarty
+    $registry->set('db',$db);
+    $registry->set('smarty',$smarty);
 
     // checking if the user is loggedin
     if(!isset($user->id))
@@ -53,11 +68,6 @@
         }
     }
 
-    foreach($config as $key => $value)
-    {
-        $smarty->assign($key, $config[$key]);
-    }
-
     // define Template file
     if(!isset($_SESSION['user']['loggedin']) || $_SESSION['user']['loggedin'] === false )
     {
@@ -68,12 +78,26 @@
         $template = 'template.tpl';
     }
 
+
+    // fetch all javascript and css files
+    $js = fetchFiles('js/');
+    $css = fetchFiles('css/');
+
+    // assign them to smarty
+    $smarty->assign('js',$js);
+    $smarty->assign('css',$css);
+
     // smarty varibales assign
     if(isset($_REQUEST['menu']))
     {
         $smarty->assign('menu', $_REQUEST['menu']);
     }
+
     $smarty->display($template);
+
+
+    /* TODO: Smarty updaten
+     */
 
 //    echo '<pre style="color:#fff;">';
 //    print_r($_SESSION);
