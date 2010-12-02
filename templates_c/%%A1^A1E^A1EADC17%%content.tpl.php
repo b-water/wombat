@@ -1,14 +1,24 @@
-<?php /* Smarty version 2.6.26, created on 2010-10-15 12:57:58
+<?php /* Smarty version 2.6.26, created on 2010-11-20 13:50:04
          compiled from content.tpl */ ?>
-<?php if ($this->_tpl_vars['menu'] == homepage): ?>
+<?php if ($this->_tpl_vars['menu'] == home): ?>
     <?php $_smarty_tpl_vars = $this->_tpl_vars;
-$this->_smarty_include(array('smarty_include_tpl_file' => 'homepage.tpl', 'smarty_include_vars' => array()));
+$this->_smarty_include(array('smarty_include_tpl_file' => 'home.tpl', 'smarty_include_vars' => array()));
 $this->_tpl_vars = $_smarty_tpl_vars;
 unset($_smarty_tpl_vars);
  ?>
-<?php elseif ($this->_tpl_vars['menu'] == movies): ?>
+<?php elseif ($this->_tpl_vars['menu'] == movie): ?>
     <?php $_smarty_tpl_vars = $this->_tpl_vars;
-$this->_smarty_include(array('smarty_include_tpl_file' => 'movies.tpl', 'smarty_include_vars' => array()));
+$this->_smarty_include(array('smarty_include_tpl_file' => 'searchbar.tpl', 'smarty_include_vars' => array()));
+$this->_tpl_vars = $_smarty_tpl_vars;
+unset($_smarty_tpl_vars);
+ ?>
+    <?php $_smarty_tpl_vars = $this->_tpl_vars;
+$this->_smarty_include(array('smarty_include_tpl_file' => 'movie.tpl', 'smarty_include_vars' => array()));
+$this->_tpl_vars = $_smarty_tpl_vars;
+unset($_smarty_tpl_vars);
+ ?>
+    <?php $_smarty_tpl_vars = $this->_tpl_vars;
+$this->_smarty_include(array('smarty_include_tpl_file' => 'pager.tpl', 'smarty_include_vars' => array()));
 $this->_tpl_vars = $_smarty_tpl_vars;
 unset($_smarty_tpl_vars);
  ?>
@@ -18,27 +28,21 @@ $this->_smarty_include(array('smarty_include_tpl_file' => 'music.tpl', 'smarty_i
 $this->_tpl_vars = $_smarty_tpl_vars;
 unset($_smarty_tpl_vars);
  ?>
-<?php elseif ($this->_tpl_vars['menu'] == bilder): ?>
+<?php elseif ($this->_tpl_vars['menu'] == image): ?>
     <?php $_smarty_tpl_vars = $this->_tpl_vars;
-$this->_smarty_include(array('smarty_include_tpl_file' => 'bilder.tpl', 'smarty_include_vars' => array()));
+$this->_smarty_include(array('smarty_include_tpl_file' => 'image.tpl', 'smarty_include_vars' => array()));
 $this->_tpl_vars = $_smarty_tpl_vars;
 unset($_smarty_tpl_vars);
  ?>
-<?php elseif ($this->_tpl_vars['menu'] == einstellungen): ?>
+<?php elseif ($this->_tpl_vars['menu'] == configuration): ?>
     <?php $_smarty_tpl_vars = $this->_tpl_vars;
-$this->_smarty_include(array('smarty_include_tpl_file' => 'einstellungen.tpl', 'smarty_include_vars' => array()));
+$this->_smarty_include(array('smarty_include_tpl_file' => 'configuration.tpl', 'smarty_include_vars' => array()));
 $this->_tpl_vars = $_smarty_tpl_vars;
 unset($_smarty_tpl_vars);
  ?>
-<?php elseif ($this->_tpl_vars['menu'] == administrator): ?>
+<?php elseif ($this->_tpl_vars['menu'] == logout): ?>
     <?php $_smarty_tpl_vars = $this->_tpl_vars;
-$this->_smarty_include(array('smarty_include_tpl_file' => 'administrator.tpl', 'smarty_include_vars' => array()));
-$this->_tpl_vars = $_smarty_tpl_vars;
-unset($_smarty_tpl_vars);
- ?>
-<?php elseif ($this->_tpl_vars['menu'] == abmelden): ?>
-    <?php $_smarty_tpl_vars = $this->_tpl_vars;
-$this->_smarty_include(array('smarty_include_tpl_file' => 'abmelden.tpl', 'smarty_include_vars' => array()));
+$this->_smarty_include(array('smarty_include_tpl_file' => 'logout.tpl', 'smarty_include_vars' => array()));
 $this->_tpl_vars = $_smarty_tpl_vars;
 unset($_smarty_tpl_vars);
  ?>
