@@ -1,0 +1,1 @@
+<p>Der Datensatz wurde erfolgreich gelöscht!</p>

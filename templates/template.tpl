@@ -11,11 +11,6 @@
                 {include file='content.tpl'}
 
             </div>
-            <div id="footer">
-                {* Footer Bereich Laden *}
-                {include file='footer.tpl}
-            </div>
         </div>
     </div>
-</body>
-</html>
+{include file='foot.tpl'}

@@ -1,16 +1,16 @@
-{if $menu == homepage}
-    {include file='homepage.tpl'}
-{elseif $menu == movies}
-    {include file='movies.tpl'}
+{if $menu == home}
+    {include file='home.tpl'}
+{elseif $menu == movie}
+    {include file='searchbar.tpl'}
+    {include file='movie.tpl'}
+    {include file='pager.tpl'}
 {elseif $menu == music}
     {include file='music.tpl'}
-{elseif $menu == bilder}
-    {include file='bilder.tpl'}
-{elseif $menu == einstellungen}
-    {include file='einstellungen.tpl'}
-{elseif $menu == administrator}
-    {include file='administrator.tpl'}
-{elseif $menu == abmelden}
-    {include file='abmelden.tpl'}
+{elseif $menu == image}
+    {include file='image.tpl'}
+{elseif $menu == configuration}
+    {include file='configuration.tpl'}
+{elseif $menu == logout}
+    {include file='logout.tpl'}
 {/if}
 
