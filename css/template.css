@@ -145,7 +145,6 @@ input#loginSubmit {
 **************************************/
 
 div#content {
-    float:left;
     width:100%;
 }
 
@@ -207,50 +206,44 @@ div#navigation {
     padding:5px 5px 5px 25px;
     display:block;
     float:left;
-/*    -moz-border-radius: 5px;*/
     -moz-border-radius-topleft: 5px;
     -moz-border-radius-topright: 5px;
-        height:15px;
-
-/*    text-decoration:none;*/
-
-
+    height:15px;
 }
 
-#menu a#homepage {
+#menu a.home {
     background-image:url('../images/icons/house.png');
 }
 
-#menu a#movies {
+#menu a.movie {
     background-image:url('../images/icons/film.png');
 }
 
-#menu a#music {
+#menu a.music {
     background-image:url('../images/icons/music.png');
 }
 
-#menu a#images {
+#menu a.image {
     background-image:url('../images/icons/images.png');
 }
 
-#menu a#contacts {
+#menu a.contact {
     background-image:url('../images/icons/user.png');
 }
 
-#menu a#documents {
+#menu a.document {
     background-image:url('../images/icons/page.png');
 }
 
-
-#menu a#calendar {
+#menu a.calendar {
     background-image:url('../images/icons/calendar.png');
 }
 
-#menu a#configuration {
+#menu a.configuration {
     background-image: url('../images/icons/cog.png');
 }
 
-#menu a#logout {
+#menu a.logout {
     background-image: url('../images/icons/door_out.png');
 }
 
@@ -284,7 +277,7 @@ table {
 }
 
 table thead th {
-
+    background-image: url(../images/layout/bg.gif);
 }
 
 table thead tr {
@@ -297,24 +290,21 @@ table th {
     border-right:1px solid #DFDFDF;
     border-bottom:1px solid #DFDFDF;
     border-top:1px solid #DFDFDF;
-    background-image: url('../images/icons/bg.gif');
     background-repeat: no-repeat;
     background-position: center right;
     cursor: pointer;
 }
 
-th.headerSortDown {
-    background-image: url(../images/icons/desc.gif);
-}
-
-th.headerSortUp {
-    background-image: url(../images/icons/asc.gif);
-} 
 
 table th.delete {
     cursor: default;
     border-right:none;
     background-image:none;
+    background-color:#F0F0F0;
+}
+
+table td.delete {
+    border-right:none;
 }
 
 table td.delete {
@@ -323,6 +313,8 @@ table td.delete {
 
 table th.edit {
     cursor: default;
+    background-image:none;
+    background-color:#F0F0F0;
     background-image:none;
 }
 
@@ -430,29 +422,70 @@ form#controls input#import  {
     background-image:url('../images/icons/application_get.png');
 }
 
-input.pagedisplay {
-    width:25% !important;
-    margin:0 5px 0 5px;
-}
-
-
-img.first, img.prev, img.next, img.last {
-    margin:5px 5px 0 0;
-}
-
-select.pagesize {
-    margin-top:2px;
+.searchbar {
+    margin-bottom: 10px;
 }
 
 div#pager {
     margin:10px 0 0 0;
     float:right;
-    width:185px;
 }
 
-table.tablesorter thead t{
-
+div#pager input.pagedisplay {
+    width:45px;
 }
+
+/*div#pager input[type=button] {
+    height:21px;
+    padding:0 1px 1px 0 !important;
+    width:22px;
+}
+
+div#pager input.active[type=button] {
+    background-color: #A62424;
+    color:#F0F0F0;
+    border:0;
+}
+
+div#pager input.active[type=button]:hover {
+    background-color: #A62424;
+    color:#F0F0F0;
+    border:0;
+}*/
+
+/* tables */
+/*table.tablesorter {
+    font-family:arial;
+    background-color: #CDCDCD;
+    margin:10px 0pt 15px;
+    font-size: 8pt;
+    width: 100%;
+    text-align: left;
+}
+table.tablesorter thead tr th, table.tablesorter tfoot tr th {
+    background-color: #e6EEEE;
+    border: 1px solid #FFF;
+    font-size: 8pt;
+    padding: 4px;
+}
+table.tablesorter thead tr .header {
+    background-repeat: no-repeat;
+    background-position: center right;
+    cursor: pointer;
+}
+table.tablesorter tbody td {
+    color: #3D3D3D;
+    padding: 4px;
+    background-color: #FFF;
+    vertical-align: top;
+}
+table.tablesorter tbody tr.odd td {
+	background-color:#F0F0F6;
+}
+
+table.tablesorter thead tr .headerSortDown, table.tablesorter thead tr .headerSortUp {
+background-color: #8dbdd8;
+}*/
 
 .searchbar {
     margin-bottom: 10px;
