@@ -19,8 +19,8 @@
                     <td class="rating">{$movie.rating}</td>
                     <td class="format">{$movie.format}</td>
                     <td class="date">{$movie.date}</td>
-                    <td class="edit"><a href="index.php?menu=movie&action=delete&ajax=true&id={$movie.id}"><img src="images/icons/pencil.png" alt="edit" /></a></td>
-                    <td class="delete"><a href="index.php?menu=movie&action=delete&ajax=true&id={$movie.id}"><img src="images/icons/delete.png" alt="delete" /></a></td>
+                    <td class="edit"><a href="index.php?menu=movie&action=delete&ajax=true&id={$movie.id}"><img src="images/pencil.png" alt="edit" /></a></td>
+                    <td class="delete"><a href="index.php?menu=movie&action=delete&ajax=true&id={$movie.id}"><img src="images/delete.png" alt="delete" /></a></td>
                 </tr>
             {/foreach}
         </tbody>

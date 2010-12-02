@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.26, created on 2010-12-02 19:02:34
+<?php /* Smarty version 2.6.26, created on 2010-12-02 20:05:18
          compiled from movie.tpl */ ?>
 <div id="movies">
     <table id="movies" class="tablesorter">
@@ -30,9 +30,9 @@
                     <td class="date"><?php echo $this->_tpl_vars['movie']['date']; ?>
 </td>
                     <td class="edit"><a href="index.php?menu=movie&action=delete&ajax=true&id=<?php echo $this->_tpl_vars['movie']['id']; ?>
-"><img src="images/icons/pencil.png" alt="edit" /></a></td>
+"><img src="images/pencil.png" alt="edit" /></a></td>
                     <td class="delete"><a href="index.php?menu=movie&action=delete&ajax=true&id=<?php echo $this->_tpl_vars['movie']['id']; ?>
-"><img src="images/icons/delete.png" alt="delete" /></a></td>
+"><img src="images/delete.png" alt="delete" /></a></td>
                 </tr>
             <?php endforeach; endif; unset($_from); ?>
         </tbody>

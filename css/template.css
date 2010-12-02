@@ -133,15 +133,15 @@ input#username, input#password , input#loginSubmit {
 }
 
 input#username {
-    background-image:url('../images/icons/user_green.png');
+    background-image:url('../images/user_green.png');
 }
 
 input#password {
-    background-image:url('../images/icons/key.png');
+    background-image:url('../images/key.png');
 }
 
 input#loginSubmit {
-    background-image:url('../images/icons/door_in.png');
+    background-image:url('../images/door_in.png');
     background-position: 90px 5px;
 }
 
@@ -217,39 +217,39 @@ div#navigation {
 }
 
 #menu a.home {
-    background-image:url('../images/icons/house.png');
+    background-image:url('../images/house.png');
 }
 
 #menu a.movie {
-    background-image:url('../images/icons/film.png');
+    background-image:url('../images/film.png');
 }
 
 #menu a.music {
-    background-image:url('../images/icons/music.png');
+    background-image:url('../images/music.png');
 }
 
 #menu a.image {
-    background-image:url('../images/icons/images.png');
+    background-image:url('../images/images.png');
 }
 
 #menu a.contact {
-    background-image:url('../images/icons/user.png');
+    background-image:url('../images/user.png');
 }
 
 #menu a.document {
-    background-image:url('../images/icons/page.png');
+    background-image:url('../images/page.png');
 }
 
 #menu a.calendar {
-    background-image:url('../images/icons/calendar.png');
+    background-image:url('../images/calendar.png');
 }
 
 #menu a.configuration {
-    background-image: url('../images/icons/cog.png');
+    background-image: url('../images/cog.png');
 }
 
 #menu a.logout {
-    background-image: url('../images/icons/door_out.png');
+    background-image: url('../images/door_out.png');
 }
 
 
@@ -282,7 +282,7 @@ table {
 }
 
 table thead th {
-    background-image: url(../images/layout/bg.gif);
+    background-image: url(../images/bg.gif);
 }
 
 table thead tr {
@@ -403,28 +403,28 @@ form#controls input#import, form#controls input#export {
 }
 
 form#controls input#searchSubmit  {
-    background-image: url('../images/icons/magnifier.png');
+    background-image: url('../images/magnifier.png');
     margin:10px 0 0 0;
 }
 
 form#controls input#add  {
-    background-image:url('../images/icons/table_add.png');
+    background-image:url('../images/table_add.png');
 }
 
 form#controls input#del  {
-    background-image:url('../images/icons/table_delete.png');
+    background-image:url('../images/table_delete.png');
 }
 
 form#controls input#change  {
-    background-image:url('../images/icons/table_edit.png');
+    background-image:url('../images/table_edit.png');
 }
 
 form#controls input#export {
-    background-image:url('../images/icons/application_go.png');
+    background-image:url('../images/application_go.png');
 }
 
 form#controls input#import  {
-    background-image:url('../images/icons/application_get.png');
+    background-image:url('../images/application_get.png');
 }
 
 .searchbar {
