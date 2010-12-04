@@ -8,8 +8,7 @@
         <div id="container">
             <div id="content">
                 {* Content Bereich Laden *}
-                {include file='content.tpl'}
-
+                 {$content}
             </div>
         </div>
     </div>

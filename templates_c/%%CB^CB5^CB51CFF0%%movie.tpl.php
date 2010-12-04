@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.26, created on 2010-12-02 20:05:18
+<?php /* Smarty version 2.6.26, created on 2010-12-04 11:22:47
          compiled from movie.tpl */ ?>
 <div id="movies">
     <table id="movies" class="tablesorter">

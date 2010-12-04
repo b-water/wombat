@@ -1,6 +1,7 @@
 $(document).ready(function()
     {
 //        $('input.label').labelify();
+
         // call the tablesorter plugin
         $('table.tablesorter').tablesorter({
             widthFixed: true,
@@ -18,6 +19,8 @@ $(document).ready(function()
         $('table.tablesorter').tablesorterPager({
             container: $('#pager')
         });
-    // sort on the first column and third column, order asc
+
+        $("label").inFieldLabels();
+
     });
 

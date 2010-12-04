@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html;  charset=ISO-8859-1"/>
-        <title>Red Wombat - Die Digitale Medienbibliothek</title>
+        <title>Red Wombat - {$title}</title>
         <meta name="Author" content="Nico Schmitz" />
         <meta name="Copyright" content="2010 Nico Schmitz" />
         {foreach key=id item=css from=$css}

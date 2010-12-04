@@ -485,8 +485,12 @@ form#searchbar input[type=text] {
     -moz-border-radius:5px;
     border:1px solid #CFCFCF;
     padding:4px;
+    color:#707070;
 }
 
+
+
+/* Copyright ZURB, freely available for distrubition under the MIT license. */
 
 /** Awesome Buttons **/
 
@@ -544,6 +548,17 @@ form#searchbar input[type=text] {
 .yellow.awesome {
     background-color: #ffb515;
 }
+
+form p { 
+    position:relative;
+}
+
+label  {
+    position:absolute;
+    top:5px;
+    left:10px;
+}
+
 
 
 
