@@ -10,7 +10,7 @@
  *
  * @author nico
  */
-class FrontController {
+class Router {
 
     private $action;
     private $controller;

@@ -8,33 +8,34 @@
  * @Version 0.1
  * ********************************************************************************************** */
 
-// Launching Session
+/* Launching Session */
 session_start();
 
-// prints out all error messages
+/* prints out all error messages */
 error_reporting(E_ALL);
 
-// define the constants
-define('application_path', 'application/');
-define('include_path', 'include/');
-define('template_path', 'templates/');
-define('library_path', 'library/');
+/* define the constants */
+define('APPLICATION_PATH', 'application/');
+define('INCLUDE_PATH', 'include/');
+define('TEMPLATE_PATH', 'templates/');
+define('LIBRARY_PATH', 'library/');
+define('TEMPLATE','template.tpl');
 
-// database configuration
+/* database configuration */
 $host = 'localhost';        // Host oder IP-Adresse
 $user = 'dbadmin';          // Datenbank User
 $password = '1234';         // Passwort für den User
 $database = 'redwombat';    // Datenbank
 
-// Embedding from Libraries, Classes and other Stuff
-require_once(application_path . 'autoloader.class.php');
-require_once(library_path . 'Smarty/Smarty.class.php');
-include_once(include_path . 'functions.php');
+/* Embedding from Libraries, Classes and other stuff */
+require_once(APPLICATION_PATH . 'autoloader.class.php');
+require_once(LIBRARY_PATH . 'Smarty/Smarty.class.php');
+include_once(INCLUDE_PATH . 'functions.php');
 
-// connect to the database
+/* connect to the database */
 $db = Database::getInstance($host, $user, $password, $database);
 
-// initalize Smarty
+/* initalize Smarty */
 $smarty = new Smarty();
 
 // create registry object
@@ -87,18 +88,18 @@ if(isset($_GET['controller']) && !empty($_GET['controller']))
 }
 
 
-$frontController = new FrontController();
+$router = new Router();
 
 try {
 
-    $frontController->run();
+    $router->run();
 
 } catch (Exception $error) {
 
     echo $error->getMessage();
 }
 
-$smarty->display($template);
+$smarty->display(TEMPLATE);
 
 
 /* TODO: Smarty updaten

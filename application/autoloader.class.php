@@ -35,7 +35,7 @@ class Autoloader {
      * @param <type> $class 
      */
     public function application($class) {
-        set_include_path(get_include_path() . PATH_SEPARATOR . '/application/');
+        set_include_path(get_include_path() . PATH_SEPARATOR . 'application/');
         spl_autoload_extensions('.class.php');
         spl_autoload($class);
     }
@@ -43,14 +43,14 @@ class Autoloader {
 
     public function model($class)
     {
-        set_include_path(get_include_path().PATH_SEPARATOR.'/model/');
+        set_include_path(get_include_path().PATH_SEPARATOR.'model/');
         spl_autoload_extensions('.php');
         spl_autoload($class);
     }
 
     public function controller($class)
     {
-        set_include_path(get_include_path().PATH_SEPARATOR.'/controller/');
+        set_include_path(get_include_path().PATH_SEPARATOR.'controller/');
         spl_autoload_extensions('Controller.php');
         spl_autoload($class);
     }
