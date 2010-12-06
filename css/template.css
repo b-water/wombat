@@ -479,6 +479,10 @@ table.tablesorter thead tr .headerSortUp {
     background-image: url('../images/tablesorter/asc.gif');
 }
 
+table.tablesorter tr {
+    cursor:pointer;
+}
+
 form#searchbar {
     margin-bottom: 10px;
     clear:both;

@@ -10,22 +10,19 @@
  *
  * @author nico
  */
-class MovieController {
+class MovieController extends MainController {
 
     private $movie;
-    private $smarty;
-    private $registry;
     private $fields;
 
-    public function __construct() {
+    public function __construct($registry) {
 
-        // get the smarty, registry and movie object
-        $this->registry = Registry::getInstance();
-        $this->smarty = $this->registry->get('smarty');
+        parent::__construct($registry);
         $this->movie = Movie::getInstance();
-
         $this->fields = 'id,name,genre,rating,format,date';
+        
     }
+
 
     public function index_Action() {
 
@@ -39,7 +36,10 @@ class MovieController {
         $content = $this->smarty->fetch('searchbar.tpl');
         $content .= $this->smarty->fetch('movie.tpl');
         $content .= $this->smarty->fetch('pager.tpl');
+        
         $this->smarty->assign('content',$content);
+
+        $this->smarty->display(TEMPLATE_FILE);
 
     }
 
@@ -53,9 +53,18 @@ class MovieController {
         
         $content = $this->smarty->fetch('searchbar.tpl');
         $content .= $this->smarty->fetch('movie.tpl');
+
         $this->smarty->assign('content',$content);
+
+        $this->smarty->display(TEMPLATE_FILE);
     }
 
+    public function show_Action() {
+        $filter = ' WHERE id = "' . $_REQUEST['id'] . '"';
+        $movies = $this->movie->getMovies($this->fields,$filter);
+        $this->smarty->assign('movies', $movies);
+        $this->smarty->display('movie.tpl');
+    }
 }
 
 ?>

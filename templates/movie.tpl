@@ -13,14 +13,14 @@
         </thead>
         <tbody>
             {foreach key=id item=movie from=$movies}
-                <tr id="{$movie.id}">
+                <tr id="{$movie.id}" onclick="fancyAjaxLoader({$movie.id},'movie','show');">
                     <td class="name">{$movie.name}</td>
                     <td class="genre">{$movie.genre}</td>
                     <td class="rating">{$movie.rating}</td>
                     <td class="format">{$movie.format}</td>
                     <td class="date">{$movie.date}</td>
-                    <td class="edit"><a href="index.php?menu=movie&action=delete&ajax=true&id={$movie.id}"><img src="images/pencil.png" alt="edit" /></a></td>
-                    <td class="delete"><a href="index.php?menu=movie&action=delete&ajax=true&id={$movie.id}"><img src="images/delete.png" alt="delete" /></a></td>
+                    <td class="edit" onclick="fancyAjaxLoader({$movie.id},'movie','edit');"><img src="images/pencil.png" alt="edit" /></td>
+                    <td class="delete" onclick="fancyAjaxLoader({$movie.id},'movie','delete');"><img src="images/delete.png" alt="delete" /></td>
                 </tr>
             {/foreach}
         </tbody>

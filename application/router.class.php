@@ -39,7 +39,7 @@ class Router {
                 throw new Exception("Controller not found! (1)");
             }
 
-            $controller = new $this->controller;
+            $controller = new $this->controller(Registry::getInstance());
 
             if (in_array($this->action, get_class_methods($controller))) {
                 $controller->{$this->action}();

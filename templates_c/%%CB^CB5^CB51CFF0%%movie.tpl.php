@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.26, created on 2010-12-04 11:22:47
+<?php /* Smarty version 2.6.26, created on 2010-12-04 18:01:56
          compiled from movie.tpl */ ?>
 <div id="movies">
     <table id="movies" class="tablesorter">
@@ -18,7 +18,8 @@
     foreach ($_from as $this->_tpl_vars['id'] => $this->_tpl_vars['movie']):
 ?>
                 <tr id="<?php echo $this->_tpl_vars['movie']['id']; ?>
-">
+" onclick="fancyAjaxLoader(<?php echo $this->_tpl_vars['movie']['id']; ?>
+,'movie','show');">
                     <td class="name"><?php echo $this->_tpl_vars['movie']['name']; ?>
 </td>
                     <td class="genre"><?php echo $this->_tpl_vars['movie']['genre']; ?>
@@ -29,10 +30,10 @@
 </td>
                     <td class="date"><?php echo $this->_tpl_vars['movie']['date']; ?>
 </td>
-                    <td class="edit"><a href="index.php?menu=movie&action=delete&ajax=true&id=<?php echo $this->_tpl_vars['movie']['id']; ?>
-"><img src="images/pencil.png" alt="edit" /></a></td>
-                    <td class="delete"><a href="index.php?menu=movie&action=delete&ajax=true&id=<?php echo $this->_tpl_vars['movie']['id']; ?>
-"><img src="images/delete.png" alt="delete" /></a></td>
+                    <td class="edit" onclick="fancyAjaxLoader(<?php echo $this->_tpl_vars['movie']['id']; ?>
+,'movie','edit');"><img src="images/pencil.png" alt="edit" /></td>
+                    <td class="delete" onclick="fancyAjaxLoader(<?php echo $this->_tpl_vars['movie']['id']; ?>
+,'movie','delete');"><img src="images/delete.png" alt="delete" /></td>
                 </tr>
             <?php endforeach; endif; unset($_from); ?>
         </tbody>
