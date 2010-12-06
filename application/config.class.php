@@ -16,8 +16,8 @@ class config {
     //put your code here
     protected static $instance = null;
 
-    private function __construct() {
-        
+    private function __construct($file) {
+        $this->read($file);
     }
 
     private function __clone() {
@@ -30,9 +30,9 @@ class config {
      * 
      * @return  config
      */
-    public function getInstance() {
+    public function getInstance($file) {
         if (self::$instance == null)
-            self::$instance = new Config();
+            self::$instance = new Config($file);
         return self::$instance;
     }
 
@@ -40,8 +40,7 @@ class config {
      *
      * @param <type> $file
      */
-    public function read($file) {
-
+    private function read($file) {
         if (file_exists($file)) {
 
             $ini = parse_ini_file($file);

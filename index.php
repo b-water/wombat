@@ -14,24 +14,16 @@ session_start();
 /* prints out all error messages */
 error_reporting(E_ALL);
 
-/* embedding the autoloader */
+/* Embedding from libs, classes and some other stuff */
 require_once('application/autoloader.class.php');
+require_once('library/Smarty/Smarty.class.php');
+
+/* call the autoloader */
+autoloader::init();
+
 
 /* load the configurations */
-$config = Config::getInstance();
-$config->read('config.ini');
-
-/* define the constants */
-define('APPLICATION_PATH', $config->get('APPLICATION_PATH'));
-define('INCLUDE_PATH', $config->get('INCLUDE_PATH'));
-define('TEMPLATE_PATH', $config->get('TEMPLATE_PATH'));
-define('LIBRARY_PATH', $config->get('LIBRARY_PATH'));
-define('TEMPLATE_FILE', $config->get('TEMPLATE_FILE'));
-
-/* Embedding from libs, classes and some other stuff */
-require_once(LIBRARY_PATH . 'Smarty/Smarty.class.php');
-include_once(INCLUDE_PATH . 'functions.php');
-
+$config = Config::getInstance('config.ini');
 
 /* connect to the database */
 $db = Database::getInstance($config->get('HOST'), $config->get('USER'),
@@ -46,6 +38,7 @@ $registry = Registry::getInstance();
 // registers $db and $smarty
 $registry->set('db', $db);
 $registry->set('smarty', $smarty);
+$registry->set('config', $config);
 
 // checking if the user is loggedin
 //if (!isset($user->id)) {
@@ -75,8 +68,9 @@ $registry->set('smarty', $smarty);
 //}
 
 // fetch all javascript and css files
-$js = fetchFiles('js/');
-$css = fetchFiles('css/');
+$file = new File();
+$css = $file->fetchFromDir('css/');
+$js = $file->fetchFromDir('js/');
 
 // assign them to smarty
 $smarty->assign('js', $js);

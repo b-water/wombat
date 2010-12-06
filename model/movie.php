@@ -34,20 +34,6 @@ class Movie {
         return self::$instance;
     }
 
-    public function countMovies($filter='') {
-        $query = 'SELECT * FROM movies';
-
-        $result = $this->db->query($query);
-
-        $this->num_rows = $result->num_rows;
-
-        if (empty($this->num_rows)) {
-            return $this->num_rows;
-        }
-
-        return false;
-    }
-
     public function deleteMovie($id) {
         
         $sql = 'DELETE FROM ' . $this->table . ' WHERE id="' . $id . '"';
@@ -69,7 +55,7 @@ class Movie {
      */
     public function getMovies($fields='*', $filter='', $orderby='ORDER BY NAME', $limit='', $offset='') {
         
-        $sql = 'SELECT ' . $fields . ' FROM ' . $this->table;
+        $sql = 'SELECT ' . $fields . ' FROM ' . $this->table . ' ' . $orderby;
 
         (!empty($filter)) ? $sql .= $filter : '';
 
@@ -81,9 +67,6 @@ class Movie {
                 foreach ($row as $key => $value) {
                     if ($key == 'id') {
                         $array_key = $value;
-                    }
-                    if ($key == 'date') {
-                        $this->movies[$array_key][$key] = german_date($value);
                     } else {
                         $this->movies[$array_key][$key] = $value;
                     }

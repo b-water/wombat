@@ -1,30 +1,25 @@
 <?php
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
- * Description of indexController
+ * Description of HomeController
  *
  * @author nico
  */
-Class homeController {
+class HomeController extends MainController {
 
     //put your code here
 
-    private $smarty;
-    private $registry;
-
-    public function __construct() {
-        $this->registry = Registry::getInstance();
-        $this->smarty = $this->registry->get('smarty');
+    public function __construct($registry) {
+        parent::__construct($registry);
     }
 
-    public function index_Action() {
+    public function init() {
+        
+    }
+
+    public function indexAction() {
         $this->smarty->assign('title', 'Startseite');
-        $this->smarty->display(TEMPLATE_FILE);
+        $this->smarty->display($this->config->get('TEMPLATE_FILE'));
     }
 
 }
