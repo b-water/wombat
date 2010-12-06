@@ -41,6 +41,10 @@ class Autoloader {
     }
 
 
+    /**
+     *
+     * @param <type> $class
+     */
     public function model($class)
     {
         set_include_path(get_include_path().PATH_SEPARATOR.'model/');
@@ -48,6 +52,10 @@ class Autoloader {
         spl_autoload($class);
     }
 
+    /**
+     *
+     * @param <type> $class 
+     */
     public function controller($class)
     {
         set_include_path(get_include_path().PATH_SEPARATOR.'controller/');

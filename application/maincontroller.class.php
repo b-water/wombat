@@ -17,8 +17,10 @@ abstract class MainController {
     function __construct ($registry) {
         $this->registry = $registry;
         $this->smarty = $this->registry->get('smarty');
+        $this->init();
     }
 
+    abstract function init();
     abstract function index_Action();
 }
 ?>

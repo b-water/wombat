@@ -16,11 +16,12 @@ class MovieController extends MainController {
     private $fields;
 
     public function __construct($registry) {
-
         parent::__construct($registry);
+    }
+
+    public function init() {
         $this->movie = Movie::getInstance();
         $this->fields = 'id,name,genre,rating,format,date';
-        
     }
 
 

@@ -100,6 +100,7 @@ try {
 
 
 /* TODO: Smarty updaten
+ * TODO: Exceptions für Error Handling
  */
 
 //    echo '<pre>';
