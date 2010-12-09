@@ -9,7 +9,7 @@
  *
  * @author nico
  */
-abstract class MainController {
+abstract class BaseController {
     //put your code here
     protected $registry;
     protected $smarty;

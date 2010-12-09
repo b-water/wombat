@@ -1,3 +1,4 @@
+{* head , css files, meta, dtd ect *}
 {include file='head.tpl'}
 <body>
     <div id="wrapper">
@@ -12,4 +13,5 @@
             </div>
         </div>
     </div>
+{* js Files and the closing tags *}
 {include file='foot.tpl'}

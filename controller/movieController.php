@@ -5,10 +5,11 @@
  *
  * @author nico
  */
-class MovieController extends MainController {
+class MovieController extends BaseController {
 
     private $movie;
     private $fields;
+    private $template_dir = 'movie/';
 
     public function __construct($registry) {
         parent::__construct($registry);
@@ -23,17 +24,13 @@ class MovieController extends MainController {
 
         $movies = $this->movie->getMovies($this->fields);
 
-        echo '<pre>';
-        print_r($movies);
-        echo '</pre>';
-
         $this->smarty->assign('movies', $movies);
 
         /* add page title */
         $this->smarty->assign('title', 'Filme');
 
         $content = $this->smarty->fetch('searchbar.tpl');
-        $content .= $this->smarty->fetch('movie.tpl');
+        $content .= $this->smarty->fetch($this->template_dir . 'all.tpl');
         $content .= $this->smarty->fetch('pager.tpl');
 
         $this->smarty->assign('content', $content);
@@ -56,8 +53,6 @@ class MovieController extends MainController {
             $this->smarty->assign('content', $content);
 
             $this->smarty->display($this->config->get('TEMPLATE_FILE'));
-        } else {
-            throw new MovieException('Es ist kein Filter gesetzt!');
         }
     }
 
@@ -69,12 +64,17 @@ class MovieController extends MainController {
     }
 
     public function editAction() {
-
+        $this->smarty->assign('title', 'Filme (Bearbeiten)');
+        
+        $content = $this->smarty->fetch($this->template_dir . 'edit.tpl');
+        $this->smarty->assign('content', $content);
+        $this->smarty->display($this->template_dir.'edit.tpl');
     }
 
     public function deleteAction() {
         $this->movie->deleteMovie($_REQUEST['id']);
-        echo 'Datensatz wurde gelöscht';
+        $this->smarty->display($this->template_dir.'delete.tpl');
+
     }
 
 }

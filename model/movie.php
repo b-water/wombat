@@ -15,13 +15,12 @@ class Movie {
     protected static $instance = null;
     private $movies = array();
     public $num_rows;
-    private $table = 'movies';
+    private $table = 'movie';
 
     private function __construct() {
 
         $registry = Registry::getInstance();
         $this->db = $registry->get('db');
-        
     }
 
     private function __clone() {
@@ -35,14 +34,13 @@ class Movie {
     }
 
     public function deleteMovie($id) {
-        
+
         $sql = 'DELETE FROM ' . $this->table . ' WHERE id="' . $id . '"';
 
         $result = $this->db->query($sql);
 
         return true;
     }
-
 
     /**
      * Gather Movies from Database
@@ -54,7 +52,7 @@ class Movie {
      * @return  array   movies
      */
     public function getMovies($fields='*', $filter='', $orderby='ORDER BY NAME', $limit='', $offset='') {
-        
+
         $sql = 'SELECT ' . $fields . ' FROM ' . $this->table . ' ' . $orderby;
 
         (!empty($filter)) ? $sql .= $filter : '';
@@ -64,13 +62,7 @@ class Movie {
 
         while ($row = $result->fetch_assoc()) {
             if (!empty($row)) {
-                foreach ($row as $key => $value) {
-                    if ($key == 'id') {
-                        $array_key = $value;
-                    } else {
-                        $this->movies[$array_key][$key] = $value;
-                    }
-                }
+                $this->movies[] = $row;
             }
         }
 

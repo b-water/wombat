@@ -5,7 +5,7 @@
  * @Author Nico Schmitz
  * @Date 01.04.2010
  * @Version 0.1
- * @licence : licence.txt
+ * @licence : All Right Reserved
  * ********************************************************************************************** */
 
 /* Launching Session */
@@ -15,12 +15,11 @@ session_start();
 error_reporting(E_ALL);
 
 /* Embedding from libs, classes and some other stuff */
-require_once('application/autoloader.class.php');
+require_once('application/Autoloader.php');
 require_once('library/Smarty/Smarty.class.php');
 
 /* call the autoloader */
 autoloader::init();
-
 
 /* load the configurations */
 $config = Config::getInstance('config.ini');
@@ -88,7 +87,7 @@ try {
     $router->run();
 } catch (Exception $error) {
 
-    echo $error->getMessage();
+    die($error->getMessage());
 }
 
 
