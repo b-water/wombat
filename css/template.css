@@ -565,11 +565,11 @@ form p {
     position:relative;
 }
 
-label  {
+/*label  {
     position:absolute;
     top:5px;
     left:10px;
-}
+}*/
 
 .attention {
     background:url('../images/error.png') center left no-repeat;

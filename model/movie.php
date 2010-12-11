@@ -53,9 +53,9 @@ class Movie {
      */
     public function getMovies($fields='*', $filter='', $orderby='ORDER BY NAME', $limit='', $offset='') {
 
-        $sql = 'SELECT ' . $fields . ' FROM ' . $this->table . ' ' . $orderby;
-
+        $sql = 'SELECT ' . $fields . ' FROM ' . $this->table;
         (!empty($filter)) ? $sql .= $filter : '';
+        $sql .= ' '.$orderby;
 
         // gather data
         $result = $this->db->query($sql);

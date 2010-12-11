@@ -9,6 +9,7 @@ class MovieController extends BaseController {
 
     private $movie;
     private $fields;
+    private $all_fields;
     private $template_dir = 'movie/';
 
     public function __construct($registry) {
@@ -18,6 +19,7 @@ class MovieController extends BaseController {
     public function init() {
         $this->movie = Movie::getInstance();
         $this->fields = 'id,name,genre,rating,format,DATE_FORMAT(DATE,"%d.%c.%Y") AS date';
+        $this->all_fields = '*';
     }
 
     public function indexAction() {
@@ -64,17 +66,23 @@ class MovieController extends BaseController {
     }
 
     public function editAction() {
-        $this->smarty->assign('title', 'Filme (Bearbeiten)');
         
+        $this->smarty->assign('title', 'Filme (Bearbeiten)');
+
+        $filter = ' WHERE id = "' . $_REQUEST['id'] . '"';
+        $movie = $this->movie->getMovies($this->all_fields, $filter);
+
         $content = $this->smarty->fetch($this->template_dir . 'edit.tpl');
+
         $this->smarty->assign('content', $content);
-        $this->smarty->display($this->template_dir.'edit.tpl');
+        $this->smarty->assign('movie', $movie[0]);
+
+        $this->smarty->display($this->template_dir . 'edit.tpl');
     }
 
     public function deleteAction() {
         $this->movie->deleteMovie($_REQUEST['id']);
-        $this->smarty->display($this->template_dir.'delete.tpl');
-
+        $this->smarty->display($this->template_dir . 'delete.tpl');
     }
 
 }

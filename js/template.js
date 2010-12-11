@@ -21,9 +21,17 @@ $(document).ready(function() {
 
     $("label").inFieldLabels();
 
+    $('.auto-submit-star').rating({
+        select: 5,
+        readOnly: true,
+        callback: function(value, link){
+            alert(value);
+        }
+    });
+
 });
 
-function fancyAjaxLoader(id,controller,action) {
+function fancyAjaxLoader(id,controller,action,title) {
     $.fancybox.showActivity();
     $.ajax({
         type : 'POST',
@@ -31,7 +39,11 @@ function fancyAjaxLoader(id,controller,action) {
         url : 'index.php?controller='+controller+'&action='+action+'&id='+id+'',
         data : $(this).serializeArray(),
         success: function(data) {
-            $.fancybox(data);
+            $.fancybox({
+                content: data,
+                title: title,
+                scrolling: 'no'
+            });
         }
     });
 
