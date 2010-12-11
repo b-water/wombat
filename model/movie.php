@@ -14,7 +14,7 @@ class Movie {
 
     protected static $instance = null;
     private $movies = array();
-    public $num_rows;
+    private $format = array();
     private $table = 'movie';
 
     private function __construct() {
@@ -42,6 +42,17 @@ class Movie {
         return true;
     }
 
+    public function getFormat() {
+
+        $sql = 'SELECT name FROM format WHERE type="movie"';
+        $result = $this->db->query($sql);
+        while ($row = $result->fetch_assoc()) {
+            if (!empty($row)) {
+                $this->format[] = $row;
+            }
+        }
+    }
+
     /**
      * Gather Movies from Database
      * 
@@ -55,7 +66,7 @@ class Movie {
 
         $sql = 'SELECT ' . $fields . ' FROM ' . $this->table;
         (!empty($filter)) ? $sql .= $filter : '';
-        $sql .= ' '.$orderby;
+        $sql .= ' ' . $orderby;
 
         // gather data
         $result = $this->db->query($sql);

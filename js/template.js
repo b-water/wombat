@@ -42,7 +42,13 @@ function fancyAjaxLoader(id,controller,action,title) {
             $.fancybox({
                 content: data,
                 title: title,
-                scrolling: 'no'
+                scrolling: 'no',
+                onComplete: function() {
+                    $("#fancybox-title").css({
+                        'top':'0px',
+                        'bottom':'auto'
+                    });
+                }
             });
         }
     });

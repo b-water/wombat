@@ -1,10 +1,13 @@
-<form class="edit" method="POST" action="index.php?controller=movie&action=edit">
+<form class="edit" method="POST" action="index.php?controller=movie&action=edit" enctype="multipart/form-data">
     <fieldset>
         <label>Name</label>
         <input type="text" value="{$movie.name}" />
     </fieldset>
     <fieldset>
         <label>Format</label>
+        <select name="format">
+            <option></option>
+        </select>
         <input type="text" value="{$movie.format}" />
     </fieldset>
     <fieldset>
@@ -13,7 +16,8 @@
     </fieldset>
     <fieldset>
         <label>Cover</label>
-        <input type="text" value="{$movie.cover}" />
+
+        <input type="file" value="Datei" />
     </fieldset>
     <fieldset>
         <label>Bewertung</label>
@@ -23,5 +27,7 @@
         <label>Beschreibung</label>
         <input type="text" value="{$movie.description}" />
     </fieldset>
-    <input type="submit" class="small awesome" value="Änderungen speichern" />
+    <fieldset>
+        <input type="submit" class="small awesome right" value="Änderungen speichern" />
+    </fieldset>
 </form>

@@ -561,17 +561,33 @@ form#searchbar input[type=text] {
     background-color: #ffb515;
 }
 
-form p { 
-    position:relative;
-}
-
-/*label  {
-    position:absolute;
-    top:5px;
-    left:10px;
-}*/
-
 .attention {
     background:url('../images/error.png') center left no-repeat;
     padding:5px 5px 5px 25px;
 }
+
+form.edit fieldset {
+    margin-bottom:10px;
+}
+
+form.edit input[type=text] {
+    width:256px;
+}
+
+form.edit label {
+    width:100px;
+    display:block;
+}
+
+/*
+
+
+form.edit input {
+    display:block;
+}
+
+
+
+form-edit input[type=submit] {
+    clear:both;
+}*/
