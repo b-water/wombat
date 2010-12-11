@@ -26,7 +26,7 @@ class MovieController extends BaseController {
 
         $movies = $this->movie->getMovies($this->fields);
 
-        $this->smarty->assign('movies', $movies);
+        $this->smarty->assign('movie', $movies);
 
         /* add page title */
         $this->smarty->assign('title', 'Filme');
@@ -47,7 +47,7 @@ class MovieController extends BaseController {
             $movies = $this->movie->getMovies($this->fields, $filter);
 
             $this->smarty->assign('title', 'Filme (Suche)');
-            $this->smarty->assign('movies', $movies);
+            $this->smarty->assign('movie', $movies);
 
             $content = $this->smarty->fetch('searchbar.tpl');
             $content .= $this->smarty->fetch('movie.tpl');
@@ -61,20 +61,25 @@ class MovieController extends BaseController {
     public function showAction() {
         $filter = ' WHERE id = "' . $_REQUEST['id'] . '"';
         $movies = $this->movie->getMovies($this->fields, $filter);
-        $this->smarty->assign('movies', $movies);
+        $this->smarty->assign('movie', $movies);
         $this->smarty->display('movie.tpl');
     }
 
-    public function editAction() {
+    public function editShowAction() {
         
         $this->smarty->assign('title', 'Filme (Bearbeiten)');
 
         $filter = ' WHERE id = "' . $_REQUEST['id'] . '"';
         $movie = $this->movie->getMovies($this->all_fields, $filter);
 
+        $format = $this->movie->getFormat();
+        $genre = $this->movie->getGenre();
+
         $content = $this->smarty->fetch($this->template_dir . 'edit.tpl');
 
         $this->smarty->assign('content', $content);
+        $this->smarty->assign('format', $format);
+        $this->smarty->assign('genre', $genre);
         $this->smarty->assign('movie', $movie[0]);
 
         $this->smarty->display($this->template_dir . 'edit.tpl');
