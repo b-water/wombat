@@ -570,7 +570,7 @@ form.edit fieldset {
     margin-bottom:10px;
 }
 
-form.edit input[type=text] {
+form.edit input[type=text], form.edit input[type=select]  {
     width:256px;
 }
 

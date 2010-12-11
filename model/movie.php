@@ -16,6 +16,7 @@ class Movie {
     private $movies = array();
     private $format = array();
     private $table = 'movie';
+    private $genre = array();
 
     private function __construct() {
 
@@ -48,14 +49,30 @@ class Movie {
         $result = $this->db->query($sql);
         while ($row = $result->fetch_assoc()) {
             if (!empty($row)) {
-                $this->format[] = $row;
+                $this->format[] = $row['name'];
             }
         }
+
+        return $this->format;
+    }
+
+    public function getGenre() {
+
+        $sql = 'SELECT name FROM genre WHERE type="movie"';
+
+        $result = $this->db->query($sql);
+        while ($row = $result->fetch_assoc()) {
+            if (!empty($row)) {
+                $this->genre[] = $row['name'];
+            }
+        }
+
+        return $this->genre;
     }
 
     /**
      * Gather Movies from Database
-     * 
+     *
      * @param   string  $fields
      * @param   string  $filter
      * @param   string  $orderby
@@ -68,7 +85,7 @@ class Movie {
         (!empty($filter)) ? $sql .= $filter : '';
         $sql .= ' ' . $orderby;
 
-        // gather data
+// gather data
         $result = $this->db->query($sql);
 
         while ($row = $result->fetch_assoc()) {
@@ -77,7 +94,7 @@ class Movie {
             }
         }
 
-        // returns the array with the movies
+// returns the array with the movies
         return $this->movies;
     }
 
