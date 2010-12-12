@@ -1,5 +1,4 @@
-<form class="edit" method="POST" action="index.php?controller=movie&action=edit" enctype="multipart/form-data">
-    <input type="hidden" name="change" value="1" />
+<form id="edit" method="POST" action="bootstrap.php?controller=movie&action=change" enctype="multipart/form-data">
     <fieldset>
         <label>Name</label>
         <input type="text" name="name" value="{$movie.name}" />
@@ -39,9 +38,9 @@
     </fieldset>
     <fieldset>
         <label>Beschreibung</label>
-        <input type="text" name="description" value="{$movie.description}" />
+        <textarea name="description">{$movie.description}</textarea>
     </fieldset>
     <fieldset>
-        <input type="submit" class="small awesome right" value="Änderungen speichern" />
+        <input type="button" class="small awesome right" value="Änderungen speichern" onclick="ajaxFormSubmit('{$movie.id}','movie','change');" />
     </fieldset>
 </form>

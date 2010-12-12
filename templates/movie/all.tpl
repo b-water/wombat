@@ -13,13 +13,13 @@
         </thead>
         <tbody>
             {foreach item=item from=$movie}
-            <tr id="{$item.id}" onclick="fancyAjaxLoader('{$item.id}','movie','show','Detailansicht');">
-                <td class="name">{$item.name}</td>
-                <td class="genre">{$item.genre}</td>
-                <td class="rating">{$item.rating}</td>
-                <td class="format">{$item.format}</td>
+            <tr id="{$item.id}">
+                <td class="name" onclick="fancyAjaxLoader('{$item.id}','movie','show','Detailansicht');">{$item.name}</td>
+                <td class="genre" onclick="fancyAjaxLoader('{$item.id}','movie','show','Detailansicht');">{$item.genre}</td>
+                <td class="rating"  onclick="fancyAjaxLoader('{$item.id}','movie','show','Detailansicht');">{$item.rating}</td>
+                <td class="format"  onclick="fancyAjaxLoader('{$item.id}','movie','show','Detailansicht');">{$item.format}</td>
                 <td class="date">{$item.date}</td>
-                <td class="edit" onclick="fancyAjaxLoader('{$item.id}','movie','editShow','Bearbeiten');"><img src="images/pencil.png" alt="edit" /></td>
+                <td class="edit" onclick="fancyAjaxLoader('{$item.id}','movie','edit','Bearbeiten');"><img src="images/pencil.png" alt="edit" /></td>
                 <td class="delete" onclick="fancyAjaxLoader('{$item.id}','movie','delete','Löschen');"><img src="images/delete.png" alt="delete" /></td>
             </tr>
             {/foreach}
