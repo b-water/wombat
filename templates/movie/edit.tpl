@@ -1,4 +1,4 @@
-<form id="edit" method="POST" action="bootstrap.php?controller=movie&action=change" enctype="multipart/form-data">
+<form id="edit" method="POST" action="bootstrap.php?controller=movie&action=update" enctype="multipart/form-data" >
     <fieldset>
         <label>Name</label>
         <input type="text" name="name" value="{$movie.name}" />
@@ -8,10 +8,10 @@
         <select name="format">
             {foreach item=item from=$format}
                 {if $item.name == $movie.format}
-                    <option selected="selected">{$item.name}</option>
+            <option selected="selected">{$item.name}</option>
                 {else}
-                    <option>{$item.name}</option>
-                   
+            <option>{$item.name}</option>
+
                 {/if}
             {/foreach}
         </select>
@@ -21,9 +21,9 @@
         <select name="genre">
             {foreach item=item from=$genre}
                 {if $item.name == $movie.format}
-                    <option selected="selected">{$item.name}</option>
+            <option selected="selected">{$item.name}</option>
                 {else}
-                    <option>{$item.name}</option>
+            <option>{$item.name}</option>
                 {/if}
             {/foreach}
         </select>
@@ -34,13 +34,17 @@
     </fieldset>
     <fieldset>
         <label>Bewertung</label>
-        <input type="text" name="rating" value="{$movie.rating}" />
+        {include file='rating.tpl'}
+    </fieldset>
+    <fieldset>
+        <label>Größe</label>
+        <input type="text" name="size" value="{$movie.size}" />
     </fieldset>
     <fieldset>
         <label>Beschreibung</label>
         <textarea name="description">{$movie.description}</textarea>
     </fieldset>
     <fieldset>
-        <input type="button" class="small awesome right" value="Änderungen speichern" onclick="ajaxFormSubmit('{$movie.id}','movie','change');" />
+        <input type="submit" class="small awesome right" value="Änderungen speichern" />
     </fieldset>
 </form>
