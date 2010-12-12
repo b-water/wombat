@@ -1,6 +1,4 @@
 $(document).ready(function() {
-    //        $('input.label').labelify();
-
     // call the tablesorter plugin
     $('table.tablesorter').tablesorter({
         widthFixed: true,
@@ -18,17 +16,6 @@ $(document).ready(function() {
     $('table.tablesorter').tablesorterPager({
         container: $('#pager')
     });
-
-    $("label").inFieldLabels();
-
-    $('.auto-submit-star').rating({
-        select: 5,
-        readOnly: true,
-        callback: function(value, link){
-            alert(value);
-        }
-    });
-
 });
 
 function fancyAjaxLoader(id,controller,action,title) {
@@ -36,7 +23,7 @@ function fancyAjaxLoader(id,controller,action,title) {
     $.ajax({
         type : 'POST',
         cache : false,
-        url : 'index.php?controller='+controller+'&action='+action+'&id='+id+'',
+        url : 'bootstrap.php?controller='+controller+'&action='+action+'&id='+id+'',
         data : $(this).serializeArray(),
         success: function(data) {
             $.fancybox({
@@ -50,7 +37,25 @@ function fancyAjaxLoader(id,controller,action,title) {
                     });
                 }
             });
+            tinyMCE.init({
+                mode : "textareas",
+                theme : "simple"
+            });
+            $('form#edit').ajaxForm(function() {
+                alert("Thank you for your comment!");
+            });
         }
     });
+}
 
+function ajaxFormSubmit(id,controller,action) {
+    $.ajax({
+        type : 'POST',
+        cache : false,
+        url : 'bootstrap.php?controller='+controller+'&action='+action+'&id='+id+'',
+        data : $(this).serializeArray(),
+        success: function(data) {
+            
+        }
+    });
 }
