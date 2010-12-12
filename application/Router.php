@@ -20,7 +20,7 @@ class Router {
      */
     public function __construct() {
 
-        $this->action = isset($_GET["action"]) ? strtolower($_GET["action"]) : "index";
+        $this->action = isset($_GET["action"]) ? $_GET["action"] : "index";
         $this->action .= "Action";
         $this->controller = isset($_GET["controller"]) ? strtolower($_GET["controller"]) : "home";
         $this->controller .= 'Controller';
