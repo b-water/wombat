@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.26, created on 2010-12-11 21:17:51
+<?php /* Smarty version 2.6.26, created on 2010-12-12 01:11:00
          compiled from movie/all.tpl */ ?>
 <div id="movies">
     <table id="movies" class="tablesorter">
@@ -18,20 +18,23 @@
     foreach ($_from as $this->_tpl_vars['item']):
 ?>
             <tr id="<?php echo $this->_tpl_vars['item']['id']; ?>
-" onclick="fancyAjaxLoader('<?php echo $this->_tpl_vars['item']['id']; ?>
-','movie','show','Detailansicht');">
-                <td class="name"><?php echo $this->_tpl_vars['item']['name']; ?>
+">
+                <td class="name" onclick="fancyAjaxLoader('<?php echo $this->_tpl_vars['item']['id']; ?>
+','movie','show','Detailansicht');"><?php echo $this->_tpl_vars['item']['name']; ?>
 </td>
-                <td class="genre"><?php echo $this->_tpl_vars['item']['genre']; ?>
+                <td class="genre" onclick="fancyAjaxLoader('<?php echo $this->_tpl_vars['item']['id']; ?>
+','movie','show','Detailansicht');"><?php echo $this->_tpl_vars['item']['genre']; ?>
 </td>
-                <td class="rating"><?php echo $this->_tpl_vars['item']['rating']; ?>
+                <td class="rating"  onclick="fancyAjaxLoader('<?php echo $this->_tpl_vars['item']['id']; ?>
+','movie','show','Detailansicht');"><?php echo $this->_tpl_vars['item']['rating']; ?>
 </td>
-                <td class="format"><?php echo $this->_tpl_vars['item']['format']; ?>
+                <td class="format"  onclick="fancyAjaxLoader('<?php echo $this->_tpl_vars['item']['id']; ?>
+','movie','show','Detailansicht');"><?php echo $this->_tpl_vars['item']['format']; ?>
 </td>
                 <td class="date"><?php echo $this->_tpl_vars['item']['date']; ?>
 </td>
                 <td class="edit" onclick="fancyAjaxLoader('<?php echo $this->_tpl_vars['item']['id']; ?>
-','movie','editShow','Bearbeiten');"><img src="images/pencil.png" alt="edit" /></td>
+','movie','edit','Bearbeiten');"><img src="images/pencil.png" alt="edit" /></td>
                 <td class="delete" onclick="fancyAjaxLoader('<?php echo $this->_tpl_vars['item']['id']; ?>
 ','movie','delete','Löschen');"><img src="images/delete.png" alt="delete" /></td>
             </tr>

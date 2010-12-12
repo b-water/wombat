@@ -1,9 +1,9 @@
-<?php /* Smarty version 2.6.26, created on 2010-12-11 20:48:46
+<?php /* Smarty version 2.6.26, created on 2010-12-12 13:01:58
          compiled from movie/edit.tpl */ ?>
-<form class="edit" method="POST" action="index.php?controller=movie&action=edit" enctype="multipart/form-data">
+<form id="edit" method="POST" action="bootstrap.php?controller=movie&action=update" enctype="multipart/form-data" >
     <fieldset>
         <label>Name</label>
-        <input type="text" value="<?php echo $this->_tpl_vars['movie']['name']; ?>
+        <input type="text" name="name" value="<?php echo $this->_tpl_vars['movie']['name']; ?>
 " />
     </fieldset>
     <fieldset>
@@ -13,12 +13,12 @@
     foreach ($_from as $this->_tpl_vars['item']):
 ?>
                 <?php if ($this->_tpl_vars['item']['name'] == $this->_tpl_vars['movie']['format']): ?>
-                    <option selected="selected"><?php echo $this->_tpl_vars['item']['name']; ?>
+            <option selected="selected"><?php echo $this->_tpl_vars['item']['name']; ?>
 </option>
                 <?php else: ?>
-                    <option><?php echo $this->_tpl_vars['item']['name']; ?>
+            <option><?php echo $this->_tpl_vars['item']['name']; ?>
 </option>
-                   
+
                 <?php endif; ?>
             <?php endforeach; endif; unset($_from); ?>
         </select>
@@ -30,10 +30,10 @@
     foreach ($_from as $this->_tpl_vars['item']):
 ?>
                 <?php if ($this->_tpl_vars['item']['name'] == $this->_tpl_vars['movie']['format']): ?>
-                    <option selected="selected"><?php echo $this->_tpl_vars['item']['name']; ?>
+            <option selected="selected"><?php echo $this->_tpl_vars['item']['name']; ?>
 </option>
                 <?php else: ?>
-                    <option><?php echo $this->_tpl_vars['item']['name']; ?>
+            <option><?php echo $this->_tpl_vars['item']['name']; ?>
 </option>
                 <?php endif; ?>
             <?php endforeach; endif; unset($_from); ?>
@@ -45,13 +45,21 @@
     </fieldset>
     <fieldset>
         <label>Bewertung</label>
-        <input type="text" value="<?php echo $this->_tpl_vars['movie']['rating']; ?>
+        <?php $_smarty_tpl_vars = $this->_tpl_vars;
+$this->_smarty_include(array('smarty_include_tpl_file' => 'rating.tpl', 'smarty_include_vars' => array()));
+$this->_tpl_vars = $_smarty_tpl_vars;
+unset($_smarty_tpl_vars);
+ ?>
+    </fieldset>
+    <fieldset>
+        <label>Größe</label>
+        <input type="text" name="size" value="<?php echo $this->_tpl_vars['movie']['size']; ?>
 " />
     </fieldset>
     <fieldset>
         <label>Beschreibung</label>
-        <input type="text" value="<?php echo $this->_tpl_vars['movie']['description']; ?>
-" />
+        <textarea name="description"><?php echo $this->_tpl_vars['movie']['description']; ?>
+</textarea>
     </fieldset>
     <fieldset>
         <input type="submit" class="small awesome right" value="Änderungen speichern" />
