@@ -19,11 +19,28 @@ $(document).ready(function() {
 });
 
 function fancyAjaxLoader(id,controller,action,title) {
+
     $.fancybox.showActivity();
+
+    var path = '';
+    
+    if(controller != undefined)
+    {
+        path = controller+'/';
+    }
+    if(action != undefined)
+    {
+        path += action+'/';
+    }
+    if(id != undefined)
+    {
+        path += id+'';
+    }
+
     $.ajax({
         type : 'POST',
         cache : false,
-        url : 'bootstrap.php?controller='+controller+'&action='+action+'&id='+id+'',
+        url : path,
         data : $(this).serializeArray(),
         success: function(data) {
             $.fancybox({
@@ -49,6 +66,7 @@ function fancyAjaxLoader(id,controller,action,title) {
 }
 
 function ajaxFormSubmit(id,controller,action) {
+    
     $.ajax({
         type : 'POST',
         cache : false,
