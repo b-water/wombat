@@ -3,6 +3,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html;  charset=ISO-8859-1"/>
         <title>Red Wombat - {$title}</title>
+        <base href="{$basepath}" />
         <meta name="Author" content="Nico Schmitz" />
         <meta name="Copyright" content="2010 Nico Schmitz" />
         {foreach key=id item=css from=$css}

@@ -1,32 +1,16 @@
 <form id="edit" method="POST" action="bootstrap.php?controller=movie&action=update" enctype="multipart/form-data" >
+    <input type="hidden" name="id" value="{$movie.id}" />
     <fieldset>
         <label>Name</label>
         <input type="text" name="name" value="{$movie.name}" />
     </fieldset>
     <fieldset>
         <label>Format</label>
-        <select name="format">
-            {foreach item=item from=$format}
-                {if $item.name == $movie.format}
-            <option selected="selected">{$item.name}</option>
-                {else}
-            <option>{$item.name}</option>
-
-                {/if}
-            {/foreach}
-        </select>
+        {include file='format.tpl'}
     </fieldset>
     <fieldset>
         <label>Genre</label>
-        <select name="genre">
-            {foreach item=item from=$genre}
-                {if $item.name == $movie.format}
-            <option selected="selected">{$item.name}</option>
-                {else}
-            <option>{$item.name}</option>
-                {/if}
-            {/foreach}
-        </select>
+        {include file='genre.tpl'}
     </fieldset>
     <fieldset>
         <label>Cover</label>

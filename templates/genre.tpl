@@ -1,5 +1,5 @@
-<select name="rating">
-    {foreach item=item from=$rating}
+<select name="genre">
+    {foreach item=item from=$genre}
         {if $item.name == $movie.format}
             <option selected="selected">{$item.name}</option>
         {else}
