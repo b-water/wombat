@@ -23,7 +23,7 @@ tfoot, thead, tr, th, td {
     vertical-align: baseline;
 }
 
-input[type=submit] {
+input[type=submit], input[type=button] {
     border:0;
 }
 
@@ -427,9 +427,6 @@ form#controls input#import  {
     background-image:url('../images/application_get.png');
 }
 
-.searchbar {
-    margin-bottom: 10px;
-}
 
 div#pager {
     margin:10px 0 0 0;
@@ -490,14 +487,17 @@ form#searchbar {
 }
 
 form#searchbar input[type=text] {
-    width:92%;
+    width:83%;
     float:left;
     height:26px;
-    margin-right:7px;
+    margin:0 7px 0 7px;
     -moz-border-radius:5px;
     border:1px solid #CFCFCF;
     color:#707070;
-    padding:4px;
+    padding:4px 4px 4px 25px;
+    background-image:url('../images/magnifier.png');
+    background-repeat: no-repeat;
+    background-position: 5px 5px;
 }
 
 
@@ -506,7 +506,7 @@ form#searchbar input[type=text] {
 
 /** Awesome Buttons **/
 
-.awesome{
+.awesome {
     background: #222 url(../images/awesome/alert-overlay.png) repeat-x;
     display: inline-block;
     padding: 5px 10px 6px;
@@ -583,19 +583,23 @@ form#edit label {
     margin-bottom:4px;
 }
 
-form#edit input[type=button] {
-    border:0;
+form#operations {
+    padding:15px 0 0 0;
 }
 
-/*
-
-
-form.edit input {
-    display:block;
+form#operations fieldset {
+    padding-bottom:10px;
 }
 
+fieldset#toolbar {
+    display: inline;
+    float:left;
+}
 
+fieldset#toolbar a {
+    margin-right:5px;
+}
 
-form-edit input[type=submit] {
-    clear:both;
-}*/
+.test {
+    padding:4px 8px 4px 8px;
+}
