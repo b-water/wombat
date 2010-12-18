@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.26, created on 2010-12-03 22:51:39
+<?php /* Smarty version 2.6.26, created on 2010-12-13 17:00:54
          compiled from head.tpl */ ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
@@ -6,6 +6,8 @@
         <meta http-equiv="Content-Type" content="text/html;  charset=ISO-8859-1"/>
         <title>Red Wombat - <?php echo $this->_tpl_vars['title']; ?>
 </title>
+        <base href="<?php echo $this->_tpl_vars['basepath']; ?>
+" />
         <meta name="Author" content="Nico Schmitz" />
         <meta name="Copyright" content="2010 Nico Schmitz" />
         <?php $_from = $this->_tpl_vars['css']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
