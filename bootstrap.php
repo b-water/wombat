@@ -34,10 +34,15 @@ $smarty = new Smarty();
 // create registry object
 $registry = Registry::getInstance();
 
+// parse the url
+$url = new Url();
+$url->parse();
+
 // registers $db and $smarty
 $registry->set('db', $db);
 $registry->set('smarty', $smarty);
 $registry->set('config', $config);
+$registry->set('url',$url);
 
 // checking if the user is loggedin
 //if (!isset($user->id)) {
@@ -67,14 +72,15 @@ $registry->set('config', $config);
 //}
 
 // fetch all javascript and css files
-$file = new File();
-$css = $file->fetchFromDir('css/');
-$js = $file->fetchFromDir('js/');
+$file = File::getInstance();
+$css = $file->fetchDir('css/','css');
+$js = $file->fetchDir('js/','js');
 
 // assign them to smarty
 $smarty->assign('js', $js);
 $smarty->assign('css', $css);
 $smarty->assign('file','bootstrap.php');
+$smarty->assign('basepath',$config->get('BASE_PATH'));
 
 // smarty controller assign
 if (isset($_GET['controller']) && !empty($_GET['controller'])) {
