@@ -14,16 +14,22 @@ class Router {
 
     private $action;
     private $controller;
+    private $registry;
+    private $url;
 
     /**
      * 
      */
     public function __construct() {
 
-        $this->action = isset($_GET["action"]) ? $_GET["action"] : "index";
+        $this->registry = Registry::getInstance();
+        $this->url = $this->registry->get('url');
+
+        $this->action = $this->url->get('action');
         $this->action .= "Action";
-        $this->controller = isset($_GET["controller"]) ? strtolower($_GET["controller"]) : "home";
+        $this->controller = $this->url->get('controller');
         $this->controller .= 'Controller';
+
     }
 
     /**
@@ -40,7 +46,6 @@ class Router {
             }
 
             $controller = new $this->controller(Registry::getInstance());
-
             if (in_array($this->action, get_class_methods($controller))) {
                 $controller->{$this->action}();
             } else {

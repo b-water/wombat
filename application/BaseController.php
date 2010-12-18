@@ -14,11 +14,13 @@ abstract class BaseController {
     protected $registry;
     protected $smarty;
     protected $config;
+    protected $url;
 
     function __construct ($registry) {
         $this->registry = $registry;
         $this->smarty = $this->registry->get('smarty');
         $this->config = $this->registry->get('config');
+        $this->url = $this->registry->get('url');
         $this->init();
     }
 

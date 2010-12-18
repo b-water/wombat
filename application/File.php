@@ -1,5 +1,6 @@
 <?php
-/* 
+
+/*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
@@ -10,31 +11,40 @@
  * @author nico
  */
 class File {
+
     //put your code here
     private $files = array();
+    protected static $instance = null;
 
-    public function __construct() {
+    private function __construct() {
         
     }
 
-    public function fetchFromDir($path) {
+    private function __clone() {
+        
+    }
+
+    public function getInstance() {
+        if (self::$instance == null)
+            self::$instance = new File();
+        return self::$instance;
+    }
+
+    public function fetchDir($path,$type) {
 
         $dir = opendir($path);
 
         while ($file = readdir($dir)) {
-            $this->files[] = $file;
+            if ($file != '.' && $file != '..' && $file != '.svn') {
+                $this->files[$type][] = $file;
+            }
         }
 
         closedir($dir);
 
-        foreach($this->files as $key => $value)
-        {
-            if ($value == '.' || $value == '..' || $value == '.svn') {
-                unset($this->files[$key]);
-            }
-        }
-
-        return $this->files;
+        return $this->files[$type];
     }
+
 }
+
 ?>
