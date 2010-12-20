@@ -24,15 +24,16 @@ class MovieController extends BaseController {
 
     public function indexAction() {
 
-        $movies = $this->movie->getMovies($this->fields);
+        $movies = $this->movie->fetch($this->fields);
 
         $this->smarty->assign('movie', $movies);
 
         /* add page title */
         $this->smarty->assign('title', 'Filme');
 
-        $content = $this->smarty->fetch('searchbar.tpl');
-        $content .= $this->smarty->fetch($this->template_dir . 'all.tpl');
+        $content = $this->smarty->fetch('toolbar.tpl');
+        $content .= $this->smarty->fetch('options.tpl');
+        $content .= $this->smarty->fetch($this->template_dir . 'index.tpl');
         $content .= $this->smarty->fetch('pager.tpl');
 
         $this->smarty->assign('content', $content);
@@ -42,54 +43,64 @@ class MovieController extends BaseController {
 
     public function searchAction() {
 
-        if (isset($_REQUEST['searchbar'])) {
-            $filter = ' WHERE name like "%' . $_REQUEST['searchbar'] . '%"';
-            $movies = $this->movie->getMovies($this->fields, $filter);
+        $filter = ' WHERE name like "%' . $_REQUEST['searchbar'] . '%"';
+        $movies = $this->movie->fetch($this->fields, $filter);
 
-            $this->smarty->assign('title', 'Filme (Suche)');
-            $this->smarty->assign('movie', $movies);
+        $this->smarty->assign('title', 'Filme (Suche)');
+        $this->smarty->assign('movie', $movies);
 
-            $content = $this->smarty->fetch('searchbar.tpl');
-            $content .= $this->smarty->fetch('movie.tpl');
+        $content = $this->smarty->fetch('toolbar.tpl');
+        $content .= $this->smarty->fetch($this->template_dir . 'index.tpl');
 
-            $this->smarty->assign('content', $content);
+        $this->smarty->assign('content', $content);
 
-            $this->smarty->display($this->config->get('TEMPLATE_FILE'));
-        }
+        $this->smarty->display($this->config->get('TEMPLATE_FILE'));
     }
 
     public function showAction() {
-        $filter = ' WHERE id = "' . $_REQUEST['id'] . '"';
-        $movies = $this->movie->getMovies($this->fields, $filter);
+
+        $filter = ' WHERE id = "' . $this->url->get('id') . '"';
+        $movies = $this->movie->fetch($this->fields, $filter);
         $this->smarty->assign('movie', $movies);
-        $this->smarty->display('movie.tpl');
+        $this->smarty->display($this->template_dir . 'show.tpl');
     }
 
-    public function editShowAction() {
-        
+    public function editAction() {
+
         $this->smarty->assign('title', 'Filme (Bearbeiten)');
 
-        $filter = ' WHERE id = "' . $_REQUEST['id'] . '"';
-        $movie = $this->movie->getMovies($this->all_fields, $filter);
+        $filter = ' WHERE id = "' . $this->url->get('id') . '"';
+        $movie = $this->movie->fetch($this->all_fields, $filter);
 
         $format = $this->movie->getFormat();
         $genre = $this->movie->getGenre();
+        $rating = $this->movie->getRating();
 
         $content = $this->smarty->fetch($this->template_dir . 'edit.tpl');
 
         $this->smarty->assign('content', $content);
         $this->smarty->assign('format', $format);
         $this->smarty->assign('genre', $genre);
+        $this->smarty->assign('rating', $rating);
         $this->smarty->assign('movie', $movie[0]);
 
         $this->smarty->display($this->template_dir . 'edit.tpl');
     }
 
+    public function updateAction() {
+
+        $test = $this->movie->update($_REQUEST);
+    }
+
     public function deleteAction() {
-        $this->movie->deleteMovie($_REQUEST['id']);
-        $this->smarty->display($this->template_dir . 'delete.tpl');
+        $this->movie->delete($this->url->get('id'));
+        $text = 'Der Film wurde erfolgreich aus der Datenbank gel&ouml;scht!';
+        $this->smarty->assign('text',$text);
+        $this->smarty->display('delete.tpl');
+    }
+
+    public function operationsAction() {
+        $this->smarty->display('operations.tpl');
     }
 
 }
-
-?>

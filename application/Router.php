@@ -15,7 +15,7 @@ class Router {
     private $action;
     private $controller;
     private $registry;
-    private $url;
+    private $url = array();
 
     /**
      * 
@@ -27,7 +27,7 @@ class Router {
 
         $this->action = $this->url->get('action');
         $this->action .= "Action";
-        $this->controller = $this->url->get('controller');
+        $this->controller = ucfirst($this->url->get('controller'));
         $this->controller .= 'Controller';
 
     }

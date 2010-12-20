@@ -1,1 +1,1 @@
-<p>Der Datensatz wurde erfolgreich gelöscht!</p>
+<p class="attention">{$text}</p>

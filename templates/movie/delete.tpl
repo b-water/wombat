@@ -1,1 +1,0 @@
-<p class="attention">Der Film wurde aus der Mediathek entfernt!</p>

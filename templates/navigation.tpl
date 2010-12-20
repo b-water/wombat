@@ -7,7 +7,7 @@
         <li><a href="document/" class="document" {if $controller == 'document'} class="active" {/if}></a></li>
         <li><a href="contact/" class="contact" {if $controller == 'contact'} class="active" {/if}></a></li>
         <li><a href="calendar/" class="calendar" {if $controller == 'calendar'} class="active" {/if}></a></li>
-        <li><a href="configuration/" class="configuration" {if $controller == 'configuration'} class="active" {/if}></a></li>
+        <li><a href="administration/" class="configuration" {if $controller == 'administration'} class="active" {/if}></a></li>
         <li><a href="logout/" class="logout"></a></li>
     </ul>
 </div>

@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.26, created on 2010-12-13 17:04:30
+<?php /* Smarty version 2.6.26, created on 2010-12-20 18:17:32
          compiled from navigation.tpl */ ?>
 <div id="menu">
     <ul>
@@ -9,7 +9,7 @@
         <li><a href="document/" class="document" <?php if ($this->_tpl_vars['controller'] == 'document'): ?> class="active" <?php endif; ?>></a></li>
         <li><a href="contact/" class="contact" <?php if ($this->_tpl_vars['controller'] == 'contact'): ?> class="active" <?php endif; ?>></a></li>
         <li><a href="calendar/" class="calendar" <?php if ($this->_tpl_vars['controller'] == 'calendar'): ?> class="active" <?php endif; ?>></a></li>
-        <li><a href="configuration/" class="configuration" <?php if ($this->_tpl_vars['controller'] == 'configuration'): ?> class="active" <?php endif; ?>></a></li>
+        <li><a href="administration/" class="configuration" <?php if ($this->_tpl_vars['controller'] == 'administration'): ?> class="active" <?php endif; ?>></a></li>
         <li><a href="logout/" class="logout"></a></li>
     </ul>
 </div>

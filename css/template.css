@@ -487,7 +487,7 @@ form#searchbar {
 }
 
 form#searchbar input[type=text] {
-    width:83%;
+    width:79%;
     float:left;
     height:26px;
     margin:0 7px 0 7px;
