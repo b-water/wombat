@@ -17,6 +17,7 @@ class Movie {
     private $format = array();
     private $table = 'movie';
     private $genre = array();
+    private $rating = array();
 
     private function __construct() {
 
@@ -25,7 +26,7 @@ class Movie {
     }
 
     private function __clone() {
-        
+
     }
 
     public static function getInstance() {
@@ -39,14 +40,14 @@ class Movie {
         echo '<pre>';
         print_r($values);
         echo '</pre>';
-        $sql = 'UPDATE '.$this->table.' SET name="'.$values['name'].'",
-            genre="'.$values['genre'].'",
-            rating="'.$values['rating'].'",
-            format="'.$values['format'].'",
-            size="'.$values['size'].'",
-            cover="'.$values['cover'].'",
-            description="'.$values['description'].'"
-            WHERE id="'.$value['id'].'"';
+        $sql = 'UPDATE ' . $this->table . ' SET name="' . $values['name'] . '",
+            genre="' . $values['genre'] . '",
+            rating="' . $values['rating'] . '",
+            format="' . $values['format'] . '",
+            size="' . $values['size'] . '",
+            cover="' . $values['cover'] . '",
+            description="' . $values['description'] . '"
+            WHERE id="' . $values['id'] . '"';
 
         echo $sql;
     }
@@ -71,6 +72,19 @@ class Movie {
         }
 
         return $this->format;
+    }
+
+    public function getRating() {
+
+        $sql = 'SELECT name FROM rating WHERE type="movie"';
+        $result = $this->db->query($sql);
+        while ($row = $result->fetch_assoc()) {
+            if (!empty($row)) {
+                $this->rating[] = $row['name'];
+            }
+        }
+
+        return $this->rating;
     }
 
     public function getGenre() {

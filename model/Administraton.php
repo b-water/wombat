@@ -2,16 +2,13 @@
 
 class User {
 
-    private $username;
-    private $administrator;
+    private static $username = 'Administrator';
     private $password;
-    private $id;
     private $forename;
     private $name;
     private $email;
-    public $status = false;
+    
     private $db;
-    private $smarty = null;
 
     public function __construct($id=null) {
         $registry = Registry::getInstance();
