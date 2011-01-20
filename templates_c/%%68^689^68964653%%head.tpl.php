@@ -1,10 +1,10 @@
-<?php /* Smarty version 2.6.26, created on 2010-12-13 17:00:54
+<?php /* Smarty version 2.6.26, created on 2011-01-20 19:29:25
          compiled from head.tpl */ ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html;  charset=ISO-8859-1"/>
-        <title>Red Wombat - <?php echo $this->_tpl_vars['title']; ?>
+        <title>RedWombat - <?php echo $this->_tpl_vars['title']; ?>
 </title>
         <base href="<?php echo $this->_tpl_vars['basepath']; ?>
 " />

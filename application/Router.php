@@ -26,7 +26,6 @@ class Router {
         $this->url = $this->registry->get('url');
 
         $this->action = $this->url->get('action');
-        $this->action .= "Action";
         $this->controller = ucfirst($this->url->get('controller'));
         $this->controller .= 'Controller';
 
@@ -39,20 +38,22 @@ class Router {
 
         $controllerpath = "controller/" . $this->controller . ".php";
 
+        /* you do not have a chance to escape */
+        
         if (file_exists($controllerpath)) {
             require($controllerpath);
             if (!class_exists($this->controller)) {
-                throw new Exception("Controller not found! (1)");
+                throw new RouterException("Controller not found! (1)");
             }
 
             $controller = new $this->controller(Registry::getInstance());
             if (in_array($this->action, get_class_methods($controller))) {
                 $controller->{$this->action}();
             } else {
-                throw new Exception("Action not found!");
+                throw new RouterException("Action not found!");
             }
         } else {
-            throw new Exception("Controller not found! (2)");
+            throw new RouterException("Controller not found! (2)");
         }
     }
 

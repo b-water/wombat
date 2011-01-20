@@ -10,6 +10,21 @@
  * @author nico
  */
 class Authentification {
-    //put your code here
+    
+    private $security_key;
+
+
+    public function run($password) {
+        
+    }
+
+    public function get() {
+        return $this->security_key;
+    }
+
+    private function generate() {
+        
+    }
+
 }
 ?>

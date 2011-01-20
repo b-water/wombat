@@ -17,7 +17,11 @@ class config {
     protected static $instance = null;
 
     private function __construct($file) {
-        $this->read($file);
+        try {
+            $this->read($file);
+        } catch (ConfigException $configException) {
+            die($configException);
+        }
     }
 
     private function __clone() {
@@ -48,7 +52,7 @@ class config {
                 $this->set($key, $value);
             }
         } else {
-            throw new Exception("Configuration file not found!");
+            throw new ConfigException("Configuration file not found!");
         }
     }
 

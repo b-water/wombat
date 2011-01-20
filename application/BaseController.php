@@ -25,6 +25,6 @@ abstract class BaseController {
     }
 
     abstract function init();
-    abstract function indexAction();
+    abstract function index();
 }
 ?>
