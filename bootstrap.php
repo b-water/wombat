@@ -20,16 +20,30 @@ error_reporting(E_ALL);
 /* Embedding from libs, classes and some other stuff */
 require_once('application/Autoloader.php');
 require_once('library/Smarty/Smarty.class.php');
+//require_once('library/Zend/Db/Adapter/Pdo/Mysql.php');
+require_once('library/Zend/Db/Adapter/mysqli.php');
 
 /* call the autoloader */
 autoloader::init();
 
 /* load the configurations */
 $config = Config::getInstance('config.ini');
+//
+///* connect to the database */
+//$db = Database::getInstance($config->get('HOST'), $config->get('USER'),
+//                $config->get('PASSWORD'), $config->get('DATABASE'));
 
-/* connect to the database */
-$db = Database::getInstance($config->get('HOST'), $config->get('USER'),
-                $config->get('PASSWORD'), $config->get('DATABASE'));
+try {
+    
+   $db = new Zend_Db_Adapter_Mysqli(array(
+    'host'      => '127.0.0.1',
+    'username'  => 'dbadmin',
+    'password'  => '1234',
+    'dbname'    => 'redwombat' ));
+   
+} catch (Zend_Db_Adapter_Mysqli_Exception $dbException) {
+    die($dbException);
+}
 
 /* initalize Smarty */
 $smarty = new Smarty();
@@ -68,13 +82,19 @@ if (isset($_GET['controller']) && !empty($_GET['controller'])) {
     $smarty->assign('controller', $_GET['controller']);
 }
 
-if (isset($_SESSION['system']['security_key']) && !empty($_SESSION['system']['security_key'])) {
-    
-} else {
-    if ($url->get('controller') != 'user' && $url->get('action') != 'signin') {
-        header('Location: ' . $config->get('BASE_PATH') . 'user/signin');
-    }
-}
+//if (isset($_SESSION['system']['security_key']) && !empty($_SESSION['system']['security_key'])) {
+//
+//} else {
+//    if ($url->get('controller') != 'user' && $url->get('action') != 'signin') {
+//        header('Location: ' . $config->get('BASE_PATH') . 'user/signin');
+//    }
+//}
+//
+
+//$select = $db->select()->from('movie')->order('name')->limit(20,10);
+//$stmt = $db->query($select);
+//$result = $stmt->fetchAll();
+
 
 $router = new Router();
 
@@ -86,7 +106,9 @@ try {
 
 
 // disconnect db
-$db->close();
+//$db->close();
+
+$db->closeConnection();
 
 /* TODO: Smarty updaten
  * TODO: Exceptions für Error Handling
@@ -94,13 +116,13 @@ $db->close();
 
 
 /* Weiße Print_r ausgabe */
-echo '><pre style="color:#fff;"><h1>Session</h1>';
-print_r($_SESSION);
-echo '<h1>Request</h1>';
-print_r($_REQUEST);
-echo '<h1>Cookie</h1>';
-print_r($_COOKIE);
-echo '</pre>';
+//echo '><pre style="color:#fff;"><h1>Session</h1>';
+//print_r($_SESSION);
+//echo '<h1>Request</h1>';
+//print_r($_REQUEST);
+//echo '<h1>Cookie</h1>';
+//print_r($_COOKIE);
+//echo '</pre>';
 
 /* schwarze Print_r ausgabe */
 //echo '<pre>';
