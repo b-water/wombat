@@ -47,7 +47,7 @@ class Autoloader {
      */
     public function model($class)
     {
-        set_include_path(get_include_path().PATH_SEPARATOR.'model/');
+        set_include_path(get_include_path().PATH_SEPARATOR.'model/'.$class.'/');
         spl_autoload_extensions('.php');
         spl_autoload($class);
     }

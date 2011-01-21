@@ -9,7 +9,7 @@
  *
  * @author nico
  */
-class AuthentificationException extends Exception {
+class AuthException extends Exception {
     //put your code here
 }
 ?>

@@ -9,7 +9,7 @@
  *
  * @author nico
  */
-class Authentification {
+class Auth {
     
     private $security_key;
 
