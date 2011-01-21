@@ -17,13 +17,17 @@ abstract class DataMapper {
     protected $offset;
     protected $orderby;
     protected $db;
-    protected $registry = Registry::getInstance();
+    protected $registry;
 
-
+    public function __construct()
+    {
+        $this->registry = Registry::getInstance();
+        $this->db = $this->registry->get('db');
+    }
 
     abstract function init();
-    abstract function fetchById();
-    abstract function fetch();
+    abstract function fetchById($id, $fields='*');
+    abstract function fetch($fields='*', $filter='', $orderby='name', $limit='', $offset='');
 
 }
 
