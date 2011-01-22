@@ -96,6 +96,7 @@ div#container {
     background-color: #F0F0F0;
     -moz-border-radius: 5px;
     overflow:hidden;
+    -moz-box-shadow: 1px 1px 10px #333;
 }
 
 /**************************************
