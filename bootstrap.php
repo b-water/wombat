@@ -20,8 +20,8 @@ error_reporting(E_ALL);
 /* Embedding from libs, classes and some other stuff */
 require_once('application/Autoloader.php');
 require_once('library/Smarty/Smarty.class.php');
-//require_once('library/Zend/Db/Adapter/Pdo/Mysql.php');
 require_once('library/Zend/Db/Adapter/mysqli.php');
+require_once('library/Zend/File/Transfer.php');
 
 /* call the autoloader */
 autoloader::init();
