@@ -1,4 +1,5 @@
-<form id="edit" method="POST" action="bootstrap.php?controller=movie&action=update" enctype="multipart/form-data" >
+
+<form id="edit" method="POST" action="movie/update/" enctype="multipart/form-data" >
     <input type="hidden" name="id" value="{$movie.id}" />
     <fieldset>
         <label>Name</label>
@@ -14,7 +15,7 @@
     </fieldset>
     <fieldset>
         <label>Cover</label>
-        <input type="file" name="cover"/>
+        <input type="file" name="cover" id="cover" />
     </fieldset>
     <fieldset>
         <label>Bewertung</label>
