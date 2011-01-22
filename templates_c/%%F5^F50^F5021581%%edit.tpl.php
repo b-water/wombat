@@ -1,6 +1,7 @@
-<?php /* Smarty version 2.6.26, created on 2010-12-12 13:18:51
+<?php /* Smarty version 2.6.26, created on 2011-01-22 01:04:36
          compiled from movie/edit.tpl */ ?>
-<form id="edit" method="POST" action="bootstrap.php?controller=movie&action=update" enctype="multipart/form-data" >
+
+<form id="edit" method="POST" action="movie/update/" enctype="multipart/form-data" >
     <input type="hidden" name="id" value="<?php echo $this->_tpl_vars['movie']['id']; ?>
 " />
     <fieldset>
@@ -26,7 +27,7 @@ unset($_smarty_tpl_vars);
     </fieldset>
     <fieldset>
         <label>Cover</label>
-        <input type="file" name="cover"/>
+        <input type="file" name="cover" id="cover" />
     </fieldset>
     <fieldset>
         <label>Bewertung</label>
