@@ -438,24 +438,6 @@ div#pager input.pagedisplay {
     width:45px;
 }
 
-/*div#pager input[type=button] {
-    height:21px;
-    padding:0 1px 1px 0 !important;
-    width:22px;
-}
-
-div#pager input.active[type=button] {
-    background-color: #A62424;
-    color:#F0F0F0;
-    border:0;
-}
-
-div#pager input.active[type=button]:hover {
-    background-color: #A62424;
-    color:#F0F0F0;
-    border:0;
-}*/
-
 /* tables */
 
 table.tablesorter tbody tr.even td {
@@ -488,7 +470,7 @@ form#searchbar {
 }
 
 form#searchbar input[type=text] {
-    width:79%;
+    width:78%;
     float:left;
     height:26px;
     margin:0 7px 0 7px;
@@ -500,8 +482,6 @@ form#searchbar input[type=text] {
     background-repeat: no-repeat;
     background-position: 5px 5px;
 }
-
-
 
 /* Copyright ZURB, freely available for distrubition under the MIT license. */
 
@@ -571,7 +551,8 @@ form#edit fieldset {
     margin-bottom:10px;
 }
 
-form#edit input[type=text], form#edit input[type=select], textarea  {
+form#edit input[type=text], form#edit input[type=select], textarea ,
+select#format, select#genre, select#rating {
     width:256px;
     border:1px solid #CFCFCF;
     color:#707070;
@@ -599,8 +580,4 @@ fieldset#toolbar {
 
 fieldset#toolbar a {
     margin-right:5px;
-}
-
-.test {
-    padding:4px 8px 4px 8px;
 }
