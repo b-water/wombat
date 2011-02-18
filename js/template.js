@@ -58,11 +58,14 @@ function fancyAjaxLoader(id,controller,action,title) {
                 mode : "textareas",
                 theme : "simple"
             });
+
             $('form#edit').ajaxForm(function() {
-                alert("Thank you for your comment!");
+
             });
         }
     });
+    
+
 }
 
 function ajaxFormSubmit(id,controller,action) {
