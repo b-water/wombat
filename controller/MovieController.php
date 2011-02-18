@@ -22,7 +22,7 @@ class MovieController extends BaseController {
         $this->all_fields = '*';
     }
 
-    public function indexAction() {
+    public function index() {
 
         $movies = $this->movie->fetch($this->fields);
 
@@ -41,7 +41,7 @@ class MovieController extends BaseController {
         $this->smarty->display($this->config->get('TEMPLATE_FILE'));
     }
 
-    public function searchAction() {
+    public function search() {
 
         $filter = ' WHERE name like "%' . $_REQUEST['searchbar'] . '%"';
         $movies = $this->movie->fetch($this->fields, $filter);
@@ -57,7 +57,7 @@ class MovieController extends BaseController {
         $this->smarty->display($this->config->get('TEMPLATE_FILE'));
     }
 
-    public function showAction() {
+    public function show() {
 
         $filter = ' WHERE id = "' . $this->url->get('id') . '"';
         $movies = $this->movie->fetch($this->fields, $filter);
@@ -65,7 +65,7 @@ class MovieController extends BaseController {
         $this->smarty->display($this->template_dir . 'show.tpl');
     }
 
-    public function editAction() {
+    public function edit() {
 
         $this->smarty->assign('title', 'Filme (Bearbeiten)');
 
@@ -87,19 +87,26 @@ class MovieController extends BaseController {
         $this->smarty->display($this->template_dir . 'edit.tpl');
     }
 
-    public function updateAction() {
+    public function update() {
 
-        $test = $this->movie->update($_REQUEST);
+
+        
+        /* update the dataset */
+        try {
+            $test = $this->movie->update($_REQUEST);
+        } catch (MovieException $movieException) {
+            die($movieException);
+        }
     }
 
-    public function deleteAction() {
+    public function delete() {
         $this->movie->delete($this->url->get('id'));
         $text = 'Der Film wurde erfolgreich aus der Datenbank gel&ouml;scht!';
-        $this->smarty->assign('text',$text);
+        $this->smarty->assign('text', $text);
         $this->smarty->display('delete.tpl');
     }
 
-    public function operationsAction() {
+    public function operations() {
         $this->smarty->display('operations.tpl');
     }
 

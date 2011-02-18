@@ -17,7 +17,7 @@ class HomeController extends BaseController {
         
     }
 
-    public function indexAction() {
+    public function index() {
         $this->smarty->assign('title', 'Startseite');
         $this->smarty->display($this->config->get('TEMPLATE_FILE'));
     }
