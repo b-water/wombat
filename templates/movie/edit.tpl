@@ -14,7 +14,7 @@
         {include file='genre.tpl'}
     </fieldset>
     <fieldset>
-        <label>Cover</label>
+        <label>Bild</label>
         <input type="file" name="cover" id="cover" />
     </fieldset>
     <fieldset>

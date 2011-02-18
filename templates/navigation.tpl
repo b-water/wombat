@@ -1,7 +1,7 @@
 <div id="menu">
     <ul>
         <li><a href="home/" class="home" {if $controller == 'home'} class="active" {/if}></a></li>
-        <li><a href="movie/" class="movie" {if $controller == 'movie'} class="active" {/if}></a></li>
+        <li><a href="movie/" class="movie{if $controller == 'movie'} active{/if}"></a></li>
         <li><a href="music/" class="music" {if $controller == 'music'} class="active" {/if}></a></li>
         <li><a href="image/" class="image" {if $controller == 'image'} class="active" {/if}></a></li>
         <li><a href="document/" class="document" {if $controller == 'document'} class="active" {/if}></a></li>

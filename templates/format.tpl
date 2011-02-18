@@ -1,4 +1,4 @@
-<select name="format">
+<select name="format" id="format" class="format">
     {foreach item=item from=$format}
         {if $item.name == $movie.format}
             <option selected="selected">{$item.name}</option>
