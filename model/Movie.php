@@ -6,7 +6,7 @@
  */
 
 /**
- * Description of movies
+ * Description of movies:
  *
  * @author nico
  */
@@ -35,66 +35,136 @@ class Movie {
         return self::$instance;
     }
 
+    public function isModified($current, $new) {
+        if(!empty($current) && !empty($new)) {
+            
+        }
+    }
+
     public function update($values) {
 
-        echo '<pre>';
-        print_r($values);
-        echo '</pre>';
-        $sql = 'UPDATE ' . $this->table . ' SET name="' . $values['name'] . '",
-            genre="' . $values['genre'] . '",
-            rating="' . $values['rating'] . '",
-            format="' . $values['format'] . '",
-            size="' . $values['size'] . '",
-            cover="' . $values['cover'] . '",
-            description="' . $values['description'] . '"
-            WHERE id="' . $values['id'] . '"';
+        $fields = 'name, genre, format, size, description, cover, deleted';
+        $cur_data = $this->fetch('*','id='.$_REQUEST['id'].'','','1');
+        if(!empty($cur_data))
+        {
+            foreach($cur_data as $key => $val) {
+                
+            }
+        }
+//        echo 'id='.$_REQUEST['id'].'';
 
-        echo $sql;
+        var_dump($cur_data);
+
+        
+        if (isset($_FILES['cover']['name']) && !empty($_FILES['cover']['name'])) {
+            var_dump($_FILES);
+            $upload = new Zend_File_Transfer();
+            $upload->addValidator('Count', false, array('min' => 1, 'max' => 1));
+            $upload->addValidator('IsImage', false);
+            $upload->addValidator('Size', false, array('max' => '2048kB'));
+
+            /* get the file mimetype for the new name */
+            $info = $upload->getFileInfo();
+            $point = strpos($info['cover']['name'], '.');
+            $ending = substr($info['cover']['name'], $point);
+            $filename = 'upload/movie/cover/' . $_REQUEST['id'] . $ending;
+            $upload->addFilter('Rename', $filename);
+
+            if (!$upload->isValid()) {
+                throw new Exception(implode(',', $upload->getMessages()));
+            }
+
+            /* upload the file */
+            try {
+                $upload->receive();
+            } catch (Zend_File_Transfer_Exception $e) {
+                throw new Exception($e->getMessage());
+            }
+        }
+
+        $data = array (
+            'name' => $values['name'],
+            'genre' => $values['genre'],
+            'format' => $values['format'],
+            'size' => $values['size'],          
+            'description' => $values['description']
+        );
+
+        if(isset($filename) && !empty($filename)) {
+            $data['cover'] = $filename;
+        }
+
+        $affectedRows = $this->db->update($this->table,$data,'id="'.$_REQUEST['id'].'"');
+        echo $affectedRows;
+        if($affectedRows != 1) {
+            throw new MovieException('The dataset coud not habe been updated!');
+        }
+
     }
 
     public function delete($id) {
 
-        $sql = 'DELETE FROM ' . $this->table . ' WHERE id="' . $id . '"';
+        $affectedRows = $this->db->delete($this->table, 'id="' . $id . '"');
 
-        $result = $this->db->query($sql);
-
-        return true;
+        if ($affectedRows != 1) {
+            throw new MovieException('The dataset coud not have been deleted!');
+        }
     }
 
+    /**
+     * fetchs all formats that are set in the format table
+     *
+     * @return  array
+     */
     public function getFormat() {
 
-        $sql = 'SELECT name FROM format WHERE type="movie"';
-        $result = $this->db->query($sql);
-        while ($row = $result->fetch_assoc()) {
-            if (!empty($row)) {
-                $this->format[] = $row['name'];
+        $select = $this->db->select()->from('format', 'name')->where('type = "movie"')->order('name');
+        $sql = $this->db->query($select);
+        $result = $sql->fetchAll();
+
+        foreach ($result as $item) {
+            if (!empty($item)) {
+                $this->format[] = $item;
             }
         }
 
         return $this->format;
     }
 
+    /**
+     * fetchs all ratings that are set in the rating table
+     *
+     * @return  array
+     */
     public function getRating() {
 
-        $sql = 'SELECT name FROM rating WHERE type="movie"';
-        $result = $this->db->query($sql);
-        while ($row = $result->fetch_assoc()) {
-            if (!empty($row)) {
-                $this->rating[] = $row['name'];
+        $select = $this->db->select()->from('rating', 'name')->where('type = "movie"')->order('name');
+        $sql = $this->db->query($select);
+        $result = $sql->fetchAll();
+
+        foreach ($result as $item) {
+            if (!empty($item)) {
+                $this->rating[] = $item;
             }
         }
 
         return $this->rating;
     }
 
+    /**
+     * fetchs all genre types set in the genre table
+     * 
+     * @return  array
+     */
     public function getGenre() {
 
-        $sql = 'SELECT name FROM genre WHERE type="movie"';
+        $select = $this->db->select()->from('genre', 'name')->where('type = "movie"')->order('name');
+        $sql = $this->db->query($select);
+        $result = $sql->fetchAll();
 
-        $result = $this->db->query($sql);
-        while ($row = $result->fetch_assoc()) {
-            if (!empty($row)) {
-                $this->genre[] = $row['name'];
+        foreach ($result as $item) {
+            if (!empty($item)) {
+                $this->genre[] = $item;
             }
         }
 
@@ -110,22 +180,35 @@ class Movie {
      * @param   string  $limit
      * @return  array   movies
      */
-    public function fetch($fields='*', $filter='', $orderby='ORDER BY NAME', $limit='', $offset='') {
+    public function fetch($fields='*', $filter='', $orderby='name', $limit='', $offset='') {
 
-        $sql = 'SELECT ' . $fields . ' FROM ' . $this->table;
-        (!empty($filter)) ? $sql .= $filter : '';
-        $sql .= ' ' . $orderby;
+        $select = $this->db->select();
 
-// gather data
-        $result = $this->db->query($sql);
+        if (!empty($fields)) {
+            $select->from($this->table, $fields);
+        } else {
+            $select->from($this->table);
+        }
 
-        while ($row = $result->fetch_assoc()) {
-            if (!empty($row)) {
-                $this->movies[] = $row;
+        if (!empty($filter)) {
+            $select->where($filter);
+        }
+
+        $select->order($orderby);
+
+        if (!empty($limit) && !empty($offset)) {
+            $select->limit($limit, $offset);
+        }
+
+        $sql = $this->db->query($select);
+        $result = $sql->fetchAll();
+
+        foreach ($result as $item) {
+            if (!empty($item)) {
+                $this->movies[] = $item;
             }
         }
 
-// returns the array with the movies
         return $this->movies;
     }
 
