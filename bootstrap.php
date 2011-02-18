@@ -28,10 +28,6 @@ autoloader::init();
 
 /* load the configurations */
 $config = Config::getInstance('config.ini');
-//
-///* connect to the database */
-//$db = Database::getInstance($config->get('HOST'), $config->get('USER'),
-//                $config->get('PASSWORD'), $config->get('DATABASE'));
 
 try {
     
@@ -76,25 +72,7 @@ $smarty->assign('js', $js);
 $smarty->assign('css', $css);
 $smarty->assign('file', 'bootstrap.php');
 $smarty->assign('basepath', $config->get('BASE_PATH'));
-
-// smarty controller assign
-if (isset($_GET['controller']) && !empty($_GET['controller'])) {
-    $smarty->assign('controller', $_GET['controller']);
-}
-
-//if (isset($_SESSION['system']['security_key']) && !empty($_SESSION['system']['security_key'])) {
-//
-//} else {
-//    if ($url->get('controller') != 'user' && $url->get('action') != 'signin') {
-//        header('Location: ' . $config->get('BASE_PATH') . 'user/signin');
-//    }
-//}
-//
-
-//$select = $db->select()->from('movie')->order('name')->limit(20,10);
-//$stmt = $db->query($select);
-//$result = $stmt->fetchAll();
-
+$smarty->assign('controller',$url->get('controller'));
 
 $router = new Router();
 
@@ -103,10 +81,6 @@ try {
 } catch (Exception $routerException) {
     die($routerException->getMessage());
 }
-
-
-// disconnect db
-//$db->close();
 
 $db->closeConnection();
 
