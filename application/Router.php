@@ -18,7 +18,13 @@ class Router {
     private $url = array();
 
     /**
-     * 
+     * Loads the URL values from the
+     * registry and generates the Action
+     * and the Controller
+     *
+     * $this->action = method to start
+     * $this->controller = Controller to be load
+     *
      */
     public function __construct() {
 
@@ -32,29 +38,31 @@ class Router {
     }
 
     /**
+     * Starts the Controller with the method
+     * from the Action.
      *
      */
     public function run() {
 
         $controllerpath = "controller/" . $this->controller . ".php";
-
-        /* you do not have a chance to escape */
         
         if (file_exists($controllerpath)) {
             require($controllerpath);
             if (!class_exists($this->controller)) {
-                throw new RouterException("Controller not found! (1)");
+                throw new RouterException("(#1) : Controller not found!");
             }
 
             $controller = new $this->controller(Registry::getInstance());
             if (in_array($this->action, get_class_methods($controller))) {
                 $controller->{$this->action}();
             } else {
-                throw new RouterException("Action not found!");
+                throw new RouterException("(#2) : Action not found!");
             }
         } else {
-            throw new RouterException("Controller not found! (2)");
+            throw new RouterException("(#3) : Controller not found!");
         }
     }
 
 }
+
+?>

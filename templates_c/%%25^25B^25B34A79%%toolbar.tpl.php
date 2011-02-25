@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.26, created on 2010-12-20 18:37:59
+<?php /* Smarty version 2.6.26, created on 2011-02-19 00:24:56
          compiled from toolbar.tpl */ ?>
 <form method="POST" action="movie/search/" id="searchbar">
     <fieldset id="toolbar">

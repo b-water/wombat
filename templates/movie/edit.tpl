@@ -15,6 +15,9 @@
     </fieldset>
     <fieldset>
         <label>Bild</label>
+        {if $movie.cover != ''}
+            <img src="{$movie.cover}" alt="cover" />
+        {/if}
         <input type="file" name="cover" id="cover" />
     </fieldset>
     <fieldset>

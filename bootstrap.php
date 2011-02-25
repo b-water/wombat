@@ -52,7 +52,7 @@ $url = new Url();
 
 try {
     $url->parse();
-} catch (Exception $urlException) {
+} catch (UrlException $urlException) {
     die($urlException);
 }
 
@@ -78,7 +78,7 @@ $router = new Router();
 
 try {
     $router->run();
-} catch (Exception $routerException) {
+} catch (RouterException $routerException) {
     die($routerException->getMessage());
 }
 

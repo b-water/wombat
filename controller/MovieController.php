@@ -69,8 +69,10 @@ class MovieController extends BaseController {
 
         $this->smarty->assign('title', 'Filme (Bearbeiten)');
 
-        $filter = ' WHERE id = "' . $this->url->get('id') . '"';
+        $filter = 'id = "' . $this->url->get('id') . '"';
         $movie = $this->movie->fetch($this->all_fields, $filter);
+
+        var_dump($movie);
 
         $format = $this->movie->getFormat();
         $genre = $this->movie->getGenre();
@@ -78,10 +80,10 @@ class MovieController extends BaseController {
 
         $content = $this->smarty->fetch($this->template_dir . 'edit.tpl');
 
-        $this->smarty->assign('content', $content);
-        $this->smarty->assign('format', $format);
-        $this->smarty->assign('genre', $genre);
-        $this->smarty->assign('rating', $rating);
+//        $this->smarty->assign('content', $content);
+//        $this->smarty->assign('format', $format);
+//        $this->smarty->assign('genre', $genre);
+//        $this->smarty->assign('rating', $rating);
         $this->smarty->assign('movie', $movie[0]);
 
         $this->smarty->display($this->template_dir . 'edit.tpl');

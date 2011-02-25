@@ -18,17 +18,21 @@ class Movie {
     private $table = 'movie';
     private $genre = array();
     private $rating = array();
+    private $db = array();
+    private $config = array();
 
     private function __construct() {
-
         $registry = Registry::getInstance();
         $this->db = $registry->get('db');
+        $this->config = $registry->get('config');
     }
 
-    private function __clone() {
+    private function __clone() {}
 
-    }
-
+    /**
+     *
+     * @return <type> 
+     */
     public static function getInstance() {
         if (self::$instance == null)
             self::$instance = new movie();
@@ -43,25 +47,12 @@ class Movie {
 
     public function update($values) {
 
-        $fields = 'name, genre, format, size, description, cover, deleted';
-        $cur_data = $this->fetch('*','id='.$_REQUEST['id'].'','','1');
-        if(!empty($cur_data))
-        {
-            foreach($cur_data as $key => $val) {
-                
-            }
-        }
-//        echo 'id='.$_REQUEST['id'].'';
-
-        var_dump($cur_data);
-
-        
         if (isset($_FILES['cover']['name']) && !empty($_FILES['cover']['name'])) {
-            var_dump($_FILES);
+           
             $upload = new Zend_File_Transfer();
             $upload->addValidator('Count', false, array('min' => 1, 'max' => 1));
             $upload->addValidator('IsImage', false);
-            $upload->addValidator('Size', false, array('max' => '2048kB'));
+            $upload->addValidator('Size', false, array('max' => '6144kB'));
 
             /* get the file mimetype for the new name */
             $info = $upload->getFileInfo();
@@ -70,9 +61,35 @@ class Movie {
             $filename = 'upload/movie/cover/' . $_REQUEST['id'] . $ending;
             $upload->addFilter('Rename', $filename);
 
+            // delete exisiting file
+            if(file_exists($filename))
+            {
+                unlink($filename);
+            }
+
+            require_once('library/phpThumb/phpthumb.class.php');
+            $thumb = new phpThumb();
+            
+            $thumb->setSourceFilename($filename);
+            $thumb->setParameter('w', 100);
+            $thumb->setParameter('h', 100);
+            $thumb->setParameter('q', 60);
+//            $thumb->setParameter('fltr', array('gray'));
+            $thumb->setParameter('config_output_format', $ending);
+            $thumb->setParameter('config_allow_src_above_docroot', true);
+
+            if ($thumb->GenerateThumbnail()) {
+                if (!$thumb->RenderToFile('[Ausgabedatei]')) {
+                    // Mach etwas mit dem Fehler
+                    echo '<b>'.$thumb->fatalerror.'</b>';
+                }
+            }
+
             if (!$upload->isValid()) {
                 throw new Exception(implode(',', $upload->getMessages()));
             }
+
+
 
             /* upload the file */
             try {
@@ -82,6 +99,8 @@ class Movie {
             }
         }
 
+
+
         $data = array (
             'name' => $values['name'],
             'genre' => $values['genre'],
@@ -90,6 +109,8 @@ class Movie {
             'description' => $values['description']
         );
 
+        var_dump($data);
+
         if(isset($filename) && !empty($filename)) {
             $data['cover'] = $filename;
         }
@@ -97,7 +118,7 @@ class Movie {
         $affectedRows = $this->db->update($this->table,$data,'id="'.$_REQUEST['id'].'"');
         echo $affectedRows;
         if($affectedRows != 1) {
-            throw new MovieException('The dataset coud not habe been updated!');
+            throw new MovieException('(#1) The dataset coud not habe been updated!');
         }
 
     }
@@ -195,11 +216,11 @@ class Movie {
         }
 
         $select->order($orderby);
-
+        
         if (!empty($limit) && !empty($offset)) {
             $select->limit($limit, $offset);
         }
-
+        
         $sql = $this->db->query($select);
         $result = $sql->fetchAll();
 

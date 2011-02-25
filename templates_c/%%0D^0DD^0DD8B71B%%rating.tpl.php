@@ -1,6 +1,6 @@
-<?php /* Smarty version 2.6.26, created on 2010-12-12 13:14:52
+<?php /* Smarty version 2.6.26, created on 2011-02-20 16:15:19
          compiled from rating.tpl */ ?>
-<select name="rating">
+<select name="rating" id="rating" class="rating">
     <?php $_from = $this->_tpl_vars['rating']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
     foreach ($_from as $this->_tpl_vars['item']):
 ?>

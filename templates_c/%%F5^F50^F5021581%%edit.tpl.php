@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.26, created on 2011-01-22 01:04:36
+<?php /* Smarty version 2.6.26, created on 2011-02-23 19:47:10
          compiled from movie/edit.tpl */ ?>
 
 <form id="edit" method="POST" action="movie/update/" enctype="multipart/form-data" >
@@ -26,7 +26,11 @@ unset($_smarty_tpl_vars);
  ?>
     </fieldset>
     <fieldset>
-        <label>Cover</label>
+        <label>Bild</label>
+        <?php if ($this->_tpl_vars['movie']['cover'] != ''): ?>
+            <img src="<?php echo $this->_tpl_vars['movie']['cover']; ?>
+" alt="cover" />
+        <?php endif; ?>
         <input type="file" name="cover" id="cover" />
     </fieldset>
     <fieldset>
