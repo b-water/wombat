@@ -5,16 +5,15 @@
  */
 
 /**
- * Description of Format
+ * Description of Genre
  *
  * @author nico
- * @since 12:59:06
+ * @since 13:39:59
  */
-class Format {
+class Genre {
     //put your code here
-    private $table = 'format';
+    private $table = 'genre';
     private $db = null;
-
 
     public function __construct()
     {
@@ -23,13 +22,13 @@ class Format {
     }
 
     /**
-     * fetchs all formats that are set in the format table
+     * fetchs all genre types set in the genre table
      *
      * @return  array
-    */
-    public function fetch($type = '*', $fields = 'name',$order='name')
-    {
-        $select = $this->db->select()->from($this->table,$fields)->where('type = "'.$type.'"')->order($order);
+     */
+    public function fetch($type = '*', $fields = 'name', $order = 'name') {
+
+        $select = $this->db->select()->from($this->table, $fields)->where('type = "'.$type.'"')->order($order);
         $sql = $this->db->query($select);
         $result = $sql->fetchAll();
 
@@ -43,11 +42,10 @@ class Format {
 
         if(empty($data))
         {
-            throw new FormatException('(#1) : No Formats found!');
+            throw new GenreException('(#1) : No Genres found!');
         }
 
         return $data;
     }
-
 }
 ?>

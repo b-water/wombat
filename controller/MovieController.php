@@ -8,8 +8,8 @@
 class MovieController extends BaseController {
 
     private $movie;
-    private $fields;
-    private $all_fields;
+    private $fields = 'id,name,genre,rating,format,DATE_FORMAT(DATE,"%d.%c.%Y") AS date';
+    private $all_fields = '*';
     private $template_dir = 'movie/';
 
     public function __construct($registry) {
@@ -17,9 +17,7 @@ class MovieController extends BaseController {
     }
 
     public function init() {
-        $this->movie = Movie::getInstance();
-        $this->fields = 'id,name,genre,rating,format,DATE_FORMAT(DATE,"%d.%c.%Y") AS date';
-        $this->all_fields = '*';
+        $this->movie = new Movie();
     }
 
     public function index() {
@@ -72,8 +70,6 @@ class MovieController extends BaseController {
         $filter = 'id = "' . $this->url->get('id') . '"';
         $movie = $this->movie->fetch($this->all_fields, $filter);
 
-        var_dump($movie);
-
         $formatObj = new Format();
 
         try {
@@ -82,8 +78,21 @@ class MovieController extends BaseController {
             die($formatException);
         }
 
-        $genre = $this->movie->getGenre();
-        $rating = $this->movie->getRating();
+        $ratingObj = new Rating();
+
+        try {
+            $rating = $ratingObj->fetch('movie');
+        } catch (RatingException $ratingException) {
+            die($ratingException);
+        }
+
+        $genreObj = new Genre();
+
+        try {
+         $genre = $genreObj->fetch('movie');
+        } catch(GenreException $genreException) {
+            die($genreException);
+        }
 
         $content = $this->smarty->fetch($this->template_dir . 'edit.tpl');
 

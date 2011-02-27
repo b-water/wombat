@@ -52,7 +52,12 @@ class Registry {
      * @return object
      */
     public function get($index) {
-        return $this->the_registry[$index];
+        if(isset($this->the_registry[$index]) && !empty($this->the_registry[$index]))
+        {
+            return $this->the_registry[$index];
+        } else {
+            return false;
+        }
     }
 
 }

@@ -5,7 +5,7 @@
  */
 
 /**
- * Description of maincontroller
+ * Description of BaseController
  *
  * @author nico
  */
@@ -26,5 +26,9 @@ abstract class BaseController {
 
     abstract function init();
     abstract function index();
+    abstract function show();
+    abstract function edit();
+    abstract function update();
+    abstract function delete();
 }
 ?>

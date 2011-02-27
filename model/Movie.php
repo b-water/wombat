@@ -21,22 +21,10 @@ class Movie {
     private $db = array();
     private $config = array();
 
-    private function __construct() {
+    public function __construct() {
         $registry = Registry::getInstance();
         $this->db = $registry->get('db');
         $this->config = $registry->get('config');
-    }
-
-    private function __clone() {}
-
-    /**
-     *
-     * @return <type> 
-     */
-    public static function getInstance() {
-        if (self::$instance == null)
-            self::$instance = new movie();
-        return self::$instance;
     }
 
     public function isModified($current, $new) {
@@ -47,8 +35,17 @@ class Movie {
 
     public function update($values) {
 
+        $data = array (
+            'name' => $values['name'],
+            'genre' => $values['genre'],
+            'format' => $values['format'],
+            'size' => $values['size'],
+            'description' => $values['description']
+        );
+
         if (isset($_FILES['cover']['name']) && !empty($_FILES['cover']['name'])) {
-           
+
+            // prepare upload
             $upload = new Zend_File_Transfer();
             $upload->addValidator('Count', false, array('min' => 1, 'max' => 1));
             $upload->addValidator('IsImage', false);
@@ -67,14 +64,27 @@ class Movie {
                 unlink($filename);
             }
 
+            if (!$upload->isValid()) {
+                throw new Exception(implode(',', $upload->getMessages()));
+            }
+
+            /* upload the file */
+            try {
+                $upload->receive();
+            } catch (Zend_File_Transfer_Exception $zendFileTransferException) {
+                die($zendFileTransferException);
+            }
+
+            $data['cover'] = $filename;
+
+            // thumbnail erzeugen
             require_once('library/phpThumb/phpthumb.class.php');
             $thumb = new phpThumb();
-            
+
             $thumb->setSourceFilename($filename);
             $thumb->setParameter('w', 100);
             $thumb->setParameter('h', 100);
             $thumb->setParameter('q', 60);
-//            $thumb->setParameter('fltr', array('gray'));
             $thumb->setParameter('config_output_format', $ending);
             $thumb->setParameter('config_allow_src_above_docroot', true);
 
@@ -84,41 +94,13 @@ class Movie {
                     echo '<b>'.$thumb->fatalerror.'</b>';
                 }
             }
-
-            if (!$upload->isValid()) {
-                throw new Exception(implode(',', $upload->getMessages()));
-            }
-
-
-
-            /* upload the file */
-            try {
-                $upload->receive();
-            } catch (Zend_File_Transfer_Exception $e) {
-                throw new Exception($e->getMessage());
-            }
         }
 
-
-
-        $data = array (
-            'name' => $values['name'],
-            'genre' => $values['genre'],
-            'format' => $values['format'],
-            'size' => $values['size'],          
-            'description' => $values['description']
-        );
-
-        var_dump($data);
-
-        if(isset($filename) && !empty($filename)) {
-            $data['cover'] = $filename;
-        }
 
         $affectedRows = $this->db->update($this->table,$data,'id="'.$_REQUEST['id'].'"');
-        echo $affectedRows;
+        
         if($affectedRows != 1) {
-            throw new MovieException('(#1) The dataset coud not habe been updated!');
+            throw new MovieException('(#1) : The dataset coud not habe been updated!');
         }
 
     }
@@ -128,31 +110,10 @@ class Movie {
         $affectedRows = $this->db->delete($this->table, 'id="' . $id . '"');
 
         if ($affectedRows != 1) {
-            throw new MovieException('The dataset coud not have been deleted!');
+            throw new MovieException('(#2) : The dataset coud not have been deleted!');
         }
     }
 
-
-
-    /**
-     * fetchs all genre types set in the genre table
-     * 
-     * @return  array
-     */
-    public function getGenre() {
-
-        $select = $this->db->select()->from('genre', 'name')->where('type = "movie"')->order('name');
-        $sql = $this->db->query($select);
-        $result = $sql->fetchAll();
-
-        foreach ($result as $item) {
-            if (!empty($item)) {
-                $this->genre[] = $item;
-            }
-        }
-
-        return $this->genre;
-    }
 
     /**
      * Gather Movies from Database
