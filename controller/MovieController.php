@@ -74,25 +74,29 @@ class MovieController extends BaseController {
 
         var_dump($movie);
 
-        $format = $this->movie->getFormat();
+        $formatObj = new Format();
+
+        try {
+            $format = $formatObj->fetch('movie');
+        } catch (FormatException $formatException) {
+            die($formatException);
+        }
+
         $genre = $this->movie->getGenre();
         $rating = $this->movie->getRating();
 
         $content = $this->smarty->fetch($this->template_dir . 'edit.tpl');
 
-//        $this->smarty->assign('content', $content);
-//        $this->smarty->assign('format', $format);
-//        $this->smarty->assign('genre', $genre);
-//        $this->smarty->assign('rating', $rating);
+        $this->smarty->assign('content', $content);
+        $this->smarty->assign('format', $format);
+        $this->smarty->assign('genre', $genre);
+        $this->smarty->assign('rating', $rating);
         $this->smarty->assign('movie', $movie[0]);
 
         $this->smarty->display($this->template_dir . 'edit.tpl');
     }
 
     public function update() {
-
-
-        
         /* update the dataset */
         try {
             $test = $this->movie->update($_REQUEST);

@@ -132,45 +132,7 @@ class Movie {
         }
     }
 
-    /**
-     * fetchs all formats that are set in the format table
-     *
-     * @return  array
-     */
-    public function getFormat() {
 
-        $select = $this->db->select()->from('format', 'name')->where('type = "movie"')->order('name');
-        $sql = $this->db->query($select);
-        $result = $sql->fetchAll();
-
-        foreach ($result as $item) {
-            if (!empty($item)) {
-                $this->format[] = $item;
-            }
-        }
-
-        return $this->format;
-    }
-
-    /**
-     * fetchs all ratings that are set in the rating table
-     *
-     * @return  array
-     */
-    public function getRating() {
-
-        $select = $this->db->select()->from('rating', 'name')->where('type = "movie"')->order('name');
-        $sql = $this->db->query($select);
-        $result = $sql->fetchAll();
-
-        foreach ($result as $item) {
-            if (!empty($item)) {
-                $this->rating[] = $item;
-            }
-        }
-
-        return $this->rating;
-    }
 
     /**
      * fetchs all genre types set in the genre table
