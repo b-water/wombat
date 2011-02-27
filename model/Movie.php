@@ -57,7 +57,7 @@ class Movie {
             $ending = substr($info['cover']['name'], $point);
             $filename = 'upload/movie/cover/' . $_REQUEST['id'] . $ending;
             $upload->addFilter('Rename', $filename);
-
+            
             // delete exisiting file
             if(file_exists($filename))
             {
@@ -77,23 +77,28 @@ class Movie {
 
             $data['cover'] = $filename;
 
-            // thumbnail erzeugen
-            require_once('library/phpThumb/phpthumb.class.php');
-            $thumb = new phpThumb();
+            $thumb = new Thumbnail();
+            $thumb->setFile($filename);
+            $thumb->setDimensions(256,157);
 
-            $thumb->setSourceFilename($filename);
-            $thumb->setParameter('w', 100);
-            $thumb->setParameter('h', 100);
-            $thumb->setParameter('q', 60);
-            $thumb->setParameter('config_output_format', $ending);
-            $thumb->setParameter('config_allow_src_above_docroot', true);
 
-            if ($thumb->GenerateThumbnail()) {
-                if (!$thumb->RenderToFile('[Ausgabedatei]')) {
-                    // Mach etwas mit dem Fehler
-                    echo '<b>'.$thumb->fatalerror.'</b>';
-                }
-            }
+//            // thumbnail erzeugen
+//            require_once('library/phpThumb/phpthumb.class.php');
+//            $thumb = new phpThumb();
+//
+//            $thumb->setSourceFilename($filename);
+//            $thumb->setParameter('w', 100);
+//            $thumb->setParameter('h', 100);
+//            $thumb->setParameter('q', 60);
+//            $thumb->setParameter('config_output_format', $ending);
+//            $thumb->setParameter('config_allow_src_above_docroot', true);
+//
+//            if ($thumb->GenerateThumbnail()) {
+//                if (!$thumb->RenderToFile('[Ausgabedatei]')) {
+//                    // Mach etwas mit dem Fehler
+//                    echo '<b>'.$thumb->fatalerror.'</b>';
+//                }
+//            }
         }
 
 
