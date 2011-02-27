@@ -22,6 +22,7 @@ class HomeController extends BaseController {
         $this->smarty->display($this->config->get('TEMPLATE_FILE'));
     }
 
+
 }
 
 ?>

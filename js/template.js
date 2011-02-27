@@ -48,15 +48,15 @@ function fancyAjaxLoader(id,controller,action,title) {
                 title: title,
                 scrolling: 'no',
                 onComplete: function() {
-                    $("#fancybox-title").css({
+                    $('#fancybox-title').css({
                         'top':'0px',
                         'bottom':'auto'
                     });
                 }
             });
             tinyMCE.init({
-                mode : "textareas",
-                theme : "simple"
+                mode : 'textareas',
+                theme : 'simple'
             });
 
             $('form#edit').ajaxForm(function() {

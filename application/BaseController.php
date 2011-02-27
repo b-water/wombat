@@ -26,9 +26,9 @@ abstract class BaseController {
 
     abstract function init();
     abstract function index();
-    abstract function show();
-    abstract function edit();
-    abstract function update();
-    abstract function delete();
+//    abstract function show();
+//    abstract function edit();
+//    abstract function update();
+//    abstract function delete();
 }
 ?>

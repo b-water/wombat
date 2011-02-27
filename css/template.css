@@ -544,15 +544,21 @@ form#searchbar input[type=text] {
 }
 
 .attention {
-    background:url('../images/error.png') center left no-repeat;
+    background: #FFF6CF url('../images/error.png') 5px center no-repeat;
     padding:5px 5px 5px 25px;
+    border: 1px solid #FFDD3F;
+}
+
+
+form#edit {
+    padding-top:20px;
 }
 
 form#edit fieldset {
     margin-bottom:10px;
 }
 
-form#edit input[type=text], form#edit input[type=select], textarea ,
+form#edit input[type=text], form#edit input[type=select],
 select#format, select#genre, select#rating {
     width:256px;
     border:1px solid #CFCFCF;
@@ -562,8 +568,12 @@ select#format, select#genre, select#rating {
 
 form#edit label {
     width:100px;
-    display:block;
     margin-bottom:4px;
+    display:block;
+}
+
+form#edit img {
+    display:block;
 }
 
 form#operations {
@@ -574,6 +584,10 @@ form#operations fieldset {
     padding-bottom:10px;
 }
 
+form#edit .attention {
+    font-size:11px;
+}
+
 fieldset#toolbar {
     display: inline;
     float:left;
@@ -582,3 +596,44 @@ fieldset#toolbar {
 fieldset#toolbar a {
     margin-right:5px;
 }
+
+form#edit textarea {
+    width:380px;
+    border:1px solid #CFCFCF;
+    color:#707070;
+    padding:4px;
+    min-height:100%;
+}
+
+div#rightpanel {
+    float:right;
+    width:380px;
+    margin-left:20px;
+}
+
+div#leftpanel {
+    width:256px;
+    float:left;
+}
+
+/*div.cover img {
+    left: 31px;
+    position: relative;
+    top: 191px;
+    width: 216px;
+}
+
+div.cover {
+    position: absolute;
+}
+
+.dvdcase {
+    background: url('../images/dvdcase.png') 0 0 no-repeat transparent;
+    width:256px;
+    height:325px;
+    display: block;
+    position: relative;
+    top: 180px;
+}*/
+
+

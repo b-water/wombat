@@ -28,14 +28,14 @@ class Movie {
     }
 
     public function isModified($current, $new) {
-        if(!empty($current) && !empty($new)) {
+        if (!empty($current) && !empty($new)) {
             
         }
     }
 
     public function update($values) {
 
-        $data = array (
+        $data = array(
             'name' => $values['name'],
             'genre' => $values['genre'],
             'format' => $values['format'],
@@ -56,12 +56,13 @@ class Movie {
             $point = strpos($info['cover']['name'], '.');
             $ending = substr($info['cover']['name'], $point);
             $filename = 'upload/movie/cover/' . $_REQUEST['id'] . $ending;
+            $thumb_filename = 'upload/movie/cover/' . $_REQUEST['id'] . '_thumb' . $ending;
             $upload->addFilter('Rename', $filename);
-            
+
             // delete exisiting file
-            if(file_exists($filename))
-            {
+            if (file_exists($filename)) {
                 unlink($filename);
+                unlink($thumb_filename);
             }
 
             if (!$upload->isValid()) {
@@ -75,39 +76,27 @@ class Movie {
                 die($zendFileTransferException);
             }
 
+            // creating the thumbnail
+            require_once('library/phpthumb/ThumbLib.inc.php');
+
+            try {
+                $thumb = PhpThumbFactory::create($filename);
+            } catch (Exception $thumbnailException) {
+                die($thumbnailException);
+            }
+
+            $thumb->adaptiveResize(256, 256)->cropFromCenter(256)->save($thumb_filename);
+
             $data['cover'] = $filename;
-
-            $thumb = new Thumbnail();
-            $thumb->setFile($filename);
-            $thumb->setDimensions(256,157);
-
-
-//            // thumbnail erzeugen
-//            require_once('library/phpThumb/phpthumb.class.php');
-//            $thumb = new phpThumb();
-//
-//            $thumb->setSourceFilename($filename);
-//            $thumb->setParameter('w', 100);
-//            $thumb->setParameter('h', 100);
-//            $thumb->setParameter('q', 60);
-//            $thumb->setParameter('config_output_format', $ending);
-//            $thumb->setParameter('config_allow_src_above_docroot', true);
-//
-//            if ($thumb->GenerateThumbnail()) {
-//                if (!$thumb->RenderToFile('[Ausgabedatei]')) {
-//                    // Mach etwas mit dem Fehler
-//                    echo '<b>'.$thumb->fatalerror.'</b>';
-//                }
-//            }
+            $data['thumbnail'] = $thumb_filename;
         }
 
 
-        $affectedRows = $this->db->update($this->table,$data,'id="'.$_REQUEST['id'].'"');
-        
-        if($affectedRows != 1) {
+        $affectedRows = $this->db->update($this->table, $data, 'id="' . $_REQUEST['id'] . '"');
+
+        if ($affectedRows != 1) {
             throw new MovieException('(#1) : The dataset coud not habe been updated!');
         }
-
     }
 
     public function delete($id) {
@@ -118,7 +107,6 @@ class Movie {
             throw new MovieException('(#2) : The dataset coud not have been deleted!');
         }
     }
-
 
     /**
      * Gather Movies from Database
@@ -144,11 +132,11 @@ class Movie {
         }
 
         $select->order($orderby);
-        
+
         if (!empty($limit) && !empty($offset)) {
             $select->limit($limit, $offset);
         }
-        
+
         $sql = $this->db->query($select);
         $result = $sql->fetchAll();
 
