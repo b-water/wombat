@@ -2,11 +2,10 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html;  charset=ISO-8859-1"/>
-        <title>RedWombat - {$title}</title>
+        <title>{$maintitle} - {$title}</title>
         <base href="{$basepath}" />
         <meta name="Author" content="Nico Schmitz" />
         <meta name="Copyright" content="2010 Nico Schmitz" />
-        {foreach key=id item=css from=$css}
-            <link rel="stylesheet" href="css/{$css}" type="text/css" media="all" />
-        {/foreach}
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+        <link rel="stylesheet" href="css/template.css" type="text/css" media="all" />
     </head>

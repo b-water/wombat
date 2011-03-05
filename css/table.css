@@ -44,7 +44,6 @@ table th.delete {
     cursor: default;
     border-right:none;
     background-image:none;
-    background-color:#F0F0F0;
 }
 
 table td.delete {
@@ -58,7 +57,6 @@ table td.delete {
 table th.edit {
     cursor: default;
     background-image:none;
-    background-color:#F0F0F0;
     background-image:none;
 }
 
