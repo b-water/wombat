@@ -63,13 +63,15 @@ class MovieController extends BaseController {
         $this->smarty->display($this->template_dir . 'show.tpl');
     }
 
+    /* The Edit View for a Movie */
     public function edit() {
 
-        $this->smarty->assign('title', 'Filme (Bearbeiten)');
+        $this->smarty->assign('title', 'Film Bearbeiten');
 
         $filter = 'id = "' . $this->url->get('id') . '"';
         $movie = $this->movie->fetch($this->all_fields, $filter);
 
+        // get all format options
         $formatObj = new Format();
 
         try {
@@ -78,6 +80,7 @@ class MovieController extends BaseController {
             die($formatException);
         }
 
+        // get all rating options
         $ratingObj = new Rating();
 
         try {
@@ -86,6 +89,7 @@ class MovieController extends BaseController {
             die($ratingException);
         }
 
+        // get all genre options
         $genreObj = new Genre();
 
         try {
@@ -94,15 +98,16 @@ class MovieController extends BaseController {
             die($genreException);
         }
 
-        $content = $this->smarty->fetch($this->template_dir . 'edit.tpl');
-
-        $this->smarty->assign('content', $content);
         $this->smarty->assign('format', $format);
         $this->smarty->assign('genre', $genre);
         $this->smarty->assign('rating', $rating);
         $this->smarty->assign('movie', $movie[0]);
 
-        $this->smarty->display($this->template_dir . 'edit.tpl');
+        $content = $this->smarty->fetch($this->template_dir . 'edit.tpl');
+        $this->smarty->assign('content', $content);
+
+        $this->smarty->display($this->config->get('TEMPLATE_FILE'));
+
     }
 
     public function update() {

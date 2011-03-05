@@ -1,4 +1,5 @@
 $(document).ready(function() {
+    
     // call the tablesorter plugin
     $('table.tablesorter').tablesorter({
         widthFixed: true,
@@ -13,9 +14,22 @@ $(document).ready(function() {
         }
     });
 
+    // init the tablepager
     $('table.tablesorter').tablesorterPager({
         container: $('#pager')
     });
+
+    // init tinyMCE if a textarea is found on the page
+    if($('div#content').find('textarea'))
+    {
+        tinyMCE.init({
+            width: '400',
+            height: '600',
+            mode : 'textareas',
+            theme : 'advanced',
+            theme_advanced_toolbar_location : "top"
+        });
+    }
 });
 
 function fancyAjaxLoader(id,controller,action,title) {
@@ -25,18 +39,12 @@ function fancyAjaxLoader(id,controller,action,title) {
     var path = '';
     
     if(controller != undefined)
-    {
         path = controller+'/';
-    }
     if(action != undefined)
-    {
         path += action+'/';
-    }
     if(id != undefined)
-    {
         path += id+'';
-    }
-
+    
     $.ajax({
         type : 'POST',
         cache : false,
@@ -55,12 +63,13 @@ function fancyAjaxLoader(id,controller,action,title) {
                 }
             });
             tinyMCE.init({
+//                width: '400',
+//                height: '800',
                 mode : 'textareas',
                 theme : 'simple'
             });
 
             $('form#edit').ajaxForm(function() {
-
             });
         }
     });
@@ -68,15 +77,30 @@ function fancyAjaxLoader(id,controller,action,title) {
 
 }
 
-function ajaxFormSubmit(id,controller,action) {
-    
-    $.ajax({
-        type : 'POST',
-        cache : false,
-        url : 'bootstrap.php?controller='+controller+'&action='+action+'&id='+id+'',
-        data : $(this).serializeArray(),
-        success: function(data) {
-            
-        }
-    });
+//function ajaxFormSubmit(id,controller,action) {
+//
+//    $.ajax({
+//        type : 'POST',
+//        cache : false,
+//        url : 'bootstrap.php?controller='+controller+'&action='+action+'&id='+id+'',
+//        data : $(this).serializeArray(),
+//        success: function(data) {
+//
+//        }
+//    });
+//}
+
+function changeLocation(controller, action, id)
+{
+    var href = '';
+    if(controller != undefined)
+    {
+        href += controller;
+        if(action != undefined)
+            href += '/'+action;
+        if(id != undefined)
+            href+= '/'+id;
+        
+        window.location.href = href;
+    }
 }
