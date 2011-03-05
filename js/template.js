@@ -26,8 +26,7 @@ $(document).ready(function() {
             width: '400',
             height: '600',
             mode : 'textareas',
-            theme : 'advanced',
-            theme_advanced_toolbar_location : "top"
+            theme : 'simple'
         });
     }
 });
