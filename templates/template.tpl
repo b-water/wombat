@@ -2,9 +2,9 @@
 {include file='head.tpl'}
 <body>
     <div id="wrapper">
-        <div id="navigation">
+        <div id="sidebar">
             {* Navigations Bereich Laden *}
-            {include file='navigation.tpl'}
+            {include file='sidebar.tpl'}
         </div>
 <!--        <div id="container">-->
             <div id="content">
