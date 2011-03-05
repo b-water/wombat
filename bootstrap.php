@@ -23,7 +23,7 @@ require_once('library/Smarty/Smarty.class.php');
 require_once('library/Zend/Db/Adapter/mysqli.php');
 //require_once 'Zend/Loader.php';
 //require_once('library/Zend/Db.php');
-//require_once('library/Zend/File/Transfer.php');
+require_once('library/Zend/File/Transfer.php');
 
 /* call the autoloader */
 autoloader::init();
@@ -37,7 +37,7 @@ $params = array(
     'password'  => '1234',
     'dbname'    => 'redwombat' );
 
-//    $datenbank = Zend_Db::factory('Pdo_mysql', $params);
+//    $datenbank = Zend_Db::factory('Mysqli', $params);
 
 try {
     
@@ -78,6 +78,8 @@ $file = File::getInstance();
 $css = $file->fetchDir('css/', 'css');
 $js = $file->fetchDir('js/', 'js');
 
+$menu = new Menu();
+
 // assign them to smarty
 $smarty->assign('js', $js);
 $smarty->assign('css', $css);
@@ -92,10 +94,6 @@ try {
 } catch (RouterException $routerException) {
     die($routerException->getMessage());
 }
-
-$tree = new Tree();
-$tree->load();
-$tree->callback();
 
 $db->closeConnection();
 

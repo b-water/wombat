@@ -29,10 +29,6 @@ $(document).ready(function() {
             theme : 'simple'
         });
     }
-
-$(function () {
-	$("#navigation").jstree({
-		"plugins" : [ "themes", "html_data" ]
 });
 
 function fancyAjaxLoader(id,controller,action,title) {
@@ -66,8 +62,6 @@ function fancyAjaxLoader(id,controller,action,title) {
                 }
             });
             tinyMCE.init({
-//                width: '400',
-//                height: '800',
                 mode : 'textareas',
                 theme : 'simple'
             });
@@ -79,19 +73,6 @@ function fancyAjaxLoader(id,controller,action,title) {
     
 
 }
-
-//function ajaxFormSubmit(id,controller,action) {
-//
-//    $.ajax({
-//        type : 'POST',
-//        cache : false,
-//        url : 'bootstrap.php?controller='+controller+'&action='+action+'&id='+id+'',
-//        data : $(this).serializeArray(),
-//        success: function(data) {
-//
-//        }
-//    });
-//}
 
 function changeLocation(controller, action, id)
 {

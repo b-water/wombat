@@ -31,15 +31,7 @@ class Format {
     {
         $select = $this->db->select()->from($this->table,$fields)->where('type = "'.$type.'"')->order($order);
         $sql = $this->db->query($select);
-        $result = $sql->fetchAll();
-
-        $data = array();
-
-        foreach ($result as $item) {
-            if (!empty($item)) {
-                $data[] = $item;
-            }
-        }
+        $data = $sql->fetchAll();
 
         if(empty($data))
         {

@@ -138,13 +138,10 @@ class Movie {
         }
 
         $sql = $this->db->query($select);
-        $result = $sql->fetchAll();
+        $this->movies = $sql->fetchAll();
 
-        foreach ($result as $item) {
-            if (!empty($item)) {
-                $this->movies[] = $item;
-            }
-        }
+        if(empty($this->movies))
+            throw new MovieException('(#3) : No Movies found!');
 
         return $this->movies;
     }

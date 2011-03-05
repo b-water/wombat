@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.26, created on 2011-03-05 14:19:41
+<?php /* Smarty version 2.6.26, created on 2011-03-05 19:31:13
          compiled from template.tpl */ ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => 'head.tpl', 'smarty_include_vars' => array()));
@@ -7,9 +7,9 @@ unset($_smarty_tpl_vars);
  ?>
 <body>
     <div id="wrapper">
-        <div id="navigation">
+        <div id="sidebar">
                         <?php $_smarty_tpl_vars = $this->_tpl_vars;
-$this->_smarty_include(array('smarty_include_tpl_file' => 'navigation.tpl', 'smarty_include_vars' => array()));
+$this->_smarty_include(array('smarty_include_tpl_file' => 'sidebar.tpl', 'smarty_include_vars' => array()));
 $this->_tpl_vars = $_smarty_tpl_vars;
 unset($_smarty_tpl_vars);
  ?>
