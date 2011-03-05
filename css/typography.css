@@ -1,0 +1,50 @@
+/* 
+    Document   : typography
+    Created on : 05.03.2011, 14:23:07
+    Author     : nico
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+
+/**************************************
+            typography
+**************************************/
+
+h1 {
+
+}
+
+h2 {
+
+}
+
+h3 {
+    margin:0 10px 0 0;
+}
+
+h4 {
+
+}
+
+h5 {
+
+}
+
+h6 {
+
+}
+
+p {
+    margin:10px 0 10px 0;
+}
+
+
+cite {
+    display:block;
+    text-align:center;
+    padding:40px 0px 0px 0px;
+    margin:0px 20px 40px 20px;
+    color:#707070;
+    font-style:italic;
+}

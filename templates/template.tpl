@@ -6,12 +6,12 @@
             {* Navigations Bereich Laden *}
             {include file='navigation.tpl'}
         </div>
-        <div id="container">
+<!--        <div id="container">-->
             <div id="content">
                 {* Content Bereich Laden *}
                  {$content}
             </div>
-        </div>
+<!--        </div>-->
     </div>
 {* js Files and the closing tags *}
 {include file='foot.tpl'}

@@ -21,13 +21,23 @@ error_reporting(E_ALL);
 require_once('application/Autoloader.php');
 require_once('library/Smarty/Smarty.class.php');
 require_once('library/Zend/Db/Adapter/mysqli.php');
-require_once('library/Zend/File/Transfer.php');
+//require_once 'Zend/Loader.php';
+//require_once('library/Zend/Db.php');
+//require_once('library/Zend/File/Transfer.php');
 
 /* call the autoloader */
 autoloader::init();
 
 /* load the configurations */
 $config = Config::getInstance('config.ini');
+
+$params = array(
+    'host'      => '127.0.0.1',
+    'username'  => 'dbadmin',
+    'password'  => '1234',
+    'dbname'    => 'redwombat' );
+
+//    $datenbank = Zend_Db::factory('Pdo_mysql', $params);
 
 try {
     
@@ -36,8 +46,9 @@ try {
     'username'  => 'dbadmin',
     'password'  => '1234',
     'dbname'    => 'redwombat' ));
-   
-} catch (Zend_Db_Adapter_Mysqli_Exception $dbException) {
+
+
+} catch (Zend_Db_Exception $dbException) {
     die($dbException);
 }
 
@@ -81,6 +92,10 @@ try {
 } catch (RouterException $routerException) {
     die($routerException->getMessage());
 }
+
+$tree = new Tree();
+$tree->load();
+$tree->callback();
 
 $db->closeConnection();
 

@@ -1,0 +1,61 @@
+/* 
+    Document   : generic
+    Created on : 05.03.2011, 14:26:34
+    Author     : nico
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/**************************************
+            positioning
+**************************************/
+
+.full {
+    overflow:hidden;
+}
+
+.right {
+    float:right;
+}
+
+.left {
+    float:left;
+}
+
+.clear {
+    clear:both;
+}
+
+.absolute {
+    position:absolute;
+}
+
+.relative {
+    position:relative;
+}
+
+/**************************************
+            displaying
+**************************************/
+
+.invisible {
+    visibility:hidden;
+}
+
+.inline {
+    display:inline;
+}
+
+/**************************************
+       highlighting, coloring etc
+**************************************/
+
+.attention {
+    background: #FFF6CF url('../images/error.png') 5px center no-repeat;
+    padding:5px 5px 5px 25px;
+    border: 1px solid #FFDD3F;
+}
+
+.highlight {
+    color:#C91715;
+}

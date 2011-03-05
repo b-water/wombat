@@ -29,6 +29,10 @@ $(document).ready(function() {
             theme : 'simple'
         });
     }
+
+$(function () {
+	$("#navigation").jstree({
+		"plugins" : [ "themes", "html_data" ]
 });
 
 function fancyAjaxLoader(id,controller,action,title) {

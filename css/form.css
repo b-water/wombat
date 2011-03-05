@@ -1,0 +1,169 @@
+/* 
+    Document   : form
+    Created on : 05.03.2011, 14:25:54
+    Author     : nico
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/**************************************
+                controls
+**************************************/
+
+
+form#controls {
+    margin:0 0 10px 0;
+}
+
+form#controls input[type=text] {
+}
+
+form#controls select {
+    width:100%;
+}
+
+form#controls div.box {
+    overflow: hidden;
+    margin:0 0 30px 0;
+}
+
+form#controls input#searchSubmit, form#controls input#add,
+form#controls input#del, form#controls input#change,
+form#controls input#import, form#controls input#export {
+    background-repeat:no-repeat;
+    background-position: 25px 7px;
+}
+
+form#controls input#searchSubmit  {
+    background-image: url('../images/magnifier.png');
+    margin:10px 0 0 0;
+}
+
+form#controls input#add  {
+    background-image:url('../images/table_add.png');
+}
+
+form#controls input#del  {
+    background-image:url('../images/table_delete.png');
+}
+
+form#controls input#change  {
+    background-image:url('../images/table_edit.png');
+}
+
+form#controls input#export {
+    background-image:url('../images/application_go.png');
+}
+
+form#controls input#import  {
+    background-image:url('../images/application_get.png');
+}
+
+
+/**************************************
+                pager
+**************************************/
+
+
+div#pager {
+    margin:10px 0 0 0;
+    float:right;
+}
+
+div#pager input.pagedisplay {
+    width:45px;
+}
+
+
+form#searchbar {
+    margin-bottom: 10px;
+    clear:both;
+
+}
+
+/**************************************
+              searchbar
+**************************************/
+
+form#searchbar input[type=text] {
+    width:78%;
+    float:left;
+    height:26px;
+    margin:0 7px 0 7px;
+    -moz-border-radius:5px;
+    border:1px solid #CFCFCF;
+    color:#707070;
+    padding:4px 4px 4px 25px;
+    background-image:url('../images/magnifier.png');
+    background-repeat: no-repeat;
+    background-position: 5px 5px;
+}
+
+
+/**************************************
+              edit
+**************************************/
+
+
+form#edit {
+    padding-top:20px;
+}
+
+form#edit fieldset {
+    margin-bottom:10px;
+}
+
+form#edit input[type=text], form#edit input[type=select], form#edit textarea,
+select#format, select#genre, select#rating {
+    width:256px;
+    border:1px solid #CFCFCF;
+    color:#707070;
+    padding:4px;
+}
+
+form#edit label {
+    width:100px;
+    margin-bottom:4px;
+    display:block;
+}
+
+form#edit img {
+    display:block;
+}
+
+form#operations {
+    padding:15px 0 0 0;
+}
+
+form#operations fieldset {
+    padding-bottom:10px;
+}
+
+form#edit .attention {
+    font-size:11px;
+}
+
+fieldset#toolbar {
+    display: inline;
+    float:left;
+}
+
+fieldset#toolbar a {
+    margin-right:5px;
+}
+
+form#edit textarea {
+}
+
+div#rightpanel {
+    float:right;
+    width:680px;
+    margin-left:20px;
+}
+
+div#leftpanel {
+    width:256px;
+    float:left;
+}
+
+

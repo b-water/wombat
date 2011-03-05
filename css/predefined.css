@@ -1,0 +1,68 @@
+/* 
+    Document   : predefined
+    Created on : 05.03.2011, 14:27:42
+    Author     : nico
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/**************************************
+        lists ul ol li dl dd etc
+**************************************/
+
+ul {
+
+}
+
+li {
+
+}
+
+
+
+/**************************************
+                table
+**************************************/
+
+table {
+    font-size:12px;
+    width:100%;
+    margin-top:4px;
+
+}
+
+table thead th {
+    background-image: url(../images/tablesorter/bg.gif);
+}
+
+table thead tr {
+    background-color:#EAEAEA;
+    margin:5px;
+}
+
+table th {
+    padding:5px;
+    border-right:1px solid #DFDFDF;
+    border-bottom:1px solid #DFDFDF;
+    border-top:1px solid #DFDFDF;
+    background-repeat: no-repeat;
+    background-position: center right;
+    cursor: pointer;
+}
+
+table td {
+    padding:5px;
+    border-right:1px solid #CFCFCF;
+    border-bottom:1px solid #CFCFCF;
+    border-top:1px solid #fff;
+    color:#3F3F3F;
+    vertical-align: top;
+}
+
+table tbody td {
+    background-color: #F0F0F0;
+}
+
+/**************************************
+                form
+**************************************/

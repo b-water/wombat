@@ -8,96 +8,43 @@
 
 @charset "ISO-8859-1";
 
+@import url('typography.css');
+@import url('reset.css');
+@import url('typography.css');
+@import url('form.css');
+@import url('generic.css');
+@import url('predefined.css');
+@import url('table.css');
+
 /**************************************
-Resets the default Stylesheet of the different Browsers
+            Colors
 **************************************/
 
-html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5,
-h6, p, blockquote, pre, a, abbr, address, cite, code, del, dfn,
-em, img, ins, kbd, q, samp, strong, sub, sup, var, dl, dt, dd, ol,
-ul, li, fieldset, form, label, legend, table, caption, tbody,
-tfoot, thead, tr, th, td {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    outline: 0;
-    vertical-align: baseline;
+
+/**************************************
+            main structur
+**************************************
+html
+    body
+        wrapper
+            navigation
+            content
+    /body
+/html
+**************************************/
+
+
+html {
+    height: 100%;
 }
 
-input[type=submit], input[type=button] {
-    border:0;
-}
 
-:focus { outline: 0; }
-
-body { line-height: 1; color: black; background: white; }
-
-ol, ul { list-style: none; }
-
-table { border-collapse: separate; border-spacing: 0; }
-
-caption, th, td { text-align: left; font-weight: normal; }
-
-blockquote, q { quotes: "/00AB" "/00BB"; }
-
-
-html, body {
+body {
     font-family:Arial,sans-serif;
-    background-color:#A62424;
+/*    background-color:#A62424;*/
+    background-color: #F9F9F9;
     font-size:14px;
     color:#555;
-}
-
-/**************************************
-            generic stuff
-**************************************/
-
-.invisible {visibility:hidden;}
-.inline {display:inline;}
-.absolute {position:absolute;}
-.relative {position:relative;}
-.full {overflow:hidden;}
-.right {float:right;}
-.left {float:left;}
-.clear {clear:both;}
-
-
-/**************************************
-            typography
-**************************************/
-
-h3 {
-    margin:0 10px 0 0;
-}
-
-p {
-    margin:10px 0 10px 0;
-}
-
-
-
-cite {
-    display:block;
-    text-align:center;
-    padding:40px 0px 0px 0px;
-    margin:0px 20px 40px 20px;
-    color:#707070;
-    font-style:italic;
-}
-
-
-/**************************************
-              container
-**************************************/
-
-
-div#container {
-    padding: 20px;
-    width:960px;
-    background-color: #F0F0F0;
-    -moz-border-radius: 5px;
-    overflow:hidden;
-    -moz-box-shadow: 1px 1px 10px #333;
 }
 
 /**************************************
@@ -105,46 +52,7 @@ div#container {
 **************************************/
 
 div#wrapper {
-    width:960px;
-    margin:auto;
-
-}
-
-/**************************************
-                login
-**************************************/
-
-
-#login {
-    background-color:#F0F0F0;
-    width:300px;
-    margin:10px auto 0px auto;
-    padding:20px;
-    -moz-border-radius:10px;
-}
-
-#login input[type=text], #login input[type=password] {
-    margin: 2px 6px 3px 0;
-    padding:3px 3px 5px 35px;
-}
-
-input#username, input#password , input#loginSubmit {
-    background-repeat: no-repeat;
-    background-position: 10px 5px;
-    margin:15px 0 0 0;
-}
-
-input#username {
-    background-image:url('../images/user_green.png');
-}
-
-input#password {
-    background-image:url('../images/key.png');
-}
-
-input#loginSubmit {
-    background-image:url('../images/door_in.png');
-    background-position: 90px 5px;
+    width:100%;
 }
 
 /**************************************
@@ -152,25 +60,8 @@ input#loginSubmit {
 **************************************/
 
 div#content {
-    width:100%;
-}
-
-/**************************************
-                footer
-**************************************/
-
-div#footer {
-    clear:both;
-}
-
-#footer p {
-    text-align:center;
-    font-size:12px;
-}
-
-
-.highlight {
-    color:#C91715;
+    width:710px;
+    float:left;
 }
 
 /**************************************
@@ -179,17 +70,15 @@ div#footer {
 
 
 div#navigation {
-    min-width:100%;
-    height:26px;
-    margin-top:20px;
+    width:250px;
+    float:left;
 }
-
 
 
 /**************************************
                 menu
 **************************************/
-
+/*
 #menu {
     float:right;
     width:935px;
@@ -211,8 +100,6 @@ div#navigation {
     text-align:center;
     margin:0 5px 0 0;
     padding:5px 5px 5px 25px;
-    display:block;
-    float:left;
     -moz-border-radius-topleft: 5px;
     -moz-border-radius-topright: 5px;
     height:15px;
@@ -257,378 +144,5 @@ div#navigation {
 
 #menu a:hover, #menu a:active {
     background-color:#EAEAEA;
-}
-
-
-/**************************************
-                sidebar
-**************************************/
-
-
-#sidebar  {
-    width:170px;
-    float:left;
-    padding:5px;
-    margin-right:10px;
-}
-
-/**************************************
-                table
-**************************************/
-
-table {
-    font-size:12px;
-    width:100%;
-    margin-top:4px;
-
-}
-
-table thead th {
-    background-image: url(../images/tablesorter/bg.gif);
-}
-
-table thead tr {
-    background-color:#EAEAEA;
-    margin:5px;
-}
-
-table th {
-    padding:5px;
-    border-right:1px solid #DFDFDF;
-    border-bottom:1px solid #DFDFDF;
-    border-top:1px solid #DFDFDF;
-    background-repeat: no-repeat;
-    background-position: center right;
-    cursor: pointer;
-}
-
-
-table th.delete {
-    cursor: default;
-    border-right:none;
-    background-image:none;
-    background-color:#F0F0F0;
-}
-
-table td.delete {
-    border-right:none;
-}
-
-table td.delete {
-    border-right:none;
-}
-
-table th.edit {
-    cursor: default;
-    background-image:none;
-    background-color:#F0F0F0;
-    background-image:none;
-}
-
-table tr.even {
-    background-color:#EAEAEA;
-}
-
-table td {
-    padding:5px;
-    border-right:1px solid #CFCFCF;
-    border-bottom:1px solid #CFCFCF;
-    border-top:1px solid #fff;
-    color:#3F3F3F;
-    vertical-align: top;
-}
-
-table tbody td {
-    background-color: #F0F0F0;
-}
-
-/**************************************
-                form
-**************************************/
-
-/*input[type=text], input[type=password],
-input[type=button], input[type=submit] {
-    -moz-border-radius: 5px;
-    border:1px solid #CFCFCF;
-    width:100%;
-    padding:4px;
-}
-
-input[type=text], input[type=password] {
-    color:#262626;
-}
-
-input[type=button], input[type=submit] {
-    color:#777;
-    background-color:#F0F0F0;
-    margin-bottom:15px;
-    cursor:pointer;
-}
-
-select {
-    border:1px solid #CFCFCF;
-    -moz-border-radius: 5px;
-    font-size:14px;
-    color:#262626;
-}
-
-input[type=button]:hover, input[type=submit]:hover {
-    background-color:#EAEAEA !important;
 }*/
-
-/**************************************
-                controls
-**************************************/
-
-
-form#controls {
-    margin:0 0 10px 0;
-}
-
-form#controls input[type=text] {
-}
-
-form#controls select {
-    width:100%;
-}
-
-form#controls div.box {
-    overflow: hidden;
-    margin:0 0 30px 0;
-}
-
-form#controls input#searchSubmit, form#controls input#add,
-form#controls input#del, form#controls input#change,
-form#controls input#import, form#controls input#export {
-    background-repeat:no-repeat;
-    background-position: 25px 7px;
-}
-
-form#controls input#searchSubmit  {
-    background-image: url('../images/magnifier.png');
-    margin:10px 0 0 0;
-}
-
-form#controls input#add  {
-    background-image:url('../images/table_add.png');
-}
-
-form#controls input#del  {
-    background-image:url('../images/table_delete.png');
-}
-
-form#controls input#change  {
-    background-image:url('../images/table_edit.png');
-}
-
-form#controls input#export {
-    background-image:url('../images/application_go.png');
-}
-
-form#controls input#import  {
-    background-image:url('../images/application_get.png');
-}
-
-
-div#pager {
-    margin:10px 0 0 0;
-    float:right;
-}
-
-div#pager input.pagedisplay {
-    width:45px;
-}
-
-/* tables */
-
-table.tablesorter tbody tr.even td {
-    background-color:#EAEAEA;
-}
-
-table.tablesorter thead tr .headerSortDown, table.tablesorter thead tr .headerSortUp {
-    background-color: #DFDFDF;
-    border-right:1px solid #BFBFBF;
-    border-bottom:1px solid #BFBFBF;
-    border-top:1px solid #BFBFBF;
-}
-
-table.tablesorter thead tr .headerSortDown {
-    background-image: url('../images/tablesorter/desc.gif');
-}
-
-table.tablesorter thead tr .headerSortUp {
-    background-image: url('../images/tablesorter/asc.gif');
-}
-
-table.tablesorter tr {
-    cursor:pointer;
-}
-
-form#searchbar {
-    margin-bottom: 10px;
-    clear:both;
-
-}
-
-form#searchbar input[type=text] {
-    width:78%;
-    float:left;
-    height:26px;
-    margin:0 7px 0 7px;
-    -moz-border-radius:5px;
-    border:1px solid #CFCFCF;
-    color:#707070;
-    padding:4px 4px 4px 25px;
-    background-image:url('../images/magnifier.png');
-    background-repeat: no-repeat;
-    background-position: 5px 5px;
-}
-
-/* Copyright ZURB, freely available for distrubition under the MIT license. */
-
-/** Awesome Buttons **/
-
-.awesome {
-    background: #222 url(../images/awesome/alert-overlay.png) repeat-x;
-    display: inline-block;
-    padding: 5px 10px 6px;
-    color: #fff;
-    text-decoration: none;
-    font-weight: bold;
-    line-height: 1;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    -moz-box-shadow: 0 1px 3px #999;
-    -webkit-box-shadow: 0 1px 3px #999;
-    text-shadow: 0 -1px 1px #222;
-    border-bottom: 1px solid #222;
-    position: relative;
-    cursor: pointer;
-    -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
-    -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
-    text-shadow: 0 -1px 1px rgba(0,0,0,0.25);
-    border-bottom: 1px solid rgba(0,0,0,0.25);
-}
-
-.awesome:hover {
-    background-color: #111;
-    color: #fff;
-}
-
-/* Sizes ---------- */
-.small.awesome {
-    font-size: 11px;
-}
-.medium.awesome {
-    font-size: 13px;
-}
-.large.awesome {
-    font-size: 14px;
-    padding: 8px 14px 9px;
-}
-/* Colors ---------- */
-.blue.awesome {
-    background-color: #2daebf;
-}
-.red.awesome {
-    background-color: #e33100;
-}
-.magenta.awesome {
-    background-color: #a9014b;
-}
-.orange.awesome {
-    background-color: #ff5c00;
-}
-.yellow.awesome {
-    background-color: #ffb515;
-}
-
-.attention {
-    background: #FFF6CF url('../images/error.png') 5px center no-repeat;
-    padding:5px 5px 5px 25px;
-    border: 1px solid #FFDD3F;
-}
-
-
-form#edit {
-    padding-top:20px;
-}
-
-form#edit fieldset {
-    margin-bottom:10px;
-}
-
-form#edit input[type=text], form#edit input[type=select], form#edit textarea,
-select#format, select#genre, select#rating {
-    width:256px;
-    border:1px solid #CFCFCF;
-    color:#707070;
-    padding:4px;
-}
-
-form#edit label {
-    width:100px;
-    margin-bottom:4px;
-    display:block;
-}
-
-form#edit img {
-    display:block;
-}
-
-form#operations {
-    padding:15px 0 0 0;
-}
-
-form#operations fieldset {
-    padding-bottom:10px;
-}
-
-form#edit .attention {
-    font-size:11px;
-}
-
-fieldset#toolbar {
-    display: inline;
-    float:left;
-}
-
-fieldset#toolbar a {
-    margin-right:5px;
-}
-
-form#edit textarea {
-}
-
-div#rightpanel {
-    float:right;
-    width:680px;
-    margin-left:20px;
-}
-
-div#leftpanel {
-    width:256px;
-    float:left;
-}
-
-/*div.cover img {
-    left: 31px;
-    position: relative;
-    top: 191px;
-    width: 216px;
-}
-
-div.cover {
-    position: absolute;
-}
-
-.dvdcase {
-    background: url('../images/dvdcase.png') 0 0 no-repeat transparent;
-    width:256px;
-    height:325px;
-    display: block;
-    position: relative;
-    top: 180px;
-}*/
-
 
