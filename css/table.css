@@ -64,3 +64,7 @@ table tr.even {
     background-color:#EAEAEA;
 }
 
+table tbody tr :hover {
+    color:red;
+}
+

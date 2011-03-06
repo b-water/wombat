@@ -20,6 +20,10 @@ ul#menu li.parent {
     background: #EAEAEA url('../images/package.png') 5px center no-repeat;
 }
 
+ul#menu li.parent:hover {
+    background: #EAEAEA url('../images/arrow_right.png')  5px center no-repeat;
+}
+
 ul#menu li.parent a, ul#menu li.child a  {
     padding-left:20px;
 }
@@ -28,6 +32,11 @@ ul#menu li.child {
     border-bottom: 1px solid #CFCFCF;
     border-top: 1px solid #FFFFFF;
     color: #3F3F3F;
-    padding: 5px;
-    background: url('../images/page.png')  5px center no-repeat;
+    padding: 5px 5px 5px 15px;
+    background: url('../images/page.png')  10px center no-repeat;
 }
+
+ul#menu li.child:hover {
+    background: url('../images/arrow_right.png')  10px center no-repeat;
+}
+
