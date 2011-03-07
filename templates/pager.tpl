@@ -1,5 +1,3 @@
-<?php /* Smarty version 2.6.26, created on 2011-03-06 02:32:07
-         compiled from pager.tpl */ ?>
 <div id="pager" class="pager">
     <form>
         <img src="images/tablepager/control_start.png" class="first"/>
@@ -13,4 +11,4 @@
             <option  value="40">40</option>
         </select>
     </form>
-</div>
+</div>

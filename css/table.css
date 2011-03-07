@@ -11,7 +11,7 @@
                tablesorter
 **************************************/
 
-/*table.tablesorter tbody tr.even td {
+table.tablesorter tbody tr.even td {
     background-color:#EAEAEA;
 }
 
@@ -32,7 +32,7 @@ table.tablesorter thead tr .headerSortUp {
 
 table.tablesorter tr {
     cursor:pointer;
-}*/
+}
 
 
 /**************************************
@@ -40,31 +40,16 @@ table.tablesorter tr {
 **************************************/
 
 
-table th.delete {
-    cursor: default;
-    border-right:none;
-    background-image:none;
-}
-
-table td.delete {
-    border-right:none;
-}
-
-table td.delete {
-    border-right:none;
-}
-
-table th.edit {
-    cursor: default;
-    background-image:none;
-    background-image:none;
+table th.edit, table th.delete {
+    width:16px;
 }
 
 table tr.even {
     background-color:#EAEAEA;
 }
 
-table tbody tr :hover {
-    color:red;
+table td {
+    cursor:pointer;
 }
+
 
