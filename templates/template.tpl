@@ -1,7 +1,7 @@
 {* head , css files, meta, dtd ect *}
 {include file='head.tpl'}
 <body>
-    <div id="wrapper">
+    <div id="wrapper" class="ui-corner-all ui-widget-content">
         <div id="sidebar">
             {* Navigations Bereich Laden *}
             {include file='sidebar.tpl'}

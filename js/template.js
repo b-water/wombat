@@ -1,34 +1,73 @@
 $(document).ready(function() {
-    
-    // call the tablesorter plugin
-    $('table.tablesorter').tablesorter({
-        widthFixed: true,
-        widgets: ['zebra'],
-        headers: {
-            5: {
-                sorter:false
-            },
-            6: {
-                sorter:false
-            }
-        }
+
+    $('#dialog_link, td.ui-state-default,a.ui-icon').hover(
+            function() { $(this).addClass('ui-state-hover'); },
+            function() { $(this).removeClass('ui-state-hover'); }
+    );
+
+    $('ul#menu').jstree({
+        'animation' : 100,
+        'xml_data' : {
+                'ajax' : {
+                        'url' : 'menu.xml'
+                },
+                'xsl' : 'nest'
+        },
+        'plugins' : [  'xml_data','cookies','ui','themeroller' ]
+
     });
 
-    // init the tablepager
-    $('table.tablesorter').tablesorterPager({
-        container: $('#pager')
-    });
-
-    // init tinyMCE if a textarea is found on the page
-    if($('div#content').find('textarea'))
-    {
-        tinyMCE.init({
-            width: '400',
-            height: '600',
-            mode : 'textareas',
-            theme : 'simple'
-        });
-    }
+//    $('ul#menu').jstree({
+//        'animation' : 100,
+//        'xml_data' : {
+//                'ajax' : {
+//                        'url' : 'menu.xml'
+//                },
+//                'xsl' : 'nest'
+//        },
+//        'plugins' : [  'xml_data', 'themes','cookies' ],
+//        'themes' : {
+//                'theme' : 'default',
+//                'dots' : false,
+//                'icons' : true
+//        }
+//    });
+//
+//
+//
+//
+//    if($('table').length > 0)
+//    {
+//        // call the tablesorter plugin
+//        $('table.tablesorter').tablesorter({
+//            widthFixed: true,
+//            widgets: ['zebra'],
+//            headers: {
+//                5: {
+//                    sorter:false
+//                },
+//                6: {
+//                    sorter:false
+//                }
+//            }
+//        });
+//
+//        // init the tablepager
+//        $('table.tablesorter').tablesorterPager({
+//            container: $('#pager')
+//        });
+//    }
+//
+//    // init tinyMCE if a textarea is found on the page
+//    if($('textarea').length > 0)
+//    {
+//        tinyMCE.init({
+//            width: '400',
+//            height: '600',
+//            mode : 'textareas',
+//            theme : 'simple'
+//        });
+//    }
 });
 
 function fancyAjaxLoader(id,controller,action,title) {

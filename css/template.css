@@ -6,45 +6,61 @@
     RedWombat system.
 */
 
-@charset "ISO-8859-1";
 
-@import url('typography.css');
-@import url('reset.css');
-@import url('typography.css');
-@import url('form.css');
-@import url('generic.css');
-@import url('predefined.css');
-@import url('table.css');
-@import url('menu.css');
+/**************************************
+Resets the default Stylesheet of the different Browsers
+**************************************/
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5,
+h6, p, blockquote, pre, a, abbr, address, cite, code, del, dfn,
+em, img, ins, kbd, q, samp, strong, sub, sup, var, dl, dt, dd, ol,
+ul, li, fieldset, form, label, legend, table, caption, tbody,
+tfoot, thead, tr, th, td {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    vertical-align: baseline;
+}
+
+input[type=submit], input[type=button] {
+    border:0;
+}
+
+:focus { outline: 0; }
+
+body { line-height: 1; color: black; background: white; }
+
+ol, ul { list-style: none; }
+
+table { border-collapse: separate; border-spacing: 0; }
+
+caption, th, td { text-align: left; font-weight: normal; }
+
+blockquote, q { quotes: "/00AB" "/00BB"; }
+
 
 /**************************************
             Colors
 **************************************/
 
 
-/**************************************
-            main structur
-**************************************
-html
-    body
-        wrapper
-            navigation
-            content
-    /body
-/html
-**************************************/
+
 
 
 html {
+/*    height:100%;*/
+}
+
+html, body {
     height:100%;
 }
 
 body {
   font-family: "Helvetica",sans-serif;
-  background-color: #F0F0F0;
-  font-size: 12px;
+  background-color: #555;
+/*  font-size: 12px;*/
   color:#564b47;
-  margin:0px;
 }
 
 
@@ -52,9 +68,25 @@ body {
 /**************************************
               wrapper
 **************************************/
+/**************************************
+        wrapper & main structur
+**************************************
+html
+    body
+        wrapper
+            sidebar /sidebar
+            content /content
+    /body
+/html
+**************************************/
 
 div#wrapper {
-    width:100%;
+    margin:50px auto 50px auto;
+    width:960px;
+    min-height: 100%; /* Mindesthöhe für moderne Browser */
+    height:auto !important; /* Important Regel für moderne Browser */
+    height:100%; /* Mindesthöhe für den IE */
+    overflow: hidden !important; /* FF Scroll-leiste */
 }
 
 /**************************************
@@ -63,18 +95,29 @@ div#wrapper {
 
 #content {
   float: left;
-  width: 85%;
-  border-left:5px solid #DFDFDF;
+  width: 740px;
 }
 
 
 /**************************************
-            navigation
+            sidebar
+**************************************/
+/**************************************
+            sidebar structur
+**************************************
+sidebar
+    ul#menu
+        li
+            a
+        /li
+    /ul#menu
+/sidebar
 **************************************/
 
 #sidebar {
     float: left;
-    width: 14%;
+    width: 200px;
+    padding:10px;
 }
 
 div.box {
@@ -82,72 +125,22 @@ div.box {
 }
 
 
+/**************************************
+                menu
+**************************************/
 
-
-
-/*ul#menu {
-    float:right;
-    width:935px;
-    text-align:center;
+.jstree-default.jstree-focused {
+    background-color:#fff !important;
 }
 
-ul#menu ul li {
-    list-style:none;
+ul#menu {
+    padding:10px 0 10px 0;
+    font-size:12px;
+    font-weight:normal;
 }
 
-ul#menu a:link, ul#menu a:visited {
-    background-repeat: no-repeat;
-    background-position: 5px center;
-    background-color:#EAEAEA;
-    color:#777;
-    border-left:1px solid #CFCFCF;
-    border-right:1px solid #CFCFCF;
-    border-top:1px solid #CFCFCF;
-    text-align:center;
-    margin:0 5px 0 0;
-    padding:5px 5px 5px 25px;
-    -moz-border-radius-topleft: 5px;
-    -moz-border-radius-topright: 5px;
-    height:15px;
+ul#menu .ui-state-default {
+    margin:0 0 5px;
+    display:inline-block;
 }
-
-ul#menu a.home {
-    background-image:url('../images/house.png');
-}
-
-ul#menu a.movie {
-    background-image:url('../images/film.png');
-}
-
-ul#menu a.music {
-    background-image:url('../images/music.png');
-}
-
-ul#menu a.image {
-    background-image:url('../images/images.png');
-}
-
-ul#menu a.contact {
-    background-image:url('../images/user.png');
-}
-
-ul#menu a.document {
-    background-image:url('../images/page.png');
-}
-
-ul#menu a.calendar {
-    background-image:url('../images/calendar.png');
-}
-
-ul#menu a.configuration {
-    background-image: url('../images/cog.png');
-}
-
-ul#menu a.logout {
-    background-image: url('../images/door_out.png');
-}
-
-ul#menu a:hover, ul#menu a:active {
-    background-color:#EAEAEA;
-}*/
 

@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.26, created on 2011-03-05 21:13:39
+<?php /* Smarty version 2.6.26, created on 2011-04-01 21:58:55
          compiled from movie/index.tpl */ ?>
 <table id="movies" class="tablesorter">
     <thead>
@@ -34,8 +34,7 @@
 </td>
             <td class="edit" onclick="changeLocation('movie','edit','<?php echo $this->_tpl_vars['item']['id']; ?>
 ');"><img src="images/pencil.png" alt="edit" title="Bearbeiten" /></td>
-            <td class="delete" onclick="fancyAjaxLoader('<?php echo $this->_tpl_vars['item']['id']; ?>
-','movie','delete','L&ouml;schen');"><img src="images/bin_closed.png" alt="delete" title="L&ouml;schen" /></td>
+            <td class="delete ui-state-default ui-corner-all icon-wrapper"><a class="ui-icon ui-icon-trash"></a></td>
         </tr>
         <?php endforeach; endif; unset($_from); ?>
     </tbody>

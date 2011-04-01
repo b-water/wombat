@@ -73,15 +73,15 @@ $registry->set('smarty', $smarty);
 $registry->set('config', $config);
 $registry->set('url', $url);
 
-// fetch all javascript and css files
-$file = File::getInstance();
-//$css = $file->fetchDir('css/', 'css');
-$js = $file->fetchDir('js/', 'js');
+//// fetch all javascript and css files
+//$file = File::getInstance();
+////$css = $file->fetchDir('css/', 'css');
+//$js = $file->fetchDir('js/', 'js');
 
-$menu = new Menu();
+//$menu = new Menu();
 
 // assign them to smarty
-$smarty->assign('js', $js);
+//$smarty->assign('js', $js);
 //$smarty->assign('css', $css);
 $smarty->assign('file', 'bootstrap.php');
 $smarty->assign('maintitle',$config->get('MAINTITLE'));
