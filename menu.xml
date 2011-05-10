@@ -1,30 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!--
-    Document   : test.xml
+    Document   : menu.xml
     Created on : 1. April 2011, 19:56
-    Author     : nico
+    Author     : Nico Schmitz
     Description:
-        Purpose of the document follows.
+        Menu Struktur für Wombat
 -->
 
 <root>
     <item id="home" parent_id="0">
             <content>
-                    <name><![CDATA[Dashboard]]></name>
+                    <name href="home/"><![CDATA[Dashboard]]></name>
             </content>
     </item>
     <item id="database" parent_id="0" state="open">
 
-            <content><name><![CDATA[Datenbank]]></name></content>
+            <content><name class="non-clickable"><![CDATA[Datenbank]]></name></content>
 
             <item id="media" parent_id="database">
-                <content><name><![CDATA[Medien]]></name></content>
+                <content><name class="non-clickable"><![CDATA[Medien]]></name></content>
                 <item id="music">
-                    <content><name href="test"><![CDATA[Musik]]></name></content>
+                    <content><name href="music/"><![CDATA[Musik]]></name></content>
                 </item>
                 <item id="movie">
-                    <content><name><![CDATA[Filme]]></name></content>
+                    <content><name href="movie/"><![CDATA[Filme]]></name></content>
                 </item>
                 <item id="image">
                     <content><name><![CDATA[Bilder]]></name></content>

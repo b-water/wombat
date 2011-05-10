@@ -19,7 +19,7 @@
             <td class="format"  onclick="fancyAjaxLoader('{$item.id}','movie','show','Detailansicht');">{$item.format}</td>
             <td class="date">{$item.date}</td>
             <td class="edit" onclick="changeLocation('movie','edit','{$item.id}');"><img src="images/pencil.png" alt="edit" title="Bearbeiten" /></td>
-            <td class="delete ui-state-default ui-corner-all icon-wrapper"><a class="ui-icon ui-icon-trash"></a></td>
+            <td class="delete" onclick="changeLocation('movie','delete','{$item.id}');"><img src="images/bin_closed.png" alt="edit" title="Bearbeiten" /></td>
         </tr>
         {/foreach}
     </tbody>
