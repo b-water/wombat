@@ -5,7 +5,7 @@
  *
  * @author nico
  */
-class HomeController extends BaseController {
+class DashboardController extends BaseController {
 
     //put your code here
 

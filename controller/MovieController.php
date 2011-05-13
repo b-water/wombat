@@ -31,7 +31,7 @@ class MovieController extends BaseController {
 
 //        $content = $this->smarty->fetch('toolbar.tpl');
 //        $content .= $this->smarty->fetch('options.tpl');
-        $content = $this->smarty->fetch($this->template_dir . 'index.tpl');
+        $content = $this->smarty->fetch($this->template_dir . 'overview.tpl');
         $content .= $this->smarty->fetch('pager.tpl');
 
         $this->smarty->assign('content', $content);

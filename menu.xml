@@ -11,7 +11,7 @@
 <root>
     <item id="home" parent_id="0">
             <content>
-                    <name href="home/"><![CDATA[Dashboard]]></name>
+                    <name href="dashboard/"><![CDATA[Dashboard]]></name>
             </content>
     </item>
     <item id="database" parent_id="0" state="open">
