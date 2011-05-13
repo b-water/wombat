@@ -76,12 +76,9 @@ html
 **************************************/
 
 div#wrapper {
-    margin:50px auto 50px auto;
+    margin:0 auto;
     width:960px;
-    min-height: 100%; /* Mindesthöhe für moderne Browser */
-    height:auto !important; /* Important Regel für moderne Browser */
-    height:100%; /* Mindesthöhe für den IE */
-    overflow: hidden !important; /* FF Scroll-leiste */
+    overflow: hidden;
 }
 
 /**************************************
@@ -91,6 +88,7 @@ div#wrapper {
 #content {
   float: left;
   width: 740px;
+  padding: 20px 0 20px 0;
 }
 
 
@@ -123,9 +121,7 @@ div.box {
                 menu
 **************************************/
 
-.non-clickable {
-    cursor:default;
-}
+
 
 .jstree-default.jstree-focused {
     background-color:#fff !important;

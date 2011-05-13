@@ -6,7 +6,7 @@
         <img src="images/tablepager/control_fastforward.png" class="next"/>
         <img src="images/tablepager/control_end.png" class="last"/>
         <select class="pagesize">
-            <option selected="selected"  value="28">28</option>
+            <option selected="selected"  value="20">20</option>
             <option value="30">30</option>
             <option  value="40">40</option>
         </select>

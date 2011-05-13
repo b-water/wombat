@@ -34,6 +34,7 @@
     position:relative;
 }
 
+
 /**************************************
             displaying
 **************************************/
@@ -58,4 +59,8 @@
 
 .highlight {
     color:#C91715;
+}
+
+.non-clickable {
+    cursor:default;
 }

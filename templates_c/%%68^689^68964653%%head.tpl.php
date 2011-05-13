@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.26, created on 2011-04-01 22:08:18
+<?php /* Smarty version 2.6.26, created on 2011-05-13 23:11:53
          compiled from head.tpl */ ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
@@ -22,4 +22,6 @@
         <link rel="stylesheet" href="css/form.css" type="text/css" media="screen" />
         <link rel="stylesheet" href="css/awesome.css" type="text/css" media="screen" />
         <link rel="stylesheet" href="css/jquery-ui-1.8.11.custom.css" type="text/css" media="screen" />
+        <link rel="stylesheet" type="text/css" href="library/dhtmlx/dhtmlxGrid/codebase/dhtmlxgrid.css">
+        <link rel="stylesheet" type="text/css" href="library/dhtmlx/dhtmlxGrid/codebase/skins/dhtmlxgrid_dhx_skyblue.css">
     </head>

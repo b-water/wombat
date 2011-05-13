@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.26, created on 2011-04-01 21:17:21
+<?php /* Smarty version 2.6.26, created on 2011-05-13 23:11:53
          compiled from pager.tpl */ ?>
 <div id="pager" class="pager">
     <form>
@@ -8,7 +8,7 @@
         <img src="images/tablepager/control_fastforward.png" class="next"/>
         <img src="images/tablepager/control_end.png" class="last"/>
         <select class="pagesize">
-            <option selected="selected"  value="28">28</option>
+            <option selected="selected"  value="20">20</option>
             <option value="30">30</option>
             <option  value="40">40</option>
         </select>

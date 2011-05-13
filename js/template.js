@@ -1,23 +1,27 @@
 $(document).ready(function() {
 
     $('#dialog_link, td.ui-state-default,a.ui-icon').hover(
-            function() { $(this).addClass('ui-state-hover'); },
-            function() { $(this).removeClass('ui-state-hover'); }
-    );
+        function() {
+            $(this).addClass('ui-state-hover');
+        },
+        function() {
+            $(this).removeClass('ui-state-hover');
+        }
+        );
 
     $('ul#menu').jstree({
         'animation' : 100,
         'xml_data' : {
-                'ajax' : {
-                        'url' : 'menu.xml'
-                },
-                'xsl' : 'nest'
+            'ajax' : {
+                'url' : 'menu.xml'
+            },
+            'xsl' : 'nest'
         },
         'plugins' : [  'xml_data', 'themes','cookies' ],
         'themes' : {
-                'theme' : 'default',
-                'dots' : true,
-                'icons' : true
+            'theme' : 'default',
+            'dots' : true,
+            'icons' : true
         }
     });
 
@@ -91,7 +95,7 @@ function fancyAjaxLoader(id,controller,action,title) {
             });
 
             $('form#edit').ajaxForm(function() {
-            });
+                });
         }
     });
     

@@ -17,4 +17,6 @@
         <link rel="stylesheet" href="css/form.css" type="text/css" media="screen" />
         <link rel="stylesheet" href="css/awesome.css" type="text/css" media="screen" />
         <link rel="stylesheet" href="css/jquery-ui-1.8.11.custom.css" type="text/css" media="screen" />
+        <link rel="stylesheet" type="text/css" href="library/dhtmlx/dhtmlxGrid/codebase/dhtmlxgrid.css">
+        <link rel="stylesheet" type="text/css" href="library/dhtmlx/dhtmlxGrid/codebase/skins/dhtmlxgrid_dhx_skyblue.css">
     </head>
