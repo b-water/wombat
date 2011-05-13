@@ -1,22 +1,26 @@
 <?php
-/* 
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 
 /**
  * Description of BaseController
  *
- * @author nico
+ * @author  Nico Schmitz - cofilew@gmail.com
+ * @file    BaseController.php
+ * @since   13.05.2011 - 23:35:14
  */
+
 abstract class BaseController {
-    //put your code here
+
+    // The registry, all system objects
     protected $registry;
+    // The smarty template object
     protected $smarty;
+    // The configuration object
     protected $config;
+    // The url parser object
     protected $url;
 
-    function __construct ($registry) {
+    function __construct($registry) {
+
         $this->registry = $registry;
         $this->smarty = $this->registry->get('smarty');
         $this->config = $this->registry->get('config');
@@ -24,11 +28,11 @@ abstract class BaseController {
         $this->init();
     }
 
+    // Custom constructor
     abstract function init();
+
+    // First load Action
     abstract function index();
-//    abstract function show();
-//    abstract function edit();
-//    abstract function update();
-//    abstract function delete();
 }
+
 ?>

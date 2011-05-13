@@ -1,12 +1,15 @@
 <?php
 
 /**
- * Description of MovieController
+ * Description of MovierController
  *
- * @author nico
+ * @author  Nico Schmitz - cofilew@gmail.com
+ * @file    MovieController.php
+ * @since   13.05.2011 - 23:35:14
  */
 class MovieController extends BaseController {
 
+    // The Movie Object
     private $movie;
     private $fields = 'id,name,genre,rating,format,DATE_FORMAT(DATE,"%d.%c.%Y") AS date';
     private $all_fields = '*';
@@ -29,8 +32,6 @@ class MovieController extends BaseController {
         /* add page title */
         $this->smarty->assign('title', 'Filme');
 
-//        $content = $this->smarty->fetch('toolbar.tpl');
-//        $content .= $this->smarty->fetch('options.tpl');
         $content = $this->smarty->fetch($this->template_dir . 'overview.tpl');
         $content .= $this->smarty->fetch('pager.tpl');
 
@@ -39,6 +40,9 @@ class MovieController extends BaseController {
         $this->smarty->display($this->config->get('TEMPLATE_FILE'));
     }
 
+    /**
+     * Search through the Movie Database
+     */
     public function search() {
 
         $filter = ' WHERE name like "%' . $_REQUEST['searchbar'] . '%"';
@@ -55,15 +59,20 @@ class MovieController extends BaseController {
         $this->smarty->display($this->config->get('TEMPLATE_FILE'));
     }
 
-    public function show() {
+    /**
+     * Show a single Movie
+     */
+    public function single() {
 
         $filter = ' WHERE id = "' . $this->url->get('id') . '"';
         $movies = $this->movie->fetch($this->fields, $filter);
         $this->smarty->assign('movie', $movies);
-        $this->smarty->display($this->template_dir . 'show.tpl');
+        $this->smarty->display($this->template_dir . 'single.tpl');
     }
 
-    /* The Edit View for a Movie */
+    /**
+     * Edit a Movie
+     */
     public function edit() {
 
         $this->smarty->assign('title', 'Film Bearbeiten');
@@ -93,8 +102,8 @@ class MovieController extends BaseController {
         $genreObj = new Genre();
 
         try {
-         $genre = $genreObj->fetch('movie');
-        } catch(GenreException $genreException) {
+            $genre = $genreObj->fetch('movie');
+        } catch (GenreException $genreException) {
             die($genreException);
         }
 
@@ -107,9 +116,11 @@ class MovieController extends BaseController {
         $this->smarty->assign('content', $content);
 
         $this->smarty->display($this->config->get('TEMPLATE_FILE'));
-
     }
 
+    /**
+     * Updates the values of a Movie
+     */
     public function update() {
         /* update the dataset */
         try {
@@ -119,6 +130,9 @@ class MovieController extends BaseController {
         }
     }
 
+    /**
+     * Deletes a Movie
+     */
     public function delete() {
         $this->movie->delete($this->url->get('id'));
         $text = 'Der Film wurde erfolgreich aus der Datenbank gel&ouml;scht!';

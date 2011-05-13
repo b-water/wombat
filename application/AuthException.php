@@ -1,15 +1,14 @@
 <?php
-/* 
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 
 /**
- * Description of AuthentificationException
+ * Description of AuthException
  *
- * @author nico
+ * @author  Nico Schmitz - cofilew@gmail.com
+ * @file    AuthException.php
+ * @since   13.05.2011 - 23:35:14
  */
 class AuthException extends Exception {
     //put your code here
 }
+
 ?>

@@ -10,63 +10,106 @@
 
 <root>
     <item id="home" parent_id="0">
-            <content>
-                    <name href="dashboard/"><![CDATA[Dashboard]]></name>
-            </content>
+        <content>
+            <name href="dashboard/"><![CDATA[Dashboard]]>
+            </name>
+        </content>
     </item>
     <item id="database" parent_id="0" state="open">
-
-            <content><name class="non-clickable"><![CDATA[Datenbank]]></name></content>
-
-            <item id="media" parent_id="database">
-                <content><name class="non-clickable"><![CDATA[Medien]]></name></content>
-                <item id="music">
-                    <content><name href="music/"><![CDATA[Musik]]></name></content>
-                </item>
-                <item id="movie">
-                    <content><name href="movie/"><![CDATA[Filme]]></name></content>
-                </item>
-                <item id="image">
-                    <content><name><![CDATA[Bilder]]></name></content>
-                </item>
+        <content>
+            <name class="non-clickable"><![CDATA[Datenbank]]>
+            </name>
+        </content>
+        <item id="media" parent_id="database">
+            <content>
+                <name class="non-clickable"><![CDATA[Medien]]>
+                </name>
+            </content>
+            <item id="music">
+                <content>
+                    <name href="music/"><![CDATA[Musik]]>
+                    </name>
+                </content>
             </item>
-            <item id="calender" parent_id="database">
-                <content><name><![CDATA[Kalender]]></name></content>
+            <item id="movie">
+                <content>
+                    <name href="movie/"><![CDATA[Filme]]>
+                    </name>
+                </content>
             </item>
-            <item id="contact" parent_id="database">
-                <content><name><![CDATA[Kontakte]]></name></content>
-                <item id="family">
-                    <content><name href="test"><![CDATA[Familie]]></name></content>
-                </item>
-                <item id="friends">
-                    <content><name href="test"><![CDATA[Freunde]]></name></content>
-                </item>
-                <item id="job">
-                    <content><name href="test"><![CDATA[Beruflich]]></name></content>
-                </item>
-                <item id="job">
-                    <content><name href="test"><![CDATA[Dienstleister]]></name></content>
-                </item>
+            <item id="image">
+                <content>
+                    <name><![CDATA[Bilder]]>
+                    </name>
+                </content>
             </item>
-            <item id="document" parent_id="database">
-                <content><name><![CDATA[Dokumente]]></name></content>
-                <item id="bill">
-                    <content><name href="test"><![CDATA[Rechnungen]]></name></content>
-                </item>
-                <item id="education">
-                    <content><name href="test"><![CDATA[Ausbildung]]></name></content>
-                </item>
+        </item>
+        <item id="calender" parent_id="database">
+            <content>
+                <name><![CDATA[Kalender]]>
+                </name>
+            </content>
+        </item>
+        <item id="contact" parent_id="database">
+            <content>
+                <name><![CDATA[Kontakte]]>
+                </name>
+            </content>
+            <item id="family">
+                <content>
+                    <name href="test"><![CDATA[Familie]]>
+                    </name>
+                </content>
             </item>
+            <item id="friends">
+                <content>
+                    <name href="test"><![CDATA[Freunde]]>
+                    </name>
+                </content>
+            </item>
+            <item id="job">
+                <content>
+                    <name href="test"><![CDATA[Beruflich]]>
+                    </name>
+                </content>
+            </item>
+            <item id="job">
+                <content>
+                    <name href="test"><![CDATA[Dienstleister]]>
+                    </name>
+                </content>
+            </item>
+        </item>
+        <item id="document" parent_id="database">
+            <content>
+                <name><![CDATA[Dokumente]]>
+                </name>
+            </content>
+            <item id="bill">
+                <content>
+                    <name href="test"><![CDATA[Rechnungen]]>
+                    </name>
+                </content>
+            </item>
+            <item id="education">
+                <content>
+                    <name href="test"><![CDATA[Ausbildung]]>
+                    </name>
+                </content>
+            </item>
+        </item>
 
     </item>
     <item id="administration" parent_id="0">
-            <content>
-                    <name><![CDATA[Administration]]></name>
-            </content>
+        <content>
+            <name><![CDATA[Administration]]>
+            </name>
+        </content>
     </item>
     <item id="logout" parent_id="0">
-            <content>
-                    <name><![CDATA[Abmelden]]></name>
-            </content>
+        <content>
+            <name><![CDATA[Abmelden]]>
+            </name>
+        </content>
     </item>
 </root>

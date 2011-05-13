@@ -1,13 +1,11 @@
 <?php
-/* 
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 
 /**
  * Description of UserController
  *
- * @author nico
+ * @author  Nico Schmitz - cofilew@gmail.com
+ * @file    UserController.php
+ * @since   13.05.2011 - 23:35:14
  */
 class UserController extends BaseController {
 

@@ -1,13 +1,11 @@
 <?php
-/* 
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 
 /**
- * Description of Authentification
+ * Description of Auth
  *
- * @author nico
+ * @author  Nico Schmitz - cofilew@gmail.com
+ * @file    Auth.php
+ * @since   13.05.2011 - 23:35:14
  */
 class Auth {
     
