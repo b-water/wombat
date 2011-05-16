@@ -45,7 +45,7 @@ blockquote, q { quotes: "/00AB" "/00BB"; }
 **************************************/
 
 html {
-/*    height:100%;*/
+    /*    height:100%;*/
 }
 
 html, body {
@@ -53,9 +53,10 @@ html, body {
 }
 
 body {
-  font-family: "Trebuchet MS", sans-serif;
-  background-color: #555;
-  color:#564b47;
+    font-family: "Trebuchet MS", sans-serif;
+    background-color: #555;
+    color:#564b47;
+    font-size:12px;
 }
 
 
@@ -76,9 +77,10 @@ html
 **************************************/
 
 div#wrapper {
-    margin:0 auto;
+    margin: 40px auto 0 auto;
     width:960px;
     overflow: hidden;
+    background-color:#F0F0F0;
 }
 
 /**************************************
@@ -86,9 +88,9 @@ div#wrapper {
 **************************************/
 
 #content {
-  float: left;
-  width: 740px;
-  padding: 20px 0 20px 0;
+    float: left;
+    width: 720px;
+    padding: 20px 20px 20px 0;
 }
 
 
@@ -124,7 +126,7 @@ div.box {
 
 
 .jstree-default.jstree-focused {
-    background-color:#fff !important;
+    background-color:#F0F0F0 !important;
 }
 
 ul#menu {

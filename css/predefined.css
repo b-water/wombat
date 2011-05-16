@@ -10,10 +10,10 @@
                 link
 **************************************/
 
-a:link, a:visited, a:active, a:focus, a:hover {
+/*a:link, a:visited, a:active, a:focus, a:hover {
     text-decoration:none;
     color:#564b47;
-}
+}*/
 
 /**************************************
         lists ul ol li dl dd etc
@@ -27,7 +27,13 @@ li {
 
 }
 
+input, select {
+    font-size:12px;
+}
 
+select {
+    color:#333;
+}
 
 /**************************************
                 table

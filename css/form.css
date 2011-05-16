@@ -121,7 +121,7 @@ form#edit input[type=text], form#edit input[type=select], form#edit textarea,
 select#format, select#genre, select#rating {
     width:256px;
     border:1px solid #CFCFCF;
-    color:#707070;
+    color:#000;
     padding:4px;
 }
 
@@ -129,6 +129,7 @@ form#edit label {
     width:100px;
     margin-bottom:4px;
     display:block;
+    float:left;
 }
 
 form#edit img {

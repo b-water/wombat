@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.26, created on 2011-05-13 23:14:34
+<?php /* Smarty version 2.6.26, created on 2011-05-16 19:58:23
          compiled from movie/overview.tpl */ ?>
 <table id="movies" class="tablesorter">
     <thead>
@@ -7,6 +7,7 @@
             <th class="genre">Genre</th>
             <th class="rating">Bewertung</th>
             <th class="format">Format</th>
+            <th class="format">Größe</th>
             <th class="date">angelegt am</th>
             <th class="edit"></th>
             <th class="delete"></th>
@@ -18,17 +19,20 @@
 ?>
         <tr id="<?php echo $this->_tpl_vars['item']['id']; ?>
 ">
-            <td class="name" onclick="fancyAjaxLoader('<?php echo $this->_tpl_vars['item']['id']; ?>
-','movie','show','Detailansicht');"><?php echo $this->_tpl_vars['item']['name']; ?>
+            <td class="name" onclick="changeLocation('movie','single','<?php echo $this->_tpl_vars['item']['id']; ?>
+');"><?php echo $this->_tpl_vars['item']['name']; ?>
 </td>
-            <td class="genre" onclick="fancyAjaxLoader('<?php echo $this->_tpl_vars['item']['id']; ?>
-','movie','show','Detailansicht');"><?php echo $this->_tpl_vars['item']['genre']; ?>
+            <td class="genre" onclick="changeLocation('movie','single','<?php echo $this->_tpl_vars['item']['id']; ?>
+');"><?php echo $this->_tpl_vars['item']['genre']; ?>
 </td>
-            <td class="rating"  onclick="fancyAjaxLoader('<?php echo $this->_tpl_vars['item']['id']; ?>
-','movie','show','Detailansicht');"><?php echo $this->_tpl_vars['item']['rating']; ?>
+            <td class="rating" onclick="changeLocation('movie','single','<?php echo $this->_tpl_vars['item']['id']; ?>
+');"><?php echo $this->_tpl_vars['item']['rating']; ?>
 </td>
-            <td class="format"  onclick="fancyAjaxLoader('<?php echo $this->_tpl_vars['item']['id']; ?>
-','movie','show','Detailansicht');"><?php echo $this->_tpl_vars['item']['format']; ?>
+            <td class="format" onclick="changeLocation('movie','single','<?php echo $this->_tpl_vars['item']['id']; ?>
+');"><?php echo $this->_tpl_vars['item']['format']; ?>
+</td>
+            <td class="size" onclick="changeLocation('movie','single','<?php echo $this->_tpl_vars['item']['id']; ?>
+');"><?php echo $this->_tpl_vars['item']['size']; ?>
 </td>
             <td class="date"><?php echo $this->_tpl_vars['item']['date']; ?>
 </td>

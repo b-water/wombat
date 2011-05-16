@@ -36,7 +36,7 @@ class Movie {
             'name' => $values['name'],
             'genre' => $values['genre'],
             'format' => $values['format'],
-            'size' => $values['size'],
+//            'size' => $values['size'],
             'description' => $values['description']
         );
 

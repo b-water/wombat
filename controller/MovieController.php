@@ -11,7 +11,7 @@ class MovieController extends BaseController {
 
     // The Movie Object
     private $movie;
-    private $fields = 'id,name,genre,rating,format,DATE_FORMAT(DATE,"%d.%c.%Y") AS date';
+    private $fields = 'id,name,genre,rating,format,size,DATE_FORMAT(DATE,"%d.%c.%Y") AS date';
     private $all_fields = '*';
     private $template_dir = 'movie/';
 

@@ -18,7 +18,7 @@ class Url {
         if (isset($_GET['rt']) && !empty($_GET['rt'])) {
             $url = explode('/', $_GET['rt']);
         }
-        $this->options['controller'] = isset($url[0]) && !empty($url[0]) ? $url[0] : "home";
+        $this->options['controller'] = isset($url[0]) && !empty($url[0]) ? $url[0] : "dashboard";
         $this->options['action'] = isset($url[1]) && !empty($url[1]) ? $url[1] : "index";
         $this->options['id'] = isset($url[2]) && !empty($url[2]) ? $url[2] : '';
     }

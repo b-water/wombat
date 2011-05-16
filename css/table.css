@@ -39,6 +39,9 @@ table.tablesorter tr {
            maintable columns
 **************************************/
 
+table td.name, table td.genre, table td.rating, table td.format {
+    cursor:pointer;
+}
 
 table th.edit, table th.delete {
     width:16px;
@@ -52,4 +55,10 @@ table td {
     cursor:pointer;
 }
 
+table tr:hover td {
+    background-color:red !important;
+}
 
+even:hover {
+    background-color:red;
+}

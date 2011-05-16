@@ -1,14 +1,5 @@
 $(document).ready(function() {
 
-    $('#dialog_link, td.ui-state-default,a.ui-icon').hover(
-        function() {
-            $(this).addClass('ui-state-hover');
-        },
-        function() {
-            $(this).removeClass('ui-state-hover');
-        }
-        );
-
     $('ul#menu').jstree({
         'animation' : 100,
         'xml_data' : {
@@ -52,7 +43,7 @@ $(document).ready(function() {
     {
         tinyMCE.init({
             width: '400',
-            height: '600',
+            height: '200',
             mode : 'textareas',
             theme : 'simple'
         });
