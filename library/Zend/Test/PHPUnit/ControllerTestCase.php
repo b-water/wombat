@@ -16,7 +16,7 @@
  * @package    Zend_Test
  * @copyright  Copyright (c) 2005-2010 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: ControllerTestCase.php 20484 2010-01-21 18:13:31Z matthew $
+ * @version    $Id$
  */
 
 /** @see PHPUnit_Framework_TestCase */

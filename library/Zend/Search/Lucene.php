@@ -16,7 +16,7 @@
  * @package    Zend_Search_Lucene
  * @copyright  Copyright (c) 2005-2010 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Lucene.php 21640 2010-03-24 18:28:32Z alexander $
+ * @version    $Id$
  */
 
 

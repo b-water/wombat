@@ -17,7 +17,7 @@
  * @subpackage Filter
  * @copyright  Copyright (c) 2005-2010 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Suppress.php 20096 2010-01-06 02:05:09Z bkarwin $
+ * @version    $Id$
  */
 
 /** Zend_Log_Filter_Interface */
@@ -29,7 +29,7 @@ require_once 'Zend/Log/Filter/Interface.php';
  * @subpackage Filter
  * @copyright  Copyright (c) 2005-2010 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Suppress.php 20096 2010-01-06 02:05:09Z bkarwin $
+ * @version    $Id$
  */
 class Zend_Log_Filter_Suppress extends Zend_Log_Filter_Abstract
 {

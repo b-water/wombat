@@ -16,7 +16,7 @@
  * @package   Zend_Currency
  * @copyright  Copyright (c) 2005-2010 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd     New BSD License
- * @version   $Id: Currency.php 22369 2010-06-04 14:54:43Z thomas $
+ * @version   $Id$
  */
 
 /**
