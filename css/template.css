@@ -34,6 +34,7 @@ h1 {
 
 h2 {
     color:#000;
+    border-bottom:1px solid #333;
 }
 
 h3 {
@@ -473,9 +474,20 @@ form#edit input[type=file] {
 form#edit input[type=text], form#edit input[type=select], form#edit textarea,
 select#format, select#genre, select#rating {
     width:230px;
-    border:1px solid #CFCFCF;
-    color:#000;
+/*    border:1px solid #CFCFCF;*/
+    border:1px solid #BBBBBB;
+    background-color:#fff;
+    background: #fff url("../images/input-bg.png") no-repeat 0 0;
+    color:#333;
     padding:4px;
+/*    -moz-border-radius:5px;*/
+}
+
+form#edit input:focus, form#edit textarea:focus, form#edit select:focus {
+    border: 1px solid #2DAEBF;
+/*    color: #333333;*/
+    outline: medium none;
+/*    padding: 2px 3px;*/
 }
 
 form#edit label {
