@@ -6,7 +6,7 @@
  * @author  Nico Schmitz - cofilew@gmail.com
  * @file    MovieController.php
  * @since   13.05.2011 - 23:35:14
- * @version ${id}
+ * @version $id$
  */
 class Movie {
 

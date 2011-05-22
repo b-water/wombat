@@ -39,7 +39,8 @@ table.tablesorter tr {
            maintable columns
 **************************************/
 
-table td.name, table td.genre, table td.rating, table td.format {
+table td.name, table td.genre, table td.rating, table td.format,
+e {
     cursor:pointer;
 }
 
@@ -51,14 +52,18 @@ table tr.even {
     background-color:#EAEAEA;
 }
 
-table td {
-    cursor:pointer;
+table tr:hover {
+    background-color:red;
 }
 
+table td {
+    cursor:pointer !important;
+}
+/*
 table tr:hover td {
     background-color:red !important;
 }
 
 even:hover {
     background-color:red;
-}
+}*/
