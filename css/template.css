@@ -23,6 +23,88 @@ tfoot, thead, tr, th, td {
     vertical-align: baseline;
 }
 
+
+/**************************************
+        lists ul ol li dl dd etc
+**************************************/
+
+ul {
+
+}
+
+li {
+
+}
+
+input, select {
+    font-size:12px;
+}
+
+select {
+    color:#333;
+}
+
+/**************************************
+            positioning
+**************************************/
+
+
+
+.full {
+    overflow:hidden;
+}
+
+.right {
+    float:right;
+}
+
+.left {
+    float:left;
+}
+
+.clear {
+    clear:both;
+}
+
+.absolute {
+    position:absolute;
+}
+
+.relative {
+    position:relative;
+}
+
+
+/**************************************
+            displaying
+**************************************/
+
+.invisible {
+    visibility:hidden;
+}
+
+.inline {
+    display:inline;
+}
+
+/**************************************
+       highlighting, coloring etc
+**************************************/
+
+.attention {
+    background: #FFF6CF url('../images/error.png') 5px center no-repeat;
+    padding:5px 5px 5px 25px;
+    border: 1px solid #FFDD3F;
+}
+
+.highlight {
+    color:#C91715;
+}
+
+.non-clickable {
+    cursor:default;
+}
+
 input[type=submit], input[type=button] {
     border:0;
 }
@@ -141,3 +223,256 @@ ul#menu .ui-state-default {
     display:inline-block;
 }
 
+/**************************************
+                table
+**************************************/
+
+table {
+    width:100%;
+    font-size:12px;
+}
+
+table thead tr {
+    background-color:#EAEAEA;
+    margin:5px;
+}
+
+table th {
+    padding:5px;
+    border-right:1px solid #DFDFDF;
+    border-bottom:1px solid #DFDFDF;
+    border-top:1px solid #DFDFDF;
+    background-repeat: no-repeat;
+    background-position: center right;
+    cursor: pointer;
+}
+
+table td {
+    padding:5px;
+    border-right:1px solid #CFCFCF;
+    border-bottom:1px solid #CFCFCF;
+    border-top:1px solid #fff;
+    color:#3F3F3F;
+    vertical-align: top;
+}
+
+table.tablesorter thead tr .headerSortDown, table.tablesorter thead tr .headerSortUp {
+    background-color: #DFDFDF;
+    border-right:1px solid #BFBFBF;
+    border-bottom:1px solid #BFBFBF;
+    border-top:1px solid #BFBFBF;
+}
+
+table.tablesorter thead tr .headerSortDown {
+    background-image: url('../images/tablesorter/desc.gif');
+}
+
+table.tablesorter thead tr .headerSortUp {
+    background-image: url('../images/tablesorter/asc.gif');
+}
+
+
+/**************************************
+           main table columns
+**************************************/
+
+table tr.even {
+    background-color:#EAEAEA;
+}
+
+table.tablesorter tr:hover {
+    background-color:#555 !important;
+}
+
+table.tablesorter tr:hover td, table tr:hover th {
+    color:#fff;
+}
+
+table a.edit {
+    background:url('../images/pencil.png') 0 0 no-repeat;
+    width:16px;
+    height:16px;
+    display:block;
+}
+
+table a.show {
+    background:url('../images/page.png') 0 0 no-repeat;
+    width:16px;
+    height:16px;
+    display:block;
+}
+
+table a.delete {
+    background:url('../images/bin_closed.png') 0 0 no-repeat;
+    width:16px;
+    height:16px;
+    display:block;
+}
+
+table th.show, table th.delete, table th.edit {
+    background-color: #F0F0F0;
+}
+
+/**************************************
+                form
+**************************************/
+
+
+/**************************************
+                controls
+**************************************/
+
+
+form#controls {
+    margin:0 0 10px 0;
+}
+
+form#controls input[type=text] {
+}
+
+form#controls select {
+    width:100%;
+}
+
+form#controls div.box {
+    overflow: hidden;
+    margin:0 0 30px 0;
+}
+
+form#controls input#searchSubmit, form#controls input#add,
+form#controls input#del, form#controls input#change,
+form#controls input#import, form#controls input#export {
+    background-repeat:no-repeat;
+    background-position: 25px 7px;
+}
+
+form#controls input#searchSubmit  {
+    background-image: url('../images/magnifier.png');
+    margin:10px 0 0 0;
+}
+
+form#controls input#add  {
+    background-image:url('../images/table_add.png');
+}
+
+form#controls input#del  {
+    background-image:url('../images/table_delete.png');
+}
+
+form#controls input#change  {
+    background-image:url('../images/table_edit.png');
+}
+
+form#controls input#export {
+    background-image:url('../images/application_go.png');
+}
+
+form#controls input#import  {
+    background-image:url('../images/application_get.png');
+}
+
+
+/**************************************
+                pager
+**************************************/
+
+
+div#pager {
+    margin:10px 0 0 0;
+    float:right;
+}
+
+div#pager input.pagedisplay {
+    width:45px;
+}
+
+
+form#searchbar {
+    margin-bottom: 10px;
+    clear:both;
+
+}
+
+select.pagesize {
+    display:none;
+}
+
+/**************************************
+              searchbar
+**************************************/
+
+form#searchbar input[type=text] {
+    width:78%;
+    float:left;
+    height:26px;
+    margin:0 7px 0 7px;
+    -moz-border-radius:5px;
+    border:1px solid #CFCFCF;
+    color:#707070;
+    padding:4px 4px 4px 25px;
+    background-image:url('../images/magnifier.png');
+    background-repeat: no-repeat;
+    background-position: 5px 5px;
+}
+
+
+/**************************************
+              edit
+**************************************/
+
+
+form#edit {
+    padding-top:20px;
+}
+
+form#edit fieldset {
+    margin-bottom:10px;
+}
+
+form#edit input[type=file] {
+    width:350px;
+}
+
+form#edit input[type=text], form#edit input[type=select], form#edit textarea,
+select#format, select#genre, select#rating {
+    width:230px;
+    border:1px solid #CFCFCF;
+    color:#000;
+    padding:4px;
+}
+
+form#edit label {
+    width:100px;
+    margin-bottom:4px;
+    display:block;
+    float:left;
+    padding-top:6px;
+}
+
+form#edit img {
+    display:block;
+}
+
+form#operations {
+    padding:15px 0 0 0;
+}
+
+form#operations fieldset {
+    padding-bottom:10px;
+}
+
+form#edit .attention {
+    font-size:11px;
+}
+
+fieldset#toolbar {
+    display: inline;
+    float:left;
+}
+
+fieldset#toolbar a {
+    margin-right:5px;
+}
+
+form#edit textarea {
+}

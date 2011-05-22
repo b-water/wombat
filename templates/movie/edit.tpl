@@ -19,6 +19,7 @@
 <!--        <p class="attention">Hinweis: Nur JPG, PNG und GIF sind erlaubt!</p>-->
         <label for="cover">Bild</label>
         <input type="file" name="cover" id="cover" />
+        {$finder}
     </fieldset>
     <fieldset>
         <label>Bewertung</label>
@@ -30,10 +31,9 @@
         <input type="button" class="small awesome" onclick="changeLocation('movie');" value="Berechnen" />
     </fieldset>
     <fieldset>
-        <label>Beschreibung</label>
-        <textarea name="description">{$movie.description}</textarea>
+        <textarea id="editor" name="editor">{$movie.description}</textarea>
     </fieldset>
-    <fieldset>
+    <fieldset class="right">
         <input type="submit" class="small awesome" value="Speichern" />
         <input type="button" class="small awesome" onclick="changeLocation('movie');" value="Abbrechen" />
     </fieldset>

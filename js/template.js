@@ -28,6 +28,9 @@ $(document).ready(function() {
                 },
                 6: {
                     sorter:false
+                },
+                7: {
+                    sorter:false
                 }
             }
         });
@@ -38,15 +41,10 @@ $(document).ready(function() {
         });
     }
 
-    // init tinyMCE if a textarea is found on the page
-    if($('textarea').length > 0)
+    // init ckeditor if a textarea is found on the page
+    if($('textarea#editor').length > 0)
     {
-        tinyMCE.init({
-            width: '400',
-            height: '200',
-            mode : 'textareas',
-            theme : 'simple'
-        });
+        CKEDITOR.replace( 'editor');
     }
 });
 

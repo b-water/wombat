@@ -11,7 +11,7 @@
 /* Launching Session */
 session_start();
 
-/* fragwÃ¼rdig */
+/* fragwürdig */
 session_set_cookie_params(7200, '', true);
 
 /* prints out all error messages */
@@ -31,21 +31,19 @@ autoloader::init();
 /* load the configurations */
 $config = Config::getInstance('config.ini');
 
-$params = array(
-    'host'      => '127.0.0.1',
-    'username'  => 'dbadmin',
-    'password'  => '1234',
-    'dbname'    => 'redwombat' );
-
-//    $datenbank = Zend_Db::factory('Mysqli', $params);
+//$params = array(
+//    'host'      => '127.0.0.1',
+//    'username'  => 'dbadmin',
+//    'password'  => '1234',
+//    'dbname'    => 'redwombat' );
 
 try {
     
    $db = new Zend_Db_Adapter_Mysqli(array(
-    'host'      => '127.0.0.1',
-    'username'  => 'dbadmin',
-    'password'  => '1234',
-    'dbname'    => 'redwombat' ));
+    'host'      => $config->get('HOST'),
+    'username'  => $config->get('USER'),
+    'password'  => $config->get('PASSWORD'),
+    'dbname'    => $config->get('DATABASE') ));
 
 
 } catch (Zend_Db_Exception $dbException) {
@@ -73,16 +71,7 @@ $registry->set('smarty', $smarty);
 $registry->set('config', $config);
 $registry->set('url', $url);
 
-//// fetch all javascript and css files
-//$file = File::getInstance();
-////$css = $file->fetchDir('css/', 'css');
-//$js = $file->fetchDir('js/', 'js');
-
-//$menu = new Menu();
-
 // assign them to smarty
-//$smarty->assign('js', $js);
-//$smarty->assign('css', $css);
 $smarty->assign('file', 'bootstrap.php');
 $smarty->assign('maintitle',$config->get('MAINTITLE'));
 $smarty->assign('basepath', $config->get('BASE_PATH'));
@@ -99,11 +88,11 @@ try {
 $db->closeConnection();
 
 /* TODO: Smarty updaten
- * TODO: Exceptions fÃ¼r Error Handling
+ * TODO: Exceptions für Error Handling
  */
 
 
-/* WeiÃŸe Print_r ausgabe */
+/* Weiße Print_r ausgabe */
 //echo '><pre style="color:#fff;"><h1>Session</h1>';
 //print_r($_SESSION);
 //echo '<h1>Request</h1>';

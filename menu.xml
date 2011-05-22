@@ -100,6 +100,12 @@
         </item>
 
     </item>
+    <item id="files" parent_id="0">
+        <content>
+            <name><![CDATA[Dateien]]>
+            </name>
+        </content>
+    </item>
     <item id="administration" parent_id="0">
         <content>
             <name><![CDATA[Administration]]>

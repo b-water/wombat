@@ -1,9 +1,9 @@
-<?php /* Smarty version 2.6.26, created on 2011-05-13 23:11:53
+<?php /* Smarty version 2.6.26, created on 2011-05-22 17:59:48
          compiled from head.tpl */ ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
         <title><?php echo $this->_tpl_vars['maintitle']; ?>
  - <?php echo $this->_tpl_vars['title']; ?>
 </title>
@@ -16,7 +16,7 @@
         <link rel="stylesheet" href="css/typography.css" type="text/css" media="screen" />
         <link rel="stylesheet" href="css/predefined.css" type="text/css" media="screen" />
         <link rel="stylesheet" href="css/reset.css" type="text/css" media="screen" />
-<!--        <link rel="stylesheet" href="css/table.css" type="text/css" media="screen" />-->
+        <link rel="stylesheet" href="css/table.css" type="text/css" media="screen" />
         <link rel="stylesheet" href="css/menu.css" type="text/css" media="screen" />
         <link rel="stylesheet" href="css/generic.css" type="text/css" media="screen" />
         <link rel="stylesheet" href="css/form.css" type="text/css" media="screen" />

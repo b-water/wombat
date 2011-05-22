@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.26, created on 2011-05-16 20:50:51
+<?php /* Smarty version 2.6.26, created on 2011-05-22 19:15:08
          compiled from movie/edit.tpl */ ?>
 <form id="edit" method="POST" action="movie/update/" enctype="multipart/form-data" >
     <input type="hidden" name="id" value="<?php echo $this->_tpl_vars['movie']['id']; ?>
@@ -32,6 +32,8 @@ unset($_smarty_tpl_vars);
 <!--        <p class="attention">Hinweis: Nur JPG, PNG und GIF sind erlaubt!</p>-->
         <label for="cover">Bild</label>
         <input type="file" name="cover" id="cover" />
+        <?php echo $this->_tpl_vars['finder']; ?>
+
     </fieldset>
     <fieldset>
         <label>Bewertung</label>
@@ -48,11 +50,10 @@ unset($_smarty_tpl_vars);
         <input type="button" class="small awesome" onclick="changeLocation('movie');" value="Berechnen" />
     </fieldset>
     <fieldset>
-        <label>Beschreibung</label>
-        <textarea name="description"><?php echo $this->_tpl_vars['movie']['description']; ?>
+        <textarea id="editor" name="editor"><?php echo $this->_tpl_vars['movie']['description']; ?>
 </textarea>
     </fieldset>
-    <fieldset>
+    <fieldset class="right">
         <input type="submit" class="small awesome" value="Speichern" />
         <input type="button" class="small awesome" onclick="changeLocation('movie');" value="Abbrechen" />
     </fieldset>

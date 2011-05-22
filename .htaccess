@@ -7,5 +7,4 @@ RewriteCond %{REQUEST_FILENAME} !-d
 
 RewriteRule ^(.*)$ bootstrap.php?rt=$1 [L,QSA]
 
-AddType text/css;charset=ISO-8859-1 .css
-AddType text/html;charset=ISO-8859-1 .html
+AddDefaultCharset utf-8

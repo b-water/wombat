@@ -62,7 +62,7 @@ class MovieController extends BaseController {
     /**
      * Show a single Movie
      */
-    public function single() {
+    public function show() {
 
         $filter = ' WHERE id = "' . $this->url->get('id') . '"';
         $movies = $this->movie->fetch($this->fields, $filter);
@@ -110,6 +110,16 @@ class MovieController extends BaseController {
         $this->smarty->assign('format', $format);
         $this->smarty->assign('genre', $genre);
         $this->smarty->assign('rating', $rating);
+        $this->smarty->assign('movie', $movie[0]);
+//
+//        require_once '../library/ckfinder/ckfinder.php' ;
+//
+//        // You can use the "CKFinder" class to render CKFinder in a page:
+//        $finder = new CKFinder() ;
+//        $finder->BasePath = '../../' ;	// The path for the installation of CKFinder (default = "/ckfinder/").
+//        $finder->SelectFunction = 'ShowFileInfo' ;
+//        $finder->Create() ;
+
         $this->smarty->assign('movie', $movie[0]);
 
         $content = $this->smarty->fetch($this->template_dir . 'edit.tpl');
