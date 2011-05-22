@@ -1,8 +1,12 @@
-<?php /* Smarty version 2.6.26, created on 2011-05-22 19:15:08
+<?php /* Smarty version 2.6.26, created on 2011-05-22 20:12:21
          compiled from movie/edit.tpl */ ?>
 <form id="edit" method="POST" action="movie/update/" enctype="multipart/form-data" >
     <input type="hidden" name="id" value="<?php echo $this->_tpl_vars['movie']['id']; ?>
 " />
+    <fieldset>
+        <h2>Film bearbeiten</h2>
+        <hr>
+    </fieldset>
     <fieldset>
         <label>Name</label>
         <input type="text" name="name" value="<?php echo $this->_tpl_vars['movie']['name']; ?>

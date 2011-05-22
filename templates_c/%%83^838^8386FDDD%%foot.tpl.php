@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.26, created on 2011-05-22 19:24:56
+<?php /* Smarty version 2.6.26, created on 2011-05-22 20:06:14
          compiled from foot.tpl */ ?>
       <script type="text/javascript" src="library/jquery/jquery-1.5.1.min.js"></script>
 <!--      <script type="text/javascript" src="library/jquery/jquery-ui-1.8.11.custom.min.js"></script>-->
