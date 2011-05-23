@@ -11,7 +11,7 @@
 /* Launching Session */
 session_start();
 
-/* fragwürdig */
+/* fragwï¿½rdig */
 session_set_cookie_params(7200, '', true);
 
 /* prints out all error messages */
@@ -43,6 +43,7 @@ try {
     'host'      => $config->get('HOST'),
     'username'  => $config->get('USER'),
     'password'  => $config->get('PASSWORD'),
+    'charset' => 'utf8',
     'dbname'    => $config->get('DATABASE') ));
 
 
@@ -88,11 +89,11 @@ try {
 $db->closeConnection();
 
 /* TODO: Smarty updaten
- * TODO: Exceptions für Error Handling
+ * TODO: Exceptions fï¿½r Error Handling
  */
 
 
-/* Weiße Print_r ausgabe */
+/* Weiï¿½e Print_r ausgabe */
 //echo '><pre style="color:#fff;"><h1>Session</h1>';
 //print_r($_SESSION);
 //echo '<h1>Request</h1>';

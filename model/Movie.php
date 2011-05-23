@@ -137,6 +137,9 @@ class Movie {
 
         $sql = $this->db->query($select);
         $this->movies = $sql->fetchAll();
+        echo '<pre>';
+        print_r($this->movies);
+        echo '</pre>';
 
         if(empty($this->movies))
             throw new MovieException('(#3) : No Movies found!');
