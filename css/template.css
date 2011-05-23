@@ -318,11 +318,11 @@ table tr.even {
     background-color:#EAEAEA;
 }
 
-table.tablesorter tr:hover {
+table.tablesorter tr:hover td {
     background-color:#555 !important;
 }
 
-table.tablesorter tr:hover td, table tr:hover th {
+table.tablesorter tr:hover td {
     color:#fff;
 }
 

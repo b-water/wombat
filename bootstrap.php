@@ -20,7 +20,8 @@ error_reporting(E_ALL);
 /* Embedding from libs, classes and some other stuff */
 require_once('application/Autoloader.php');
 require_once('library/Smarty/Smarty.class.php');
-require_once('library/Zend/Db/Adapter/mysqli.php');
+//require_once('library/Zend/Db/Adapter/mysqli.php');
+require_once('library/Zend/Db/Adapter/Pdo/Mysql.php');
 //require_once 'Zend/Loader.php';
 //require_once('library/Zend/Db.php');
 require_once('library/Zend/File/Transfer.php');
@@ -39,11 +40,11 @@ $config = Config::getInstance('config.ini');
 
 try {
     
-   $db = new Zend_Db_Adapter_Mysqli(array(
+   $db = new Zend_Db_Adapter_Pdo_Mysql(array(
     'host'      => $config->get('HOST'),
     'username'  => $config->get('USER'),
     'password'  => $config->get('PASSWORD'),
-    'charset' => 'utf8',
+    'charset'   => 'utf8',
     'dbname'    => $config->get('DATABASE') ));
 
 
