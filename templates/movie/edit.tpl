@@ -1,9 +1,6 @@
 <form id="edit" method="POST" action="movie/update/" enctype="multipart/form-data" >
     <input type="hidden" name="id" value="{$movie.id}" />
-    <fieldset>
-        <h2>Film bearbeiten</h2>
-        <hr>
-    </fieldset>
+    <h2>Film bearbeiten</h2>
     <fieldset>
         <label>Name</label>
         <input type="text" name="name" value="{$movie.name}" />
