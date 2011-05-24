@@ -6,7 +6,7 @@
  * @Date 01.04.2010
  * @Version 0.1
  * @licence : All Right Reserved
- * ********************************************************************************************** */
+******************************************************************************************* */
 
 /* Launching Session */
 session_start();
@@ -18,7 +18,7 @@ session_set_cookie_params(7200, '', true);
 error_reporting(E_ALL);
 
 /* Embedding from libs, classes and some other stuff */
-require_once('application/Autoloader.php');
+require_once('core/Autoloader.php');
 require_once('library/Smarty/Smarty.class.php');
 //require_once('library/Zend/Db/Adapter/mysqli.php');
 require_once('library/Zend/Db/Adapter/Pdo/Mysql.php');

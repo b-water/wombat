@@ -205,6 +205,8 @@ div#wrapper {
     width:960px;
     overflow: hidden;
     background-color:#F0F0F0;
+    -moz-border-radius:10px;
+    box-shadow:2px 2px 6px #000;
 }
 
 /**************************************

@@ -1,3 +1,3 @@
-<ul id="menu" class="ui-widget-content">
+<ul id="menu">
 
 </ul>

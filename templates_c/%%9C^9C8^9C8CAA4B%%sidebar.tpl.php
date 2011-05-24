@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.26, created on 2011-05-23 14:02:18
+<?php /* Smarty version 2.6.26, created on 2011-05-24 19:56:42
          compiled from sidebar.tpl */ ?>
 <img src="images/wombat_logo.png" alt="logo" />
 <ul>

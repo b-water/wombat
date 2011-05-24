@@ -1,20 +1,20 @@
 $(document).ready(function() {
-
-    $('ul#menu').jstree({
-        'animation' : 100,
-        'xml_data' : {
-            'ajax' : {
-                'url' : 'menu.xml'
-            },
-            'xsl' : 'nest'
-        },
-        'plugins' : [  'xml_data', 'themes','cookies' ],
-        'themes' : {
-            'theme' : 'default',
-            'dots' : true,
-            'icons' : true
-        }
-    });
+//
+//    $('ul#menu').jstree({
+//        'animation' : 100,
+//        'xml_data' : {
+//            'ajax' : {
+//                'url' : 'menu.xml'
+//            },
+//            'xsl' : 'nest'
+//        },
+//        'plugins' : [  'xml_data', 'themes','cookies' ],
+//        'themes' : {
+//            'theme' : 'default',
+//            'dots' : true,
+//            'icons' : true
+//        }
+//    });
 
     if($('table').length > 0)
     {
