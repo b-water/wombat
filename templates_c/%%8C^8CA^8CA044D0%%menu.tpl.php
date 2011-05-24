@@ -1,5 +1,5 @@
-<?php /* Smarty version 2.6.26, created on 2011-05-13 23:11:53
+<?php /* Smarty version 2.6.26, created on 2011-05-24 20:23:16
          compiled from menu.tpl */ ?>
-<ul id="menu" class="ui-widget-content">
+<ul id="menu">
 
 </ul>
