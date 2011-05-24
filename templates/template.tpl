@@ -2,7 +2,10 @@
 {include file='head.tpl'}
 <body>
     <div id="wrapper">
-        {include file='menu.tpl'}
+        <div id="control">
+            {include file='menu.tpl'}
+            {include file='toolbar.tpl'}
+        </div>
          <div id="content">
             {* Content Bereich Laden *}
             {$content}

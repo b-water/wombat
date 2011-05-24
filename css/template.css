@@ -219,6 +219,14 @@ div#wrapper {
 #content {
 }
 
+/**************************************
+                control
+**************************************/
+
+div#control {
+    overflow:hidden;
+    margin-bottom:20px;
+}
 
 /**************************************
                 menu
@@ -230,6 +238,7 @@ ul#menu {
     font-size:12px;
     font-weight:normal;
     overflow:hidden;
+    float:left;
 }
 
 ul#menu li {
@@ -365,6 +374,22 @@ form#controls input#searchSubmit  {
     margin:10px 0 0 0;
 }
 
+form#toolbar input#searchText {
+    width:300px;
+    height:30px;
+    font-size:14px;
+    margin:0 5px;
+    border:1px solid #BBBBBB;
+    background: #fff url("../images/input-bg.png") no-repeat 0 0;
+    color:#333;
+    padding:4px;
+}
+
+form#toolbar input#searchText:focus {
+    border: 1px solid #2DAEBF;
+    outline: medium none;
+}
+
 form#controls input#add  {
     background-image:url('../images/table_add.png');
 }
@@ -437,6 +462,10 @@ form#searchbar input[type=text] {
 
 form#edit {
     padding-top:20px;
+}
+
+form#toolbar {
+    float:right;
 }
 
 form#edit fieldset {
