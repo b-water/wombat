@@ -1,20 +1,4 @@
 $(document).ready(function() {
-//
-//    $('ul#menu').jstree({
-//        'animation' : 100,
-//        'xml_data' : {
-//            'ajax' : {
-//                'url' : 'menu.xml'
-//            },
-//            'xsl' : 'nest'
-//        },
-//        'plugins' : [  'xml_data', 'themes','cookies' ],
-//        'themes' : {
-//            'theme' : 'default',
-//            'dots' : true,
-//            'icons' : true
-//        }
-//    });
 
     if($('table').length > 0)
     {
@@ -48,60 +32,60 @@ $(document).ready(function() {
     }
 });
 
-function fancyAjaxLoader(id,controller,action,title) {
-
-    $.fancybox.showActivity();
-
-    var path = '';
-    
-    if(controller != undefined)
-        path = controller+'/';
-    if(action != undefined)
-        path += action+'/';
-    if(id != undefined)
-        path += id+'';
-    
-    $.ajax({
-        type : 'POST',
-        cache : false,
-        url : path,
-        data : $(this).serializeArray(),
-        success: function(data) {
-            $.fancybox({
-                content: data,
-                title: title,
-                scrolling: 'no',
-                onComplete: function() {
-                    $('#fancybox-title').css({
-                        'top':'0px',
-                        'bottom':'auto'
-                    });
-                }
-            });
-            tinyMCE.init({
-                mode : 'textareas',
-                theme : 'simple'
-            });
-
-            $('form#edit').ajaxForm(function() {
-                });
-        }
-    });
-    
-
-}
-
-function changeLocation(controller, action, id)
-{
-    var href = '';
-    if(controller != undefined)
-    {
-        href += controller;
-        if(action != undefined)
-            href += '/'+action;
-        if(id != undefined)
-            href+= '/'+id;
-        
-        window.location.href = href;
-    }
-}
+//function fancyAjaxLoader(id,controller,action,title) {
+//
+//    $.fancybox.showActivity();
+//
+//    var path = '';
+//
+//    if(controller != undefined)
+//        path = controller+'/';
+//    if(action != undefined)
+//        path += action+'/';
+//    if(id != undefined)
+//        path += id+'';
+//
+//    $.ajax({
+//        type : 'POST',
+//        cache : false,
+//        url : path,
+//        data : $(this).serializeArray(),
+//        success: function(data) {
+//            $.fancybox({
+//                content: data,
+//                title: title,
+//                scrolling: 'no',
+//                onComplete: function() {
+//                    $('#fancybox-title').css({
+//                        'top':'0px',
+//                        'bottom':'auto'
+//                    });
+//                }
+//            });
+//            tinyMCE.init({
+//                mode : 'textareas',
+//                theme : 'simple'
+//            });
+//
+//            $('form#edit').ajaxForm(function() {
+//                });
+//        }
+//    });
+//
+//
+//}
+//
+//function changeLocation(controller, action, id)
+//{
+//    var href = '';
+//    if(controller != undefined)
+//    {
+//        href += controller;
+//        if(action != undefined)
+//            href += '/'+action;
+//        if(id != undefined)
+//            href+= '/'+id;
+//
+//        window.location.href = href;
+//    }
+//}
