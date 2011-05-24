@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.26, created on 2011-05-24 21:30:51
+<?php /* Smarty version 2.6.26, created on 2011-05-24 21:34:25
          compiled from template.tpl */ ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => 'head.tpl', 'smarty_include_vars' => array()));
@@ -7,8 +7,15 @@ unset($_smarty_tpl_vars);
  ?>
 <body>
     <div id="wrapper">
-                <?php echo $this->_tpl_vars['content']; ?>
+        <?php $_smarty_tpl_vars = $this->_tpl_vars;
+$this->_smarty_include(array('smarty_include_tpl_file' => 'menu.tpl', 'smarty_include_vars' => array()));
+$this->_tpl_vars = $_smarty_tpl_vars;
+unset($_smarty_tpl_vars);
+ ?>
+         <div id="content">
+                        <?php echo $this->_tpl_vars['content']; ?>
 
+         </div>
     </div>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => 'foot.tpl', 'smarty_include_vars' => array()));

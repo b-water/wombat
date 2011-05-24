@@ -215,11 +215,9 @@ div#wrapper {
 /**************************************
                 content
 *************************************
-
+*/
 #content {
-    width: 100%;
-    padding: 20px;
-}*/
+}
 
 
 /**************************************
@@ -231,6 +229,13 @@ ul#menu {
     padding:10px 0 10px 0;
     font-size:12px;
     font-weight:normal;
+    overflow:hidden;
+}
+
+ul#menu li {
+    float:left;
+    display:block;
+    margin-right:10px;
 }
 
 /**************************************
