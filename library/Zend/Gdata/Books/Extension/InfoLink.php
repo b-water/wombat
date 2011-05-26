@@ -17,7 +17,7 @@
  * @package    Zend_Gdata
  * @subpackage Books
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id$
+ * @version    $Id: InfoLink.php 118 2011-05-20 11:28:02Z nico $
  */
 
 /**

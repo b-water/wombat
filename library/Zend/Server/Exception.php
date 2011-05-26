@@ -28,7 +28,7 @@ require_once 'Zend/Exception.php';
  *
  * @package Zend_Server
  * @subpackage Reflection
- * @version $Id$
+ * @version $Id: Exception.php 118 2011-05-20 11:28:02Z nico $
  */
 class Zend_Server_Exception extends Zend_Exception
 {

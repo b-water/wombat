@@ -38,6 +38,7 @@ h2 {
     border-bottom:2px solid #2DAEBF;
     margin-bottom:15px;
     padding-bottom:6px;
+    font-size:16px;
 }
 
 h3 {
@@ -138,7 +139,7 @@ select {
 **************************************/
 
 .attention {
-    background: #FFF6CF url('../images/error.png') 5px center no-repeat;
+    background: #FFF6CF url('../images/icons/error.png') 5px center no-repeat;
     padding:5px 5px 5px 25px;
     border: 1px solid #FFDD3F;
 }
@@ -312,21 +313,21 @@ table.tablesorter tr:hover td {
 }
 
 table a.edit {
-    background:url('../images/pencil.png') 0 0 no-repeat;
+    background:url('../images/icons/pencil.png') 0 0 no-repeat;
     width:16px;
     height:16px;
     display:block;
 }
 
 table a.show {
-    background:url('../images/page.png') 0 0 no-repeat;
+    background:url('../images/icons/page.png') 0 0 no-repeat;
     width:16px;
     height:16px;
     display:block;
 }
 
 table a.delete {
-    background:url('../images/bin_closed.png') 0 0 no-repeat;
+    background:url('../images/icons/bin_closed.png') 0 0 no-repeat;
     width:16px;
     height:16px;
     display:block;
@@ -370,7 +371,7 @@ form#controls input#import, form#controls input#export {
 }
 
 form#controls input#searchSubmit  {
-    background-image: url('../images/magnifier.png');
+    background-image: url('../images/icons/magnifier.png');
     margin:10px 0 0 0;
 }
 
@@ -380,7 +381,7 @@ form#toolbar input#searchText {
     font-size:14px;
     margin:0 5px;
     border:1px solid #BBBBBB;
-    background: #fff url("../images/input-bg.png") no-repeat 0 0;
+    background: #fff url("../images/form/input-bg.png") no-repeat 0 0;
     color:#333;
     padding:4px;
 }
@@ -391,23 +392,23 @@ form#toolbar input#searchText:focus {
 }
 
 form#controls input#add  {
-    background-image:url('../images/table_add.png');
+    background-image:url('../images/icons/table_add.png');
 }
 
 form#controls input#del  {
-    background-image:url('../images/table_delete.png');
+    background-image:url('../images/icons/table_delete.png');
 }
 
 form#controls input#change  {
-    background-image:url('../images/table_edit.png');
+    background-image:url('../images/icons/table_edit.png');
 }
 
 form#controls input#export {
-    background-image:url('../images/application_go.png');
+    background-image:url('../images/icons/application_go.png');
 }
 
 form#controls input#import  {
-    background-image:url('../images/application_get.png');
+    background-image:url('../images/icons/application_get.png');
 }
 
 
@@ -449,7 +450,7 @@ form#searchbar input[type=text] {
     border:1px solid #CFCFCF;
     color:#707070;
     padding:4px 4px 4px 25px;
-    background-image:url('../images/magnifier.png');
+    background-image:url('../images/icons/magnifier.png');
     background-repeat: no-repeat;
     background-position: 5px 5px;
 }
@@ -481,7 +482,7 @@ select#format, select#genre, select#rating {
     width:230px;
     border:1px solid #BBBBBB;
     background-color:#fff;
-    background: #fff url("../images/input-bg.png") no-repeat 0 0;
+    background: #fff url("../images/form/input-bg.png") no-repeat 0 0;
     color:#333;
     padding:4px;
 }
@@ -593,4 +594,19 @@ form#edit textarea {
 }
 .yellow.awesome {
     background-color: #ffb515;
+}
+
+div.hidden-file-container {
+    position:relative;
+}
+
+fake-text, fake-button {
+    position: absolute;
+    z-index: 1;
+}
+
+input[type=file].hidden-file {
+/*    opacity:0;*/
+    z-index: 2;
+    position: absolute;
 }

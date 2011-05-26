@@ -32,7 +32,7 @@ require_once 'Zend/Validate/Interface.php';
  * @subpackage Adapter
  * @copyright  Copyright (c) 2005-2010 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id$
+ * @version    $Id: Adapter.php 118 2011-05-20 11:28:02Z nico $
  */
 interface Zend_Captcha_Adapter extends Zend_Validate_Interface
 {

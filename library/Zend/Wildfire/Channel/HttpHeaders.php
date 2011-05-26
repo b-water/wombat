@@ -17,7 +17,7 @@
  * @subpackage Channel
  * @copyright  Copyright (c) 2005-2010 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id$
+ * @version    $Id: HttpHeaders.php 118 2011-05-20 11:28:02Z nico $
  */
 
 /** Zend_Wildfire_Channel_Interface */

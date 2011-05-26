@@ -17,7 +17,7 @@
  * @subpackage Blob
  * @copyright  Copyright (c) 2005-2010 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://todo     name_todo
- * @version    $Id$
+ * @version    $Id: Stream.php 118 2011-05-20 11:28:02Z nico $
  */
 
 /**

@@ -30,7 +30,7 @@
  * @version 2.6.26
  */
 
-/* $Id$ */
+/* $Id: Smarty.class.php 118 2011-05-20 11:28:02Z nico $ */
 
 /**
  * DIR_SEP isn't used anymore, but third party apps might

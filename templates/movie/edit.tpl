@@ -19,8 +19,10 @@
         {/if}
 <!--        <p class="attention">Hinweis: Nur JPG, PNG und GIF sind erlaubt!</p>-->
         <label for="cover">Bild</label>
-        <input type="file" name="cover" id="cover" />
-        {$finder}
+        <div class="hidden-file-container">
+            <input type="text" class="fake-text"  /><input type="button" class="awesome small fake-button" value="Hochladen" />
+            <input type="file" name="cover" class="hidden-file" id="cover" />
+        </div>
     </fieldset>
     <fieldset>
         <label>Bewertung</label>
@@ -32,6 +34,7 @@
         <input type="button" class="small awesome" onclick="changeLocation('movie');" value="Berechnen" />
     </fieldset>
     <fieldset>
+        <label for="editor">Beschreibung</label>
         <textarea id="editor" name="editor">{$movie.description}</textarea>
     </fieldset>
     <fieldset class="right">

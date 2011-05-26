@@ -28,7 +28,7 @@ require_once 'Zend/Form.php';
  * @package    Zend_Form
  * @copyright  Copyright (c) 2005-2010 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id$
+ * @version    $Id: SubForm.php 118 2011-05-20 11:28:02Z nico $
  */
 class Zend_Form_SubForm extends Zend_Form
 {

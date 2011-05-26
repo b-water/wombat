@@ -26,7 +26,7 @@
  * @package Smarty
  */
 
-/* $Id$ */
+/* $Id: Smarty_Compiler.class.php 118 2011-05-20 11:28:02Z nico $ */
 
 /**
  * Template compiling class

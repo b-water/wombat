@@ -17,7 +17,7 @@
  * @subpackage Writer
  * @copyright  Copyright (c) 2005-2010 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id$
+ * @version    $Id: Abstract.php 118 2011-05-20 11:28:02Z nico $
  */
 
 /** @see Zend_Log_Filter_Interface */
@@ -32,7 +32,7 @@ require_once 'Zend/Log/FactoryInterface.php';
  * @subpackage Writer
  * @copyright  Copyright (c) 2005-2010 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id$
+ * @version    $Id: Abstract.php 118 2011-05-20 11:28:02Z nico $
  */
 abstract class Zend_Log_Filter_Abstract 
     implements Zend_Log_Filter_Interface, Zend_Log_FactoryInterface

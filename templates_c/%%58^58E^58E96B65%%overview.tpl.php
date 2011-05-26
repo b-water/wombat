@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.26, created on 2011-05-22 17:35:04
+<?php /* Smarty version 2.6.26, created on 2011-05-25 20:55:50
          compiled from movie/overview.tpl */ ?>
 <table id="movies" class="tablesorter">
     <thead>
@@ -36,7 +36,7 @@
 /"></a></td>
             <td class="edit"><a class="edit" title="Bearbeiten" href="movie/edit/<?php echo $this->_tpl_vars['item']['id']; ?>
 /"></a></td>
-            <td class="delete"><a class="delete" title="Löschen" href="movie/delete/<?php echo $this->_tpl_vars['item']['id']; ?>
+            <td class="delete"><a class="delete" title="L&ouml;schen" href="movie/delete/<?php echo $this->_tpl_vars['item']['id']; ?>
 /"></a></td>
         </tr>
         <?php endforeach; endif; unset($_from); ?>

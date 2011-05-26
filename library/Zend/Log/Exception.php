@@ -16,7 +16,7 @@
  * @package    Zend_Log
  * @copyright  Copyright (c) 2005-2010 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id$
+ * @version    $Id: Exception.php 118 2011-05-20 11:28:02Z nico $
  */
 
 /** Zend_Exception */
@@ -27,7 +27,7 @@ require_once 'Zend/Exception.php';
  * @package    Zend_Log
  * @copyright  Copyright (c) 2005-2010 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id$
+ * @version    $Id: Exception.php 118 2011-05-20 11:28:02Z nico $
  */
 class Zend_Log_Exception extends Zend_Exception
 {}

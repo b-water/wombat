@@ -17,7 +17,7 @@
  * @subpackage View
  * @copyright  Copyright (c) 2005-2010 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id$
+ * @version    $Id: SimpleTextarea.php 118 2011-05-20 11:28:02Z nico $
  */
 
 /** Zend_Dojo_View_Helper_Dijit */
@@ -31,7 +31,7 @@ require_once 'Zend/Dojo/View/Helper/Dijit.php';
  * @subpackage View
  * @copyright  Copyright (c) 2005-2010 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id$
+ * @version    $Id: SimpleTextarea.php 118 2011-05-20 11:28:02Z nico $
  */
 class Zend_Dojo_View_Helper_SimpleTextarea extends Zend_Dojo_View_Helper_Dijit
 {

@@ -34,7 +34,7 @@ require_once 'Zend/Registry.php';
  * @subpackage Plugins
  * @copyright  Copyright (c) 2005-2010 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id$
+ * @version    $Id: ActionStack.php 118 2011-05-20 11:28:02Z nico $
  */
 class Zend_Controller_Plugin_ActionStack extends Zend_Controller_Plugin_Abstract
 {

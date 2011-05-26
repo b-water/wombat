@@ -17,7 +17,7 @@
  * @subpackage Parse_Amf3
  * @copyright  Copyright (c) 2005-2010 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id$
+ * @version    $Id: Serializer.php 118 2011-05-20 11:28:02Z nico $
  */
 
 /** Zend_Amf_Constants */

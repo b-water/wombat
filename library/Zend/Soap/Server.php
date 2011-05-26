@@ -33,7 +33,7 @@ require_once 'Zend/Server/Interface.php';
  * @uses       Zend_Server_Interface
  * @copyright  Copyright (c) 2005-2010 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id$
+ * @version    $Id: Server.php 118 2011-05-20 11:28:02Z nico $
  */
 class Zend_Soap_Server implements Zend_Server_Interface
 {

@@ -31,7 +31,7 @@ require_once 'Zend/Dojo/Form/Decorator/DijitContainer.php';
  * @subpackage Form_Decorator
  * @copyright  Copyright (c) 2005-2010 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id$
+ * @version    $Id: TabContainer.php 118 2011-05-20 11:28:02Z nico $
  */
 class Zend_Dojo_Form_Decorator_TabContainer extends Zend_Dojo_Form_Decorator_DijitContainer
 {
