@@ -67,11 +67,14 @@ try {
     die($urlException);
 }
 
+
 // registers $db and $smarty
 $registry->set('db', $db);
 $registry->set('smarty', $smarty);
 $registry->set('config', $config);
 $registry->set('url', $url);
+$navi = new Navigation();
+
 
 // assign them to smarty
 $smarty->assign('file', 'bootstrap.php');
