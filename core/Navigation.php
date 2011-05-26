@@ -24,22 +24,33 @@ class Navigation {
         $this->db = $this->registry->get('db');
 
         $this->smarty = $this->registry->get('smarty');
+    }
 
+    public function fetch() {
         $select = $this->db->select();
         $select->from($this->table, $this->fields);
+        if (!empty($filter)) {
+            $select->where($filter);
+        }
         $select->order($this->order);
 
         $sql = $this->db->query($select);
-        $this->items = $sql->fetchAll();
+        $data = $sql->fetchAll();
+        if (empty($data))
+            throw new NavigationException('(#1) : No Data found!');
 
-        echo '<pre>';
-        print_r($this->items);
-        echo '</pre>';
+        return $data;
+    }
 
-        if(empty($this->items))
-            throw new MenuException('(#1) : No Data found!');
+    public function create(array $data) {
+        if (!empty($data)) {
 
-        $this->smarty->assign('menu',$this->items);
+            $this->smarty->assign('menuitems', $data);
+            $menu = $this->smarty->fetch($this->tpl);
+
+        } else {
+            throw new NavigationException('(#2) : You must assign the Data for the Menu!');
+        }
     }
 
 }

@@ -73,8 +73,12 @@ $registry->set('db', $db);
 $registry->set('smarty', $smarty);
 $registry->set('config', $config);
 $registry->set('url', $url);
-$navi = new Navigation();
 
+$navi = new Navigation();
+$data = $navi->fetch();
+$navi->create($data);
+//var_dump($menu);
+//$smarty->assign('menu', $menu);
 
 // assign them to smarty
 $smarty->assign('file', 'bootstrap.php');
