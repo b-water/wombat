@@ -210,7 +210,7 @@ div#wrapper {
     background-color:#F0F0F0;
     box-shadow:2px 2px 6px #000;
     padding:30px;
-    -moz-border-radius:0 0 5px 5px;
+    border-radius:0 0 5px 5px;
 }
 
 /**************************************
@@ -238,6 +238,7 @@ ul#navigation {
     overflow:hidden;
     float:left;
     height:35px;
+    text-transform: uppercase;
 }
 
 ul#navigation li {
@@ -245,21 +246,6 @@ ul#navigation li {
     display:block;
     margin-right:10px;
 }
-/*
-ul#menu li a:link, ul#menu a:visited {
-    background-color:#EAEAEA;
-    border:1px solid #CFCFCF;
-    -moz-border-radius:5px;
-    text-decoration: none;
-    color:#333;
-    padding:2px 6px;
-}
-
-ul#menu li a:hover, ul#menu li a.active {
-    background-color:#2DAEBF;
-    color:#fff;
-    border:1px solid #2DAEBF;
-}*/
 
 /**************************************
                 table
@@ -431,10 +417,11 @@ form#controls input#import  {
 
 
 div#pager {
-    background-color: #EAEAEA;
+/*    background-color: #EAEAEA;
     border-bottom: 1px solid #CFCFCF;
     border-left: 1px solid #CFCFCF;
-    border-right: 1px solid #CFCFCF;
+    border-right: 1px solid #CFCFCF;*/
+    margin-top:10px;
     float: right;
     padding: 5px;
 }
@@ -463,7 +450,7 @@ form#searchbar input[type=text] {
     float:left;
     height:26px;
     margin:0 7px 0 7px;
-    -moz-border-radius:5px;
+    border-radius:5px;
     border:1px solid #CFCFCF;
     color:#707070;
     padding:4px 4px 4px 25px;
@@ -560,16 +547,14 @@ form#edit textarea {
     text-decoration: none;
     font-weight: bold;
     line-height: 1;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    -moz-box-shadow: 0 1px 3px #999;
-    -webkit-box-shadow: 0 1px 3px #999;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px #999;
     text-shadow: 0 -1px 1px #222;
     border-bottom: 1px solid #222;
     position: relative;
     cursor: pointer;
-    -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
-    -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.5);
     text-shadow: 0 -1px 1px rgba(0,0,0,0.25);
     border-bottom: 1px solid rgba(0,0,0,0.25);
 }
@@ -627,9 +612,3 @@ input[type=file].hidden-file {
     z-index: 2;
     position: absolute;
 }
-/*
-div#toolbar .add {
-    border:1px solid #CFCFCF;
-    background-color:#EAEAEA;
-    padding:2px;
-}*/
