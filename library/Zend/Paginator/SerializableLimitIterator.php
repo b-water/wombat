@@ -14,15 +14,15 @@
  *
  * @category   Zend
  * @package    Zend_Paginator
- * @copyright  Copyright (c) 2005-2010 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2011 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: SerializableLimitIterator.php 118 2011-05-20 11:28:02Z nico $
+ * @version    $Id: SerializableLimitIterator.php 23775 2011-03-01 17:25:24Z ralph $
  */
 
 /**
  * @category   Zend
  * @package    Zend_Paginator
- * @copyright  Copyright (c) 2005-2010 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2011 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Paginator_SerializableLimitIterator extends LimitIterator implements Serializable, ArrayAccess
@@ -122,6 +122,7 @@ class Zend_Paginator_SerializableLimitIterator extends LimitIterator implements 
                 return null !== $current;
             } catch (OutOfBoundsException $e) {
                 // reset position in case of exception is assigned null
+                $this->rewind();
                 $this->seek($currentOffset);
                 return false;
             }

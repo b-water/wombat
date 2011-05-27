@@ -12,13 +12,14 @@ class Navigation {
 
     private $db;
     private $registry;
-    private $table = 'menu';
     private $fields = array('title', 'url', 'sequence');
     private $order = 'sequence';
     private $smarty;
     private $tpl = 'menu.tpl';
-    private $tplitem = 'menuItem.tpl';
 
+    /**
+     *  Constructor
+     */
     public function __construct() {
         $this->registry = Registry::getInstance();
         $this->db = $this->registry->get('db');
@@ -26,9 +27,15 @@ class Navigation {
         $this->smarty = $this->registry->get('smarty');
     }
 
+    /**
+     * Fetches all Data from
+     * the mysql table menu
+     *
+     * @return array data
+     */
     public function fetch() {
         $select = $this->db->select();
-        $select->from($this->table, $this->fields);
+        $select->from('menu', $this->fields);
         if (!empty($filter)) {
             $select->where($filter);
         }
@@ -36,18 +43,23 @@ class Navigation {
 
         $sql = $this->db->query($select);
         $data = $sql->fetchAll();
-        if (empty($data))
+        if (empty($data)) {
             throw new NavigationException('(#1) : No Data found!');
+        }
 
         return $data;
     }
 
+    /**
+     * Assign the Menu Items
+     * to Smarty
+     *
+     * @param array $data
+     */
     public function create(array $data) {
         if (!empty($data)) {
-
             $this->smarty->assign('menuitems', $data);
             $menu = $this->smarty->fetch($this->tpl);
-
         } else {
             throw new NavigationException('(#2) : You must assign the Data for the Menu!');
         }

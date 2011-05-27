@@ -14,9 +14,9 @@
  *
  * @category  Zend
  * @package   Zend_Text
- * @copyright  Copyright (c) 2005-2010 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2011 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd     New BSD License
- * @version   $Id: MultiByte.php 118 2011-05-20 11:28:02Z nico $
+ * @version   $Id: MultiByte.php 23775 2011-03-01 17:25:24Z ralph $
  */
 
 /**
@@ -24,7 +24,7 @@
  *
  * @category  Zend
  * @package   Zend_Text
- * @copyright  Copyright (c) 2005-2010 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2011 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Text_MultiByte
@@ -62,7 +62,7 @@ class Zend_Text_MultiByte
                     $cutLength = null;
                 } else {
                     $nextChar = iconv_substr($string, $width, 1, $charset);
-                    
+
                     if ($breakWidth === 1) {
                         $nextBreak = $nextChar;
                     } else {
