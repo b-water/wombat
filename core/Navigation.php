@@ -15,7 +15,7 @@ class Navigation {
     private $fields = array('title', 'url', 'sequence');
     private $order = 'sequence';
     private $smarty;
-    private $tpl = 'menu.tpl';
+    private $tpl = 'navigation.tpl';
 
     /**
      *  Constructor
@@ -35,7 +35,7 @@ class Navigation {
      */
     public function fetch() {
         $select = $this->db->select();
-        $select->from('menu', $this->fields);
+        $select->from('navigation', $this->fields);
         if (!empty($filter)) {
             $select->where($filter);
         }
@@ -58,8 +58,8 @@ class Navigation {
      */
     public function create(array $data) {
         if (!empty($data)) {
-            $this->smarty->assign('menuitems', $data);
-            $menu = $this->smarty->fetch($this->tpl);
+            $this->smarty->assign('navigation', $data);
+            $this->smarty->assign('activ', $_REQUEST['rt']);
         } else {
             throw new NavigationException('(#2) : You must assign the Data for the Menu!');
         }

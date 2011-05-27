@@ -3,7 +3,7 @@
 <body>
     <div id="wrapper">
         <div id="control">
-            {include file='menu.tpl'}
+            {include file='navigation.tpl'}
             {include file='toolbar.tpl'}
         </div>
          <div id="content">

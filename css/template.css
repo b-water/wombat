@@ -234,13 +234,13 @@ div#control {
 **************************************/
 
 
-ul#menu {
-    padding:10px 0 10px 0;
+ul#navigation {
     overflow:hidden;
     float:left;
+    height:35px;
 }
 
-ul#menu li {
+ul#navigation li {
     float:left;
     display:block;
     margin-right:10px;
