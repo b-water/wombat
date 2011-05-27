@@ -1,22 +1,23 @@
-<?php /* Smarty version Smarty-3.0.6, created on 2011-05-27 20:37:15
+<?php /* Smarty version Smarty-3.0.6, created on 2011-05-27 21:43:54
          compiled from ".\templates\movie/overview.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:311514ddfef5ba29fe7-14917626%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:198724ddffefacc7363-65696690%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '55c56703acbb40bb296294473f880b9a3799ab75' => 
     array (
       0 => '.\\templates\\movie/overview.tpl',
-      1 => 1306349635,
+      1 => 1306525391,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '311514ddfef5ba29fe7-14917626',
+  'nocache_hash' => '198724ddffefacc7363-65696690',
   'function' => 
   array (
   ),
   'has_nocache_code' => false,
 )); /*/%%SmartyHeaderCode%%*/?>
+<div id="toolbar"><a href="" class="add"  title="Hinzuf&uuml;gen"><img src="images/icons/add.png" alt="Suchen"/></a></div>
 <table id="movies" class="tablesorter">
     <thead>
         <tr>

@@ -1,3 +1,4 @@
+<div id="toolbar"><a href="" class="add"  title="Hinzuf&uuml;gen"><img src="images/icons/add.png" alt="Suchen"/></a></div>
 <table id="movies" class="tablesorter">
     <thead>
         <tr>

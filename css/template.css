@@ -236,13 +236,8 @@ div#control {
 
 ul#menu {
     padding:10px 0 10px 0;
-    font-size:12px;
-    font-weight:normal;
     overflow:hidden;
     float:left;
-/*    background-color:#2DAEBF;*/
-/*    background:#2DAEBF url('../images/template/navbg.png') repeat-x;*/
-    height:48px;
 }
 
 ul#menu li {
@@ -250,7 +245,7 @@ ul#menu li {
     display:block;
     margin-right:10px;
 }
-
+/*
 ul#menu li a:link, ul#menu a:visited {
     background-color:#EAEAEA;
     border:1px solid #CFCFCF;
@@ -264,7 +259,7 @@ ul#menu li a:hover, ul#menu li a.active {
     background-color:#2DAEBF;
     color:#fff;
     border:1px solid #2DAEBF;
-}
+}*/
 
 /**************************************
                 table
@@ -632,3 +627,9 @@ input[type=file].hidden-file {
     z-index: 2;
     position: absolute;
 }
+/*
+div#toolbar .add {
+    border:1px solid #CFCFCF;
+    background-color:#EAEAEA;
+    padding:2px;
+}*/
