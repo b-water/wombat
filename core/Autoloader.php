@@ -22,7 +22,7 @@ class Autoloader {
      *
      */
     public function __construct() {
-        spl_autoload_register(array($this,'application'));
+        spl_autoload_register(array($this,'core'));
         spl_autoload_register(array($this,'model'));
         spl_autoload_register(array($this,'controller'));
 }
@@ -31,8 +31,8 @@ class Autoloader {
      *
      * @param <type> $class 
      */
-    public function application($class) {
-        set_include_path(get_include_path() . PATH_SEPARATOR . 'application/');
+    public function core($class) {
+        set_include_path(get_include_path() . PATH_SEPARATOR . 'core/');
         spl_autoload_extensions('.php');
         spl_autoload($class);
     }
