@@ -1,5 +1,5 @@
-<form id="edit" method="POST" action="movie/update/" enctype="multipart/form-data" >
-    <input type="hidden" name="id" value="{$movie.id}" />
+<form id="edit" method="POST" action="movie/update/{$movie.id}/" enctype="multipart/form-data" >
+    <div class="notice good">Die Änderungen wurden erfolgreich in die Datenbank übertragen!</div>
     <div id="left-fields">
         <fieldset>
             <label>Name</label>
@@ -14,12 +14,9 @@
         {include file='genre.tpl'}
         </fieldset>
         <fieldset>
-        {if $movie.thumbnail != ''}
-            <img src="{$movie.thumbnail}" alt="thumbnail cover" />
-        {/if}
             <label for="fake-text">Bild</label>
             <div class="hidden-file-container">
-                <input type="text" class="fake-text" name="fake-text"  />
+                <input type="text" class="fake-text" name="fake-text" value="{$movie.cover}"  />
                 <input type="file" onchange="$('.fake-text').val($(this).val());" name="cover" class="hidden-file" id="cover" />
             </div>
         </fieldset>

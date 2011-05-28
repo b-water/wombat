@@ -1,6 +1,7 @@
 $(document).ready(function() {
     core.init.tablesorter($('table.tablesorter'));
-//    core.init.ckeditor($('textarea#editor'),'editor');
+    core.init.form($('form#edit'));
+    
 });
 
 jQuery.fn.exists = function(){
@@ -42,18 +43,29 @@ var core = {
                 });
             }
         },
-        ckeditor: function(obj,element) {
-            /* init ckeditor if a textarea is found on the page
-            which has the content of the element var as a id */
-            if(obj.exists())
-            {
-                CKEDITOR.replace(element);
+        form : function(obj)
+        {
+            showResponse = function() {
+                $('.notice').show();
+                $('.notice').animate({
+                    opacity: 1.0
+                }, 1000).fadeOut('fast', function() {
+                    $(this).hide();
+                });
             }
+
+            var options = {
+                success: showResponse
+            };
+
+            // bind 'myForm' and provide a simple callback function 
+            obj.ajaxForm(options); 
         }
+
     },
     ajax : {
         request : function() {
-            
+
         },
         initFancyBox : function(id,controller,action, title) {
 

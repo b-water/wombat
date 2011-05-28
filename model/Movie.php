@@ -10,18 +10,20 @@
 class Movie {
 
     protected static $instance = null;
-    private $movies = array();
-    private $format = array();
+    private $movies;
+    private $format;
     private $table = 'movie';
-    private $genre = array();
-    private $rating = array();
-    private $db = array();
-    private $config = array();
+    private $genre;
+    private $rating;
+    private $db;
+    private $config;
+    private $url;
 
     public function __construct() {
         $registry = Registry::getInstance();
         $this->db = $registry->get('db');
         $this->config = $registry->get('config');
+        $this->url = $registry->get('url');
     }
 
     public function isModified($current, $new) {
@@ -36,7 +38,7 @@ class Movie {
             'name' => $values['name'],
             'genre' => $values['genre'],
             'format' => $values['format'],
-//            'size' => $values['size'],
+            'size' => $values['size'],
             'description' => $values['description']
         );
 
@@ -87,9 +89,11 @@ class Movie {
             $data['cover'] = $filename;
             $data['thumbnail'] = $thumb_filename;
         }
+        
+        var_dump($data);    
+        var_dump($_REQUEST);
 
-
-        $affectedRows = $this->db->update($this->table, $data, 'id="' . $_REQUEST['id'] . '"');
+        $affectedRows = $this->db->update($this->table, $data, 'id="' . $this->url->get('id') . '"');
         if ($affectedRows != 1) {
             throw new MovieException('(#1) : The dataset coud not habe been updated!');
         }

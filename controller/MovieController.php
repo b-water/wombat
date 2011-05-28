@@ -111,14 +111,6 @@ class MovieController extends BaseController {
         $this->smarty->assign('genre', $genre);
         $this->smarty->assign('rating', $rating);
         $this->smarty->assign('movie', $movie[0]);
-//
-//        require_once '../library/ckfinder/ckfinder.php' ;
-//
-//        // You can use the "CKFinder" class to render CKFinder in a page:
-//        $finder = new CKFinder() ;
-//        $finder->BasePath = '../../' ;	// The path for the installation of CKFinder (default = "/ckfinder/").
-//        $finder->SelectFunction = 'ShowFileInfo' ;
-//        $finder->Create() ;
 
         $this->smarty->assign('movie', $movie[0]);
 
@@ -134,7 +126,7 @@ class MovieController extends BaseController {
     public function update() {
         /* update the dataset */
         try {
-            $test = $this->movie->update($_REQUEST);
+            $this->movie->update($_REQUEST);
         } catch (MovieException $movieException) {
             die($movieException);
         }

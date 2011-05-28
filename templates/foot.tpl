@@ -1,4 +1,4 @@
-      <script type="text/javascript" src="library/jquery/jquery-1.5.1.min.js"></script>
+      <script type="text/javascript" src="library/jquery/jquery-1.6.1.min.js"></script>
       <script type="text/javascript" src="library/jquery/jquery.easing-1.3.pack.js"></script>
       <script type="text/javascript" src="library/jquery/jquery.fancybox-1.3.4.pack.js"></script>
       <script type="text/javascript" src="library/jquery/jquery.form.js"></script>

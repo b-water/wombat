@@ -1,25 +1,25 @@
-<?php /* Smarty version Smarty-3.0.6, created on 2011-05-28 13:02:22
+<?php /* Smarty version Smarty-3.0.6, created on 2011-05-28 14:11:01
          compiled from ".\templates\movie/edit.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:169774de0d63e738980-53990414%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:274464de0e6559b2a34-69915422%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     'df4b0b48e76d7fe549ee68fc19b2c4f49a830454' => 
     array (
       0 => '.\\templates\\movie/edit.tpl',
-      1 => 1306580540,
+      1 => 1306584659,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '169774de0d63e738980-53990414',
+  'nocache_hash' => '274464de0e6559b2a34-69915422',
   'function' => 
   array (
   ),
   'has_nocache_code' => false,
 )); /*/%%SmartyHeaderCode%%*/?>
-<form id="edit" method="POST" action="movie/update/" enctype="multipart/form-data" >
-    <input type="hidden" name="id" value="<?php echo $_smarty_tpl->getVariable('movie')->value['id'];?>
-" />
+<form id="edit" method="POST" action="movie/update/<?php echo $_smarty_tpl->getVariable('movie')->value['id'];?>
+/" enctype="multipart/form-data" >
+    <div class="notice good">Die Änderungen wurden erfolgreich in die Datenbank übertragen!</div>
     <div id="left-fields">
         <fieldset>
             <label>Name</label>
@@ -37,13 +37,10 @@ $_smarty_tpl->decodeProperties(array (
  echo $_template->getRenderedTemplate();?><?php $_template->updateParentVariables(0);?><?php unset($_template);?>
         </fieldset>
         <fieldset>
-        <?php if ($_smarty_tpl->getVariable('movie')->value['thumbnail']!=''){?>
-            <img src="<?php echo $_smarty_tpl->getVariable('movie')->value['thumbnail'];?>
-" alt="thumbnail cover" />
-        <?php }?>
             <label for="fake-text">Bild</label>
             <div class="hidden-file-container">
-                <input type="text" class="fake-text" name="fake-text"  />
+                <input type="text" class="fake-text" name="fake-text" value="<?php echo $_smarty_tpl->getVariable('movie')->value['cover'];?>
+"  />
                 <input type="file" onchange="$('.fake-text').val($(this).val());" name="cover" class="hidden-file" id="cover" />
             </div>
         </fieldset>

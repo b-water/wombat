@@ -153,11 +153,6 @@ select {
        highlighting, coloring etc
 **************************************/
 
-.attention {
-    background: #FFF6CF url('../images/icons/error.png') 5px center no-repeat;
-    padding:5px 5px 5px 25px;
-    border: 1px solid #FFDD3F;
-}
 
 .highlight {
     color:#C91715;
@@ -171,6 +166,23 @@ input[type=submit], input[type=button] {
     border:0;
 }
 
+
+/**************************************
+       system status messages
+**************************************/
+
+.notice {
+    padding:5px 5px 5px 25px;
+    border: 1px solid #FFDD3F;
+}
+
+.error {
+    background: #FFF6CF url('../images/icons/error.png') 5px center no-repeat; 
+}
+
+.good {
+    background: #FFF6CF url('../images/icons/accept.png') 5px center no-repeat;  
+}
 
 
 
@@ -473,6 +485,10 @@ form#searchbar input[type=text] {
 
 form#edit {
     padding-top:20px;
+}
+
+form#edit .notice {
+    display:none;
 }
 
 form#edit div#left-fields {
