@@ -59,7 +59,12 @@ class Navigation {
     public function create(array $data) {
         if (!empty($data)) {
             $this->smarty->assign('navigation', $data);
-            $this->smarty->assign('activ', $_REQUEST['rt']);
+            if (isset($_REQUEST['rt']) && !empty($_REQUEST['rt'])) {
+                $needle = strpos($_REQUEST['rt'],'/');
+                $this->smarty->assign('activ', substr($_REQUEST['rt'],0,$needle+1));
+            } else {
+                $this->smarty->assign('activ', 'dashboard/');
+            }
         } else {
             throw new NavigationException('(#2) : You must assign the Data for the Menu!');
         }

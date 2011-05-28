@@ -8,4 +8,5 @@
         <meta name="Copyright" content="2010 Nico Schmitz" />
         <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
         <link rel="stylesheet" href="css/template.css" type="text/css" media="screen" />
+        <link rel="stylesheet" href="library/ajax-upload/fileuploader.css" type="text/css" media="screen" />
     </head>

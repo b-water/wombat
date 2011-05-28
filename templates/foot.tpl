@@ -8,6 +8,7 @@
       <script type="text/javascript" src="library/jquery/jquery.hotkeys.js"></script>
       <script type="text/javascript" src="library/jquery/jquery.cookie.js"></script>
       <script type="text/javascript" src="library/ckeditor/ckeditor.js"></script>
+      <script type="text/javascript" src="library/ajax-upload/fileuploader.js"></script>
       <script type="text/javascript" src="js/core.js"></script>
     </body>
 </html>

@@ -49,6 +49,17 @@ var core = {
             {
                 CKEDITOR.replace(element);
             }
+        },
+        ajaxUpload: function(obj, path) {
+            if(obj.exists())
+            {
+                var uploader = new qq.FileUploader({
+                    // pass the dom node (ex. $(selector)[0] for jQuery users)
+                    element: document.getElementById('ajax-upload'),
+                    // path to server-side upload script
+                    action: '/files'
+                });   
+            }
         }
     },
     ajax : {

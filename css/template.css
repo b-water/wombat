@@ -491,7 +491,7 @@ select#format, select#genre, select#rating {
     padding:4px;
 }
 
-form#edit input:focus, form#edit textarea:focus, form#edit select:focus {
+form#edit input[type=text]:focus, form#edit textarea:focus, form#edit select:focus {
     border: 1px solid #2DAEBF;
     outline: medium none;
 }
@@ -530,6 +530,8 @@ fieldset#toolbar a {
 }
 
 form#edit textarea {
+    width:860px;
+    height:150px;
 }
 
 

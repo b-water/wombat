@@ -33,9 +33,11 @@
         <input type="text" name="size" value="{$movie.size}" />
         <input type="button" class="small awesome" onclick="changeLocation('movie');" value="Berechnen" />
     </fieldset>
+    <div id="ajax-upload">
+    </div>
     <fieldset>
-        <label for="editor">Beschreibung</label>
-        <textarea id="editor" name="editor">{$movie.description}</textarea>
+        <label for="description">Beschreibung</label>
+        <textarea id="description" name="description">{$movie.description}</textarea>
     </fieldset>
     <fieldset class="right">
         <input type="submit" class="small awesome" value="Speichern" />

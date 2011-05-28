@@ -1,17 +1,17 @@
-<?php /* Smarty version Smarty-3.0.6, created on 2011-05-27 20:37:16
+<?php /* Smarty version Smarty-3.0.6, created on 2011-05-28 12:00:55
          compiled from ".\templates\head.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:134664ddfef5c13ad21-66397727%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:293244de0c7d730a311-13952423%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     'f06355d2da203e3a3e8b170089ea5f4d06cd0da9' => 
     array (
       0 => '.\\templates\\head.tpl',
-      1 => 1306088196,
+      1 => 1306576824,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '134664ddfef5c13ad21-66397727',
+  'nocache_hash' => '293244de0c7d730a311-13952423',
   'function' => 
   array (
   ),
@@ -30,4 +30,5 @@ $_smarty_tpl->decodeProperties(array (
         <meta name="Copyright" content="2010 Nico Schmitz" />
         <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
         <link rel="stylesheet" href="css/template.css" type="text/css" media="screen" />
+        <link rel="stylesheet" href="library/ajax-upload/fileuploader.css" type="text/css" media="screen" />
     </head>

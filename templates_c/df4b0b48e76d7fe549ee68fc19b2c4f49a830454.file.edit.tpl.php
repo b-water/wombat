@@ -1,17 +1,17 @@
-<?php /* Smarty version Smarty-3.0.6, created on 2011-05-27 20:37:56
+<?php /* Smarty version Smarty-3.0.6, created on 2011-05-28 12:00:54
          compiled from ".\templates\movie/edit.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:95224ddfef84b16cf3-93209460%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:234874de0c7d6e8c693-67567261%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     'df4b0b48e76d7fe549ee68fc19b2c4f49a830454' => 
     array (
       0 => '.\\templates\\movie/edit.tpl',
-      1 => 1306351811,
+      1 => 1306576737,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '95224ddfef84b16cf3-93209460',
+  'nocache_hash' => '234874de0c7d6e8c693-67567261',
   'function' => 
   array (
   ),
@@ -59,9 +59,11 @@ $_smarty_tpl->decodeProperties(array (
 " />
         <input type="button" class="small awesome" onclick="changeLocation('movie');" value="Berechnen" />
     </fieldset>
+    <div id="ajax-upload">
+    </div>
     <fieldset>
-        <label for="editor">Beschreibung</label>
-        <textarea id="editor" name="editor"><?php echo $_smarty_tpl->getVariable('movie')->value['description'];?>
+        <label for="description">Beschreibung</label>
+        <textarea id="description" name="description"><?php echo $_smarty_tpl->getVariable('movie')->value['description'];?>
 </textarea>
     </fieldset>
     <fieldset class="right">
