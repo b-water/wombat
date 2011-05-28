@@ -417,10 +417,10 @@ form#controls input#import  {
 
 
 div#pager {
-/*    background-color: #EAEAEA;
-    border-bottom: 1px solid #CFCFCF;
-    border-left: 1px solid #CFCFCF;
-    border-right: 1px solid #CFCFCF;*/
+    /*    background-color: #EAEAEA;
+        border-bottom: 1px solid #CFCFCF;
+        border-left: 1px solid #CFCFCF;
+        border-right: 1px solid #CFCFCF;*/
     margin-top:10px;
     float: right;
     padding: 5px;
@@ -469,6 +469,17 @@ form#edit {
     padding-top:20px;
 }
 
+form#edit div#left-fields {
+    float: left;
+    width: 230px;
+}
+
+form#edit div#right-fields {
+    float: left;
+    margin: 0 0 0 30px;
+    width: 695px;
+}
+
 form#toolbar {
     float:right;
 }
@@ -477,13 +488,42 @@ form#edit fieldset {
     margin-bottom:10px;
 }
 
-form#edit input[type=file] {
-    width:350px;
+div.hidden-file-container {
+    position:relative;
+}
+
+.fake-text {
+    margin-right:4px;
+    display:inline-block;
+    position: absolute;
+    z-index: 1;
+}
+
+form#edit input[type="file"] {
+    left: 0;
+    opacity: 0;
+    position: absolute;
+}
+
+form#edit p.attention {
+    margin:0 0 10px 0;
+    width:299px;
+}
+
+
+form#edit textarea {
+    height: 290px;
+    width: 700px;
+}
+
+
+form#edit input[type=text], form#edit input[type=select],
+select#format, select#genre, select#rating {
+    width:230px;
 }
 
 form#edit input[type=text], form#edit input[type=select], form#edit textarea,
 select#format, select#genre, select#rating {
-    width:230px;
     border:1px solid #BBBBBB;
     background-color:#fff;
     background: #fff url("../images/form/input-bg.png") no-repeat 0 0;
@@ -527,11 +567,6 @@ fieldset#toolbar {
 
 fieldset#toolbar a {
     margin-right:5px;
-}
-
-form#edit textarea {
-    width:860px;
-    height:150px;
 }
 
 
@@ -600,17 +635,3 @@ form#edit textarea {
     background-color: #ffb515;
 }
 
-div.hidden-file-container {
-    position:relative;
-}
-
-fake-text, fake-button {
-    position: absolute;
-    z-index: 1;
-}
-
-input[type=file].hidden-file {
-/*    opacity:0;*/
-    z-index: 2;
-    position: absolute;
-}
