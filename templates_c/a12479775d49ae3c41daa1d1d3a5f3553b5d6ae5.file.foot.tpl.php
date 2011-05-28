@@ -1,17 +1,17 @@
-<?php /* Smarty version Smarty-3.0.6, created on 2011-05-28 13:28:53
+<?php /* Smarty version Smarty-3.0.6, created on 2011-05-28 17:41:07
          compiled from ".\templates\foot.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:74764de0dc757345f5-84329392%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:18274de11793e55573-11122338%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     'a12479775d49ae3c41daa1d1d3a5f3553b5d6ae5' => 
     array (
       0 => '.\\templates\\foot.tpl',
-      1 => 1306582131,
+      1 => 1306597237,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '74764de0dc757345f5-84329392',
+  'nocache_hash' => '18274de11793e55573-11122338',
   'function' => 
   array (
   ),
@@ -24,6 +24,7 @@ $_smarty_tpl->decodeProperties(array (
       <script type="text/javascript" src="library/jquery/jquery.mousewheel-3.0.4.pack.js"></script>
       <script type="text/javascript" src="library/jquery/jquery.tablesorter.js"></script>
       <script type="text/javascript" src="library/jquery/jquery.tablesorter.pager.js"></script>
+      <script type="text/javascript" src="library/jquery/tiptip/jquery.tipTip.minified.js"></script>
       <script type="text/javascript" src="js/core.js"></script>
     </body>
 </html>

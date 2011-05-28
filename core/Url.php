@@ -20,7 +20,8 @@ class Url {
         }
         $this->options['controller'] = isset($url[0]) && !empty($url[0]) ? $url[0] : "dashboard";
         $this->options['action'] = isset($url[1]) && !empty($url[1]) ? $url[1] : "index";
-        $this->options['id'] = isset($url[2]) && !empty($url[2]) ? $url[2] : '';
+        $this->options['key'] = isset($url[2]) && !empty($url[2]) ? $url[2] : '';
+        $this->options['value'] = isset($url[3]) && !empty($url[2]) ? $url[3] : '';
     }
 
     /**

@@ -55,8 +55,8 @@ class Movie {
             $info = $upload->getFileInfo();
             $point = strpos($info['cover']['name'], '.');
             $ending = substr($info['cover']['name'], $point);
-            $filename = 'files/movie/cover/' . $_REQUEST['id'] . $ending;
-            $thumb_filename = 'files/movie/cover/' . $_REQUEST['id'] . '_thumb' . $ending;
+            $filename = 'files/movie/cover/' . $this->url->get('value') . $ending;
+            $thumb_filename = 'files/movie/cover/' . $this->url->get('value') . '_thumb' . $ending;
             $upload->addFilter('Rename', $filename);
 
             // delete exisiting file
@@ -91,10 +91,7 @@ class Movie {
             $data['thumbnail'] = $thumb_filename;
         }
         
-        var_dump($data);    
-        var_dump($_REQUEST);
-
-        $affectedRows = $this->db->update($this->table, $data, 'id="' . $this->url->get('id') . '"');
+        $affectedRows = $this->db->update($this->table, $data, 'id="' . $this->url->get('value') . '"');
         if ($affectedRows != 1) {
             throw new MovieException('(#1) : The dataset coud not habe been updated!');
         }

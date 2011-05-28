@@ -21,9 +21,9 @@
             <td class="format">{$item.format}</td>
             <td class="size">{$item.size}</td>
             <td class="date">{$item.date}</td>
-            <td class="show"><a class="show" title="Anzeigen" href="movie/show/{$item.id}/"></a></td>
-            <td class="edit"><a class="edit" title="Bearbeiten" href="movie/edit/{$item.id}/"></a></td>
-            <td class="delete"><a class="delete" title="L&ouml;schen" href="movie/delete/{$item.id}/"></a></td>
+            <td class="show"><a class="show" title="Anzeigen" href="movie/show/id/{$item.id}/"></a></td>
+            <td class="edit"><a class="edit" title="Bearbeiten" href="movie/edit/id/{$item.id}/"></a></td>
+            <td class="delete"><a class="delete" title="L&ouml;schen" href="movie/delete/id/{$item.id}/"></a></td>
         </tr>
         {/foreach}
     </tbody>

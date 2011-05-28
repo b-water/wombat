@@ -1,6 +1,7 @@
 $(document).ready(function() {
     core.init.tablesorter($('table.tablesorter'));
     core.init.form($('form#edit'));
+    core.init.tooltip($('a'));
     
 });
 
@@ -64,6 +65,18 @@ var core = {
                 obj.ajaxForm(options);  
             }
 
+        },
+        tooltip : function(obj)
+        {
+            obj.each(function() {
+                var attr = $(this).attr('title');
+                // For some browsers, `attr` is undefined; for others,
+                // `attr` is false.  Check for both.
+                if (typeof attr !== 'undefined' && attr !== false) {
+                    $(this).tipTip();
+                }
+
+            });
         }
 
     },

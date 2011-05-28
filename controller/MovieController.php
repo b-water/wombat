@@ -76,8 +76,7 @@ class MovieController extends BaseController {
     public function edit() {
 
         $this->smarty->assign('title', 'Film Bearbeiten');
-
-        $filter = 'id = "' . $this->url->get('id') . '"';
+        $filter = 'id = "' . $this->url->get('value') . '"';
         $movie = $this->movie->fetch($this->all_fields, $filter);
 
         // get all format options

@@ -321,13 +321,13 @@ table tr.even {
     background-color:#EAEAEA;
 }
 
-table.tablesorter tr:hover td {
-    background-color:#2DAEBF;
+/*table.tablesorter tr:hover td {
+    background-color:#CFCFCF;
 }
 
 table.tablesorter tr:hover td {
     color:#fff;
-}
+}*/
 
 table a.edit {
     background:url('../images/icons/pencil.png') 0 0 no-repeat;
@@ -359,37 +359,9 @@ table th.show, table th.delete, table th.edit {
 **************************************/
 
 
-/**************************************
-                controls
-**************************************/
-
-
-form#controls {
-    margin:0 0 10px 0;
-}
-
-form#controls input[type=text] {
-}
-
-form#controls select {
-    width:100%;
-}
-
-form#controls div.box {
-    overflow: hidden;
-    margin:0 0 30px 0;
-}
-
-form#controls input#searchSubmit, form#controls input#add,
-form#controls input#del, form#controls input#change,
-form#controls input#import, form#controls input#export {
-    background-repeat:no-repeat;
-    background-position: 25px 7px;
-}
-
-form#controls input#searchSubmit  {
-    background-image: url('../images/icons/magnifier.png');
-    margin:10px 0 0 0;
+form#toolbar {
+    float: right;
+    margin:2px 3px 0 0;
 }
 
 form#toolbar input#searchText {
@@ -408,56 +380,7 @@ form#toolbar input#searchText:focus {
     outline: medium none;
 }
 
-form#controls input#add  {
-    background-image:url('../images/icons/table_add.png');
-}
 
-form#controls input#del  {
-    background-image:url('../images/icons/table_delete.png');
-}
-
-form#controls input#change  {
-    background-image:url('../images/icons/table_edit.png');
-}
-
-form#controls input#export {
-    background-image:url('../images/icons/application_go.png');
-}
-
-form#controls input#import  {
-    background-image:url('../images/icons/application_get.png');
-}
-
-
-/**************************************
-                pager
-**************************************/
-
-
-div#pager {
-    /*    background-color: #EAEAEA;
-        border-bottom: 1px solid #CFCFCF;
-        border-left: 1px solid #CFCFCF;
-        border-right: 1px solid #CFCFCF;*/
-    margin-top:10px;
-    float: right;
-    padding: 5px;
-}
-
-div#pager input.pagedisplay {
-    width:45px;
-}
-
-
-form#searchbar {
-    margin-bottom: 10px;
-    clear:both;
-
-}
-
-select.pagesize {
-    display:none;
-}
 
 /**************************************
               searchbar
@@ -502,9 +425,7 @@ form#edit div#right-fields {
     width: 695px;
 }
 
-form#toolbar {
-    float:right;
-}
+
 
 form#edit fieldset {
     margin-bottom:10px;
@@ -589,6 +510,33 @@ fieldset#toolbar a {
     margin-right:5px;
 }
 
+/**************************************
+                pager
+**************************************/
+
+
+div#pager {
+    margin-top:10px;
+    float: right;
+    padding: 5px;
+}
+
+div#pager input.pagedisplay {
+    width:45px;
+}
+
+
+form#searchbar {
+    margin-bottom: 10px;
+    clear:both;
+
+}
+
+select.pagesize {
+    display:none;
+}
+
+
 
 /* Copyright ZURB, freely available for distrubition under the MIT license. */
 
@@ -655,3 +603,6 @@ fieldset#toolbar a {
     background-color: #ffb515;
 }
 
+.grey.awesome {
+   background-color: #ffb515;
+}
