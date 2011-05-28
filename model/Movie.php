@@ -39,6 +39,7 @@ class Movie {
             'genre' => $values['genre'],
             'format' => $values['format'],
             'size' => $values['size'],
+            'rating' => $values['rating'],
             'description' => $values['description']
         );
 

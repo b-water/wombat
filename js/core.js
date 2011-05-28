@@ -45,21 +45,25 @@ var core = {
         },
         form : function(obj)
         {
-            showResponse = function() {
-                $('.notice').show();
-                $('.notice').animate({
-                    opacity: 1.0
-                }, 1000).fadeOut('fast', function() {
-                    $(this).hide();
-                });
+            if(obj.exists())
+            {
+                showResponse = function() {
+                    $('.notice').show();
+                    $('.notice').animate({
+                        opacity: 1.0
+                    }, 1000).fadeOut('fast', function() {
+                        $(this).hide();
+                    });
+                }
+
+                var options = {
+                    success: showResponse
+                };
+
+                // bind 'myForm' and provide a simple callback function 
+                obj.ajaxForm(options);  
             }
 
-            var options = {
-                success: showResponse
-            };
-
-            // bind 'myForm' and provide a simple callback function 
-            obj.ajaxForm(options); 
         }
 
     },
