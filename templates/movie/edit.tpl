@@ -17,9 +17,9 @@
         {if $movie.thumbnail != ''}
             <img src="{$movie.thumbnail}" alt="thumbnail cover" />
         {/if}
-            <label for="cover">Bild</label>
+            <label for="fake-text">Bild</label>
             <div class="hidden-file-container">
-                <input type="text" class="fake-text"  />
+                <input type="text" class="fake-text" name="fake-text"  />
                 <input type="file" onchange="$('.fake-text').val($(this).val());" name="cover" class="hidden-file" id="cover" />
             </div>
         </fieldset>

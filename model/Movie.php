@@ -6,7 +6,6 @@
  * @author  Nico Schmitz - cofilew@gmail.com
  * @file    MovieController.php
  * @since   13.05.2011 - 23:35:14
- * @version $id$
  */
 class Movie {
 
@@ -53,8 +52,8 @@ class Movie {
             $info = $upload->getFileInfo();
             $point = strpos($info['cover']['name'], '.');
             $ending = substr($info['cover']['name'], $point);
-            $filename = 'upload/movie/cover/' . $_REQUEST['id'] . $ending;
-            $thumb_filename = 'upload/movie/cover/' . $_REQUEST['id'] . '_thumb' . $ending;
+            $filename = 'files/movie/cover/' . $_REQUEST['id'] . $ending;
+            $thumb_filename = 'files/movie/cover/' . $_REQUEST['id'] . '_thumb' . $ending;
             $upload->addFilter('Rename', $filename);
 
             // delete exisiting file
@@ -91,7 +90,6 @@ class Movie {
 
 
         $affectedRows = $this->db->update($this->table, $data, 'id="' . $_REQUEST['id'] . '"');
-
         if ($affectedRows != 1) {
             throw new MovieException('(#1) : The dataset coud not habe been updated!');
         }

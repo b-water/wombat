@@ -1,17 +1,17 @@
-<?php /* Smarty version Smarty-3.0.6, created on 2011-05-28 12:54:23
+<?php /* Smarty version Smarty-3.0.6, created on 2011-05-28 13:02:22
          compiled from ".\templates\movie/edit.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:111284de0d45f50f7b0-81149468%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:169774de0d63e738980-53990414%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     'df4b0b48e76d7fe549ee68fc19b2c4f49a830454' => 
     array (
       0 => '.\\templates\\movie/edit.tpl',
-      1 => 1306580062,
+      1 => 1306580540,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '111284de0d45f50f7b0-81149468',
+  'nocache_hash' => '169774de0d63e738980-53990414',
   'function' => 
   array (
   ),
@@ -20,7 +20,6 @@ $_smarty_tpl->decodeProperties(array (
 <form id="edit" method="POST" action="movie/update/" enctype="multipart/form-data" >
     <input type="hidden" name="id" value="<?php echo $_smarty_tpl->getVariable('movie')->value['id'];?>
 " />
-    <h2>Film bearbeiten</h2>
     <div id="left-fields">
         <fieldset>
             <label>Name</label>
@@ -42,9 +41,9 @@ $_smarty_tpl->decodeProperties(array (
             <img src="<?php echo $_smarty_tpl->getVariable('movie')->value['thumbnail'];?>
 " alt="thumbnail cover" />
         <?php }?>
-            <label for="cover">Bild</label>
+            <label for="fake-text">Bild</label>
             <div class="hidden-file-container">
-                <input type="text" class="fake-text"  />
+                <input type="text" class="fake-text" name="fake-text"  />
                 <input type="file" onchange="$('.fake-text').val($(this).val());" name="cover" class="hidden-file" id="cover" />
             </div>
         </fieldset>
