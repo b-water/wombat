@@ -18,7 +18,11 @@ class Movie {
     private $db;
     private $config;
     private $url;
+    private $path = 'files/movie/';
 
+    /**
+     * 
+     */
     public function __construct() {
         $registry = Registry::getInstance();
         $this->db = $registry->get('db');
@@ -32,6 +36,13 @@ class Movie {
         }
     }
 
+    /**
+     * Updates a Movie from the 
+     * Movie Database and Uploads a 
+     * Picture and generates a Thumbnail for it.
+     *
+     * @param array $values 
+     */
     public function update($values) {
 
         $data = array(
@@ -55,8 +66,8 @@ class Movie {
             $info = $upload->getFileInfo();
             $point = strpos($info['cover']['name'], '.');
             $ending = substr($info['cover']['name'], $point);
-            $filename = 'files/movie/cover/' . $this->url->get('value') . $ending;
-            $thumb_filename = 'files/movie/cover/' . $this->url->get('value') . '_thumb' . $ending;
+            $filename = $this->path . $this->url->get('value') . $ending;
+            $thumb_filename = $this->path . 'thumb/' . $this->url->get('value') . $ending;
             $upload->addFilter('Rename', $filename);
 
             // delete exisiting file
@@ -90,16 +101,40 @@ class Movie {
             $data['cover'] = $filename;
             $data['thumbnail'] = $thumb_filename;
         }
-        
-        $affectedRows = $this->db->update($this->table, $data, 'id="' . $this->url->get('value') . '"');
+
+        $affectedRows = $this->db->update($this->table, $data, $this->url->get('key') . '="' . $this->url->get('value') . '"');
         if ($affectedRows != 1) {
             throw new MovieException('(#1) : The dataset coud not habe been updated!');
         }
     }
 
+    /**
+     * Deletes a Movie from the
+     * Database and the Pictures according
+     * to the Movie from files/movie/
+     * 
+     * @param type $id 
+     */
     public function delete($id) {
 
-        $affectedRows = $this->db->delete($this->table, 'id="' . $id . '"');
+        /* deleting files according to the movie */
+        $path = 'files/movie/';
+        $di = new DirectoryIterator($path);
+        $length = strlen($id);
+        foreach ($di as $file) {
+            if (!$file->isDot() && substr($file->getFilename(), 0, $length) == $id) {
+                $image = $path . $file->getFilename();
+                $thumb = $path . 'thumb/' . $file->getFilename();
+                if (file_exists($image)) {
+                    unlink($image);
+                }
+                if (file_exists($thumb)) {
+                    unlink($thumb);
+                }
+            }
+        }
+        /* deleting the movie from the database */
+        $affectedRows = $this->db->delete($this->table, $this->url->get('key') . '="' . $id . '"');
 
         if ($affectedRows != 1) {
             throw new MovieException('(#2) : The dataset coud not have been deleted!');
@@ -138,7 +173,7 @@ class Movie {
         $sql = $this->db->query($select);
         $this->movies = $sql->fetchAll();
 
-        if(empty($this->movies))
+        if (empty($this->movies))
             throw new MovieException('(#3) : No Movies found!');
 
         return $this->movies;

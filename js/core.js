@@ -3,6 +3,13 @@ $(document).ready(function() {
     core.init.form($('form#edit'));
     core.init.tooltip($('a'));
     
+    if($('form#edit input.abort').exists())
+    {
+        $('form#edit input.abort').click(function() {
+           core.http.redirectToUrl('movie/'); 
+        });
+    }
+    
 });
 
 jQuery.fn.exists = function(){
@@ -123,18 +130,22 @@ var core = {
         }
     },
     http : {
-        redirect : function(controller, action, id)
+        redirect : function(controller, action, key, value)
         {
             this.location = '';
-            if(typeof controller != undefined)
+            if(controller.length < 0)
             {
                 this.location += controller;
-                if(typeof action != undefined)
+                if(action.length < 0)
                     this.location += '/'+action;
-                if(typeof id != undefined)
+                if(id.length < 0)
                     this.location+= '/'+id;
                 window.location.href = this.location;
             }
+        },
+        redirectToUrl : function(url)
+        {
+            window.location.href = url;
         }
     }
 }

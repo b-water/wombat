@@ -1,17 +1,17 @@
-<?php /* Smarty version Smarty-3.0.6, created on 2011-05-28 18:01:09
+<?php /* Smarty version Smarty-3.0.6, created on 2011-05-29 13:10:16
          compiled from ".\templates\movie/edit.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:265264de11c4516f2d9-31419569%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:218594de22998e5fa11-54819876%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     'df4b0b48e76d7fe549ee68fc19b2c4f49a830454' => 
     array (
       0 => '.\\templates\\movie/edit.tpl',
-      1 => 1306598467,
+      1 => 1306667280,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '265264de11c4516f2d9-31419569',
+  'nocache_hash' => '218594de22998e5fa11-54819876',
   'function' => 
   array (
   ),
@@ -63,7 +63,7 @@ $_smarty_tpl->decodeProperties(array (
         </fieldset>
         <fieldset class="right">
             <input type="submit" class="small awesome" value="Speichern" />
-            <input type="button" class="small awesome" onclick="changeLocation('movie');" value="Abbrechen" />
+            <input type="button" class="small awesome abort" value="Abbrechen" />
         </fieldset>
     </div>
 </form>

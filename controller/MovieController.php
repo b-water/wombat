@@ -64,10 +64,16 @@ class MovieController extends BaseController {
      */
     public function show() {
 
-        $filter = ' WHERE id = "' . $this->url->get('id') . '"';
+        $filter = $this->url->get('value').' = "' . $this->url->get('value') . '"';
         $movies = $this->movie->fetch($this->fields, $filter);
         $this->smarty->assign('movie', $movies);
-        $this->smarty->display($this->template_dir . 'single.tpl');
+//        $this->smarty->display($this->template_dir . 'single.tpl');
+//        $content = $this->smarty->fetch('single.tpl');
+        $content = $this->smarty->fetch($this->template_dir . 'show.tpl');
+
+        $this->smarty->assign('content', $content);
+
+        $this->smarty->display($this->config->get('TEMPLATE_FILE'));
     }
 
     /**
@@ -135,7 +141,7 @@ class MovieController extends BaseController {
      * Deletes a Movie
      */
     public function delete() {
-        $this->movie->delete($this->url->get('id'));
+        $this->movie->delete($this->url->get('value'));
         $text = 'Der Film wurde erfolgreich aus der Datenbank gel&ouml;scht!';
         $this->smarty->assign('text', $text);
         $this->smarty->display('delete.tpl');

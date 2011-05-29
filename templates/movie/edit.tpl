@@ -36,7 +36,7 @@
         </fieldset>
         <fieldset class="right">
             <input type="submit" class="small awesome" value="Speichern" />
-            <input type="button" class="small awesome" onclick="changeLocation('movie');" value="Abbrechen" />
+            <input type="button" class="small awesome abort" value="Abbrechen" />
         </fieldset>
     </div>
 </form>
