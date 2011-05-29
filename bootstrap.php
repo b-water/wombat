@@ -11,7 +11,6 @@
 /* Launching Session */
 session_start();
 
-/* fragw�rdig */
 session_set_cookie_params(7200, '', true);
 
 /* prints out all error messages */
@@ -82,24 +81,3 @@ try {
 }
 
 $db->closeConnection();
-
-/* TODO: Smarty updaten
- */
-
-
-/* Wei�e Print_r ausgabe */
-//echo '><pre style="color:#fff;"><h1>Session</h1>';
-//print_r($_SESSION);
-//echo '<h1>Request</h1>';
-//print_r($_REQUEST);
-//echo '<h1>Cookie</h1>';
-//print_r($_COOKIE);
-//echo '</pre>';
-
-/* schwarze Print_r ausgabe */
-//echo '<pre>';
-//print_r($_SESSION);
-//echo '</pre>';
-//echo '<pre>';
-//print_r($_REQUEST);
-//echo '</pre>';
