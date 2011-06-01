@@ -27,7 +27,7 @@ class Format {
      *
      * @return  array
     */
-    public function fetch($type = '*', $fields = 'name',$order='name')
+    public function fetch($type = '*', $fields = '*',$order='name')
     {
         $select = $this->db->select()->from($this->table,$fields)->where('type = "'.$type.'"')->order($order);
         $sql = $this->db->query($select);

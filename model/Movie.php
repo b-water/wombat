@@ -173,7 +173,7 @@ class Movie {
 
         if (empty($movies))
             throw new MovieException('(#3) : No Movies found!');
-
+        $movies = $this->replaceKeyValues($movies);
         return $movies;
     }
 
@@ -235,6 +235,50 @@ class Movie {
         }
 
         return $rating;
+    }
+
+    public function replaceKeyValues(array $movies) {
+        if (!empty($movies)) {
+            $genres = $this->fetchGenre();
+            $format = $this->fetchFormat();
+            $rating = $this->fetchRating();
+            foreach ($movies as $movie) {
+//                foreach ($movie as $key => $val) {
+//                    switch ($key) {
+//                        case 'genre':
+//                            foreach ($genre as $genreItem) {
+//                                if ($genreItem['id'] == $movie[$key]) {
+//                                    $movie[$key] = $genreItem['name'];
+//                                    break;
+//                                }
+//                            }
+//                            break;
+//                        case 'format':
+//                            break;
+//                        case 'rating':
+//                            break;
+//                        case 'actor':
+//                            break;
+//                        default:
+//                            break;
+//                    }
+//                }
+//                
+//                $movie['genre'] = $genre
+                foreach($genres as $genre)
+                {
+                    if($genre['id'] == $movie['genre'])
+                    {
+                        $movie['genre'] = $genre['name'];
+                    }
+//                    $movie['genre'] = $genre[$movie['genre']];
+                }
+            }
+//            var_dump($movies);die();
+            return $movies;
+        } else {
+            throw new MovieException('(#4) : There must be an array given to replace the key values!');
+        }
     }
 
 }

@@ -622,6 +622,12 @@ div.general-information {
     overflow:hidden;
 }
 
+div.general-information span {
+    color:#000;
+    font-size:13px;
+    font-weight:bold;
+}
+
 div.general-information img {
     margin-right:10px;
 }

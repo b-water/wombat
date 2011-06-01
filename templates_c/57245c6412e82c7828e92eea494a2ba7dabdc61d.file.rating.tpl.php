@@ -1,17 +1,17 @@
-<?php /* Smarty version Smarty-3.0.6, created on 2011-05-28 14:18:41
+<?php /* Smarty version Smarty-3.0.6, created on 2011-06-01 22:03:22
          compiled from ".\templates\rating.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:305574de0e821b03d58-23646088%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:140294de69b0a1b0639-32562767%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '57245c6412e82c7828e92eea494a2ba7dabdc61d' => 
     array (
       0 => '.\\templates\\rating.tpl',
-      1 => 1306585120,
+      1 => 1306958577,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '305574de0e821b03d58-23646088',
+  'nocache_hash' => '140294de69b0a1b0639-32562767',
   'function' => 
   array (
   ),
@@ -24,10 +24,12 @@ if ($_smarty_tpl->_count($_from) > 0){
     foreach ($_from as $_smarty_tpl->tpl_vars['item']->key => $_smarty_tpl->tpl_vars['item']->value){
 ?>
         <?php if ($_smarty_tpl->tpl_vars['item']->value['name']==$_smarty_tpl->getVariable('movie')->value['rating']){?>
-            <option selected="selected"><?php echo $_smarty_tpl->tpl_vars['item']->value['name'];?>
+            <option value="<?php echo $_smarty_tpl->tpl_vars['item']->value['id'];?>
+" selected="selected"><?php echo $_smarty_tpl->tpl_vars['item']->value['name'];?>
 </option>
         <?php }else{ ?>
-            <option><?php echo $_smarty_tpl->tpl_vars['item']->value['name'];?>
+            <option value="<?php echo $_smarty_tpl->tpl_vars['item']->value['id'];?>
+"><?php echo $_smarty_tpl->tpl_vars['item']->value['name'];?>
 </option>
         <?php }?>
     <?php }} ?>
