@@ -26,6 +26,11 @@ class Movie {
     // size of cover image in kB
     private $image_size = '6144kB';
 
+    // meta information for a movie
+    private $genre = array();
+    private $format = array();
+    private $rating = array();
+
     /**
      * Movie Constructor, gathers from
      * the registry the url, config and the 
@@ -36,6 +41,11 @@ class Movie {
         $this->db = $registry->get('db');
         $this->config = $registry->get('config');
         $this->url = $registry->get('url');
+        
+        // fetch meta data for the movies
+        $this->rating = $this->fetchRating();
+        $this->format = $this->fetchFormat();
+        $this->genre = $this->fetchGenre();
     }
 
     /**
@@ -148,7 +158,7 @@ class Movie {
      * @param   string  $limit
      * @return  array   movies
      */
-    public function fetch($fields='*', $filter='', $orderby='name', $limit='', $offset='') {
+    public function fetch($fields='*', $filter='', $orderby='movie.name', $limit='', $offset='') {
 
         $select = $this->db->select();
 
@@ -161,19 +171,24 @@ class Movie {
         if (!empty($filter)) {
             $select->where($filter);
         }
+        
+        $select->joinLeft('genre', 'genre.id = movie.genre','genre.name as genre');
+        $select->joinLeft('rating', 'rating.id = movie.rating','rating.name as rating');
+        $select->joinLeft('format', 'format.id = movie.format','format.name as format');
+        
 
         $select->order($orderby);
 
         if (!empty($limit) && !empty($offset)) {
             $select->limit($limit, $offset);
         }
-
+        echo $select->assemble();
         $sql = $this->db->query($select);
         $movies = $sql->fetchAll();
 
         if (empty($movies))
             throw new MovieException('(#3) : No Movies found!');
-        $movies = $this->replaceKeyValues($movies);
+        
         return $movies;
     }
 
@@ -236,51 +251,6 @@ class Movie {
 
         return $rating;
     }
-
-    public function replaceKeyValues(array $movies) {
-        if (!empty($movies)) {
-            $genres = $this->fetchGenre();
-            $format = $this->fetchFormat();
-            $rating = $this->fetchRating();
-            foreach ($movies as $movie) {
-//                foreach ($movie as $key => $val) {
-//                    switch ($key) {
-//                        case 'genre':
-//                            foreach ($genre as $genreItem) {
-//                                if ($genreItem['id'] == $movie[$key]) {
-//                                    $movie[$key] = $genreItem['name'];
-//                                    break;
-//                                }
-//                            }
-//                            break;
-//                        case 'format':
-//                            break;
-//                        case 'rating':
-//                            break;
-//                        case 'actor':
-//                            break;
-//                        default:
-//                            break;
-//                    }
-//                }
-//                
-//                $movie['genre'] = $genre
-                foreach($genres as $genre)
-                {
-                    if($genre['id'] == $movie['genre'])
-                    {
-                        $movie['genre'] = $genre['name'];
-                    }
-//                    $movie['genre'] = $genre[$movie['genre']];
-                }
-            }
-//            var_dump($movies);die();
-            return $movies;
-        } else {
-            throw new MovieException('(#4) : There must be an array given to replace the key values!');
-        }
-    }
-
 }
 
 ?>

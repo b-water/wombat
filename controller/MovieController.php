@@ -80,7 +80,7 @@ class MovieController extends BaseController {
     public function edit() {
 
         $this->smarty->assign('title', 'Film Bearbeiten');
-        $filter = 'id = "' . $this->url->get('value') . '"';
+        $filter = 'movie.'.$this->url->get('key').' = "' . $this->url->get('value') . '"';
         $movie = $this->movie->fetch('*', $filter);
 
         // gather Meta Information

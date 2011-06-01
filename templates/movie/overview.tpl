@@ -14,9 +14,27 @@
         {foreach item=item from=$movie}
         <tr id="{$item.id}">
             <td class="name">{$item.name}</td>
-            <td class="genre">{$item.genre}</td>
-            <td class="rating">{$item.rating}</td>
-            <td class="format">{$item.format}</td>
+            <td class="genre">
+            {if $item.genre != ''}
+                {$item.genre}
+            {else}
+                -
+            {/if}
+            </td>
+            <td class="rating">
+            {if $item.rating != ''}
+                {$item.rating}
+            {else}
+                -
+            {/if}
+            </td>
+            <td class="format">
+            {if $item.format != ''}
+                {$item.format}
+            {else}
+                -
+            {/if}
+            </td>
             <td class="show"><a class="show" title="Anzeige" href="movie/show/id/{$item.id}/"></a></td>
             <td class="edit"><a class="edit" title="Bearbeiten" href="movie/edit/id/{$item.id}/"></a></td>
             <td class="delete"><a class="delete" title="L&ouml;schen" href="movie/delete/id/{$item.id}/"></a></td>
