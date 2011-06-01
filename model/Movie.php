@@ -96,7 +96,7 @@ class Movie {
                 die($thumbnailException);
             }
 
-            $thumb->adaptiveResize(256, 256)->cropFromCenter(256)->save($thumb_filename);
+            $thumb->adaptiveResize(230, 230)->cropFromCenter(230)->save($thumb_filename);
 
             $data['cover'] = $filename;
             $data['thumbnail'] = $thumb_filename;

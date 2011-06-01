@@ -453,7 +453,7 @@ form#edit input[type="file"] {
 
 
 form#edit textarea {
-    height: 315px;
+    height: 560px;
     width: 700px;
 }
 
@@ -487,6 +487,7 @@ form#edit label {
 
 form#edit img {
     display:block;
+    margin-top:5px;
 }
 
 form#operations {
