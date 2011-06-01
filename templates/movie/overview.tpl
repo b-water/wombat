@@ -5,7 +5,6 @@
             <th class="genre">Genre</th>
             <th class="rating">Bewertung</th>
             <th class="format">Format</th>
-            <th class="date">Datum</th>
             <th class="show"></th>
             <th class="edit"></th>
             <th class="delete"></th>
@@ -18,7 +17,6 @@
             <td class="genre">{$item.genre}</td>
             <td class="rating">{$item.rating}</td>
             <td class="format">{$item.format}</td>
-            <td class="date">{$item.date}</td>
             <td class="show"><a class="show" title="Anzeige" href="movie/show/id/{$item.id}/"></a></td>
             <td class="edit"><a class="edit" title="Bearbeiten" href="movie/edit/id/{$item.id}/"></a></td>
             <td class="delete"><a class="delete" title="L&ouml;schen" href="movie/delete/id/{$item.id}/"></a></td>

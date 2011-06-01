@@ -11,8 +11,6 @@ class MovieController extends BaseController {
 
     // The Movie Object
     private $movie;
-    private $fields = 'id,name,genre,rating,format,trailer,description,DATE_FORMAT(DATE,"%d.%c.%Y") AS date';
-    private $all_fields = '*';
     private $template_dir = 'movie/';
 
     public function __construct($registry) {
@@ -25,7 +23,7 @@ class MovieController extends BaseController {
 
     public function index() {
 
-        $movies = $this->movie->fetch($this->fields);
+        $movies = $this->movie->fetch();
 
         $this->smarty->assign('movie', $movies);
 
@@ -46,7 +44,7 @@ class MovieController extends BaseController {
     public function search() {
 
         $filter = ' WHERE name like "%' . $_REQUEST['searchbar'] . '%"';
-        $movies = $this->movie->fetch($this->fields, $filter);
+        $movies = $this->movie->fetch('*', $filter);
 
         $this->smarty->assign('title', 'Filme (Suche)');
         $this->smarty->assign('movie', $movies);
@@ -64,11 +62,10 @@ class MovieController extends BaseController {
      */
     public function show() {
 
-        $filter = $this->url->get('value') . ' = "' . $this->url->get('value') . '"';
-        $movies = $this->movie->fetch($this->fields, $filter);
-        $this->smarty->assign('movie', $movies);
-//        $this->smarty->display($this->template_dir . 'single.tpl');
-//        $content = $this->smarty->fetch('single.tpl');
+        $filter = $this->url->get('key') . ' = "' . $this->url->get('value') . '"';
+        $movie = $this->movie->fetch('*', $filter);
+
+        $this->smarty->assign('movie', $movie[0]);
         $content = $this->smarty->fetch($this->template_dir . 'show.tpl');
 
         $this->smarty->assign('content', $content);
@@ -83,24 +80,24 @@ class MovieController extends BaseController {
 
         $this->smarty->assign('title', 'Film Bearbeiten');
         $filter = 'id = "' . $this->url->get('value') . '"';
-        $movie = $this->movie->fetch($this->all_fields, $filter);
+        $movie = $this->movie->fetch('*', $filter);
 
         // gather Meta Information
         $genre = $this->movie->fetchGenre();
         $format = $this->movie->fetchFormat();
         $rating = $this->movie->fetchRating();
 
-
+        // assign smarty variables
         $this->smarty->assign('format', $format);
         $this->smarty->assign('genre', $genre);
         $this->smarty->assign('rating', $rating);
         $this->smarty->assign('movie', $movie[0]);
 
-        $this->smarty->assign('movie', $movie[0]);
-
+        // fetches smarty templates
         $content = $this->smarty->fetch($this->template_dir . 'edit.tpl');
         $this->smarty->assign('content', $content);
 
+        // display smarty templates
         $this->smarty->display($this->config->get('TEMPLATE_FILE'));
     }
 

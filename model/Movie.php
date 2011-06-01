@@ -20,11 +20,11 @@ class Movie {
     // file path for a cover image
     private $path = 'files/movie/';
     // size of thumbnails
-    private $thumb_width = '230';
-    private $thumb_height = '230';
-    private $thumb_crop = '230';
+    private $image_width = '230';
+    private $image_height = '230';
+    private $image_crop = '230';
     // size of cover image in kB
-    private $cover_size = '6144kB';
+    private $image_size = '6144kB';
 
     /**
      * Movie Constructor, gathers from
@@ -62,20 +62,18 @@ class Movie {
             $upload = new Zend_File_Transfer();
             $upload->addValidator('Count', false, array('min' => 1, 'max' => 1));
             $upload->addValidator('IsImage', true);
-            $upload->addValidator('Size', false, array('max' => $this->cover_size));
+            $upload->addValidator('Size', false, array('max' => $this->image_size));
 
             /* get the file mimetype for the new name */
             $info = $upload->getFileInfo();
             $point = strpos($info['cover']['name'], '.');
             $ending = substr($info['cover']['name'], $point);
             $filename = $this->path . $this->url->get('value') . $ending;
-            $thumb_filename = $this->path . 'thumb/' . $this->url->get('value') . $ending;
             $upload->addFilter('Rename', $filename);
 
             // delete exisiting file
             if (file_exists($filename)) {
                 unlink($filename);
-                unlink($thumb_filename);
             }
 
             if (!$upload->isValid()) {
@@ -98,10 +96,9 @@ class Movie {
                 die($thumbnailException);
             }
 
-            $thumb->adaptiveResize($this->thumb_width, $this->thumb_height)->cropFromCenter($this->thumb_crop)->save($thumb_filename);
+            $thumb->adaptiveResize($this->image_width, $this->image_height)->cropFromCenter($this->image_crop)->save($filename);
 
-            $data['cover'] = $filename;
-            $data['thumbnail'] = $thumb_filename;
+            $data['image'] = $filename;
         }
 
         $affectedRows = $this->db->update($this->table, $data, $this->url->get('key') . '="' . $this->url->get('value') . '"');

@@ -1,17 +1,17 @@
-<?php /* Smarty version Smarty-3.0.6, created on 2011-06-01 20:11:04
+<?php /* Smarty version Smarty-3.0.6, created on 2011-06-01 21:06:21
          compiled from ".\templates\movie/overview.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:103594de680b843d744-28039452%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:48854de68dad71ca77-62723849%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '55c56703acbb40bb296294473f880b9a3799ab75' => 
     array (
       0 => '.\\templates\\movie/overview.tpl',
-      1 => 1306951853,
+      1 => 1306955066,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '103594de680b843d744-28039452',
+  'nocache_hash' => '48854de68dad71ca77-62723849',
   'function' => 
   array (
   ),
@@ -24,7 +24,6 @@ $_smarty_tpl->decodeProperties(array (
             <th class="genre">Genre</th>
             <th class="rating">Bewertung</th>
             <th class="format">Format</th>
-            <th class="date">Datum</th>
             <th class="show"></th>
             <th class="edit"></th>
             <th class="delete"></th>
@@ -45,8 +44,6 @@ if ($_smarty_tpl->_count($_from) > 0){
             <td class="rating"><?php echo $_smarty_tpl->tpl_vars['item']->value['rating'];?>
 </td>
             <td class="format"><?php echo $_smarty_tpl->tpl_vars['item']->value['format'];?>
-</td>
-            <td class="date"><?php echo $_smarty_tpl->tpl_vars['item']->value['date'];?>
 </td>
             <td class="show"><a class="show" title="Anzeige" href="movie/show/id/<?php echo $_smarty_tpl->tpl_vars['item']->value['id'];?>
 /"></a></td>
