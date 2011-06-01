@@ -57,9 +57,10 @@ h6 {
 }
 
 p {
-    margin:10px 0 10px 0;
+    font-size: 13px;
+    line-height: 17px;
+    margin: 10px 0;
 }
-
 
 cite {
     display:block;
@@ -607,3 +608,25 @@ select.pagesize {
 .grey.awesome {
    background-color: #ffb515;
 }
+
+/**************************************
+           movie show
+**************************************/
+
+div.movie-container {
+    
+}
+
+div.general-information {
+    margin-bottom:10px;
+    overflow:hidden;
+}
+
+div.general-information img {
+    margin-right:10px;
+}
+
+div.movie-container p.description {
+    clear:both;
+}
+

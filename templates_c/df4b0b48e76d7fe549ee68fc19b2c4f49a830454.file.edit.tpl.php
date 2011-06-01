@@ -1,17 +1,17 @@
-<?php /* Smarty version Smarty-3.0.6, created on 2011-06-01 21:01:35
+<?php /* Smarty version Smarty-3.0.6, created on 2011-06-01 21:31:49
          compiled from ".\templates\movie/edit.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:299004de68c8fcc7291-72077884%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:298074de693a513e117-96412600%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     'df4b0b48e76d7fe549ee68fc19b2c4f49a830454' => 
     array (
       0 => '.\\templates\\movie/edit.tpl',
-      1 => 1306954894,
+      1 => 1306956510,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '299004de68c8fcc7291-72077884',
+  'nocache_hash' => '298074de693a513e117-96412600',
   'function' => 
   array (
   ),
@@ -70,7 +70,7 @@ $_smarty_tpl->decodeProperties(array (
 
         <fieldset class="right">
             <input type="submit" class="small awesome" value="Speichern" />
-            <input type="button" class="small awesome abort" value="Abbrechen" />
+            <input type="button" class="small awesome abort" value="Zur&uuml;ck" />
         </fieldset>
     </div>
 </form>
