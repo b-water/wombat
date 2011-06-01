@@ -19,7 +19,7 @@
             <td class="rating">{$item.rating}</td>
             <td class="format">{$item.format}</td>
             <td class="date">{$item.date}</td>
-            <td class="show"><a class="show" title="Trailer" href="movie/show/id/{$item.id}/"></a></td>
+            <td class="show"><a class="show" title="Anzeige" href="movie/show/id/{$item.id}/"></a></td>
             <td class="edit"><a class="edit" title="Bearbeiten" href="movie/edit/id/{$item.id}/"></a></td>
             <td class="delete"><a class="delete" title="L&ouml;schen" href="movie/delete/id/{$item.id}/"></a></td>
         </tr>

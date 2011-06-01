@@ -9,31 +9,33 @@
  */
 class Movie {
 
-    protected static $instance = null;
-    private $movies;
-    private $format;
+    // mysql table
     private $table = 'movie';
-    private $genre;
-    private $rating;
+    // database object
     private $db;
+    // config object
     private $config;
+    // url object
     private $url;
+    // file path for a cover image
     private $path = 'files/movie/';
+    // size of thumbnails
+    private $thumb_width = '230';
+    private $thumb_height = '230';
+    private $thumb_crop = '230';
+    // size of cover image in kB
+    private $cover_size = '6144kB';
 
     /**
-     * 
+     * Movie Constructor, gathers from
+     * the registry the url, config and the 
+     * db objects for further purpose.
      */
     public function __construct() {
         $registry = Registry::getInstance();
         $this->db = $registry->get('db');
         $this->config = $registry->get('config');
         $this->url = $registry->get('url');
-    }
-
-    public function isModified($current, $new) {
-        if (!empty($current) && !empty($new)) {
-            
-        }
     }
 
     /**
@@ -49,7 +51,7 @@ class Movie {
             'name' => $values['name'],
             'genre' => $values['genre'],
             'format' => $values['format'],
-            'size' => $values['size'],
+            'trailer' => $values['trailer'],
             'rating' => $values['rating'],
             'description' => $values['description']
         );
@@ -59,8 +61,8 @@ class Movie {
             // prepare upload
             $upload = new Zend_File_Transfer();
             $upload->addValidator('Count', false, array('min' => 1, 'max' => 1));
-            $upload->addValidator('IsImage', false);
-            $upload->addValidator('Size', false, array('max' => '6144kB'));
+            $upload->addValidator('IsImage', true);
+            $upload->addValidator('Size', false, array('max' => $this->cover_size));
 
             /* get the file mimetype for the new name */
             $info = $upload->getFileInfo();
@@ -96,7 +98,7 @@ class Movie {
                 die($thumbnailException);
             }
 
-            $thumb->adaptiveResize(230, 230)->cropFromCenter(230)->save($thumb_filename);
+            $thumb->adaptiveResize($this->thumb_width, $this->thumb_height)->cropFromCenter($this->thumb_crop)->save($thumb_filename);
 
             $data['cover'] = $filename;
             $data['thumbnail'] = $thumb_filename;
@@ -118,13 +120,12 @@ class Movie {
     public function delete($id) {
 
         /* deleting files according to the movie */
-        $path = 'files/movie/';
-        $di = new DirectoryIterator($path);
+        $di = new DirectoryIterator($this->path);
         $length = strlen($id);
         foreach ($di as $file) {
             if (!$file->isDot() && substr($file->getFilename(), 0, $length) == $id) {
-                $image = $path . $file->getFilename();
-                $thumb = $path . 'thumb/' . $file->getFilename();
+                $image = $this->path . $file->getFilename();
+                $thumb = $this->path . 'thumb/' . $file->getFilename();
                 if (file_exists($image)) {
                     unlink($image);
                 }
@@ -171,12 +172,72 @@ class Movie {
         }
 
         $sql = $this->db->query($select);
-        $this->movies = $sql->fetchAll();
+        $movies = $sql->fetchAll();
 
-        if (empty($this->movies))
+        if (empty($movies))
             throw new MovieException('(#3) : No Movies found!');
 
-        return $this->movies;
+        return $movies;
+    }
+
+    /**
+     * Fetches all Genres according
+     * to movies.
+     * 
+     * @param   string  $type
+     * @return  array   $genre
+     */
+    public function fetchGenre($type='movie') {
+        // get all genre options
+        $genreObj = new Genre();
+
+        try {
+            $genre = $genreObj->fetch($type);
+        } catch (GenreException $genreException) {
+            die($genreException);
+        }
+
+        return $genre;
+    }
+
+    /**
+     * Fetches all Formats according
+     * to movies.
+     * 
+     * @param   string  $type
+     * @return  array   $format
+     */
+    public function fetchFormat($type='movie') {
+        // get all format options
+        $formatObj = new Format();
+
+        try {
+            $format = $formatObj->fetch($type);
+        } catch (FormatException $formatException) {
+            die($formatException);
+        }
+
+        return $format;
+    }
+
+    /**
+     * Fetches all Ratings according
+     * to movies.
+     *
+     * @param   string  $type
+     * @return  array   $rating 
+     */
+    public function fetchRating($type='movie') {
+        // get all rating options
+        $ratingObj = new Rating();
+
+        try {
+            $rating = $ratingObj->fetch($type);
+        } catch (RatingException $ratingException) {
+            die($ratingException);
+        }
+
+        return $rating;
     }
 
 }

@@ -11,7 +11,7 @@ class MovieController extends BaseController {
 
     // The Movie Object
     private $movie;
-    private $fields = 'id,name,genre,rating,format,size,DATE_FORMAT(DATE,"%d.%c.%Y") AS date';
+    private $fields = 'id,name,genre,rating,format,trailer,description,DATE_FORMAT(DATE,"%d.%c.%Y") AS date';
     private $all_fields = '*';
     private $template_dir = 'movie/';
 
@@ -64,7 +64,7 @@ class MovieController extends BaseController {
      */
     public function show() {
 
-        $filter = $this->url->get('value').' = "' . $this->url->get('value') . '"';
+        $filter = $this->url->get('value') . ' = "' . $this->url->get('value') . '"';
         $movies = $this->movie->fetch($this->fields, $filter);
         $this->smarty->assign('movie', $movies);
 //        $this->smarty->display($this->template_dir . 'single.tpl');
@@ -85,32 +85,11 @@ class MovieController extends BaseController {
         $filter = 'id = "' . $this->url->get('value') . '"';
         $movie = $this->movie->fetch($this->all_fields, $filter);
 
-        // get all format options
-        $formatObj = new Format();
+        // gather Meta Information
+        $genre = $this->movie->fetchGenre();
+        $format = $this->movie->fetchFormat();
+        $rating = $this->movie->fetchRating();
 
-        try {
-            $format = $formatObj->fetch('movie');
-        } catch (FormatException $formatException) {
-            die($formatException);
-        }
-
-        // get all rating options
-        $ratingObj = new Rating();
-
-        try {
-            $rating = $ratingObj->fetch('movie');
-        } catch (RatingException $ratingException) {
-            die($ratingException);
-        }
-
-        // get all genre options
-        $genreObj = new Genre();
-
-        try {
-            $genre = $genreObj->fetch('movie');
-        } catch (GenreException $genreException) {
-            die($genreException);
-        }
 
         $this->smarty->assign('format', $format);
         $this->smarty->assign('genre', $genre);
