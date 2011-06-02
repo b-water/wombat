@@ -59,7 +59,7 @@ class Movie {
      * @param array $values 
      */
     public function update($values) {
-
+        var_dump($values);
         $this->deleteAssociatedGenre($this->url->get('value'));
 
         $data = array(

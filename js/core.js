@@ -4,12 +4,12 @@ $(document).ready(function() {
     core.init.tooltip($('a'));
     core.init.contextmenu($('select#genre'));
     
-    if($('form#edit input.abort').exists())
-    {
-        $('form#edit input.abort').click(function() {
-            core.http.redirectToUrl('movie/'); 
-        });
-    }
+//    if($('form#edit input.abort').exists())
+//    {
+//        $('form#edit input.abort').click(function() {
+//            core.http.redirectToUrl('movie/'); 
+//        });
+//    }
     
 });
 
@@ -107,7 +107,17 @@ var core = {
                     });
                 }
                 if(action == 'add') {
-                    
+                    alert('hallo');
+//                    $.fancybox( {
+//                        ajax:{
+//                           type     : "POST",
+//                           cache    : false,
+//                           url      : 'movie/addGenre/',
+//                           success: function(data) {
+//                            }
+//                        }
+//                    });
+//                    $.fancybox().init();
                 }
             });
         }

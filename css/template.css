@@ -663,6 +663,10 @@ img.movie-image {
     border-radius:5px;
 }
 
+
+select#genre option[selected] {
+    background-color:red;
+}
 /*option[selected], option:focus, select[selected] { 
     background: #2DAEBF !important;
     color:#fff !important;
@@ -724,3 +728,7 @@ img.movie-image {
 
 .contextMenu li.add a { background-image: url(../images/icons/add.png); }
 .contextMenu li.delete a { background-image: url(../images/icons/delete.png); }
+
+.test {
+    background-color: red !important;
+}

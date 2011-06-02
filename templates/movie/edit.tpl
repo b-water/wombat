@@ -1,4 +1,4 @@
-<form id="edit" method="POST" action="movie/update/id/{$movie.id}/" enctype="multipart/form-data" >
+<form id="edit" class="jqtransform" method="POST" action="movie/update/id/{$movie.id}/" enctype="multipart/form-data" >
     <div class="notice good">Die Änderungen wurden erfolgreich in die Datenbank übertragen! Bitte warten Sie nun einen kurzen Augenblick, die Seite wird nun neu geladen!</div>
     <div id="left-fields">
         <fieldset>

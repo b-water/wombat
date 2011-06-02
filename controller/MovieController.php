@@ -127,9 +127,15 @@ class MovieController extends BaseController {
         $this->smarty->assign('text', $text);
         $this->smarty->display('delete.tpl');
     }
+//
+//    public function operations() {
+//        $this->smarty->display('operations.tpl');
+//    }
 
-    public function operations() {
-        $this->smarty->display('operations.tpl');
+    public function addGenre() {
+        
+        $genre = $this->movie->fetchGenre();
+        $this->smarty->assign('genre', $genre);
+        $this->smarty->display('addGenre.tpl');
     }
-
 }
