@@ -202,24 +202,30 @@ class Movie {
 
         $sql = $this->db->query($select);
         $data = $sql->fetchAll();
-
+        $test = array();
         if (empty($data)) {
             throw new MovieException('(#3) : No Movies found!');
         } else {
-            $movies = array();
-            foreach($data as $item) {
-                $item['genre'] = $this->fetchAssociatedGenre($item['id']);
-                $movies[] = $item;
+            for ($index = 0; $index <= count($data) - 1; $index++) {
+                $data[$index]['genre'] = $this->fetchAssociatedGenre($data[$index]['id']);
             }
         }
         
-        return $movies;
+        return $data;
     }
 
-    public function fetchAssociatedGenre($id=null) {
+    /**
+     * Fetches associated Genre
+     * from a Movie
+     *
+     * @param   type    $id
+     * @param   type    $fields
+     * @return  type    array
+     */
+    public function fetchAssociatedGenre($id=null,$fields='*') {
         if ($id != null) {
             $select = $this->db->select();
-            $select->from($this->tableAssociatedGenre);
+            $select->from($this->tableAssociatedGenre,$fields);
             $select->where($this->tableAssociatedGenre . '.table = "' . $this->tableMovie . '" AND ' . $this->tableAssociatedGenre . '.table_id = "' . $id . '"');
             $select->joinLeft($this->tableGenre, $this->tableGenre . '.id = ' . $this->tableAssociatedGenre . '.genre_id', $this->tableGenre . '.name as genre');
             $sql = $this->db->query($select);

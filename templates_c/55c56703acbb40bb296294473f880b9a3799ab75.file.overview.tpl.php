@@ -1,17 +1,17 @@
-<?php /* Smarty version Smarty-3.0.6, created on 2011-06-01 23:40:11
+<?php /* Smarty version Smarty-3.0.6, created on 2011-06-02 18:03:51
          compiled from ".\templates\movie/overview.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:316184de6b1bb607093-53069219%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:312484de7b4677031c8-06984236%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '55c56703acbb40bb296294473f880b9a3799ab75' => 
     array (
       0 => '.\\templates\\movie/overview.tpl',
-      1 => 1306964409,
+      1 => 1307030629,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '316184de6b1bb607093-53069219',
+  'nocache_hash' => '312484de7b4677031c8-06984236',
   'function' => 
   array (
   ),
@@ -39,14 +39,28 @@ if ($_smarty_tpl->_count($_from) > 0){
 ">
             <td class="name"><?php echo $_smarty_tpl->tpl_vars['item']->value['name'];?>
 </td>
-            <td class="genre">
+<!--            <td class="genre">
             <?php if ($_smarty_tpl->tpl_vars['item']->value['genre']!=''){?>
                 <?php echo $_smarty_tpl->tpl_vars['item']->value['genre'];?>
 
             <?php }else{ ?>
                 -
             <?php }?>
-            </td>
+            </td>-->
+            <td class="genre">
+            <?php if ($_smarty_tpl->tpl_vars['item']->value['genre']){?>
+                <?php  $_smarty_tpl->tpl_vars['genre_item'] = new Smarty_Variable;
+ $_from = $_smarty_tpl->tpl_vars['item']->value['genre']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
+if ($_smarty_tpl->_count($_from) > 0){
+    foreach ($_from as $_smarty_tpl->tpl_vars['genre_item']->key => $_smarty_tpl->tpl_vars['genre_item']->value){
+?>
+                    <?php echo $_smarty_tpl->tpl_vars['genre_item']->value['genre'];?>
+
+                <?php }} ?>
+            <?php }else{ ?>
+                -
+            <?php }?>
+             </td>
             <td class="rating">
             <?php if ($_smarty_tpl->tpl_vars['item']->value['rating']!=''){?>
                 <?php echo $_smarty_tpl->tpl_vars['item']->value['rating'];?>

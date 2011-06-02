@@ -2,6 +2,7 @@ $(document).ready(function() {
     core.init.tablesorter($('table.tablesorter'));
     core.init.form($('form#edit'));
     core.init.tooltip($('a'));
+    core.init.contextmenu($('select#genre'));
     
     if($('form#edit input.abort').exists())
     {
@@ -57,15 +58,15 @@ var core = {
             {
                 showResponse = function() {
                     $('.notice').show();
-//                    $('.notice').animate({
-//                        opacity: 1.0
-//                    }, 1000).fadeOut('fast', function() {
-////                        $(this).hide();
-//                    });
+                //                    $('.notice').animate({
+                //                        opacity: 1.0
+                //                    }, 1000).fadeOut('fast', function() {
+                ////                        $(this).hide();
+                //                    });
                     
-//                    setTimeout(function(){
-//                        core.http.redirectToUrl(window.location.pathname);
-//                    }, 2000);
+                //                    setTimeout(function(){
+                //                        core.http.redirectToUrl(window.location.pathname);
+                //                    }, 2000);
                     
                 }
                 var options = {
@@ -87,6 +88,27 @@ var core = {
                     $(this).tipTip();
                 }
 
+            });
+        },
+        contextmenu : function(obj) {
+            $(obj).contextMenu({
+                menu: 'myMenu'
+            },
+            function(action, el) {
+                if(action == 'delete')
+                {
+                    $(obj).each(function(){
+
+                        $('option', this).each(function() {
+                            if($(this).attr('value') == el.attr('value')) {
+                                $(this).remove();
+                            }
+                        })
+                    });
+                }
+                if(action == 'add') {
+                    
+                }
             });
         }
 
@@ -151,10 +173,8 @@ var core = {
         {
             window.location.href = url;
         }
-    },
-    select : {
-
     }
+
 }
 
 

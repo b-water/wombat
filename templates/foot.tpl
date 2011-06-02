@@ -6,6 +6,7 @@
       <script type="text/javascript" src="library/jquery/jquery.tablesorter.js"></script>
       <script type="text/javascript" src="library/jquery/jquery.tablesorter.pager.js"></script>
       <script type="text/javascript" src="library/jquery/tiptip/jquery.tipTip.minified.js"></script>
+      <script type="text/javascript" src="library/jquery/jquery.contextMenu.js"></script>
       <script type="text/javascript" src="js/core.js"></script>
     </body>
 </html>

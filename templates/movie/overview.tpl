@@ -14,13 +14,22 @@
         {foreach item=item from=$movie}
         <tr id="{$item.id}">
             <td class="name">{$item.name}</td>
-            <td class="genre">
+<!--            <td class="genre">
             {if $item.genre != ''}
                 {$item.genre}
             {else}
                 -
             {/if}
-            </td>
+            </td>-->
+            <td class="genre">
+            {if $item.genre}
+                {foreach item=genre_item from=$item.genre}
+                    {$genre_item.genre}
+                {/foreach}
+            {else}
+                -
+            {/if}
+             </td>
             <td class="rating">
             {if $item.rating != ''}
                 {$item.rating}
