@@ -606,7 +606,7 @@ select.pagesize {
 }
 
 .grey.awesome {
-   background-color: #ffb515;
+    background-color: #ffb515;
 }
 
 /**************************************
@@ -614,7 +614,7 @@ select.pagesize {
 **************************************/
 
 div.movie-container {
-    
+
 }
 
 div.general-information {
@@ -636,3 +636,25 @@ div.movie-container p.description {
     clear:both;
 }
 
+div.dvd-case {
+    background:url('../images/dvd-case.png') 0 0 no-repeat;
+    width:230px;
+    height:291px;
+    position:relative;
+    z-index:2;
+}
+
+div.movie-image-container {
+    height:291px;
+    width:230px;
+}
+
+img.movie-image {
+    display: block;
+    left: 30px;
+    margin-top: 5px;
+    position: relative;
+    top:-288px;
+    z-index: 1;
+    border-radius:5px;
+}

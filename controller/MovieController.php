@@ -63,7 +63,7 @@ class MovieController extends BaseController {
     public function show() {
 
         $this->smarty->assign('title', 'Film Detailansicht');
-        $filter = $this->url->get('key') . ' = "' . $this->url->get('value') . '"';
+        $filter = 'movie.'.$this->url->get('key') . ' = "' . $this->url->get('value') . '"';
         $movie = $this->movie->fetch('*', $filter);
 
         $this->smarty->assign('movie', $movie[0]);

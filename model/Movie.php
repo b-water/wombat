@@ -20,16 +20,12 @@ class Movie {
     // file path for a cover image
     private $path = 'files/movie/';
     // size of thumbnails
-    private $image_width = '230';
-    private $image_height = '230';
-    private $image_crop = '230';
+    private $image_width = '193';
+    private $image_height = '272';
+    private $image_crop = '272';
     // size of cover image in kB
     private $image_size = '6144kB';
 
-    // meta information for a movie
-    private $genre = array();
-    private $format = array();
-    private $rating = array();
 
     /**
      * Movie Constructor, gathers from
@@ -41,11 +37,7 @@ class Movie {
         $this->db = $registry->get('db');
         $this->config = $registry->get('config');
         $this->url = $registry->get('url');
-        
-        // fetch meta data for the movies
-        $this->rating = $this->fetchRating();
-        $this->format = $this->fetchFormat();
-        $this->genre = $this->fetchGenre();
+
     }
 
     /**
@@ -171,24 +163,24 @@ class Movie {
         if (!empty($filter)) {
             $select->where($filter);
         }
-        
-        $select->joinLeft('genre', 'genre.id = movie.genre','genre.name as genre');
-        $select->joinLeft('rating', 'rating.id = movie.rating','rating.name as rating');
-        $select->joinLeft('format', 'format.id = movie.format','format.name as format');
-        
+
+        $select->joinLeft('genre', 'genre.id = movie.genre', 'genre.name as genre');
+        $select->joinLeft('rating', 'rating.id = movie.rating', 'rating.name as rating');
+        $select->joinLeft('format', 'format.id = movie.format', 'format.name as format');
+
 
         $select->order($orderby);
 
         if (!empty($limit) && !empty($offset)) {
             $select->limit($limit, $offset);
         }
-        echo $select->assemble();
+        
         $sql = $this->db->query($select);
         $movies = $sql->fetchAll();
 
         if (empty($movies))
             throw new MovieException('(#3) : No Movies found!');
-        
+
         return $movies;
     }
 
@@ -251,6 +243,7 @@ class Movie {
 
         return $rating;
     }
+
 }
 
 ?>
