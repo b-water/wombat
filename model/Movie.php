@@ -10,7 +10,11 @@
 class Movie {
 
     // mysql table
-    private $table = 'movie';
+    private $table_movie = 'movie';
+    private $table_genre = 'genre';
+    private $table_selected_genre = 'selected_genre';
+    private $table_Format = 'format';
+    private $table_rating = 'rating';
     // database object
     private $db;
     // config object
@@ -25,6 +29,7 @@ class Movie {
     private $image_crop = '272';
     // size of cover image in kB
     private $image_size = '6144kB';
+    private $selected_genre = 'selected_genre';
 
 
     /**
@@ -48,15 +53,17 @@ class Movie {
      * @param array $values 
      */
     public function update($values) {
-
+        var_dump($values);die();
         $data = array(
             'name' => $values['name'],
-            'genre' => $values['genre'],
+//            'genre' => $values['genre'],
             'format' => $values['format'],
             'trailer' => $values['trailer'],
             'rating' => $values['rating'],
             'description' => $values['description']
         );
+        
+        $s
 
         if (isset($_FILES['cover']['name']) && !empty($_FILES['cover']['name'])) {
 
@@ -182,6 +189,14 @@ class Movie {
             throw new MovieException('(#3) : No Movies found!');
 
         return $movies;
+    }
+    
+    public function fetchSelectedGenre($id=null)
+    {
+        $select = $this->db->select();
+        $select->from($this->selected_genre,$this->selected_genre.'.table_id',$this->selected_genre.'.genre_id' );
+        $select->where($this->selected_genre.'.table = "'.$this->table.'" AND '.$this->selected_genre.'.table_id = "'.$id.'"');
+        $select->joinLeft('genre', 'genre.id = movie.genre', 'genre.name as genre');
     }
 
     /**

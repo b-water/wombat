@@ -663,7 +663,7 @@ img.movie-image {
     border-radius:5px;
 }
 
-option[selected], option:focus { 
+option[selected], option:focus, select[selected] { 
     background: #2DAEBF !important;
     color:#fff !important;
 }

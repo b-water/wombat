@@ -63,9 +63,9 @@ var core = {
 ////                        $(this).hide();
 //                    });
                     
-                    setTimeout(function(){
-                        core.http.redirectToUrl(window.location.pathname);
-                    }, 2000);
+//                    setTimeout(function(){
+//                        core.http.redirectToUrl(window.location.pathname);
+//                    }, 2000);
                     
                 }
                 var options = {
@@ -151,6 +151,9 @@ var core = {
         {
             window.location.href = url;
         }
+    },
+    select : {
+
     }
 }
 

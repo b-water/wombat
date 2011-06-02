@@ -30,11 +30,11 @@ $config = Config::getInstance('config.ini');
 
 try {
    $db = new Zend_Db_Adapter_Pdo_Mysql(array(
-    'host'      => $config->get('HOST'),
-    'username'  => $config->get('USER'),
-    'password'  => $config->get('PASSWORD'),
-    'charset'   => 'utf8',
-    'dbname'    => $config->get('DATABASE') ));
+    'host'      => $config->get('database.params.host'),
+    'username'  => $config->get('database.params.user'),
+    'password'  => $config->get('database.params.password'),
+    'charset'   => $config->get('database.params.charset'),
+    'dbname'    => $config->get('database.params.database') ));
 } catch (Zend_Db_Exception $dbException) {
     die($dbException);
 }
@@ -68,8 +68,8 @@ $navi->create($data);
 
 // assign them to smarty
 $smarty->assign('file', 'bootstrap.php');
-$smarty->assign('maintitle',$config->get('MAINTITLE'));
-$smarty->assign('basepath', $config->get('BASE_PATH'));
+$smarty->assign('maintitle',$config->get('mainTitle'));
+$smarty->assign('basepath', $config->get('basePath'));
 $smarty->assign('controller',$url->get('controller'));
 
 $router = new Router();
