@@ -6,7 +6,7 @@ $(document).ready(function() {
     if($('form#edit input.abort').exists())
     {
         $('form#edit input.abort').click(function() {
-           core.http.redirectToUrl('movie/'); 
+            core.http.redirectToUrl('movie/'); 
         });
     }
     
@@ -57,13 +57,17 @@ var core = {
             {
                 showResponse = function() {
                     $('.notice').show();
-                    $('.notice').animate({
-                        opacity: 1.0
-                    }, 1000).fadeOut('fast', function() {
-                        $(this).hide();
-                    });
+//                    $('.notice').animate({
+//                        opacity: 1.0
+//                    }, 1000).fadeOut('fast', function() {
+////                        $(this).hide();
+//                    });
+                    
+                    setTimeout(function(){
+                        core.http.redirectToUrl(window.location.pathname);
+                    }, 2000);
+                    
                 }
-
                 var options = {
                     success: showResponse
                 };

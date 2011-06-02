@@ -1,7 +1,6 @@
 <form id="edit" method="POST" action="movie/update/id/{$movie.id}/" enctype="multipart/form-data" >
-    <div class="notice good">Die Änderungen wurden erfolgreich in die Datenbank übertragen!</div>
+    <div class="notice good">Die Änderungen wurden erfolgreich in die Datenbank übertragen! Bitte warten Sie nun einen kurzen Augenblick, die Seite wird nun neu geladen!</div>
     <div id="left-fields">
-        
         <fieldset>
             <div class="movie-image-container">
                 <div class="dvd-case">
@@ -12,9 +11,7 @@
                     <img class="movie-image" src="images/movie-default.png" alt="Film Bild" />
                 {/if}
             </div>
-            <input type="button" value="DURCHSUCHEN" class="awesome small" style="width:100%;text-transform:uppercase;font-weight:normal;" />
         </fieldset>
-        
         <fieldset>
             <label>Name</label>
             <input type="text" name="name" value="{$movie.name}" />
@@ -51,7 +48,7 @@
 
         <fieldset class="right">
             <input type="submit" class="small awesome" value="Speichern" />
-            <input type="button" class="small awesome abort" value="Zur&uuml;ck" />
+<!--            <input type="button" class="small awesome abort" value="Zur&uuml;ck" />-->
         </fieldset>
     </div>
 </form>

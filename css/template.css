@@ -173,9 +173,13 @@ input[type=submit], input[type=button] {
 **************************************/
 
 .notice {
-    padding:5px 5px 5px 25px;
     border: 1px solid #FFDD3F;
-    margin-bottom:10px;
+    border-radius: 6px 6px 6px 6px;
+/*    box-shadow: 1px 1px 4px #EDE4C2;*/
+    font-size: 14px;
+    font-weight: normal;
+    margin-bottom: 20px;
+    padding: 5px 5px 5px 25px;
 }
 
 .error {
@@ -454,7 +458,7 @@ form#edit input[type="file"] {
 
 
 form#edit textarea {
-    height: 560px;
+    height: 616px;
     width: 700px;
 }
 
@@ -657,4 +661,9 @@ img.movie-image {
     top:-288px;
     z-index: 1;
     border-radius:5px;
+}
+
+option[selected], option:focus { 
+    background: #2DAEBF !important;
+    color:#fff !important;
 }

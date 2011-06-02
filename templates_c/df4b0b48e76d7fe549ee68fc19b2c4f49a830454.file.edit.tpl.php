@@ -1,17 +1,17 @@
-<?php /* Smarty version Smarty-3.0.6, created on 2011-06-02 12:35:08
+<?php /* Smarty version Smarty-3.0.6, created on 2011-06-02 13:41:13
          compiled from ".\templates\movie/edit.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:285524de7675cc4e435-68675892%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:114264de776d96a04c2-53477512%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     'df4b0b48e76d7fe549ee68fc19b2c4f49a830454' => 
     array (
       0 => '.\\templates\\movie/edit.tpl',
-      1 => 1307010906,
+      1 => 1307014867,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '285524de7675cc4e435-68675892',
+  'nocache_hash' => '114264de776d96a04c2-53477512',
   'function' => 
   array (
   ),
@@ -19,23 +19,20 @@ $_smarty_tpl->decodeProperties(array (
 )); /*/%%SmartyHeaderCode%%*/?>
 <form id="edit" method="POST" action="movie/update/id/<?php echo $_smarty_tpl->getVariable('movie')->value['id'];?>
 /" enctype="multipart/form-data" >
-    <div class="notice good">Die Änderungen wurden erfolgreich in die Datenbank übertragen!</div>
+    <div class="notice good">Die Änderungen wurden erfolgreich in die Datenbank übertragen! Bitte warten Sie nun einen kurzen Augenblick, die Seite wird nun neu geladen!</div>
     <div id="left-fields">
-        
         <fieldset>
             <div class="movie-image-container">
                 <div class="dvd-case">
                 </div>
                 <?php if ($_smarty_tpl->getVariable('movie')->value['image']!=''){?>
                     <img class="movie-image" src="<?php echo $_smarty_tpl->getVariable('movie')->value['image'];?>
-" alt="Cover" />
+" alt="Film Bild" />
                 <?php }else{ ?>
-                    <img class="movie-image" src="images/movie-default.png" alt="Cover" />
+                    <img class="movie-image" src="images/movie-default.png" alt="Film Bild" />
                 <?php }?>
             </div>
-            <input type="button" value="DURCHSUCHEN" class="awesome small" style="width:100%;text-transform:uppercase;font-weight:normal;" />
         </fieldset>
-        
         <fieldset>
             <label>Name</label>
             <input type="text" name="name" value="<?php echo $_smarty_tpl->getVariable('movie')->value['name'];?>
@@ -79,7 +76,7 @@ $_smarty_tpl->decodeProperties(array (
 
         <fieldset class="right">
             <input type="submit" class="small awesome" value="Speichern" />
-            <input type="button" class="small awesome abort" value="Zur&uuml;ck" />
+<!--            <input type="button" class="small awesome abort" value="Zur&uuml;ck" />-->
         </fieldset>
     </div>
 </form>
