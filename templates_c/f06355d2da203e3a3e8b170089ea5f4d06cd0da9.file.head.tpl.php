@@ -1,17 +1,17 @@
-<?php /* Smarty version Smarty-3.0.6, created on 2011-06-02 18:50:04
+<?php /* Smarty version Smarty-3.0.6, created on 2011-06-02 19:47:43
          compiled from ".\templates\head.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:202974de7bf3cc8e688-85666542%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:13914de7ccbf3e2c18-71459071%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     'f06355d2da203e3a3e8b170089ea5f4d06cd0da9' => 
     array (
       0 => '.\\templates\\head.tpl',
-      1 => 1307033350,
+      1 => 1307036821,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '202974de7bf3cc8e688-85666542',
+  'nocache_hash' => '13914de7ccbf3e2c18-71459071',
   'function' => 
   array (
   ),
@@ -31,4 +31,6 @@ $_smarty_tpl->decodeProperties(array (
         <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
         <link rel="stylesheet" href="css/template.css" type="text/css" media="screen" />
         <link rel="stylesheet" href="library/jquery/tiptip/tipTip.css" type="text/css" media="screen" />
+        <link rel="stylesheet" href="library/jquery/fancybox/jquery.fancybox-1.3.4.css" type="text/css" media="screen" />
+        
     </head>

@@ -1,17 +1,17 @@
-<?php /* Smarty version Smarty-3.0.6, created on 2011-06-02 19:19:36
+<?php /* Smarty version Smarty-3.0.6, created on 2011-06-02 19:47:43
          compiled from ".\templates\foot.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:51484de7c628a14064-51160036%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:211164de7ccbf5b8033-37274202%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     'a12479775d49ae3c41daa1d1d3a5f3553b5d6ae5' => 
     array (
       0 => '.\\templates\\foot.tpl',
-      1 => 1307035175,
+      1 => 1307036857,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '51484de7c628a14064-51160036',
+  'nocache_hash' => '211164de7ccbf5b8033-37274202',
   'function' => 
   array (
   ),
@@ -26,6 +26,7 @@ $_smarty_tpl->decodeProperties(array (
       <script type="text/javascript" src="library/jquery/jquery.tablesorter.pager.js"></script>
       <script type="text/javascript" src="library/jquery/tiptip/jquery.tipTip.minified.js"></script>
       <script type="text/javascript" src="library/jquery/jquery.contextMenu.js"></script>
+      <script type="text/javascript" src="library/jquery/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
       <script type="text/javascript" src="js/core.js"></script>
     </body>
 </html>

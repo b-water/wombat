@@ -107,17 +107,8 @@ var core = {
                     });
                 }
                 if(action == 'add') {
-                    alert('hallo');
-//                    $.fancybox( {
-//                        ajax:{
-//                           type     : "POST",
-//                           cache    : false,
-//                           url      : 'movie/addGenre/',
-//                           success: function(data) {
-//                            }
-//                        }
-//                    });
-//                    $.fancybox().init();
+                    $('a.addGenre').fancybox();
+                    $('a.addGenre').click();
                 }
             });
         }

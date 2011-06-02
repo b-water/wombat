@@ -9,4 +9,6 @@
         <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
         <link rel="stylesheet" href="css/template.css" type="text/css" media="screen" />
         <link rel="stylesheet" href="library/jquery/tiptip/tipTip.css" type="text/css" media="screen" />
+        <link rel="stylesheet" href="library/jquery/fancybox/jquery.fancybox-1.3.4.css" type="text/css" media="screen" />
+        
     </head>
