@@ -11,7 +11,9 @@ class MovieController extends BaseController {
 
     // The Movie Object
     private $movie;
+    private $template;
     private $template_dir = 'movie/';
+    private $tableMovie;
 
     public function __construct($registry) {
         parent::__construct($registry);
@@ -19,6 +21,8 @@ class MovieController extends BaseController {
 
     public function init() {
         $this->movie = new Movie();
+        $this->template = $this->config->get('template.mainfile');
+        $this->tableMovie = $this->config->get('database.tables.movie');
     }
 
     public function index() {
@@ -35,27 +39,27 @@ class MovieController extends BaseController {
 
         $this->smarty->assign('content', $content);
 
-        $this->smarty->display($this->config->get('TEMPLATE_FILE'));
+        $this->smarty->display($this->template);
     }
 
-    /**
-     * Search through the Movie Database
-     */
-    public function search() {
-
-        $filter = ' WHERE name like "%' . $_REQUEST['searchbar'] . '%"';
-        $movies = $this->movie->fetch('*', $filter);
-
-        $this->smarty->assign('title', 'Filme (Suche)');
-        $this->smarty->assign('movie', $movies);
-
-        $content = $this->smarty->fetch('toolbar.tpl');
-        $content .= $this->smarty->fetch($this->template_dir . 'index.tpl');
-
-        $this->smarty->assign('content', $content);
-
-        $this->smarty->display($this->config->get('TEMPLATE_FILE'));
-    }
+//    /**
+//     * Search through the Movie Database
+//     */
+//    public function search() {
+//
+//        $filter = ' WHERE name like "%' . $_REQUEST['searchbar'] . '%"';
+//        $movies = $this->movie->fetch('*', $filter);
+//
+//        $this->smarty->assign('title', 'Filme (Suche)');
+//        $this->smarty->assign('movie', $movies);
+//
+//        $content = $this->smarty->fetch('toolbar.tpl');
+//        $content .= $this->smarty->fetch($this->template_dir . 'index.tpl');
+//
+//        $this->smarty->assign('content', $content);
+//
+//        $this->smarty->display($this->template);
+//    }
 
     /**
      * Show a single Movie
@@ -63,7 +67,7 @@ class MovieController extends BaseController {
     public function show() {
 
         $this->smarty->assign('title', 'Film Detailansicht');
-        $filter = 'movie.'.$this->url->get('key') . ' = "' . $this->url->get('value') . '"';
+        $filter = $this->tableMovie.'.'.$this->url->get('key') . ' = "' . $this->url->get('value') . '"';
         $movie = $this->movie->fetch('*', $filter);
 
         $this->smarty->assign('movie', $movie[0]);
@@ -71,7 +75,7 @@ class MovieController extends BaseController {
 
         $this->smarty->assign('content', $content);
 
-        $this->smarty->display($this->config->get('TEMPLATE_FILE'));
+        $this->smarty->display($this->template);
     }
 
     /**
@@ -80,7 +84,7 @@ class MovieController extends BaseController {
     public function edit() {
 
         $this->smarty->assign('title', 'Film Bearbeiten');
-        $filter = 'movie.'.$this->url->get('key').' = "' . $this->url->get('value') . '"';
+        $filter = $this->tableMovie.'.'.$this->url->get('key').' = "' . $this->url->get('value') . '"';
         $movie = $this->movie->fetch('*', $filter);
 
         // gather Meta Information
@@ -99,7 +103,7 @@ class MovieController extends BaseController {
         $this->smarty->assign('content', $content);
 
         // display smarty templates
-        $this->smarty->display($this->config->get('TEMPLATE_FILE'));
+        $this->smarty->display($this->template);
     }
 
     /**

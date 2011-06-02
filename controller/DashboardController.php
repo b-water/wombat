@@ -10,13 +10,14 @@
 class DashboardController extends BaseController {
 
     private $template_dir = 'dashboard/';
+    private $template;
 
     public function __construct($registry) {
         parent::__construct($registry);
     }
 
     public function init() {
-        
+        $this->template = $this->config->get('template.mainfile');
     }
 
     public function index() {
@@ -24,7 +25,7 @@ class DashboardController extends BaseController {
 
         $content = $this->smarty->fetch($this->template_dir . 'overview.tpl');
         $this->smarty->assign('content', $content);
-        $this->smarty->display($this->config->get('TEMPLATE_FILE'));
+        $this->smarty->display($this->template);
     }
 
 

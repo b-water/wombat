@@ -68,8 +68,8 @@ $navi->create($data);
 
 // assign them to smarty
 $smarty->assign('file', 'bootstrap.php');
-$smarty->assign('maintitle',$config->get('mainTitle'));
-$smarty->assign('basepath', $config->get('basePath'));
+$smarty->assign('maintitle',$config->get('html.title'));
+$smarty->assign('basepath', $config->get('path.base'));
 $smarty->assign('controller',$url->get('controller'));
 
 $router = new Router();

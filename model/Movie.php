@@ -9,12 +9,12 @@
  */
 class Movie {
 
-    // mysql table
-    private $table_movie = 'movie';
-    private $table_genre = 'genre';
-    private $table_selected_genre = 'selected_genre';
-    private $table_Format = 'format';
-    private $table_rating = 'rating';
+    // mysql table names 
+    private $tableMovie = 'movie';
+    private $tableGenre = 'genre';
+    private $tableSelectedGenre = 'selected_genre';
+    private $tableFormat = 'format';
+    private $tableRating = 'rating';
     // database object
     private $db;
     // config object
@@ -22,15 +22,14 @@ class Movie {
     // url object
     private $url;
     // file path for a cover image
-    private $path = 'files/movie/';
+    private $path;
     // size of thumbnails
-    private $image_width = '193';
-    private $image_height = '272';
-    private $image_crop = '272';
+    private $imageWidth = '193';
+    private $imageHeight = '272';
+    private $imageCrop = '272';
     // size of cover image in kB
-    private $image_size = '6144kB';
-    private $selected_genre = 'selected_genre';
-
+    private $imageSize = '6144kB';
+    private $selectedGenre = 'selected_genre';
 
     /**
      * Movie Constructor, gathers from
@@ -43,6 +42,14 @@ class Movie {
         $this->config = $registry->get('config');
         $this->url = $registry->get('url');
 
+        // get mysql table names
+        $this->tableMovie = $this->config->get('database.tables.movie');
+        $this->tableGenre = $this->config->get('database.tables.genre');
+        $this->tableSelectedGenre = $this->config->get('database.tables.selectedGenre');
+        $this->tableFormat = $this->config->get('database.tables.format');
+        $this->tableRating = $this->config->get('database.tables.rating');
+        
+        $this->path = $this->config->get('path.files').'movie/';
     }
 
     /**
@@ -53,17 +60,24 @@ class Movie {
      * @param array $values 
      */
     public function update($values) {
-        var_dump($values);die();
+        
+        $this->deleteAssociatedGenre($this->url->get('value'));
+
         $data = array(
             'name' => $values['name'],
-//            'genre' => $values['genre'],
             'format' => $values['format'],
             'trailer' => $values['trailer'],
             'rating' => $values['rating'],
             'description' => $values['description']
         );
         
-        $s
+        foreach($values['genre'] as $key => $val)
+        {
+            
+        }
+        
+        var_dump($values);die();
+
 
         if (isset($_FILES['cover']['name']) && !empty($_FILES['cover']['name'])) {
 
@@ -71,7 +85,7 @@ class Movie {
             $upload = new Zend_File_Transfer();
             $upload->addValidator('Count', false, array('min' => 1, 'max' => 1));
             $upload->addValidator('IsImage', true);
-            $upload->addValidator('Size', false, array('max' => $this->image_size));
+            $upload->addValidator('Size', false, array('max' => $this->imageSize));
 
             /* get the file mimetype for the new name */
             $info = $upload->getFileInfo();
@@ -105,7 +119,7 @@ class Movie {
                 die($thumbnailException);
             }
 
-            $thumb->adaptiveResize($this->image_width, $this->image_height)->cropFromCenter($this->image_crop)->save($filename);
+            $thumb->adaptiveResize($this->imageWidth, $this->imageHeight)->cropFromCenter($this->imageCrop)->save($filename);
 
             $data['image'] = $filename;
         }
@@ -125,26 +139,25 @@ class Movie {
      */
     public function delete($id) {
 
-        /* deleting files according to the movie */
-        $di = new DirectoryIterator($this->path);
-        $length = strlen($id);
-        foreach ($di as $file) {
-            if (!$file->isDot() && substr($file->getFilename(), 0, $length) == $id) {
-                $image = $this->path . $file->getFilename();
-                $thumb = $this->path . 'thumb/' . $file->getFilename();
-                if (file_exists($image)) {
-                    unlink($image);
-                }
-                if (file_exists($thumb)) {
-                    unlink($thumb);
-                }
-            }
-        }
         /* deleting the movie from the database */
-        $affectedRows = $this->db->delete($this->table, $this->url->get('key') . '="' . $id . '"');
+        $affectedRows = $this->db->delete($this->tableMovie, $this->url->get('key') . '="' . $id . '"');
 
         if ($affectedRows != 1) {
             throw new MovieException('(#2) : The dataset coud not have been deleted!');
+        } else {
+            /* delete associated genres */
+            $this->deleteAssociatedGenre($id);
+            /* deleting files according to the movie */
+            $di = new DirectoryIterator($this->path);
+            $length = strlen($id);
+            foreach ($di as $file) {
+                if (!$file->isDot() && substr($file->getFilename(), 0, $length) == $id) {
+                    $image = $this->path . $file->getFilename();
+                    if (file_exists($image)) {
+                        unlink($image);
+                    }
+                }
+            }
         }
     }
 
@@ -157,31 +170,32 @@ class Movie {
      * @param   string  $limit
      * @return  array   movies
      */
-    public function fetch($fields='*', $filter='', $orderby='movie.name', $limit='', $offset='') {
+    public function fetch($fields='*', $filter='', $orderby='', $limit='', $offset='') {
 
         $select = $this->db->select();
 
         if (!empty($fields)) {
-            $select->from($this->table, $fields);
+            $select->from($this->tableMovie, $fields);
         } else {
-            $select->from($this->table);
+            $select->from($this->tableMovie);
         }
 
         if (!empty($filter)) {
             $select->where($filter);
         }
 
-        $select->joinLeft('genre', 'genre.id = movie.genre', 'genre.name as genre');
-        $select->joinLeft('rating', 'rating.id = movie.rating', 'rating.name as rating');
-        $select->joinLeft('format', 'format.id = movie.format', 'format.name as format');
+        $select->joinLeft($this->tableGenre, $this->tableGenre . '.id = ' . $this->tableMovie . '.genre', $this->tableGenre . '.name as genre');
+        $select->joinLeft($this->tableRating, $this->tableRating . '.id = ' . $this->tableMovie . '.rating', $this->tableRating . '.name as rating');
+        $select->joinLeft($this->tableFormat, $this->tableFormat . '.id = ' . $this->tableMovie . '.format', $this->tableFormat . '.name as format');
 
-
-        $select->order($orderby);
+        if (!empty($orderby)) {
+            $select->order($orderby);
+        }
 
         if (!empty($limit) && !empty($offset)) {
             $select->limit($limit, $offset);
         }
-        
+
         $sql = $this->db->query($select);
         $movies = $sql->fetchAll();
 
@@ -190,13 +204,19 @@ class Movie {
 
         return $movies;
     }
-    
-    public function fetchSelectedGenre($id=null)
-    {
-        $select = $this->db->select();
-        $select->from($this->selected_genre,$this->selected_genre.'.table_id',$this->selected_genre.'.genre_id' );
-        $select->where($this->selected_genre.'.table = "'.$this->table.'" AND '.$this->selected_genre.'.table_id = "'.$id.'"');
-        $select->joinLeft('genre', 'genre.id = movie.genre', 'genre.name as genre');
+
+    public function fetchAssociatedGenre($id=null) {
+        if ($id != null) {
+            $select = $this->db->select();
+            $select->from($this->tableSelectedGenre);
+            $select->where($this->tableSelectedGenre . '.table = "' . $this->tableMovie . '" AND ' . $this->tableSelectedGenre . '.table_id = "' . $id . '"');
+            $select->joinLeft($this->tableGenre, $this->tableGenre . '.id = ' . $this->selectedGenre . '.genre_id', $this->tableGenre . '.name as genre');
+            $sql = $this->db->query($select);
+            $genre = $sql->fetchAll();
+            return $genre;
+        } else {
+            throw new MovieException('(#5) : There must be an ID given to fetch Associated Genre!');
+        }
     }
 
     /**
@@ -257,6 +277,22 @@ class Movie {
         }
 
         return $rating;
+    }
+
+    private function deleteAssociatedGenre($id) {
+        if (!empty($id)) {
+            /* deleting the movie from the database */
+            $affectedRows = $this->db->delete($this->tableSelectedGenre, ' table_id ="' . $id . '"');
+        } else {
+            throw new MovieException('(#6) : There must be an ID given to delete Associated Genre!');
+        }
+    }
+    
+    private function createAssociatedGenre(array $params) {
+        if(!empty($array))
+        {
+            
+        }
     }
 
 }
