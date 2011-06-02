@@ -10,11 +10,11 @@
 class Movie {
 
     // mysql table names 
-    private $tableMovie = 'movie';
-    private $tableGenre = 'genre';
-    private $tableSelectedGenre = 'selected_genre';
-    private $tableFormat = 'format';
-    private $tableRating = 'rating';
+    private $tableMovie;
+    private $tableGenre;
+    private $tableAssociatedGenre;
+    private $tableFormat;
+    private $tableRating;
     // database object
     private $db;
     // config object
@@ -29,7 +29,6 @@ class Movie {
     private $imageCrop = '272';
     // size of cover image in kB
     private $imageSize = '6144kB';
-    private $selectedGenre = 'selected_genre';
 
     /**
      * Movie Constructor, gathers from
@@ -45,11 +44,11 @@ class Movie {
         // get mysql table names
         $this->tableMovie = $this->config->get('database.tables.movie');
         $this->tableGenre = $this->config->get('database.tables.genre');
-        $this->tableSelectedGenre = $this->config->get('database.tables.selectedGenre');
+        $this->tableAssociatedGenre = $this->config->get('database.tables.associatedGenre');
         $this->tableFormat = $this->config->get('database.tables.format');
         $this->tableRating = $this->config->get('database.tables.rating');
-        
-        $this->path = $this->config->get('path.files').'movie/';
+
+        $this->path = $this->config->get('path.files') . 'movie/';
     }
 
     /**
@@ -60,7 +59,7 @@ class Movie {
      * @param array $values 
      */
     public function update($values) {
-        
+
         $this->deleteAssociatedGenre($this->url->get('value'));
 
         $data = array(
@@ -70,13 +69,19 @@ class Movie {
             'rating' => $values['rating'],
             'description' => $values['description']
         );
-        
-        foreach($values['genre'] as $key => $val)
-        {
-            
+
+        foreach ($values['genre'] as $key => $val) {
+            $params = array(
+                'genre_id' => $val,
+                'table_id' => $this->url->get('value'),
+                'table' => $this->tableMovie
+            );
+
+            $this->createAssociatedGenre($params);
         }
-        
-        var_dump($values);die();
+
+        var_dump($values);
+        die();
 
 
         if (isset($_FILES['cover']['name']) && !empty($_FILES['cover']['name'])) {
@@ -184,7 +189,6 @@ class Movie {
             $select->where($filter);
         }
 
-        $select->joinLeft($this->tableGenre, $this->tableGenre . '.id = ' . $this->tableMovie . '.genre', $this->tableGenre . '.name as genre');
         $select->joinLeft($this->tableRating, $this->tableRating . '.id = ' . $this->tableMovie . '.rating', $this->tableRating . '.name as rating');
         $select->joinLeft($this->tableFormat, $this->tableFormat . '.id = ' . $this->tableMovie . '.format', $this->tableFormat . '.name as format');
 
@@ -197,20 +201,27 @@ class Movie {
         }
 
         $sql = $this->db->query($select);
-        $movies = $sql->fetchAll();
+        $data = $sql->fetchAll();
 
-        if (empty($movies))
+        if (empty($data)) {
             throw new MovieException('(#3) : No Movies found!');
-
+        } else {
+            $movies = array();
+            foreach($data as $item) {
+                $item['genre'] = $this->fetchAssociatedGenre($item['id']);
+                $movies[] = $item;
+            }
+        }
+        
         return $movies;
     }
 
     public function fetchAssociatedGenre($id=null) {
         if ($id != null) {
             $select = $this->db->select();
-            $select->from($this->tableSelectedGenre);
-            $select->where($this->tableSelectedGenre . '.table = "' . $this->tableMovie . '" AND ' . $this->tableSelectedGenre . '.table_id = "' . $id . '"');
-            $select->joinLeft($this->tableGenre, $this->tableGenre . '.id = ' . $this->selectedGenre . '.genre_id', $this->tableGenre . '.name as genre');
+            $select->from($this->tableAssociatedGenre);
+            $select->where($this->tableAssociatedGenre . '.table = "' . $this->tableMovie . '" AND ' . $this->tableAssociatedGenre . '.table_id = "' . $id . '"');
+            $select->joinLeft($this->tableGenre, $this->tableGenre . '.id = ' . $this->tableAssociatedGenre . '.genre_id', $this->tableGenre . '.name as genre');
             $sql = $this->db->query($select);
             $genre = $sql->fetchAll();
             return $genre;
@@ -279,19 +290,32 @@ class Movie {
         return $rating;
     }
 
+    /**
+     * Deletes all Genre According
+     * to a Movie
+     *
+     * @param   string    $id 
+     */
     private function deleteAssociatedGenre($id) {
         if (!empty($id)) {
             /* deleting the movie from the database */
-            $affectedRows = $this->db->delete($this->tableSelectedGenre, ' table_id ="' . $id . '"');
+            $this->db->delete($this->tableAssociatedGenre, ' table_id ="' . $id . '"');
         } else {
             throw new MovieException('(#6) : There must be an ID given to delete Associated Genre!');
         }
     }
-    
+
+    /**
+     * Creates a Genre According to a Movie
+     *
+     * @param   array     $params 
+     */
     private function createAssociatedGenre(array $params) {
-        if(!empty($array))
-        {
-            
+        if (!empty($params)) {
+            $affectedRows = $this->db->insert($this->tableAssociatedGenre, $params);
+            if ($affectedRows != 1) {
+                throw new MovieException('(#7) : Coud not create associated Genre!');
+            }
         }
     }
 
