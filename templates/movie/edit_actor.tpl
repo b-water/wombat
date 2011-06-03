@@ -1,4 +1,4 @@
-<label>Genre</label>
+<label>Schauspieler</label>
 <input type="text" name="autoCompleteGenre" id="autoCompleteGenre"/>
 <div id="associatedGenres">
     {foreach item=item from=$movie.genre}

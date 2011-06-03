@@ -3,7 +3,6 @@ $(document).ready(function() {
     core.init.form($('form#edit'));
     core.init.tooltip($('a'));
     core.init.autoComplete($('#autoCompleteGenre'));
-    core.init.contextMenu($('select#genre'));
 });
 
 jQuery.fn.exists = function(){

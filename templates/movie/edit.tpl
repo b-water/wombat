@@ -41,15 +41,15 @@
             <label for="description">Beschreibung</label>
             <textarea id="description" name="description">{$movie.description}</textarea>
         </fieldset>
-        <fieldset class="col">
+        <fieldset class="col col-left">
             {include file='/movie/edit_genre.tpl'}
         </fieldset>
-                <fieldset class="col">
+        <fieldset class="col">
             {include file='/movie/edit_actor.tpl'}
         </fieldset>
-        <fieldset class="right">
-            <input type="submit" class="small awesome" value="Speichern" />
-            <input type="button" class="small awesome abort" value="Zur&uuml;ck" />
-        </fieldset>
+<!--        <fieldset class="right">-->
+<!--            <input type="button" class="small awesome abort" value="Zur&uuml;ck" />-->
+            <input type="submit" class="small awesome right" value="Speichern" />
+<!--        </fieldset>-->
     </div>
 </form>

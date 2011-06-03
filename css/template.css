@@ -439,12 +439,18 @@ form#edit div#right-fields {
 }
 
 form#edit div#right-fields fieldset.col {
-    width:345px;
+    width:330px;
+    float:left;
+    margin-right:10px;
+}
+
+fieldset.col col-left {
+    margin-right:35px;
 }
 
 form#edit div#right-fields fieldset.col input[type=text], form#edit div#right-fields fieldset.col input[type=select], 
 form#edit div#right-fields fieldset.col textarea {
-    width:345px;
+    width:330px;
 }
 
 form#edit fieldset {
@@ -474,7 +480,7 @@ form#edit input[type="file"] {
 
 
 form#edit textarea {
-    height: 616px;
+    height: 440px;
     width: 700px;
 }
 
@@ -536,6 +542,7 @@ span.genre span.delete {
     width:16px;
     display: inline-block;
     text-indent: 2000em;
+    cursor:pointer; 
 }
 
 span.genre span.text {
@@ -706,11 +713,11 @@ select#genre option[selected] {
     background-color: white;
     overflow: hidden;
     z-index: 99999;
-    width:228px !important;
+    width:328px !important;
 }
 
 .ac_results ul {
-    width: 227px;
+    width: 327px;
     list-style-position: outside;
     list-style: none;
     padding: 0;
@@ -722,7 +729,7 @@ select#genre option[selected] {
     padding: 2px 5px;
     cursor: default;
     display: block;
-    width:200px;
+    width:300px;
     /* 
 	if width will be 100% horizontal scrollbar will apear 
 	when scroll mode will be used
@@ -747,8 +754,9 @@ select#genre option[selected] {
 }
 
 .ac_over {
+    background-color:#2DAEBF;
     font-weight:bold !important;
     cursor:pointer !important;
-    color:#2DAEBF;
+    color:#FFF;
 }
 
