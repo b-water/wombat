@@ -7,7 +7,7 @@
  * @file    MovieController.php
  * @since   13.05.2011 - 23:35:14
  */
-class Movie {
+class Movie extends BaseModel {
 
     // mysql table names 
     private $tableMovie;
@@ -15,12 +15,6 @@ class Movie {
     private $tableAssociatedGenre;
     private $tableFormat;
     private $tableRating;
-    // database object
-    private $db;
-    // config object
-    private $config;
-    // url object
-    private $url;
     // file path for a cover image
     private $path;
     // size of thumbnails
@@ -30,18 +24,12 @@ class Movie {
     // size of cover image in kB
     private $imageSize = '6144kB';
 
-    /**
-     * Movie Constructor, gathers from
-     * the registry the url, config and the 
-     * db objects for further purpose.
-     */
     public function __construct() {
-        $registry = Registry::getInstance();
-        $this->db = $registry->get('db');
-        $this->config = $registry->get('config');
-        $this->url = $registry->get('url');
+        parent::__construct();
+    }
 
-        // get mysql table names
+    public function init() {
+            // get mysql table names
         $this->tableMovie = $this->config->get('database.tables.movie');
         $this->tableGenre = $this->config->get('database.tables.genre');
         $this->tableAssociatedGenre = $this->config->get('database.tables.associatedGenre');
@@ -209,7 +197,7 @@ class Movie {
                 $data[$index]['genre'] = $this->fetchAssociatedGenre($data[$index]['id']);
             }
         }
-        
+
         return $data;
     }
 
@@ -221,10 +209,10 @@ class Movie {
      * @param   type    $fields
      * @return  type    array
      */
-    public function fetchAssociatedGenre($id=null,$fields='*') {
+    public function fetchAssociatedGenre($id=null, $fields='*') {
         if ($id != null) {
             $select = $this->db->select();
-            $select->from($this->tableAssociatedGenre,$fields);
+            $select->from($this->tableAssociatedGenre, $fields);
             $select->where($this->tableAssociatedGenre . '.table = "' . $this->tableMovie . '" AND ' . $this->tableAssociatedGenre . '.table_id = "' . $id . '"');
             $select->joinLeft($this->tableGenre, $this->tableGenre . '.id = ' . $this->tableAssociatedGenre . '.genre_id', $this->tableGenre . '.name as genre');
             $sql = $this->db->query($select);

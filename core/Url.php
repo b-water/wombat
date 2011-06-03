@@ -9,7 +9,12 @@
  */
 class Url {
 
+    // URL elements
     private $options = array();
+    
+    public function __construct(){
+        
+    }
 
     /**
      * Parses the /rt/ values of mod_rewrite

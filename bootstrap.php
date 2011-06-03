@@ -16,6 +16,7 @@ session_set_cookie_params(7200, '', true);
 /* prints out all error messages */
 error_reporting(E_ALL);
 
+
 /* Embedding from libs, classes and some other stuff */
 require_once('core/Autoloader.php');
 require_once('library/Smarty/Smarty.class.php');
@@ -41,7 +42,7 @@ try {
 
 /* initalize Smarty */
 $smarty = new Smarty();
-//$smarty->error_reporting = 'E_ALL &edit_ ~E_NOTICE';
+$smarty->error_reporting = 'E_ALL';
 
 // create registry object
 $registry = Registry::getInstance();

@@ -1,5 +1,6 @@
 <?php
-/* 
+
+/*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
@@ -10,15 +11,16 @@
  * @author nico
  * @since 13:39:59
  */
-class Genre {
-    //put your code here
-    private $table = 'genre';
-    private $db = null;
+class Genre extends BaseModel {
 
-    public function __construct()
-    {
-        $registry = Registry::getInstance();
-        $this->db = $registry->get('db');
+    private $table = 'genre';
+
+    public function __construct() {
+        parent::__construct();
+    }
+
+    public function init() {
+        $this->table = $this->config->get('database.tables.genre');
     }
 
     /**
@@ -28,16 +30,17 @@ class Genre {
      */
     public function fetch($type = '*', $fields = '*', $order = 'name') {
 
-        $select = $this->db->select()->from($this->table, $fields)->where('type = "'.$type.'"')->order($order);
+        $select = $this->db->select()->from($this->table, $fields)->where('type = "' . $type . '"')->order($order);
         $sql = $this->db->query($select);
         $data = $sql->fetchAll();
 
-        if(empty($data))
-        {
+        if (empty($data)) {
             throw new GenreException('(#1) : No Genres found!');
         }
 
         return $data;
     }
+
 }
+
 ?>

@@ -7,12 +7,10 @@
  * @file    Router.php
  * @since   13.05.2011 - 23:35:14
  */
-class Router {
+class Router extends Core {
 
     private $action;
     private $controller;
-    private $registry;
-    private $url = array();
 
     /**
      * Loads the URL values from the
@@ -24,15 +22,15 @@ class Router {
      *
      */
     public function __construct() {
+        parent::__construct();
+    }
 
-        $this->registry = Registry::getInstance();
-        $this->url = $this->registry->get('url');
-
+    public function init() {
         $this->action = $this->url->get('action');
         $this->controller = ucfirst($this->url->get('controller'));
         $this->controller .= 'Controller';
-
     }
+
 
     /**
      * Starts the Controller with the method
@@ -42,7 +40,7 @@ class Router {
     public function run() {
 
         $controllerpath = "controller/" . $this->controller . ".php";
-        
+
         if (file_exists($controllerpath)) {
             require($controllerpath);
             if (!class_exists($this->controller)) {

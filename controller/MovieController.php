@@ -26,7 +26,6 @@ class MovieController extends BaseController {
     }
 
     public function index() {
-
         $movies = $this->movie->fetch();
 
         $this->smarty->assign('movie', $movies);

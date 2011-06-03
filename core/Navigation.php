@@ -6,25 +6,21 @@
  * @author  Nico Schmitz - cofilew@gmail.com
  * @file    Navigation.php
  * @since   26.05.2011 - 18:33:39
- * @version Expression id is undefined on line 13, column 15 in Templates/Scripting/PHPClass.php.
  */
-class Navigation {
+class Navigation extends Core {
 
-    private $db;
-    private $registry;
+    /* fields to fetch from the mysql table */
     private $fields = array('title', 'url', 'sequence');
+    /* mysql setorder */
     private $order = 'sequence';
-    private $smarty;
+    /* smarty template to fill */   
     private $tpl = 'navigation.tpl';
 
-    /**
-     *  Constructor
-     */
     public function __construct() {
-        $this->registry = Registry::getInstance();
-        $this->db = $this->registry->get('db');
+        parent::__construct();
+    }
 
-        $this->smarty = $this->registry->get('smarty');
+    public function init() {
     }
 
     /**
@@ -60,8 +56,8 @@ class Navigation {
         if (!empty($data)) {
             $this->smarty->assign('navigation', $data);
             if (isset($_REQUEST['rt']) && !empty($_REQUEST['rt'])) {
-                $needle = strpos($_REQUEST['rt'],'/');
-                $this->smarty->assign('activ', substr($_REQUEST['rt'],0,$needle+1));
+                $needle = strpos($_REQUEST['rt'], '/');
+                $this->smarty->assign('activ', substr($_REQUEST['rt'], 0, $needle + 1));
             } else {
                 $this->smarty->assign('activ', 'dashboard/');
             }
