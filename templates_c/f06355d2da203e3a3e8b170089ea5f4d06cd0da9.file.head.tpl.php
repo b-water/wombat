@@ -1,17 +1,17 @@
-<?php /* Smarty version Smarty-3.0.6, created on 2011-06-02 23:14:10
+<?php /* Smarty version Smarty-3.0.6, created on 2011-06-03 21:37:47
          compiled from ".\templates\head.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:276234de7fd22141849-83507195%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:194234de9380b259650-07660330%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     'f06355d2da203e3a3e8b170089ea5f4d06cd0da9' => 
     array (
       0 => '.\\templates\\head.tpl',
-      1 => 1307048332,
+      1 => 1307129863,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '276234de7fd22141849-83507195',
+  'nocache_hash' => '194234de9380b259650-07660330',
   'function' => 
   array (
   ),
@@ -30,7 +30,5 @@ $_smarty_tpl->decodeProperties(array (
         <meta name="Copyright" content="2010 Nico Schmitz" />
         <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
         <link rel="stylesheet" href="css/template.css" type="text/css" media="screen" />
-        <link rel="stylesheet" href="library/jquery/tiptip/tipTip.css" type="text/css" media="screen" />
         <link rel="stylesheet" href="library/jquery/fancybox/jquery.fancybox-1.3.4.css" type="text/css" media="screen" />
-        
     </head>

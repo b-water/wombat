@@ -13,6 +13,9 @@
             </div>
         </fieldset>
         <fieldset>
+            {include file='/movie/edit_rating.tpl'}
+        </fieldset>
+        <fieldset>
             <label>Name</label>
             <input type="text" name="name" value="{$movie.name}" />
         </fieldset>
@@ -27,11 +30,6 @@
                 <input type="file" onchange="$('.fake-text').val($(this).val());" name="cover" class="hidden-file" id="cover" />
             </div>
         </fieldset>
-        <fieldset>
-            <label>Bewertung</label>
-        {include file='/movie/edit_rating.tpl'}
-        </fieldset>
-
         <fieldset> 
             <label>Dauer (in Minuten)</label>
             <input type="text" name="duration" id="duration" value="{$movie.duration}" />

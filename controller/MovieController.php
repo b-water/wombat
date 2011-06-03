@@ -95,7 +95,7 @@ class MovieController extends BaseController {
         // assign smarty variables
         $this->smarty->assign('format', $format);
         $this->smarty->assign('genre', $genre);
-        $this->smarty->assign('rating', $rating);
+//        $this->smarty->assign('rating', $rating);
         $this->smarty->assign('movie', $movie[0]);
         
         // fetches smarty templates
