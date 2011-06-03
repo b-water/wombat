@@ -1,17 +1,17 @@
-<?php /* Smarty version Smarty-3.0.6, created on 2011-06-03 02:10:45
+<?php /* Smarty version Smarty-3.0.6, created on 2011-06-03 13:43:41
          compiled from ".\templates\movie/edit.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:130554de82685c07372-98515382%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:42704de8c8edc67484-64415006%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     'df4b0b48e76d7fe549ee68fc19b2c4f49a830454' => 
     array (
       0 => '.\\templates\\movie/edit.tpl',
-      1 => 1307059843,
+      1 => 1307101420,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '130554de82685c07372-98515382',
+  'nocache_hash' => '42704de8c8edc67484-64415006',
   'function' => 
   array (
   ),
@@ -72,9 +72,13 @@ $_smarty_tpl->decodeProperties(array (
             <?php $_template = new Smarty_Internal_Template('/movie/edit_genre.tpl', $_smarty_tpl->smarty, $_smarty_tpl, $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null);
  echo $_template->getRenderedTemplate();?><?php $_template->updateParentVariables(0);?><?php unset($_template);?>
         </fieldset>
+                <fieldset class="col">
+            <?php $_template = new Smarty_Internal_Template('/movie/edit_actor.tpl', $_smarty_tpl->smarty, $_smarty_tpl, $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null);
+ echo $_template->getRenderedTemplate();?><?php $_template->updateParentVariables(0);?><?php unset($_template);?>
+        </fieldset>
         <fieldset class="right">
             <input type="submit" class="small awesome" value="Speichern" />
-<!--            <input type="button" class="small awesome abort" value="Zur&uuml;ck" />-->
+            <input type="button" class="small awesome abort" value="Zur&uuml;ck" />
         </fieldset>
     </div>
 </form>

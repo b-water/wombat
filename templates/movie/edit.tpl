@@ -44,9 +44,12 @@
         <fieldset class="col">
             {include file='/movie/edit_genre.tpl'}
         </fieldset>
+                <fieldset class="col">
+            {include file='/movie/edit_actor.tpl'}
+        </fieldset>
         <fieldset class="right">
             <input type="submit" class="small awesome" value="Speichern" />
-<!--            <input type="button" class="small awesome abort" value="Zur&uuml;ck" />-->
+            <input type="button" class="small awesome abort" value="Zur&uuml;ck" />
         </fieldset>
     </div>
 </form>

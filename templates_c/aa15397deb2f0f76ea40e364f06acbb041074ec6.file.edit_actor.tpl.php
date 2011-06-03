@@ -1,17 +1,17 @@
-<?php /* Smarty version Smarty-3.0.6, created on 2011-06-03 13:43:42
-         compiled from ".\templates\/movie/edit_genre.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:200474de8c8ee266646-11319581%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /* Smarty version Smarty-3.0.6, created on 2011-06-03 13:43:54
+         compiled from ".\templates\/movie/edit_actor.tpl" */ ?>
+<?php /*%%SmartyHeaderCode:150774de8c8faef5669-40207927%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
-    '6d429b1810c2812a6f5b33f11dc2a020ae9f539a' => 
+    'aa15397deb2f0f76ea40e364f06acbb041074ec6' => 
     array (
-      0 => '.\\templates\\/movie/edit_genre.tpl',
-      1 => 1307100965,
+      0 => '.\\templates\\/movie/edit_actor.tpl',
+      1 => 1307101432,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '200474de8c8ee266646-11319581',
+  'nocache_hash' => '150774de8c8faef5669-40207927',
   'function' => 
   array (
   ),

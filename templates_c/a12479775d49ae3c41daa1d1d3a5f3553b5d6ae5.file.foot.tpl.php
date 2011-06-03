@@ -1,17 +1,17 @@
-<?php /* Smarty version Smarty-3.0.6, created on 2011-06-03 01:25:16
+<?php /* Smarty version Smarty-3.0.6, created on 2011-06-03 13:44:56
          compiled from ".\templates\foot.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:293444de81bdcde06c6-82508914%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:262884de8c9389ee004-56676769%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     'a12479775d49ae3c41daa1d1d3a5f3553b5d6ae5' => 
     array (
       0 => '.\\templates\\foot.tpl',
-      1 => 1307056992,
+      1 => 1307101492,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '293444de81bdcde06c6-82508914',
+  'nocache_hash' => '262884de8c9389ee004-56676769',
   'function' => 
   array (
   ),
@@ -24,8 +24,7 @@ $_smarty_tpl->decodeProperties(array (
       <script type="text/javascript" src="library/jquery/jquery.tablesorter.js"></script>
       <script type="text/javascript" src="library/jquery/jquery.tablesorter.pager.js"></script>
       <script type="text/javascript" src="library/jquery/tiptip/jquery.tipTip.minified.js"></script>
-      <script type="text/javascript" src="library/jquery/jquery.contextMenu.js"></script>
-      <script type="text/javascript" src="library/jquery/jquery.autocomplete.min.js"></script>
+      <script type="text/javascript" src="library/jquery/jquery.autocomplete.pack.js"></script>
       <script type="text/javascript" src="library/jquery/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
       <script type="text/javascript" src="js/core.js"></script>
     </body>
