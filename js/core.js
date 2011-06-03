@@ -3,6 +3,7 @@ $(document).ready(function() {
     core.init.form($('form#edit'));
     core.init.tooltip($('a'));
     core.init.autoComplete($('#autoCompleteGenre'));
+    core.init.genreDelete($('span.genre'));
 });
 
 jQuery.fn.exists = function(){
@@ -109,6 +110,18 @@ var core = {
             
             }
             });
+        },
+        genreDelete : function(obj) {
+            if(obj.exists()) {
+                $('span.genre').each(function(index) {
+                    console.log(index + ': ' + $(this).text());
+                    $(this).click(function() {
+                        $(this).fadeOut("normal", function(){
+                            $(this).remove();  
+                        });
+                    });
+                });
+            }
         }
     },
     ajax : {

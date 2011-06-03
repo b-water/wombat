@@ -536,6 +536,10 @@ span.genre {
     margin:0 3px 5px 0;
 }
 
+span.genre:hover {
+    background-color:#30BCCC;
+}
+
 span.genre span.delete {
     background:url('../images/icons/delete.png') 0 -2px no-repeat;
     height:16px;
@@ -700,7 +704,7 @@ img.movie-image {
 
 
 select#genre option[selected] {
-/*    background-color:red;*/
+    /*    background-color:red;*/
 }
 
 /**************************************
