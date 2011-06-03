@@ -1,17 +1,17 @@
-<?php /* Smarty version Smarty-3.0.6, created on 2011-06-02 19:16:20
+<?php /* Smarty version Smarty-3.0.6, created on 2011-06-03 02:10:45
          compiled from ".\templates\movie/edit.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:188314de7c56412a299-05198504%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:130554de82685c07372-98515382%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     'df4b0b48e76d7fe549ee68fc19b2c4f49a830454' => 
     array (
       0 => '.\\templates\\movie/edit.tpl',
-      1 => 1307034977,
+      1 => 1307059843,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '188314de7c56412a299-05198504',
+  'nocache_hash' => '130554de82685c07372-98515382',
   'function' => 
   array (
   ),
@@ -26,10 +26,10 @@ $_smarty_tpl->decodeProperties(array (
                 <div class="dvd-case">
                 </div>
                 <?php if ($_smarty_tpl->getVariable('movie')->value['image']!=''){?>
-                    <img class="movie-image" src="<?php echo $_smarty_tpl->getVariable('movie')->value['image'];?>
+                <img class="movie-image" src="<?php echo $_smarty_tpl->getVariable('movie')->value['image'];?>
 " alt="Film Bild" />
                 <?php }else{ ?>
-                    <img class="movie-image" src="images/movie-default.png" alt="Film Bild" />
+                <img class="movie-image" src="images/movie-default.png" alt="Film Bild" />
                 <?php }?>
             </div>
         </fieldset>
@@ -40,12 +40,7 @@ $_smarty_tpl->decodeProperties(array (
         </fieldset>
         <fieldset>
             <label>Format</label>
-        <?php $_template = new Smarty_Internal_Template('format.tpl', $_smarty_tpl->smarty, $_smarty_tpl, $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null);
- echo $_template->getRenderedTemplate();?><?php $_template->updateParentVariables(0);?><?php unset($_template);?>
-        </fieldset>
-        <fieldset>
-            <label>Genre</label>
-        <?php $_template = new Smarty_Internal_Template('genre.tpl', $_smarty_tpl->smarty, $_smarty_tpl, $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null);
+        <?php $_template = new Smarty_Internal_Template('/movie/edit_format.tpl', $_smarty_tpl->smarty, $_smarty_tpl, $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null);
  echo $_template->getRenderedTemplate();?><?php $_template->updateParentVariables(0);?><?php unset($_template);?>
         </fieldset>
         <fieldset>
@@ -58,7 +53,7 @@ $_smarty_tpl->decodeProperties(array (
         </fieldset>
         <fieldset>
             <label>Bewertung</label>
-        <?php $_template = new Smarty_Internal_Template('rating.tpl', $_smarty_tpl->smarty, $_smarty_tpl, $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null);
+        <?php $_template = new Smarty_Internal_Template('/movie/edit_rating.tpl', $_smarty_tpl->smarty, $_smarty_tpl, $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null);
  echo $_template->getRenderedTemplate();?><?php $_template->updateParentVariables(0);?><?php unset($_template);?>
         </fieldset>
         <fieldset class="left"> 
@@ -73,7 +68,10 @@ $_smarty_tpl->decodeProperties(array (
             <textarea id="description" name="description"><?php echo $_smarty_tpl->getVariable('movie')->value['description'];?>
 </textarea>
         </fieldset>
-
+        <fieldset class="col">
+            <?php $_template = new Smarty_Internal_Template('/movie/edit_genre.tpl', $_smarty_tpl->smarty, $_smarty_tpl, $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null);
+ echo $_template->getRenderedTemplate();?><?php $_template->updateParentVariables(0);?><?php unset($_template);?>
+        </fieldset>
         <fieldset class="right">
             <input type="submit" class="small awesome" value="Speichern" />
 <!--            <input type="button" class="small awesome abort" value="Zur&uuml;ck" />-->

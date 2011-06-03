@@ -6,9 +6,9 @@
                 <div class="dvd-case">
                 </div>
                 {if $movie.image != ''}
-                    <img class="movie-image" src="{$movie.image}" alt="Film Bild" />
+                <img class="movie-image" src="{$movie.image}" alt="Film Bild" />
                 {else}
-                    <img class="movie-image" src="images/movie-default.png" alt="Film Bild" />
+                <img class="movie-image" src="images/movie-default.png" alt="Film Bild" />
                 {/if}
             </div>
         </fieldset>
@@ -18,11 +18,7 @@
         </fieldset>
         <fieldset>
             <label>Format</label>
-        {include file='format.tpl'}
-        </fieldset>
-        <fieldset>
-            <label>Genre</label>
-        {include file='genre.tpl'}
+        {include file='/movie/edit_format.tpl'}
         </fieldset>
         <fieldset>
             <label for="fake-text">Bild</label>
@@ -33,7 +29,7 @@
         </fieldset>
         <fieldset>
             <label>Bewertung</label>
-        {include file='rating.tpl'}
+        {include file='/movie/edit_rating.tpl'}
         </fieldset>
         <fieldset class="left"> 
             <label>Trailer</label><br>
@@ -45,7 +41,9 @@
             <label for="description">Beschreibung</label>
             <textarea id="description" name="description">{$movie.description}</textarea>
         </fieldset>
-
+        <fieldset class="col">
+            {include file='/movie/edit_genre.tpl'}
+        </fieldset>
         <fieldset class="right">
             <input type="submit" class="small awesome" value="Speichern" />
 <!--            <input type="button" class="small awesome abort" value="Zur&uuml;ck" />-->

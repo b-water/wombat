@@ -67,7 +67,7 @@ class MovieController extends BaseController {
     public function show() {
 
         $this->smarty->assign('title', 'Film Detailansicht');
-        $filter = $this->tableMovie.'.'.$this->url->get('key') . ' = "' . $this->url->get('value') . '"';
+        $filter = $this->tableMovie . '.' . $this->url->get('key') . ' = "' . $this->url->get('value') . '"';
         $movie = $this->movie->fetch('*', $filter);
 
         $this->smarty->assign('movie', $movie[0]);
@@ -84,7 +84,7 @@ class MovieController extends BaseController {
     public function edit() {
 
         $this->smarty->assign('title', 'Film Bearbeiten');
-        $filter = $this->tableMovie.'.'.$this->url->get('key').' = "' . $this->url->get('value') . '"';
+        $filter = $this->tableMovie . '.' . $this->url->get('key') . ' = "' . $this->url->get('value') . '"';
         $movie = $this->movie->fetch('*', $filter);
 
         // gather Meta Information
@@ -97,7 +97,7 @@ class MovieController extends BaseController {
         $this->smarty->assign('genre', $genre);
         $this->smarty->assign('rating', $rating);
         $this->smarty->assign('movie', $movie[0]);
-
+        
         // fetches smarty templates
         $content = $this->smarty->fetch($this->template_dir . 'edit.tpl');
         $this->smarty->assign('content', $content);
@@ -127,15 +127,25 @@ class MovieController extends BaseController {
         $this->smarty->assign('text', $text);
         $this->smarty->display('delete.tpl');
     }
-//
-//    public function operations() {
-//        $this->smarty->display('operations.tpl');
-//    }
 
-    public function addGenre() {
-        
+    public function autoCompleteGenre() {
+
         $genre = $this->movie->fetchGenre();
-        $this->smarty->assign('genre', $genre);
-        $this->smarty->display('addGenre.tpl');
+
+        $data = array();
+
+        foreach ($genre as $item) {
+//            if (strpos(strtolower($item['name']), $q) !== false) {
+//            echo $item['name'] . '|' . $item['id'] . '';
+//            if (strpos(strtolower($item['name']), $q) !== false) {
+                $key = $item['name'];
+                $value = $item['id'];
+                echo "$key|$value\n";
+//            }
+//            }
+        }
+
+//        var_dump($data);
     }
+
 }

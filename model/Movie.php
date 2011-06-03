@@ -59,7 +59,6 @@ class Movie {
      * @param array $values 
      */
     public function update($values) {
-        var_dump($values);
         $this->deleteAssociatedGenre($this->url->get('value'));
 
         $data = array(
@@ -80,8 +79,6 @@ class Movie {
             $this->createAssociatedGenre($params);
         }
 
-        var_dump($values);
-        die();
 
 
         if (isset($_FILES['cover']['name']) && !empty($_FILES['cover']['name'])) {

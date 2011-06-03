@@ -1,0 +1,16 @@
+<label>Genre</label>
+<input type="text" name="autoCompleteGenre" id="autoCompleteGenre"/>
+<ul id="myMenu" class="contextMenu">
+    <li class="delete">
+        <a href="#delete">L&ouml;schen</a>
+    </li>
+</ul>
+<div id="associatedGenres">
+    {foreach item=item from=$movie.genre}
+        <span class="genre">
+            <input type="hidden" name="genre[]" value="{$item.genre_id}" />
+            <span class="text">{$item.genre}</span>
+            <span class="delete">L&ouml;schen</span>
+        </span>
+    {/foreach}
+</div>

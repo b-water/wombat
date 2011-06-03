@@ -175,7 +175,7 @@ input[type=submit], input[type=button] {
 .notice {
     border: 1px solid #FFDD3F;
     border-radius: 6px 6px 6px 6px;
-/*    box-shadow: 1px 1px 4px #EDE4C2;*/
+    /*    box-shadow: 1px 1px 4px #EDE4C2;*/
     font-size: 14px;
     font-weight: normal;
     margin-bottom: 20px;
@@ -386,6 +386,14 @@ form#toolbar input#searchText:focus {
 }
 
 
+fieldset#toolbar {
+    display: inline;
+    float:left;
+}
+
+fieldset#toolbar a {
+    margin-right:5px;
+}
 
 /**************************************
               searchbar
@@ -430,10 +438,18 @@ form#edit div#right-fields {
     width: 695px;
 }
 
+form#edit div#right-fields fieldset.col {
+    width:345px;
+}
 
+form#edit div#right-fields fieldset.col input[type=text], form#edit div#right-fields fieldset.col input[type=select], 
+form#edit div#right-fields fieldset.col textarea {
+    width:345px;
+}
 
 form#edit fieldset {
     margin-bottom:10px;
+    width:230px;
 }
 
 div.hidden-file-container {
@@ -495,26 +511,38 @@ form#edit img {
     margin-top:5px;
 }
 
-form#operations {
-    padding:15px 0 0 0;
-}
-
 form#operations fieldset {
     padding-bottom:10px;
 }
 
-form#edit .attention {
-    font-size:11px;
+form#edit input#autoCompleteGenre {
+    margin-bottom:10px;
 }
 
-fieldset#toolbar {
-    display: inline;
-    float:left;
+span.genre {
+    background-color:#2DAEBF;
+    color:#fff;
+    padding:2px 5px;
+    border-radius:2px;
+    display: inline-block;
+    vertical-align: center;
+    text-align: center;
+    margin:0 3px 5px 0;
 }
 
-fieldset#toolbar a {
-    margin-right:5px;
+span.genre span.delete {
+    background:url('../images/icons/delete.png') 0 -2px no-repeat;
+    height:16px;
+    width:16px;
+    display: inline-block;
+    text-indent: 2000em;
 }
+
+span.genre span.text {
+    padding-top:2px;
+    display:inline-block;
+}
+
 
 /**************************************
                 pager
@@ -665,12 +693,65 @@ img.movie-image {
 
 
 select#genre option[selected] {
-    background-color:red;
+/*    background-color:red;*/
 }
-/*option[selected], option:focus, select[selected] { 
-    background: #2DAEBF !important;
-    color:#fff !important;
-}*/
+
+/**************************************
+          autocomplete
+**************************************/
+
+.ac_results {
+    padding: 0px;
+    border: 1px solid black;
+    background-color: white;
+    overflow: hidden;
+    z-index: 99999;
+    width:228px !important;
+}
+
+.ac_results ul {
+    width: 227px;
+    list-style-position: outside;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.ac_results li {
+    margin: 0px;
+    padding: 2px 5px;
+    cursor: default;
+    display: block;
+    width:200px;
+    /* 
+	if width will be 100% horizontal scrollbar will apear 
+	when scroll mode will be used
+	*/
+    /*width: 100%;*/
+    /*	font: menu;*/
+    font-size: 12px;
+    /* 
+	it is very important, if line-height not setted or setted 
+	in relative units scroll will be broken in firefox
+	*/
+    line-height: 16px;
+    overflow: hidden;
+}
+
+.ac_loading {
+    background: #fff url('../images/indicator.gif') right center no-repeat;
+}
+
+.ac_odd {
+    background-color: #F0F0F0;
+}
+
+.ac_over {
+    font-weight:bold !important;
+    cursor:pointer !important;
+    color:#2DAEBF;
+}
+
 
 
 /**************************************
@@ -728,7 +809,3 @@ select#genre option[selected] {
 
 .contextMenu li.add a { background-image: url(../images/icons/add.png); }
 .contextMenu li.delete a { background-image: url(../images/icons/delete.png); }
-
-.test {
-    background-color: red !important;
-}

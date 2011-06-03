@@ -2,15 +2,8 @@ $(document).ready(function() {
     core.init.tablesorter($('table.tablesorter'));
     core.init.form($('form#edit'));
     core.init.tooltip($('a'));
-    core.init.contextmenu($('select#genre'));
-    
-//    if($('form#edit input.abort').exists())
-//    {
-//        $('form#edit input.abort').click(function() {
-//            core.http.redirectToUrl('movie/'); 
-//        });
-//    }
-    
+    core.init.autoComplete($('#autoCompleteGenre'));
+    core.init.contextMenu($('select#genre'));
 });
 
 jQuery.fn.exists = function(){
@@ -58,11 +51,6 @@ var core = {
             {
                 showResponse = function() {
                     $('.notice').show();
-                    //                    $('.notice').animate({
-                    //                        opacity: 1.0
-                    //                    }, 1000).fadeOut('fast', function() {
-                    ////                        $(this).hide();
-                    //                    });
                     
                     setTimeout(function(){
                         core.http.redirectToUrl(window.location.pathname);
@@ -90,7 +78,19 @@ var core = {
 
             });
         },
-        contextmenu : function(obj) {
+        autoComplete: function(obj)
+        {
+            obj.autocomplete("movie/autoCompleteGenre/", {
+                width: 260,
+                selectFirst: false
+            });
+
+            obj.result(function(event, data) {
+                $('div#associatedGenres').append('<span class="genre"><input type="hidden" name="genre[]" value="'+data[1]+'" /><span class="text">'+data[0]+'</span><span class="delete">L&ouml;schen</span></span>');
+                obj.val('');
+            });
+        },
+        contextMenu : function(obj) {
             $(obj).contextMenu({
                 menu: 'myMenu'
             },
@@ -107,22 +107,10 @@ var core = {
                     });
                 }
                 if(action == 'add') {
-                    $('a.addGenre').fancybox({
-                        onComplete: function() {
-                            $('input#submit-addGenre').click(function() {
-                                var html = $('select#addGenre option:selected').html();
-                                var value = $('select#addGenre option:selected').val();
-                                $('select#genre').append('<option selected="selected" value="'+value+'">'+html+'</option>');
-                                $.fancybox.close();
-                            });
-                        }
-                    });
-                    
-                    $('a.addGenre').click();
-                }
+            
+            }
             });
         }
-
     },
     ajax : {
         request : function() {
@@ -167,19 +155,6 @@ var core = {
         }
     },
     http : {
-        redirect : function(controller, action, key, value)
-        {
-            this.location = '';
-            if(controller.length < 0)
-            {
-                this.location += controller;
-                if(action.length < 0)
-                    this.location += '/'+action;
-                if(id.length < 0)
-                    this.location+= '/'+id;
-                window.location.href = this.location;
-            }
-        },
         redirectToUrl : function(url)
         {
             window.location.href = url;

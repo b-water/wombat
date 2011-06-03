@@ -41,7 +41,7 @@ try {
 
 /* initalize Smarty */
 $smarty = new Smarty();
-$smarty->error_reporting = 'E_ALL & ~E_NOTICE';
+//$smarty->error_reporting = 'E_ALL &edit_ ~E_NOTICE';
 
 // create registry object
 $registry = Registry::getInstance();
