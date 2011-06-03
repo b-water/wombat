@@ -6,7 +6,7 @@
       <script type="text/javascript" src="library/jquery/jquery.tablesorter.pager.js"></script>
       <script type="text/javascript" src="library/jquery/tiptip/jquery.tipTip.minified.js"></script>
       <script type="text/javascript" src="library/jquery/jquery.contextMenu.js"></script>
-      <script type="text/javascript" src="library/jquery/jquery.autocomplete.min.js"></script>
+      <script type="text/javascript" src="library/jquery/jquery.autocomplete.pack.js"></script>
       <script type="text/javascript" src="library/jquery/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
       <script type="text/javascript" src="js/core.js"></script>
     </body>
