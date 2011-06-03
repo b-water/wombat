@@ -64,6 +64,8 @@ class Movie {
         $data = array(
             'name' => $values['name'],
             'format' => $values['format'],
+            'year' => $values['year'],
+            'duration' => $values['duration'],
             'trailer' => $values['trailer'],
             'rating' => $values['rating'],
             'description' => $values['description']
@@ -126,7 +128,7 @@ class Movie {
             $data['image'] = $filename;
         }
 
-        $affectedRows = $this->db->update($this->table, $data, $this->url->get('key') . '="' . $this->url->get('value') . '"');
+        $affectedRows = $this->db->update($this->tableMovie, $data, $this->url->get('key') . '="' . $this->url->get('value') . '"');
         if ($affectedRows != 1) {
             throw new MovieException('(#1) : The dataset coud not habe been updated!');
         }

@@ -31,12 +31,21 @@
             <label>Bewertung</label>
         {include file='/movie/edit_rating.tpl'}
         </fieldset>
-        <fieldset class="left"> 
-            <label>Trailer</label><br>
-            <input type="text" name="trailer" id="trailer" value="{$movie.trailer}" />
+
+        <fieldset> 
+            <label>Dauer (in Minuten)</label>
+            <input type="text" name="duration" id="duration" value="{$movie.duration}" />
+        </fieldset> 
+        <fieldset> 
+            <label>Jahr</label>
+            <input type="text" name="year" id="year" value="{$movie.year}" />
         </fieldset> 
     </div>
     <div id="right-fields">
+        <fieldset class="col col-left"> 
+            <label>Trailer</label>
+            <input type="text" name="trailer" id="trailer" value="{$movie.trailer}" />
+        </fieldset> 
         <fieldset>
             <label for="description">Beschreibung</label>
             <textarea id="description" name="description">{$movie.description}</textarea>
@@ -45,11 +54,10 @@
             {include file='/movie/edit_genre.tpl'}
         </fieldset>
         <fieldset class="col">
-            {include file='/movie/edit_actor.tpl'}
+            {include file='/movie/edit_artist.tpl'}
         </fieldset>
-<!--        <fieldset class="right">-->
-<!--            <input type="button" class="small awesome abort" value="Zur&uuml;ck" />-->
-            <input type="submit" class="small awesome right" value="Speichern" />
-<!--        </fieldset>-->
+    </div>
+    <div id="center-fields">
+        <input type="submit" class="small awesome right" value="Speichern" />
     </div>
 </form>

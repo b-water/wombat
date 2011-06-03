@@ -1,17 +1,17 @@
-<?php /* Smarty version Smarty-3.0.6, created on 2011-06-03 14:02:27
+<?php /* Smarty version Smarty-3.0.6, created on 2011-06-03 19:38:32
          compiled from ".\templates\movie/edit.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:95604de8cd539f5a54-43900724%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:224464de91c18a45899-58904668%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     'df4b0b48e76d7fe549ee68fc19b2c4f49a830454' => 
     array (
       0 => '.\\templates\\movie/edit.tpl',
-      1 => 1307102518,
+      1 => 1307122711,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '95604de8cd539f5a54-43900724',
+  'nocache_hash' => '224464de91c18a45899-58904668',
   'function' => 
   array (
   ),
@@ -56,13 +56,24 @@ $_smarty_tpl->decodeProperties(array (
         <?php $_template = new Smarty_Internal_Template('/movie/edit_rating.tpl', $_smarty_tpl->smarty, $_smarty_tpl, $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null);
  echo $_template->getRenderedTemplate();?><?php $_template->updateParentVariables(0);?><?php unset($_template);?>
         </fieldset>
-        <fieldset class="left"> 
-            <label>Trailer</label><br>
-            <input type="text" name="trailer" id="trailer" value="<?php echo $_smarty_tpl->getVariable('movie')->value['trailer'];?>
+
+        <fieldset> 
+            <label>Dauer (in Minuten)</label>
+            <input type="text" name="duration" id="duration" value="<?php echo $_smarty_tpl->getVariable('movie')->value['duration'];?>
+" />
+        </fieldset> 
+        <fieldset> 
+            <label>Jahr</label>
+            <input type="text" name="year" id="year" value="<?php echo $_smarty_tpl->getVariable('movie')->value['year'];?>
 " />
         </fieldset> 
     </div>
     <div id="right-fields">
+        <fieldset class="col col-left"> 
+            <label>Trailer</label>
+            <input type="text" name="trailer" id="trailer" value="<?php echo $_smarty_tpl->getVariable('movie')->value['trailer'];?>
+" />
+        </fieldset> 
         <fieldset>
             <label for="description">Beschreibung</label>
             <textarea id="description" name="description"><?php echo $_smarty_tpl->getVariable('movie')->value['description'];?>
@@ -73,12 +84,11 @@ $_smarty_tpl->decodeProperties(array (
  echo $_template->getRenderedTemplate();?><?php $_template->updateParentVariables(0);?><?php unset($_template);?>
         </fieldset>
         <fieldset class="col">
-            <?php $_template = new Smarty_Internal_Template('/movie/edit_actor.tpl', $_smarty_tpl->smarty, $_smarty_tpl, $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null);
+            <?php $_template = new Smarty_Internal_Template('/movie/edit_artist.tpl', $_smarty_tpl->smarty, $_smarty_tpl, $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null);
  echo $_template->getRenderedTemplate();?><?php $_template->updateParentVariables(0);?><?php unset($_template);?>
         </fieldset>
-<!--        <fieldset class="right">-->
-<!--            <input type="button" class="small awesome abort" value="Zur&uuml;ck" />-->
-            <input type="submit" class="small awesome right" value="Speichern" />
-<!--        </fieldset>-->
+    </div>
+    <div id="center-fields">
+        <input type="submit" class="small awesome right" value="Speichern" />
     </div>
 </form>

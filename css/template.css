@@ -231,7 +231,7 @@ div#wrapper {
     width:960px;
     overflow: hidden;
     background-color:#F0F0F0;
-    box-shadow:2px 2px 6px #000;
+    box-shadow:2px 2px 6px #333;
     padding:30px;
     border-radius:0 0 5px 5px;
 }
@@ -304,9 +304,7 @@ table td {
 
 table.tablesorter thead tr .headerSortDown, table.tablesorter thead tr .headerSortUp {
     background-color: #DFDFDF;
-    border-right:1px solid #BFBFBF;
-    border-bottom:1px solid #BFBFBF;
-    border-top:1px solid #BFBFBF;
+    border:1px solid #BFBFBF;
 }
 
 table.tablesorter thead tr .headerSortDown {
@@ -438,6 +436,10 @@ form#edit div#right-fields {
     width: 695px;
 }
 
+form#edit div#center-fields {
+    clear:both;
+}
+
 form#edit div#right-fields fieldset.col {
     width:330px;
     float:left;
@@ -505,7 +507,6 @@ form#edit input[type=text]:focus, form#edit textarea:focus, form#edit select:foc
 }
 
 form#edit label {
-    width:100px;
     margin-bottom:4px;
     display:block;
     float:left;
@@ -550,8 +551,22 @@ span.genre span.delete {
 }
 
 span.genre span.text {
-    padding-top:2px;
+    padding-top:4px;
     display:inline-block;
+}
+
+span.overview-genre {
+    background-color:#2DAEBF;
+    color:#fff;
+    padding:2px 5px;
+    border-radius:2px;
+    display: inline-block;
+    vertical-align: center;
+    text-align: center;
+}
+
+form#edit input#trailer {
+    width:700px;
 }
 
 
