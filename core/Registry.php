@@ -10,30 +10,30 @@
  *
  * @author nico
  */
-class Registry {
+abstract class Registry {
 
-    private $the_registry = array();
+    private static $registry = array();
     protected static $instance = null;
 
-    private function __construct() {
-        
-    }
-
-    private function __clone() {
-        
-    }
-
-    /**
-     * Constructs the object if
-     * is not set
-     *
-     * @return instance
-     */
-    public static function getInstance() {
-        if (self::$instance == null)
-            self::$instance = new Registry();
-        return self::$instance;
-    }
+//    private function __construct() {
+//        
+//    }
+//
+//    private function __clone() {
+//        
+//    }
+//
+//    /**
+//     * Constructs the object if
+//     * is not set
+//     *
+//     * @return instance
+//     */
+//    public static function getInstance() {
+//        if (self::$instance == null)
+//            self::$instance = new Registry();
+//        return self::$instance;
+//    }
 
     /**
      * Registers a object
@@ -41,8 +41,8 @@ class Registry {
      * @param string $index
      * @param object $value
      */
-    public function set($index, $value) {
-        $this->the_registry[$index] = $value;
+    public static function set($index, $value) {
+        self::$registry[$index] = $value;
     }
 
     /**
@@ -51,12 +51,12 @@ class Registry {
      * @param string $index
      * @return object
      */
-    public function get($index) {
-        if(isset($this->the_registry[$index]) && !empty($this->the_registry[$index]))
+    public static function get($index) {
+        if(isset(self::$registry[$index]) && !empty(self::$registry[$index]))
         {
-            return $this->the_registry[$index];
+            return self::$registry[$index];
         } else {
-            return false;
+            throw new RegistryException('(#1) : Registry Object already exists!');
         }
     }
 

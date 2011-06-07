@@ -9,7 +9,7 @@
  */
 class Bootstrap {
 
-    public static $registry = null;
+//    public static $registry = null;
     public static $config = null;
     public static $url = null;
     public static $db = null;
@@ -27,7 +27,7 @@ class Bootstrap {
         self::setupConfiguration();
         self::setupDatabase();
         self::setupSmarty();
-        self::setupRegistry();
+//        self::setupRegistry();
         self::setupUrlParser();
         self::setRegistryObjects();
         self::setupNavigation();
@@ -54,11 +54,11 @@ class Bootstrap {
         date_default_timezone_set('Europe/Berlin');
     }
 
-    //Registry setting will be done here.
-    public static function setupRegistry() {
-        // create registry object
-        self::$registry = Registry::getInstance();
-    }
+//    //Registry setting will be done here.
+//    public static function setupRegistry() {
+//        // create registry object
+//        self::$registry = Registry::getInstance();
+//    }
 
     public static function setupSession() {
         /* Launching Session */
@@ -69,6 +69,7 @@ class Bootstrap {
     //Configuration file reading & setting up configuration will be done using following.
     public function setupConfiguration() {
         /* load the configurations */
+        Config::$file = 'config.ini';
         self::$config = Config::getInstance('config.ini');
     }
 
@@ -77,11 +78,15 @@ class Bootstrap {
         /* initalize Smarty */
         require_once('library/Smarty/Smarty.class.php');
         self::$smarty = new Smarty();
+//        self::$smarty = Smarty::get
     }
 
     // Databse Setup done here
     public static function setupDatabase() {
+        
+        // include zend db pdo
         require_once('library/Zend/Db/Adapter/Pdo/Mysql.php');
+        
         try {
             self::$db = new Zend_Db_Adapter_Pdo_Mysql(array(
                         'host' => self::$config->get('database.params.host'),
@@ -116,10 +121,10 @@ class Bootstrap {
     // registry objects will be set here
     public static function setRegistryObjects() {
         // registers $db and $smarty
-        self::$registry->set('db', self::$db);
-        self::$registry->set('smarty', self::$smarty);
-        self::$registry->set('config', self::$config);
-        self::$registry->set('url', self::$url);
+        Registry::set('db', self::$db);
+        Registry::set('smarty', self::$smarty);
+        Registry::set('config', self::$config);
+        Registry::set('url', self::$url);
     }
 
     // smarty variables will be assigned here

@@ -15,8 +15,8 @@ class MovieController extends BaseController {
     private $template_dir = 'movie/';
     private $tableMovie;
 
-    public function __construct($registry) {
-        parent::__construct($registry);
+    public function __construct() {
+        parent::__construct();
     }
 
     public function init() {

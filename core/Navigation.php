@@ -7,7 +7,7 @@
  * @file    Navigation.php
  * @since   26.05.2011 - 18:33:39
  */
-class Navigation extends Core {
+class Navigation {
 
     /* fields to fetch from the mysql table */
     private $fields = array('title', 'url', 'sequence');
@@ -15,13 +15,16 @@ class Navigation extends Core {
     private $order = 'sequence';
     /* smarty template to fill */   
     private $tpl = 'navigation.tpl';
+    /* db object */
+    private $db;
+    /* smarty object */
+    private $smarty;
 
     public function __construct() {
-        parent::__construct();
+        $this->db = Registry::get('db');
+        $this->smarty = Registry::get('smarty');
     }
 
-    public function init() {
-    }
 
     /**
      * Fetches all Data from

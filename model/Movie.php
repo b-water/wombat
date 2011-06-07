@@ -7,7 +7,7 @@
  * @file    MovieController.php
  * @since   13.05.2011 - 23:35:14
  */
-class Movie extends BaseModel {
+class Movie {
 
     // mysql table names 
     private $tableMovie;
@@ -25,11 +25,7 @@ class Movie extends BaseModel {
     private $imageSize = '6144kB';
 
     public function __construct() {
-        parent::__construct();
-    }
-
-    public function init() {
-            // get mysql table names
+        // get mysql table names
         $this->tableMovie = $this->config->get('database.tables.movie');
         $this->tableGenre = $this->config->get('database.tables.genre');
         $this->tableAssociatedGenre = $this->config->get('database.tables.associatedGenre');
@@ -37,6 +33,10 @@ class Movie extends BaseModel {
         $this->tableRating = $this->config->get('database.tables.rating');
 
         $this->path = $this->config->get('path.files') . 'movie/';
+    }
+
+    public function init() {
+        
     }
 
     /**

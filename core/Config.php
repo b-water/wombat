@@ -10,11 +10,12 @@
 class Config {
 
     private $options;
+    public static $file = null;
     protected static $instance = null;
 
-    private function __construct($file) {
+    private function __construct() {
         try {
-            $this->read($file);
+            $this->read(Config::$file);
         } catch (ConfigException $configException) {
             die($configException);
         }
@@ -30,9 +31,9 @@ class Config {
      * 
      * @return  config
      */
-    public function getInstance($file) {
+    public function getInstance() {
         if (self::$instance == null)
-            self::$instance = new Config($file);
+            self::$instance = new Config();
         return self::$instance;
     }
 
@@ -40,10 +41,10 @@ class Config {
      *
      * @param <type> $file
      */
-    private function read($file) {
-        if (file_exists($file)) {
+    private function read() {
+        if (file_exists(Config::$file)) {
 
-            $ini = parse_ini_file($file);
+            $ini = parse_ini_file(Config::$file);
             foreach ($ini as $key => $value) {
                 $this->set($key, $value);
             }

@@ -7,10 +7,12 @@
  * @file    Router.php
  * @since   13.05.2011 - 23:35:14
  */
-class Router extends Core {
+class Router {
 
     private $action;
     private $controller;
+    // the url object
+    private $url;
 
     /**
      * Loads the URL values from the
@@ -22,15 +24,11 @@ class Router extends Core {
      *
      */
     public function __construct() {
-        parent::__construct();
-    }
-
-    public function init() {
+        $this->url = Registry::get('url');
         $this->action = $this->url->get('action');
         $this->controller = ucfirst($this->url->get('controller'));
         $this->controller .= 'Controller';
     }
-
 
     /**
      * Starts the Controller with the method
@@ -47,7 +45,7 @@ class Router extends Core {
                 throw new RouterException("(#1) : Controller not found!");
             }
 
-            $controller = new $this->controller(Registry::getInstance());
+            $controller = new $this->controller();
             if (in_array($this->action, get_class_methods($controller))) {
                 $controller->{$this->action}();
             } else {
