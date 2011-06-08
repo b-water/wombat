@@ -7,7 +7,7 @@
  * @file    BaseController.php
  * @since   13.05.2011 - 23:35:14
  */
-abstract class BaseController {
+abstract class Controller {
 
     // The smarty template object
     protected $smarty;

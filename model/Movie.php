@@ -23,8 +23,12 @@ class Movie {
     private $imageCrop = '272';
     // size of cover image in kB
     private $imageSize = '6144kB';
+    private $config;
+    private $db;
 
     public function __construct() {
+        $this->config = Registry::get('config');
+        $this->db = Registry::get('db');
         // get mysql table names
         $this->tableMovie = $this->config->get('database.tables.movie');
         $this->tableGenre = $this->config->get('database.tables.genre');
@@ -33,10 +37,6 @@ class Movie {
         $this->tableRating = $this->config->get('database.tables.rating');
 
         $this->path = $this->config->get('path.files') . 'movie/';
-    }
-
-    public function init() {
-        
     }
 
     /**

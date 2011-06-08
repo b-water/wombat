@@ -1,7 +1,7 @@
 <table id="movies" class="tablesorter">
     <thead>
         <tr>
-            <th class="name">Name</th>
+            <th class="name">Titel</th>
             <th class="genre">Genre</th>
             <th class="rating">Bewertung</th>
             <th class="format">Format</th>
@@ -13,7 +13,7 @@
     <tbody>
         {foreach item=item from=$movie}
         <tr id="{$item.id}">
-            <td class="name">{$item.name}</td>
+            <td class="name">{$item.title}</td>
 <!--            <td class="genre">
             {if $item.genre != ''}
                 {$item.genre}

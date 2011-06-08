@@ -1,4 +1,4 @@
-DirectoryIndex bootstrap.php
+DirectoryIndex index.php
 
 RewriteEngine on
 

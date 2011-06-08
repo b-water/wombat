@@ -7,7 +7,7 @@
  * @file    MovieController.php
  * @since   13.05.2011 - 23:35:14
  */
-class MovieController extends BaseController {
+class MovieController extends Controller {
 
     // The Movie Object
     private $movie;
