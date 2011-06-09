@@ -11,16 +11,16 @@
  * @author nico
  * @since 12:59:06
  */
-class Format extends BaseModel {
+class Format {
 
     //put your code here
     private $table;
+    private $config;
+    private $db;
 
     public function __construct() {
-        parent::__construct();
-    }
-
-    public function init() {
+        $this->config = Config::getInstance();
+        $this->db = Registry::get('db');
         $this->table = $this->config->get('database.tables.format');
     }
 

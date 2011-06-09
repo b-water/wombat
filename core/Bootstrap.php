@@ -27,7 +27,6 @@ class Bootstrap {
         self::setupConfiguration();
         self::setupDatabase();
         self::setupSmarty();
-//        self::setupRegistry();
         self::setupUrlParser();
         self::setRegistryObjects();
         self::setupNavigation();
@@ -54,12 +53,6 @@ class Bootstrap {
         date_default_timezone_set('Europe/Berlin');
     }
 
-//    //Registry setting will be done here.
-//    public static function setupRegistry() {
-//        // create registry object
-//        self::$registry = Registry::getInstance();
-//    }
-
     public static function setupSession() {
         /* Launching Session */
         session_start();
@@ -78,15 +71,14 @@ class Bootstrap {
         /* initalize Smarty */
         require_once('library/Smarty/Smarty.class.php');
         self::$smarty = new Smarty();
-//        self::$smarty = Smarty::get
     }
 
     // Databse Setup done here
     public static function setupDatabase() {
-        
+
         // include zend db pdo
         require_once('library/Zend/Db/Adapter/Pdo/Mysql.php');
-        
+
         try {
             self::$db = new Zend_Db_Adapter_Pdo_Mysql(array(
                         'host' => self::$config->get('database.params.host'),
@@ -123,7 +115,6 @@ class Bootstrap {
         // registers $db and $smarty
         Registry::set('db', self::$db);
         Registry::set('smarty', self::$smarty);
-        Registry::set('config', self::$config);
         Registry::set('url', self::$url);
     }
 
@@ -132,6 +123,8 @@ class Bootstrap {
         // assign them to smarty
         self::$smarty->assign('file', 'bootstrap.php');
         self::$smarty->assign('maintitle', self::$config->get('html.title'));
+        self::$smarty->assign('author', self::$config->get('html.author'));
+        self::$smarty->assign('copyright', self::$config->get('html.copyright'));
         self::$smarty->assign('basepath', self::$config->get('path.base'));
         self::$smarty->assign('controller', self::$url->get('controller'));
     }

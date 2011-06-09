@@ -27,7 +27,7 @@ class Movie {
     private $db;
 
     public function __construct() {
-        $this->config = Registry::get('config');
+        $this->config = Config::getInstance();
         $this->db = Registry::get('db');
         // get mysql table names
         $this->tableMovie = $this->config->get('database.tables.movie');

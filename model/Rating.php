@@ -17,8 +17,7 @@ class Rating {
 
     public function __construct()
     {
-        $registry = Registry::getInstance();
-        $this->db = $registry->get('db');
+        $this->db = Registry::get('db');
     }
 
         /**

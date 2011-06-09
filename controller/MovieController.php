@@ -46,7 +46,7 @@ class MovieController extends Controller {
 //     */
 //    public function search() {
 //
-//        $filter = ' WHERE name like "%' . $_REQUEST['searchbar'] . '%"';
+//        $filter = ' WHERE title like "%' . $_REQUEST['searchbar'] . '%"';
 //        $movies = $this->movie->fetch('*', $filter);
 //
 //        $this->smarty->assign('title', 'Filme (Suche)');
@@ -134,10 +134,10 @@ class MovieController extends Controller {
         $data = array();
 
         foreach ($genre as $item) {
-//            if (strpos(strtolower($item['name']), $q) !== false) {
-//            echo $item['name'] . '|' . $item['id'] . '';
-//            if (strpos(strtolower($item['name']), $q) !== false) {
-                $key = $item['name'];
+//            if (strpos(strtolower($item['title']), $q) !== false) {
+//            echo $item['title'] . '|' . $item['id'] . '';
+//            if (strpos(strtolower($item['title']), $q) !== false) {
+                $key = $item['title'];
                 $value = $item['id'];
                 echo "$key|$value\n";
 //            }

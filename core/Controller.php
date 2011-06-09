@@ -19,7 +19,7 @@ abstract class Controller {
     function __construct() {
 
         $this->smarty = Registry::get('smarty');
-        $this->config = Registry::get('config');
+        $this->config = Config::getInstance();
         $this->url = Registry::get('url');
         $this->init();
     }

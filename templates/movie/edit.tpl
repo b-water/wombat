@@ -16,8 +16,8 @@
             {include file='/movie/edit_rating.tpl'}
         </fieldset>
         <fieldset>
-            <label>Name</label>
-            <input type="text" name="name" value="{$movie.name}" />
+            <label>Titel</label>
+            <input type="text" name="title" value="{$movie.title}" />
         </fieldset>
         <fieldset>
             <label>Format</label>

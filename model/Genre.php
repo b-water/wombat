@@ -11,15 +11,15 @@
  * @author nico
  * @since 13:39:59
  */
-class Genre extends BaseModel {
+class Genre {
 
     private $table = 'genre';
+    private $config;
+    private $db;
 
     public function __construct() {
-        parent::__construct();
-    }
-
-    public function init() {
+        $this->db = Registry::get('db');
+        $this->config = Config::getInstance();
         $this->table = $this->config->get('database.tables.genre');
     }
 
