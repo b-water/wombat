@@ -15,7 +15,7 @@
 abstract class DataMapper
 {
     /**
-     * Create a new instance of the DomainObject that this
+     * Create a new instance of the Object that this
      * mapper is responsible for. Optionally populating it
      * from a data array.
      *

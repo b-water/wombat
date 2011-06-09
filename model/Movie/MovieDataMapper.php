@@ -13,7 +13,7 @@
  * @since   08.06.2011 - 18:46:04
  * @version Expression id is undefined on line 13, column 15 in Templates/Scripting/PHPClass.php.
  */
-class MovieDataMapper {
+class MovieDataMapper extends DataMapper {
 
     // mysql table names 
     private $tableMovie;

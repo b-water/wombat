@@ -24,18 +24,20 @@
             <td class="genre">
             {if $item.genre}
                 {foreach item=genre_item from=$item.genre}
-                    <span class="overview-genre">{$genre_item.genre}</span>
+                <span class="overview-genre">{$genre_item.genre}</span>
                 {/foreach}
             {else}
                 -
             {/if}
-             </td>
+            </td>
             <td class="rating">
-            {if $item.rating != ''}
-                {$item.rating}
-            {else}
-                -
-            {/if}
+                <div class="star-rating-radio-boxes">
+                    <input name="rating" type="radio" value="1" {if $item.rating == 1} checked="checked" {/if} disabled="disabled" class="star-overview"/>
+                    <input name="rating" type="radio" value="2" {if $item.rating == 2} checked="checked" {/if} disabled="disabled" class="star-overview"/>
+                    <input name="rating" type="radio" value="3" {if $item.rating == 3} checked="checked" {/if} disabled="disabled" class="star-overview"/>
+                    <input name="rating" type="radio" value="4" {if $item.rating == 4} checked="checked" {/if} disabled="disabled" class="star-overview"/>
+                    <input name="rating" type="radio" value="5" {if $item.rating == 5} checked="checked" {/if} disabled="disabled" class="star-overview"/>
+                </div>
             </td>
             <td class="format">
             {if $item.format != ''}

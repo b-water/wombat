@@ -12,7 +12,7 @@
  * @file    DomainObjectException.php
  * @since   09.06.2011 - 19:09:29
  */
-class DomainObjectException extends Exception {
+class Object extends Exception {
     
 }
 

@@ -20,13 +20,9 @@ class MovieInterface {
     }
     
     public function fetch($id = null) {
-        $movie = new Movie();
-        MovieDataMapper::fetch($movie);
-        return $movie;
-    }
-    
-    public function fetchAll() {
-        
+        $dataMapper = new MovieDataMapper();
+        $object = $dataMapper->fetch($object,$id);
+        return $object;
     }
     
     public function update(array $object) {
