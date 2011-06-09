@@ -15,6 +15,31 @@
  */
 class MovieInterface {
     
+    public static function create() {
+        return new Movie();
+    }
+    
+    public function fetch($id = null) {
+        $movie = new Movie();
+        MovieDataMapper::fetch($movie);
+        return $movie;
+    }
+    
+    public function fetchAll() {
+        
+    }
+    
+    public function update(array $object) {
+        
+    }
+    
+    public function append(array $object) {
+        
+    }
+    
+    public function delete(array $object) {
+        
+    }
 }
 
 ?>

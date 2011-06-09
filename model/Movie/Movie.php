@@ -8,7 +8,7 @@
  * @since   08.06.2011 - 18:45:38
  * @version Expression id is undefined on line 13, column 15 in Templates/Scripting/PHPClass.php.
  */
-class Movie {
+class Movie extends Object {
 
     /**
      * Primary Key of the

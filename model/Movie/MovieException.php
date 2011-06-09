@@ -11,8 +11,5 @@
  */
 class MovieException extends Exception {
     //put your code here
-    public function __construct($registry) {
-        parent::__construct($registry);
-    }
 }
 ?>

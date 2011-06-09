@@ -24,11 +24,11 @@ class MovieDataMapper {
     // file path for a cover image
     private $path;
     // size of thumbnails
-    private $imageWidth = '193';
-    private $imageHeight = '272';
-    private $imageCrop = '272';
-    // size of cover image in kB
-    private $imageSize = '6144kB';
+    const IMAGE_WIDTH = '193';
+    const IMAGE_HEIGHT = '272';
+    const IMAGE_CROP = '272';
+
+    const IMAGE_SIZE = '6144kB';
     private $config;
     private $db;
 
@@ -44,6 +44,11 @@ class MovieDataMapper {
 
         $this->path = $this->config->get('path.files') . 'movie/';
     }
+    
+    
+    public function append($object) {
+        
+    }
 
     /**
      * Updates a Movie from the 
@@ -52,7 +57,7 @@ class MovieDataMapper {
      *
      * @param array $values 
      */
-    public function update($values) {
+    public function update($object) {
         $this->deleteAssociatedGenre($this->url->get('value'));
 
         $data = array(
@@ -117,7 +122,7 @@ class MovieDataMapper {
                 die($thumbnailException);
             }
 
-            $thumb->adaptiveResize($this->imageWidth, $this->imageHeight)->cropFromCenter($this->imageCrop)->save($filename);
+            $thumb->adaptiveResize(self::IMAGE_WIDTH, $this->imageHeight)->cropFromCenter($this->imageCrop)->save($filename);
 
             $data['image'] = $filename;
         }
@@ -127,6 +132,10 @@ class MovieDataMapper {
             throw new MovieException('(#1) : The dataset coud not habe been updated!');
         }
     }
+    
+    public function saveImage($file) {
+        
+    }
 
     /**
      * Deletes a Movie from the
@@ -135,7 +144,7 @@ class MovieDataMapper {
      * 
      * @param type $id 
      */
-    public function delete($id) {
+    public function delete($object) {
 
         /* deleting the movie from the database */
         $affectedRows = $this->db->delete($this->tableMovie, $this->url->get('key') . '="' . $id . '"');
@@ -206,117 +215,117 @@ class MovieDataMapper {
 
         return $data;
     }
-
-    /**
-     * Fetches associated Genre
-     * from a Movie
-     *
-     * @param   type    $id
-     * @param   type    $fields
-     * @return  type    array
-     */
-    public function fetchAssociatedGenre($id=null, $fields='*') {
-        if ($id != null) {
-            $select = $this->db->select();
-            $select->from($this->tableAssociatedGenre, $fields);
-            $select->where($this->tableAssociatedGenre . '.table = "' . $this->tableMovie . '" AND ' . $this->tableAssociatedGenre . '.table_id = "' . $id . '"');
-            $select->joinLeft($this->tableGenre, $this->tableGenre . '.id = ' . $this->tableAssociatedGenre . '.genre_id', $this->tableGenre . '.name as genre');
-            $sql = $this->db->query($select);
-            $genre = $sql->fetchAll();
-            return $genre;
-        } else {
-            throw new MovieException('(#5) : There must be an ID given to fetch Associated Genre!');
-        }
-    }
-
-    /**
-     * Fetches all Genres according
-     * to movies.
-     * 
-     * @param   string  $type
-     * @return  array   $genre
-     */
-    public function fetchGenre($type='movie') {
-        // get all genre options
-        $genreObj = new Genre();
-
-        try {
-            $genre = $genreObj->fetch($type);
-        } catch (GenreException $genreException) {
-            die($genreException);
-        }
-
-        return $genre;
-    }
-
-    /**
-     * Fetches all Formats according
-     * to movies.
-     * 
-     * @param   string  $type
-     * @return  array   $format
-     */
-    public function fetchFormat($type='movie') {
-        // get all format options
-        $formatObj = new Format();
-
-        try {
-            $format = $formatObj->fetch($type);
-        } catch (FormatException $formatException) {
-            die($formatException);
-        }
-
-        return $format;
-    }
-
-    /**
-     * Fetches all Ratings according
-     * to movies.
-     *
-     * @param   string  $type
-     * @return  array   $rating 
-     */
-    public function fetchRating($type='movie') {
-        // get all rating options
-        $ratingObj = new Rating();
-
-        try {
-            $rating = $ratingObj->fetch($type);
-        } catch (RatingException $ratingException) {
-            die($ratingException);
-        }
-
-        return $rating;
-    }
-
-    /**
-     * Deletes all Genre According
-     * to a Movie
-     *
-     * @param   string    $id 
-     */
-    private function deleteAssociatedGenre($id) {
-        if (!empty($id)) {
-            /* deleting the movie from the database */
-            $this->db->delete($this->tableAssociatedGenre, ' table_id ="' . $id . '"');
-        } else {
-            throw new MovieException('(#6) : There must be an ID given to delete Associated Genre!');
-        }
-    }
-
-    /**
-     * Creates a Genre According to a Movie
-     *
-     * @param   array     $params 
-     */
-    private function createAssociatedGenre(array $params) {
-        if (!empty($params)) {
-            $affectedRows = $this->db->insert($this->tableAssociatedGenre, $params);
-            if ($affectedRows != 1) {
-                throw new MovieException('(#7) : Coud not create associated Genre!');
-            }
-        }
-    }
+//
+//    /**
+//     * Fetches associated Genre
+//     * from a Movie
+//     *
+//     * @param   type    $id
+//     * @param   type    $fields
+//     * @return  type    array
+//     */
+//    public function fetchAssociatedGenre($id=null, $fields='*') {
+//        if ($id != null) {
+//            $select = $this->db->select();
+//            $select->from($this->tableAssociatedGenre, $fields);
+//            $select->where($this->tableAssociatedGenre . '.table = "' . $this->tableMovie . '" AND ' . $this->tableAssociatedGenre . '.table_id = "' . $id . '"');
+//            $select->joinLeft($this->tableGenre, $this->tableGenre . '.id = ' . $this->tableAssociatedGenre . '.genre_id', $this->tableGenre . '.name as genre');
+//            $sql = $this->db->query($select);
+//            $genre = $sql->fetchAll();
+//            return $genre;
+//        } else {
+//            throw new MovieException('(#5) : There must be an ID given to fetch Associated Genre!');
+//        }
+//    }
+//
+//    /**
+//     * Fetches all Genres according
+//     * to movies.
+//     * 
+//     * @param   string  $type
+//     * @return  array   $genre
+//     */
+//    public function fetchGenre($type='movie') {
+//        // get all genre options
+//        $genreObj = new Genre();
+//
+//        try {
+//            $genre = $genreObj->fetch($type);
+//        } catch (GenreException $genreException) {
+//            die($genreException);
+//        }
+//
+//        return $genre;
+//    }
+//
+//    /**
+//     * Fetches all Formats according
+//     * to movies.
+//     * 
+//     * @param   string  $type
+//     * @return  array   $format
+//     */
+//    public function fetchFormat($type='movie') {
+//        // get all format options
+//        $formatObj = new Format();
+//
+//        try {
+//            $format = $formatObj->fetch($type);
+//        } catch (FormatException $formatException) {
+//            die($formatException);
+//        }
+//
+//        return $format;
+//    }
+//
+//    /**
+//     * Fetches all Ratings according
+//     * to movies.
+//     *
+//     * @param   string  $type
+//     * @return  array   $rating 
+//     */
+//    public function fetchRating($type='movie') {
+//        // get all rating options
+//        $ratingObj = new Rating();
+//
+//        try {
+//            $rating = $ratingObj->fetch($type);
+//        } catch (RatingException $ratingException) {
+//            die($ratingException);
+//        }
+//
+//        return $rating;
+//    }
+//
+//    /**
+//     * Deletes all Genre According
+//     * to a Movie
+//     *
+//     * @param   string    $id 
+//     */
+//    private function deleteAssociatedGenre($id) {
+//        if (!empty($id)) {
+//            /* deleting the movie from the database */
+//            $this->db->delete($this->tableAssociatedGenre, ' table_id ="' . $id . '"');
+//        } else {
+//            throw new MovieException('(#6) : There must be an ID given to delete Associated Genre!');
+//        }
+//    }
+//
+//    /**
+//     * Creates a Genre According to a Movie
+//     *
+//     * @param   array     $params 
+//     */
+//    private function createAssociatedGenre(array $params) {
+//        if (!empty($params)) {
+//            $affectedRows = $this->db->insert($this->tableAssociatedGenre, $params);
+//            if ($affectedRows != 1) {
+//                throw new MovieException('(#7) : Coud not create associated Genre!');
+//            }
+//        }
+//    }
 
 }
 
