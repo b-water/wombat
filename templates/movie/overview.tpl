@@ -14,13 +14,11 @@
         {foreach item=item from=$movie}
         <tr id="{$item.id}">
             <td class="name">{$item.title}</td>
-<!--            <td class="genre">
             {if $item.genre != ''}
                 {$item.genre}
             {else}
                 -
             {/if}
-            </td>-->
             <td class="genre">
             {if $item.genre}
                 {foreach item=genre_item from=$item.genre}
@@ -31,13 +29,11 @@
             {/if}
             </td>
             <td class="rating">
-                <div class="star-rating-radio-boxes">
-                    <input name="rating" type="radio" value="1" {if $item.rating == 1} checked="checked" {/if} disabled="disabled" class="star-overview"/>
-                    <input name="rating" type="radio" value="2" {if $item.rating == 2} checked="checked" {/if} disabled="disabled" class="star-overview"/>
-                    <input name="rating" type="radio" value="3" {if $item.rating == 3} checked="checked" {/if} disabled="disabled" class="star-overview"/>
-                    <input name="rating" type="radio" value="4" {if $item.rating == 4} checked="checked" {/if} disabled="disabled" class="star-overview"/>
-                    <input name="rating" type="radio" value="5" {if $item.rating == 5} checked="checked" {/if} disabled="disabled" class="star-overview"/>
-                </div>
+            {if $item.rating != ''}
+                {$item.rating}
+            {else}
+                -
+            {/if}
             </td>
             <td class="format">
             {if $item.format != ''}

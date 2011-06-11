@@ -129,7 +129,11 @@ class Movie {
      * 
      * @param type $id 
      */
-    public function delete($id) {
+    public function delete($id=null) {
+
+        if ($id != null && ctype_digit($id)) {
+            throw new MovieException('(#8) : Id is not set or invalid!');
+        }
 
         /* deleting the movie from the database */
         $affectedRows = $this->db->delete($this->tableMovie, $this->url->get('key') . '="' . $id . '"');
@@ -162,21 +166,21 @@ class Movie {
      * @param   string  $limit
      * @return  array   movies
      */
-    public function fetch($fields='*', $filter='', $orderby='', $limit='', $offset='') {
+    public function fetch(array $fields, $filter='', $orderby='', $limit='', $offset='') {
 
         $select = $this->db->select();
 
         if (!empty($fields)) {
             $select->from($this->tableMovie, $fields);
         } else {
-            $select->from($this->tableMovie);
+            $select->from($this->tableMovie, '*');
         }
 
         if (!empty($filter)) {
             $select->where($filter);
         }
 
-//        $select->joinLeft($this->tableRating, $this->tableRating . '.id = ' . $this->tableMovie . '.rating', $this->tableRating . '.name as rating');
+        $select->joinLeft($this->tableRating, $this->tableRating . '.id = ' . $this->tableMovie . '.rating', $this->tableRating . '.name as rating');
         $select->joinLeft($this->tableFormat, $this->tableFormat . '.id = ' . $this->tableMovie . '.format', $this->tableFormat . '.name as format');
 
         if (!empty($orderby)) {
@@ -189,12 +193,12 @@ class Movie {
 
         $sql = $this->db->query($select);
         $data = $sql->fetchAll();
-        $test = array();
+        
         if (empty($data)) {
             throw new MovieException('(#3) : No Movies found!');
         } else {
             for ($index = 0; $index <= count($data) - 1; $index++) {
-                $data[$index]['genre'] = $this->fetchAssociatedGenre($data[$index]['id']);
+                $data[$index]['genre'] = $this->fetchAssociatedGenre($data[$index]['id'],array('genre.name'));
             }
         }
 
@@ -209,18 +213,25 @@ class Movie {
      * @param   type    $fields
      * @return  type    array
      */
-    public function fetchAssociatedGenre($id=null, $fields='*') {
-        if ($id != null) {
-            $select = $this->db->select();
-            $select->from($this->tableAssociatedGenre, $fields);
-            $select->where($this->tableAssociatedGenre . '.table = "' . $this->tableMovie . '" AND ' . $this->tableAssociatedGenre . '.table_id = "' . $id . '"');
-            $select->joinLeft($this->tableGenre, $this->tableGenre . '.id = ' . $this->tableAssociatedGenre . '.genre_id', $this->tableGenre . '.name as genre');
-            $sql = $this->db->query($select);
-            $genre = $sql->fetchAll();
-            return $genre;
-        } else {
-            throw new MovieException('(#5) : There must be an ID given to fetch Associated Genre!');
+    public function fetchAssociatedGenre($id='test', array $fields) {
+
+        if ($id != null && !ctype_digit($id)) {
+            throw new MovieException('(#8) : Id is not set or invalid!');
         }
+
+        $select = $this->db->select();
+        
+        $select->from($this->tableAssociatedGenre, $fields);
+        
+        $select->where($this->tableAssociatedGenre . '.table = "' . $this->tableMovie . '" AND ' . $this->tableAssociatedGenre . '.table_id = "' . $id . '"');
+        
+        $select->joinLeft($this->tableGenre, $this->tableGenre . '.id = ' . $this->tableAssociatedGenre . '.genre_id', $this->tableGenre . '.name as genre');
+        
+        $sql = $this->db->query($select);
+        
+        $genre = $sql->fetchAll();
+        
+        return $genre;
     }
 
     /**
@@ -290,12 +301,13 @@ class Movie {
      * @param   string    $id 
      */
     private function deleteAssociatedGenre($id) {
-        if (!empty($id)) {
-            /* deleting the movie from the database */
-            $this->db->delete($this->tableAssociatedGenre, ' table_id ="' . $id . '"');
-        } else {
-            throw new MovieException('(#6) : There must be an ID given to delete Associated Genre!');
+
+        if ($id != null && ctype_digit($id)) {
+            throw new MovieException('(#8) : Id is not set or invalid!');
         }
+
+        /* deleting the movie from the database */
+        $this->db->delete($this->tableAssociatedGenre, ' table_id ="' . $id . '"');
     }
 
     /**

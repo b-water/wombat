@@ -1,17 +1,17 @@
-<?php /* Smarty version Smarty-3.0.6, created on 2011-06-09 19:33:56
+<?php /* Smarty version Smarty-3.0.6, created on 2011-06-11 13:56:49
          compiled from ".\templates\movie/overview.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:124864df1040497e812-64882791%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:279724df35801c3cad0-05362169%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '55c56703acbb40bb296294473f880b9a3799ab75' => 
     array (
       0 => '.\\templates\\movie/overview.tpl',
-      1 => 1307640832,
+      1 => 1307793077,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '124864df1040497e812-64882791',
+  'nocache_hash' => '279724df35801c3cad0-05362169',
   'function' => 
   array (
   ),
@@ -39,14 +39,12 @@ if ($_smarty_tpl->_count($_from) > 0){
 ">
             <td class="name"><?php echo $_smarty_tpl->tpl_vars['item']->value['title'];?>
 </td>
-<!--            <td class="genre">
             <?php if ($_smarty_tpl->tpl_vars['item']->value['genre']!=''){?>
                 <?php echo $_smarty_tpl->tpl_vars['item']->value['genre'];?>
 
             <?php }else{ ?>
                 -
             <?php }?>
-            </td>-->
             <td class="genre">
             <?php if ($_smarty_tpl->tpl_vars['item']->value['genre']){?>
                 <?php  $_smarty_tpl->tpl_vars['genre_item'] = new Smarty_Variable;
@@ -62,13 +60,12 @@ if ($_smarty_tpl->_count($_from) > 0){
             <?php }?>
             </td>
             <td class="rating">
-                <div class="star-rating-radio-boxes">
-                    <input name="rating" type="radio" value="1" <?php if ($_smarty_tpl->tpl_vars['item']->value['rating']==1){?> checked="checked" <?php }?> disabled="disabled" class="star-overview"/>
-                    <input name="rating" type="radio" value="2" <?php if ($_smarty_tpl->tpl_vars['item']->value['rating']==2){?> checked="checked" <?php }?> disabled="disabled" class="star-overview"/>
-                    <input name="rating" type="radio" value="3" <?php if ($_smarty_tpl->tpl_vars['item']->value['rating']==3){?> checked="checked" <?php }?> disabled="disabled" class="star-overview"/>
-                    <input name="rating" type="radio" value="4" <?php if ($_smarty_tpl->tpl_vars['item']->value['rating']==4){?> checked="checked" <?php }?> disabled="disabled" class="star-overview"/>
-                    <input name="rating" type="radio" value="5" <?php if ($_smarty_tpl->tpl_vars['item']->value['rating']==5){?> checked="checked" <?php }?> disabled="disabled" class="star-overview"/>
-                </div>
+            <?php if ($_smarty_tpl->tpl_vars['item']->value['rating']!=''){?>
+                <?php echo $_smarty_tpl->tpl_vars['item']->value['rating'];?>
+
+            <?php }else{ ?>
+                -
+            <?php }?>
             </td>
             <td class="format">
             <?php if ($_smarty_tpl->tpl_vars['item']->value['format']!=''){?>

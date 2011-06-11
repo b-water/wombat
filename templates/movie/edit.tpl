@@ -13,15 +13,16 @@
             </div>
         </fieldset>
         <fieldset>
-            {include file='/movie/edit_rating.tpl'}
-        </fieldset>
-        <fieldset>
             <label>Titel</label>
             <input type="text" name="title" value="{$movie.title}" />
         </fieldset>
         <fieldset>
             <label>Format</label>
         {include file='/movie/edit_format.tpl'}
+        </fieldset>
+        <fieldset>
+            <label for="rating">Bewertung</label>
+            {include file='/movie/edit_rating.tpl'}
         </fieldset>
         <fieldset>
             <label for="fake-text">Bild</label>

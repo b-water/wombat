@@ -4,7 +4,6 @@
     <div id="wrapper">
         <div id="control">
             {include file='navigation.tpl'}
-            {include file='toolbar.tpl'}
         </div>
          <div id="content">
             {* Content Bereich Laden *}

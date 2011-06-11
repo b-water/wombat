@@ -1,7 +1,9 @@
-<div class="star-rating-radio-boxes">
-    <input name="rating" type="radio" value="1" {if $movie.rating == 1} checked="checked" {/if} class="star"/>
-    <input name="rating" type="radio" value="2" {if $movie.rating == 2} checked="checked" {/if} class="star"/>
-    <input name="rating" type="radio" value="3" {if $movie.rating == 3} checked="checked" {/if} class="star"/>
-    <input name="rating" type="radio" value="4" {if $movie.rating == 4} checked="checked" {/if} class="star"/>
-    <input name="rating" type="radio" value="5" {if $movie.rating == 5} checked="checked" {/if} class="star"/>
-</div>
+<select name="rating" id="rating" class="rating">
+    {foreach item=item from=$rating}
+        {if $item.name == $movie.rating}
+            <option value="{$item.id}" selected="selected">{$item.name}</option>
+        {else}
+            <option value="{$item.id}">{$item.name}</option>
+        {/if}
+    {/foreach}
+</select>

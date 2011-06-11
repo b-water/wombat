@@ -26,10 +26,11 @@ class MovieController extends Controller {
     }
 
     public function index() {
-        $movies = $this->movie->fetch();
+        
+        $movies = $this->movie->fetch(array('id','title','rating'));
 
         $this->smarty->assign('movie', $movies);
-
+        
         /* add page title */
         $this->smarty->assign('title', 'Filme');
 
@@ -94,7 +95,7 @@ class MovieController extends Controller {
         // assign smarty variables
         $this->smarty->assign('format', $format);
         $this->smarty->assign('genre', $genre);
-//        $this->smarty->assign('rating', $rating);
+        $this->smarty->assign('rating', $rating);
         $this->smarty->assign('movie', $movie[0]);
         
         // fetches smarty templates

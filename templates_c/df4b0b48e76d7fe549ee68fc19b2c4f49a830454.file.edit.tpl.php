@@ -1,17 +1,17 @@
-<?php /* Smarty version Smarty-3.0.6, created on 2011-06-09 20:44:33
+<?php /* Smarty version Smarty-3.0.6, created on 2011-06-11 13:55:22
          compiled from ".\templates\movie/edit.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:151144df11491f0b7e7-37110608%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:219644df357aade5de6-52213097%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     'df4b0b48e76d7fe549ee68fc19b2c4f49a830454' => 
     array (
       0 => '.\\templates\\movie/edit.tpl',
-      1 => 1307645072,
+      1 => 1307793321,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '151144df11491f0b7e7-37110608',
+  'nocache_hash' => '219644df357aade5de6-52213097',
   'function' => 
   array (
   ),
@@ -34,10 +34,6 @@ $_smarty_tpl->decodeProperties(array (
             </div>
         </fieldset>
         <fieldset>
-            <?php $_template = new Smarty_Internal_Template('/movie/edit_rating.tpl', $_smarty_tpl->smarty, $_smarty_tpl, $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null);
- echo $_template->getRenderedTemplate();?><?php $_template->updateParentVariables(0);?><?php unset($_template);?>
-        </fieldset>
-        <fieldset>
             <label>Titel</label>
             <input type="text" name="title" value="<?php echo $_smarty_tpl->getVariable('movie')->value['title'];?>
 " />
@@ -45,6 +41,11 @@ $_smarty_tpl->decodeProperties(array (
         <fieldset>
             <label>Format</label>
         <?php $_template = new Smarty_Internal_Template('/movie/edit_format.tpl', $_smarty_tpl->smarty, $_smarty_tpl, $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null);
+ echo $_template->getRenderedTemplate();?><?php $_template->updateParentVariables(0);?><?php unset($_template);?>
+        </fieldset>
+        <fieldset>
+            <label for="rating">Bewertung</label>
+            <?php $_template = new Smarty_Internal_Template('/movie/edit_rating.tpl', $_smarty_tpl->smarty, $_smarty_tpl, $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null);
  echo $_template->getRenderedTemplate();?><?php $_template->updateParentVariables(0);?><?php unset($_template);?>
         </fieldset>
         <fieldset>

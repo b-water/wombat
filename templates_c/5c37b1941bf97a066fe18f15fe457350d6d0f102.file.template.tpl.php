@@ -1,17 +1,17 @@
-<?php /* Smarty version Smarty-3.0.6, created on 2011-06-02 23:14:10
+<?php /* Smarty version Smarty-3.0.6, created on 2011-06-11 14:38:58
          compiled from ".\templates\template.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:178304de7fd220bb722-92342695%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:282054df361e2a59cb9-59263987%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '5c37b1941bf97a066fe18f15fe457350d6d0f102' => 
     array (
       0 => '.\\templates\\template.tpl',
-      1 => 1306526606,
+      1 => 1307795935,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '178304de7fd220bb722-92342695',
+  'nocache_hash' => '282054df361e2a59cb9-59263987',
   'function' => 
   array (
   ),
@@ -24,8 +24,6 @@ $_smarty_tpl->decodeProperties(array (
     <div id="wrapper">
         <div id="control">
             <?php $_template = new Smarty_Internal_Template('navigation.tpl', $_smarty_tpl->smarty, $_smarty_tpl, $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null);
- echo $_template->getRenderedTemplate();?><?php $_template->updateParentVariables(0);?><?php unset($_template);?>
-            <?php $_template = new Smarty_Internal_Template('toolbar.tpl', $_smarty_tpl->smarty, $_smarty_tpl, $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null);
  echo $_template->getRenderedTemplate();?><?php $_template->updateParentVariables(0);?><?php unset($_template);?>
         </div>
          <div id="content">
