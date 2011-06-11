@@ -9,7 +9,6 @@
  */
 class Bootstrap {
 
-//    public static $registry = null;
     public static $config = null;
     public static $url = null;
     public static $db = null;
@@ -21,10 +20,13 @@ class Bootstrap {
 
     public static function prepare() {
         // include needed files
-        require_once('library/Zend/File/Transfer.php');
-        self::setupErrorReporting();
         self::setupAutoloader();
         self::setupConfiguration();
+
+        // includes
+        require_once(self::$config->get('path.library') . 'Zend/File/Transfer.php');
+
+        self::setupErrorReporting();
         self::setupDatabase();
         self::setupSmarty();
         self::setupUrlParser();
@@ -44,13 +46,13 @@ class Bootstrap {
     //Error reporting setting
     public static function setupErrorReporting() {
         /* prints out all error messages */
-        error_reporting(E_ALL);
-        self::$smarty->error_reporting = 'E_ALL';
+        error_reporting(self::$config->get('phpSetting.phpErrorHandling'));
+        self::$smarty->error_reporting = self::$config->get('smarty.errorHandling');
     }
 
     //Date time setting will be done here
     public static function setupDateTime() {
-        date_default_timezone_set('Europe/Berlin');
+        date_default_timezone_set(self::$config->get('phpSetting.defaultTimezone'));
     }
 
     public static function setupSession() {
@@ -69,7 +71,7 @@ class Bootstrap {
     // Template Engine setting will be done here
     public static function setupSmarty() {
         /* initalize Smarty */
-        require_once('library/Smarty/Smarty.class.php');
+        require_once(self::$config->get('path.library') . 'Smarty/Smarty.class.php');
         self::$smarty = new Smarty();
     }
 
@@ -77,15 +79,17 @@ class Bootstrap {
     public static function setupDatabase() {
 
         // include zend db pdo
-        require_once('library/Zend/Db/Adapter/Pdo/Mysql.php');
+        require_once(self::$config->get('path.library') . 'Zend/Db/Adapter/Pdo/Mysql.php');
+
+        $params = array(
+            'host' => self::$config->get('database.params.host'),
+            'username' => self::$config->get('database.params.user'),
+            'password' => self::$config->get('database.params.password'),
+            'charset' => self::$config->get('database.params.charset'),
+            'dbname' => self::$config->get('database.params.database'));
 
         try {
-            self::$db = new Zend_Db_Adapter_Pdo_Mysql(array(
-                        'host' => self::$config->get('database.params.host'),
-                        'username' => self::$config->get('database.params.user'),
-                        'password' => self::$config->get('database.params.password'),
-                        'charset' => self::$config->get('database.params.charset'),
-                        'dbname' => self::$config->get('database.params.database')));
+            self::$db = new Zend_Db_Adapter_Pdo_Mysql($params);
         } catch (Zend_Db_Exception $dbException) {
             die($dbException);
         }
