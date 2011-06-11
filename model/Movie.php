@@ -193,12 +193,11 @@ class Movie {
 
         $sql = $this->db->query($select);
         $data = $sql->fetchAll();
-        
         if (empty($data)) {
             throw new MovieException('(#3) : No Movies found!');
         } else {
             for ($index = 0; $index <= count($data) - 1; $index++) {
-                $data[$index]['genre'] = $this->fetchAssociatedGenre($data[$index]['id'],array('genre.name'));
+                $data[$index]['genre'] = $this->fetchAssociatedGenre($data[$index]['id'], array('genre.name'));
             }
         }
 
@@ -220,18 +219,22 @@ class Movie {
         }
 
         $select = $this->db->select();
-        
+
         $select->from($this->tableAssociatedGenre, $fields);
-        
+
         $select->where($this->tableAssociatedGenre . '.table = "' . $this->tableMovie . '" AND ' . $this->tableAssociatedGenre . '.table_id = "' . $id . '"');
-        
+
         $select->joinLeft($this->tableGenre, $this->tableGenre . '.id = ' . $this->tableAssociatedGenre . '.genre_id', $this->tableGenre . '.name as genre');
-        
+
         $sql = $this->db->query($select);
-        
+
         $genre = $sql->fetchAll();
-        
-        return $genre;
+
+        if (!empty($genre)) {
+            return $genre;
+        } else {
+            return '';
+        }
     }
 
     /**

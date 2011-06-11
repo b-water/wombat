@@ -14,11 +14,6 @@
         {foreach item=item from=$movie}
         <tr id="{$item.id}">
             <td class="name">{$item.title}</td>
-            {if $item.genre != ''}
-                {$item.genre}
-            {else}
-                -
-            {/if}
             <td class="genre">
             {if $item.genre}
                 {foreach item=genre_item from=$item.genre}
