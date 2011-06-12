@@ -17,7 +17,7 @@
             <td class="genre">
             {if $item.genre}
                 {foreach item=genre_item from=$item.genre}
-                <span class="overview-genre">{$genre_item.genre}</span>
+                <span class="overview-genre">{$genre_item.name}</span>
                 {/foreach}
             {else}
                 -

@@ -1,17 +1,17 @@
-<?php /* Smarty version Smarty-3.0.6, created on 2011-06-11 22:42:36
+<?php /* Smarty version Smarty-3.0.6, created on 2011-06-12 22:19:30
          compiled from ".\templates\movie/overview.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:99404df3d33c368593-76511411%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:266704df51f52e22995-84357460%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '55c56703acbb40bb296294473f880b9a3799ab75' => 
     array (
       0 => '.\\templates\\movie/overview.tpl',
-      1 => 1307824953,
+      1 => 1307909966,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '99404df3d33c368593-76511411',
+  'nocache_hash' => '266704df51f52e22995-84357460',
   'function' => 
   array (
   ),
@@ -46,7 +46,7 @@ if ($_smarty_tpl->_count($_from) > 0){
 if ($_smarty_tpl->_count($_from) > 0){
     foreach ($_from as $_smarty_tpl->tpl_vars['genre_item']->key => $_smarty_tpl->tpl_vars['genre_item']->value){
 ?>
-                <span class="overview-genre"><?php echo $_smarty_tpl->tpl_vars['genre_item']->value['genre'];?>
+                <span class="overview-genre"><?php echo $_smarty_tpl->tpl_vars['genre_item']->value['name'];?>
 </span>
                 <?php }} ?>
             <?php }else{ ?>

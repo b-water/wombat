@@ -39,6 +39,10 @@
             <label>Jahr</label>
             <input type="text" name="year" id="year" value="{$movie.year}" />
         </fieldset> 
+        <fieldset> 
+            <label>Direktor</label>
+            <input type="text" name="director" id="director" value="{$movie.director}" />
+        </fieldset> 
     </div>
     <div id="right-fields">
         <fieldset class="col col-left"> 

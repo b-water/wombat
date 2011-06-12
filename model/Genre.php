@@ -28,12 +28,12 @@ class Genre {
      *
      * @return  array
      */
-    public function fetch($type = '*', $fields = '*', $order = 'name') {
+    public function fetch($type, $fields = '*', $order = 'name') {
 
         $select = $this->db->select()->from($this->table, $fields)->where('type = "' . $type . '"')->order($order);
         $sql = $this->db->query($select);
         $data = $sql->fetchAll();
-
+        
         if (empty($data)) {
             throw new GenreException('(#1) : No Genres found!');
         }

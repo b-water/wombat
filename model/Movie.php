@@ -197,10 +197,12 @@ class Movie {
             throw new MovieException('(#3) : No Movies found!');
         } else {
             for ($index = 0; $index <= count($data) - 1; $index++) {
-                $data[$index]['genre'] = $this->fetchAssociatedGenre($data[$index]['id'], array('genre.name'));
+                if (!empty($data[$index]['id']) && ctype_digit($data[$index]['id'])) {
+                    $data[$index]['genre'] = $this->fetchAssociatedGenre($data[$index]['id'], array('genre.name'));
+                }
             }
         }
-
+        
         return $data;
     }
 
@@ -224,10 +226,9 @@ class Movie {
 
         $select->where($this->tableAssociatedGenre . '.table = "' . $this->tableMovie . '" AND ' . $this->tableAssociatedGenre . '.table_id = "' . $id . '"');
 
-        $select->joinLeft($this->tableGenre, $this->tableGenre . '.id = ' . $this->tableAssociatedGenre . '.genre_id', $this->tableGenre . '.name as genre');
+        $select->joinLeft($this->tableGenre, $this->tableGenre . '.id = ' . $this->tableAssociatedGenre . '.genre_id', $this->tableGenre . '.id');
 
         $sql = $this->db->query($select);
-
         $genre = $sql->fetchAll();
 
         if (!empty($genre)) {
@@ -237,25 +238,26 @@ class Movie {
         }
     }
 
-    /**
-     * Fetches all Genres according
-     * to movies.
-     * 
-     * @param   string  $type
-     * @return  array   $genre
-     */
-    public function fetchGenre($type='movie') {
-        // get all genre options
-        $genreObj = new Genre();
-
-        try {
-            $genre = $genreObj->fetch($type);
-        } catch (GenreException $genreException) {
-            die($genreException);
-        }
-
-        return $genre;
-    }
+//    /**
+//     * Fetches all Genres according
+//     * to movies.
+//     * 
+//     * @param   string  $type
+//     * @return  array   $genre
+//     */
+//    public function fetchGenre($type='movie') {
+//        // get all genre options
+//        $genreObj = new Genre();
+//
+//        try {
+//            $genre = $genreObj->fetch($type);
+//        } catch (GenreException $genreException) {
+//            die($genreException);
+//        }
+//
+//        
+//        return $genre;
+//    }
 
     /**
      * Fetches all Formats according

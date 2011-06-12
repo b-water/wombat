@@ -3,8 +3,8 @@
 <div id="associatedGenres">
     {foreach item=item from=$movie.genre}
         <span class="genre">
-            <input type="hidden" name="genre[]" value="{$item.genre_id}" />
-            <span class="text">{$item.genre}</span>
+            <input type="hidden" name="genre[]" value="{$item.id}" />
+            <span class="text">{$item.name}</span>
             <span class="delete">L&ouml;schen</span>
         </span>
     {/foreach}

@@ -46,7 +46,7 @@ class Bootstrap {
     //Error reporting setting
     public static function setupErrorReporting() {
         /* prints out all error messages */
-        error_reporting(self::$config->get('phpSetting.phpErrorHandling'));
+        error_reporting(E_ALL);
         self::$smarty->error_reporting = self::$config->get('smarty.errorHandling');
     }
 

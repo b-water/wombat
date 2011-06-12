@@ -85,16 +85,18 @@ class MovieController extends Controller {
 
         $this->smarty->assign('title', 'Film Bearbeiten');
         $filter = $this->tableMovie . '.' . $this->url->get('key') . ' = "' . $this->url->get('value') . '"';
-        $movie = $this->movie->fetch('*', $filter);
+        $movie = $this->movie->fetch(array('*'), $filter);
 
         // gather Meta Information
-        $genre = $this->movie->fetchGenre();
+//        $genre2 = new Genre();
+//        $genre = $genre2->fetch('movie');
+//        $genre = $this->movie->fetchGenre();
         $format = $this->movie->fetchFormat();
         $rating = $this->movie->fetchRating();
 
         // assign smarty variables
         $this->smarty->assign('format', $format);
-        $this->smarty->assign('genre', $genre);
+//        $this->smarty->assign('genre', $genre);
         $this->smarty->assign('rating', $rating);
         $this->smarty->assign('movie', $movie[0]);
         
@@ -129,12 +131,13 @@ class MovieController extends Controller {
     }
 
     public function autoCompleteGenre() {
+//        $genre = $this->movie->fetchGenre();
+        $genre = new Genre();
+        $genre_data = $genre->fetch('movie');
+        
+        var_dump($genre_data);
 
-        $genre = $this->movie->fetchGenre();
-
-        $data = array();
-
-        foreach ($genre as $item) {
+        foreach ($genre_data as $item) {
 //            if (strpos(strtolower($item['title']), $q) !== false) {
 //            echo $item['title'] . '|' . $item['id'] . '';
 //            if (strpos(strtolower($item['title']), $q) !== false) {
