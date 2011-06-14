@@ -7,10 +7,16 @@
  * @file    DashboardController.php
  * @since   13.05.2011 - 23:35:14
  */
+require_once('core/Controller.php');
+
 class DashboardController extends Controller {
 
     private $template_dir = 'dashboard/';
     private $template;
+    
+    public function __construct() {
+        parent::__construct();
+    }
 
     public function init() {
         $this->template = $this->config->get('template.mainfile');

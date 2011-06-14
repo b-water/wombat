@@ -83,6 +83,12 @@ class Movie extends Object {
     public function __construct() {
         
     }
+    
+    public function isValid()
+    {
+        $validation = new MovieValidate($this);
+        $validation->start();
+    }
 
     /**
      * Sets the Duration

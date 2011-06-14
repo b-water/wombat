@@ -7,6 +7,9 @@
  * @file    MovieController.php
  * @since   13.05.2011 - 23:35:14
  */
+require_once('core/Controller.php');
+require_once('model/Movie.php');
+
 class MovieController extends Controller {
 
     // The Movie Object
@@ -14,6 +17,8 @@ class MovieController extends Controller {
     private $template;
     private $template_dir = 'movie/';
     private $tableMovie;
+    
+    private $movie_repository;
 
     public function __construct() {
         parent::__construct();
@@ -23,9 +28,17 @@ class MovieController extends Controller {
         $this->movie = new Movie();
         $this->template = $this->config->get('template.mainfile');
         $this->tableMovie = $this->config->get('database.tables.movie');
+        
+        $data_mapper = new MovieDataMapper(Registry::get('db'));
+        $this->movie_repository = new MovieRepository($data_mapper);
     }
 
     public function index() {
+        
+        $movie = MovieRepository::create('Toller Titel');
+        $this->movie_repository->save($movie);
+        
+        $this->movie_repository->fetchAll();
         
         $movies = $this->movie->fetch(array('id','title','rating'));
 

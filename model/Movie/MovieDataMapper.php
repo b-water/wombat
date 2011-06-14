@@ -32,7 +32,9 @@ class MovieDataMapper extends DataMapper {
     private $config;
     private $db;
 
-    public function __construct() {
+    public function __construct($db) {
+        $this->db = $db;
+        /*
         $this->config = Registry::get('config');
         $this->db = Registry::get('db');
         // get mysql table names
@@ -41,7 +43,7 @@ class MovieDataMapper extends DataMapper {
         $this->tableAssociatedGenre = $this->config->get('database.tables.associatedGenre');
         $this->tableFormat = $this->config->get('database.tables.format');
         $this->tableRating = $this->config->get('database.tables.rating');
-
+        */
         $this->path = $this->config->get('path.files') . 'movie/';
     }
     
@@ -150,7 +152,7 @@ class MovieDataMapper extends DataMapper {
         $affectedRows = $this->db->delete($this->tableMovie, $this->url->get('key') . '="' . $id . '"');
 
         if ($affectedRows != 1) {
-            throw new MovieException('(#2) : The dataset coud not have been deleted!');
+            throw new MovieException('(#2) : The dataset could not be deleted!');
         } else {
             /* delete associated genres */
             $this->deleteAssociatedGenre($id);
@@ -166,6 +168,13 @@ class MovieDataMapper extends DataMapper {
                 }
             }
         }
+    }
+    
+    public function fetchAll()
+    {
+        // query
+        
+        MovieRepository::create();
     }
 
     /**

@@ -20,7 +20,7 @@ class Bootstrap {
 
     public static function prepare() {
         // include needed files
-        self::setupAutoloader();
+//        self::setupAutoloader();
         self::setupConfiguration();
 
         // includes
@@ -37,11 +37,11 @@ class Bootstrap {
         self::closeDatabaseConnection();
     }
 
-    public static function setupAutoloader() {
-        /* call the autoloader */
-        require_once('core/Autoloader.php');
-        Autoloader::init();
-    }
+//    public static function setupAutoloader() {
+//        /* call the autoloader */
+//        require_once('core/Autoloader.php');
+//        Autoloader::init();
+//    }
 
     //Error reporting setting
     public static function setupErrorReporting() {
@@ -64,6 +64,7 @@ class Bootstrap {
     //Configuration file reading & setting up configuration will be done using following.
     public function setupConfiguration() {
         /* load the configurations */
+        require_once('core/Config.php');
         Config::$file = 'config.ini';
         self::$config = Config::getInstance('config.ini');
     }
@@ -98,6 +99,7 @@ class Bootstrap {
     // Url Parset setup will be done here
     public static function setupUrlParser() {
         // parse the url
+        require_once('core/Url.php');
         self::$url = new Url();
 
         try {
@@ -109,6 +111,7 @@ class Bootstrap {
 
     // navigation setup will be done here
     public static function setupNavigation() {
+        require_once('core/Navigation.php');
         $navi = new Navigation();
         $data = $navi->fetch();
         $navi->create($data);
@@ -117,6 +120,7 @@ class Bootstrap {
     // registry objects will be set here
     public static function setRegistryObjects() {
         // registers $db and $smarty
+        require_once('core/Registry.php');
         Registry::set('db', self::$db);
         Registry::set('smarty', self::$smarty);
         Registry::set('url', self::$url);
@@ -135,6 +139,7 @@ class Bootstrap {
 
     // router setup will be done here
     public static function setupRouter() {
+        require_once('core/Router.php');
         $router = new Router();
 
         try {
