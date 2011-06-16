@@ -42,7 +42,6 @@ class Router {
         $controllerpath = "controller/" . $this->controller . ".php";
 
         if (file_exists($controllerpath)) {
-            require($controllerpath);
             if (!class_exists($this->controller)) {
                 throw new RouterException("(#1) : Controller not found!");
             }
