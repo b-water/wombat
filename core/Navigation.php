@@ -7,6 +7,8 @@
  * @file    Navigation.php
  * @since   26.05.2011 - 18:33:39
  */
+namespace Wombat;
+
 class Navigation {
 
     /* fields to fetch from the mysql table */

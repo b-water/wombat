@@ -10,6 +10,9 @@
  *
  * @author nico
  */
+
+namespace Wombat;
+
 abstract class Registry {
 
     private static $registry = array();

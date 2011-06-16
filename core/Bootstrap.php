@@ -7,6 +7,9 @@
  * @file    Bootstrap.php
  * @since   03.06.2011 - 23:58:40
  */
+
+namespace Wombat;
+
 class Bootstrap {
 
     public static $config = null;
@@ -73,7 +76,7 @@ class Bootstrap {
     public static function setupSmarty() {
         /* initalize Smarty */
         require_once(self::$config->get('path.library') . 'Smarty/Smarty.class.php');
-        self::$smarty = new Smarty();
+        self::$smarty = new \Smarty();
     }
 
     // Databse Setup done here
@@ -90,7 +93,7 @@ class Bootstrap {
             'dbname' => self::$config->get('database.params.database'));
 
         try {
-            self::$db = new Zend_Db_Adapter_Pdo_Mysql($params);
+            self::$db = new \Zend_Db_Adapter_Pdo_Mysql($params);
         } catch (Zend_Db_Exception $dbException) {
             die($dbException);
         }

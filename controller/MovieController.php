@@ -7,6 +7,9 @@
  * @file    MovieController.php
  * @since   13.05.2011 - 23:35:14
  */
+
+namespace Wombat;
+
 require_once('core/Controller.php');
 require_once('model/Movie.php');
 
@@ -29,16 +32,16 @@ class MovieController extends Controller {
         $this->template = $this->config->get('template.mainfile');
         $this->tableMovie = $this->config->get('database.tables.movie');
         
-        $data_mapper = new MovieDataMapper(Registry::get('db'));
-        $this->movie_repository = new MovieRepository($data_mapper);
+//        $data_mapper = new Movi   eDataMapper(Registry::get('db'));
+//        $this->movie_repository = new MovieRepository($data_mapper);
     }
 
     public function index() {
         
-        $movie = MovieRepository::create('Toller Titel');
-        $this->movie_repository->save($movie);
-        
-        $this->movie_repository->fetchAll();
+//        $movie = MovieRepository::create('Toller Titel');
+//        $this->movie_repository->save($movie);
+//        
+//        $this->movie_repository->fetchAll();
         
         $movies = $this->movie->fetch(array('id','title','rating'));
 

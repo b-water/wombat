@@ -8,6 +8,8 @@
  * @licence : All Right Reserved
  * ****************************************************************************************** */
 
+namespace Wombat;
+
 require 'core/Bootstrap.php';
 Bootstrap::run();
 

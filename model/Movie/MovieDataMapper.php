@@ -34,16 +34,6 @@ class MovieDataMapper extends DataMapper {
 
     public function __construct($db) {
         $this->db = $db;
-        /*
-        $this->config = Registry::get('config');
-        $this->db = Registry::get('db');
-        // get mysql table names
-        $this->tableMovie = $this->config->get('database.tables.movie');
-        $this->tableGenre = $this->config->get('database.tables.genre');
-        $this->tableAssociatedGenre = $this->config->get('database.tables.associatedGenre');
-        $this->tableFormat = $this->config->get('database.tables.format');
-        $this->tableRating = $this->config->get('database.tables.rating');
-        */
         $this->path = $this->config->get('path.files') . 'movie/';
     }
     
@@ -116,7 +106,7 @@ class MovieDataMapper extends DataMapper {
             }
 
             // creating the thumbnail
-            require_once('library/phpthumb/ThumbLib.inc.php');
+            
 
             try {
                 $thumb = PhpThumbFactory::create($filename);
