@@ -8,6 +8,10 @@
  * @since   13.05.2011 - 23:35:14
  */
 
+require_once('Format.php');
+require_once('Genre.php');
+require_once('Rating.php');
+
 class Movie {
 
     // mysql table names 
