@@ -8,7 +8,9 @@
  * @since   13.05.2011 - 23:35:14
  */
 
-namespace Wombat;
+require_once('Registry.php');
+require_once('Config.php');
+require_once('Url.php');
 
 abstract class Controller {
 

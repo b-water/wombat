@@ -8,8 +8,6 @@
  * @since   03.06.2011 - 23:58:40
  */
 
-namespace Wombat;
-
 class Bootstrap {
 
     public static $config = null;
@@ -22,11 +20,8 @@ class Bootstrap {
     }
 
     public static function prepare() {
-        // include needed files
-//        self::setupAutoloader();
-        self::setupConfiguration();
 
-        // includes
+        self::setupConfiguration();
         require_once(self::$config->get('path.library') . 'Zend/File/Transfer.php');
 
         self::setupErrorReporting();
@@ -40,11 +35,11 @@ class Bootstrap {
         self::closeDatabaseConnection();
     }
 
-//    public static function setupAutoloader() {
-//        /* call the autoloader */
-//        require_once('core/Autoloader.php');
-//        Autoloader::init();
-//    }
+    public static function setupAutoloader() {
+        /* call the autoloader */
+        require_once('core/Autoloader.php');
+        Autoloader::init();
+    }
 
     //Error reporting setting
     public static function setupErrorReporting() {
@@ -76,7 +71,7 @@ class Bootstrap {
     public static function setupSmarty() {
         /* initalize Smarty */
         require_once(self::$config->get('path.library') . 'Smarty/Smarty.class.php');
-        self::$smarty = new \Smarty();
+        self::$smarty = new Smarty();
     }
 
     // Databse Setup done here

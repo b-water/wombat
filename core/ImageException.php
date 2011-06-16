@@ -12,8 +12,6 @@
  * @file    ImageException.php
  * @since   16.06.2011 - 20:58:13
  */
-namespace Wombat;
-
 class ImageException extends Exception {
     
 }

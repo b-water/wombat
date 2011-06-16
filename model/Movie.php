@@ -8,8 +8,6 @@
  * @since   13.05.2011 - 23:35:14
  */
 
-namespace Wombat;
-
 class Movie {
 
     // mysql table names 

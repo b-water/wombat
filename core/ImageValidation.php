@@ -13,8 +13,6 @@
  * @since   16.06.2011 - 20:58:04
  */
 
-namespace Wombat;
-
 class ImageValidation {
     
     

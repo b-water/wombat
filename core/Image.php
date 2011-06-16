@@ -13,8 +13,6 @@
  * @since   16.06.2011 - 20:57:54
  */
 
-namespace Wombat;
-
 require_once('../library/phpthumb/ThumbLib.inc.php');
 
 class Image {

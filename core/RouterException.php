@@ -10,8 +10,6 @@
  * @author nico
  */
 
-namespace Wombat;
-
 class RouterException extends Exception {
     //put your code here
 }

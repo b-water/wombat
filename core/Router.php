@@ -7,8 +7,6 @@
  * @file    Router.php
  * @since   13.05.2011 - 23:35:14
  */
-namespace Wombat;
-
 require_once('RouterException.php');
 
 class Router {
@@ -42,11 +40,10 @@ class Router {
     public function run() {
 
         $controllerpath = "controller/" . $this->controller . ".php";
-
         if (file_exists($controllerpath)) {
             require_once($controllerpath);
             if (!class_exists($this->controller)) {
-                echo $this->controller;
+
                 throw new RouterException("(#1) : Controller not found!");
             }
 
