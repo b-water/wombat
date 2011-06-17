@@ -12,7 +12,11 @@
  * @file    GenreDataMapper.php
  * @since   17.06.2011 - 20:47:47
  */
-class GenreDataMapper {
+class GenreDataMapper extends DataMapper {
+    
+    public function __construct($db) {
+        parent::__construct($db);
+    }
     
 }
 
