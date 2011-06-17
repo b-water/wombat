@@ -15,12 +15,8 @@
  */
 class MovieValidate {
     
-    public function isValid() {
-        
-    }
-    
-    static public function start() {
-        
+    static public function isValid(Movie $movie) {
+        return true;
     }
     
 }

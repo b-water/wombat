@@ -10,6 +10,8 @@
 require_once('core/Controller.php');
 require_once('model/Movie/MovieRepository.php');
 require_once('model/Movie/MovieDataMapper.php');
+require_once('model/Genre/GenreRepository.php');
+require_once('model/Genre/GenreDataMapper.php');
 
 class MovieController extends Controller {
 
@@ -19,6 +21,7 @@ class MovieController extends Controller {
     private $template_dir = 'movie/';
     private $tableMovie;
     private $movieRepository;
+    private $genreRepository;
 
     public function __construct() {
         parent::__construct();
@@ -27,13 +30,18 @@ class MovieController extends Controller {
     public function init() {
         $this->template = $this->config->get('template.mainfile');
         $this->tableMovie = $this->config->get('database.tables.movie');
-        $dataMapper = new MovieDataMapper(Registry::get('db'));
-        $this->movieRepository = new MovieRepository($dataMapper);
+        
+        $movieDataMapper = new MovieDataMapper(Registry::get('db'));
+        $this->movieRepository = new MovieRepository($movieDataMapper);
+        
+        $genreDataMapper = new GenreDataMapper(Registry::get('db'));
+        $this->genreRepository = new GenreRepository($genreDataMapper);
     }
 
     public function index() {
 
         $movies = $this->movieRepository->fetch(array('id', 'title', 'rating'));
+//        $genre = $this->genreRepository->fetch(array('*'));
 
         $this->smarty->assign('movies', $movies);
         

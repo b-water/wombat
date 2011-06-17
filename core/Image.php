@@ -12,18 +12,45 @@
  * @file    Image.php
  * @since   16.06.2011 - 20:57:54
  */
-
 require_once('../library/phpthumb/ThumbLib.inc.php');
 
 class Image {
 
-    private $height = null;
-    private $width = null;
-    private $cropSize = null;
-    private $filename = null;
+    /**
+     * maximum allowed fileSize
+     * @var int 
+     */
     private $maxSize = null;
-
+    /**
+     * width to resize the image
+     * @var int 
+     */
+    private $width = null;
+    /**
+     * crop size
+     * @var int 
+     */
+    private $cropSize = null;
+    /**
+     * height to resize the image
+     * @var int 
+     */
+    private $height = null;
+    /**
+     * image path
+     * @var string 
+     */
+    /**
+     * image path
+     * @var string 
+     */
+    private $path = null;
     public function __construct($params) {
+        $this->imagePath = $this->config->get('path.movie.image');
+        $this->imageCrop = $this->config->get('image.movie.crop');
+        $this->imageSize = $this->config->get('image.movie.size');
+        $this->imageWidth = $this->config->get('image.movie.width');
+        $this->imageHeight = $this->config->get('image.movie.height');
     }
 
     public function save() {
@@ -140,7 +167,7 @@ class Image {
     public function getWidth() {
         return $this->width;
     }
-    
+
     public function __destruct() {
         
     }

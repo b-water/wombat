@@ -14,35 +14,61 @@
  * @version Expression id is undefined on line 13, column 15 in Templates/Scripting/PHPClass.php.
  */
 require_once('core/DataMapper.php');
+require_once('model/Genre/GenreDataMapper.php');
+require_once('model/Genre/GenreRepository.php');
 
 class MovieDataMapper extends DataMapper {
 
-    // mysql table names 
-    private $tableMovie;
-    private $tableGenre;
-    private $tableAssociatedGenre;
-    private $tableFormat;
-    private $tableRating;
-    // file path for a cover image
-    private $path;
-    // size of thumbnails
-    const IMAGE_WIDTH = '193';
-    const IMAGE_HEIGHT = '272';
-    const IMAGE_CROP = '272';
-
-    const IMAGE_SIZE = '6144kB';
+    /**
+     * mysql table
+     * @var String 
+     */
+    private $tableMovie = null;
+    /**
+     * mysql table
+     * @var String 
+     */
+    private $tableGenre = null;
+    /**
+     * mysql table
+     * @var String 
+     */
+    private $tableGenreAssociated = null;
+    /**
+     * mysql table
+     * @var String 
+     */
+    private $tableFormat = null;
+    /**
+     * mysql table
+     * @var String 
+     */
+    private $tableRating = null;
+    /**
+     * object from genre repo
+     * @var object 
+     */
+    private $genreRepository = null;
 
     public function __construct($db) {
         parent::__construct($db);
     }
 
+    /**
+     * custom constructor, init the repo
+     */
     public function init() {
+
+        // get tablenames from config
         $this->tableMovie = $this->config->get('database.tables.movie');
         $this->tableGenre = $this->config->get('database.tables.genre');
-        $this->tableAssociatedGenre = $this->config->get('database.tables.associatedGenre');
+        $this->tableGenreAssociated = $this->config->get('database.tables.genre_associated');
         $this->tableFormat = $this->config->get('database.tables.format');
         $this->tableRating = $this->config->get('database.tables.rating');
-        $this->path = $this->config->get('path.files') . 'movie/';
+
+        // setup datamapper for genre
+        $genreDataMapper = new GenreDataMapper($this->db);
+        $this->genreRepository = new GenreRepository($genreDataMapper);
     }
 
     public function append($object) {
@@ -51,7 +77,7 @@ class MovieDataMapper extends DataMapper {
 
     /**
      * Updates a Movie from the 
-     * Movie Database and Uploads a 
+     * Database and Uploads a 
      * Picture and generates a Thumbnail for it.
      *
      * @param array $values 
@@ -167,12 +193,6 @@ class MovieDataMapper extends DataMapper {
         }
     }
 
-    public function fetchAll() {
-        // query
-
-        MovieRepository::create();
-    }
-
     /**
      * Gather Movies from Database
      *
@@ -217,73 +237,40 @@ class MovieDataMapper extends DataMapper {
 
             for ($index = 0; $index <= count($data) - 1; $index++) {
 
-                $movie = new Movie($data[$index]);
-                $movie->setId($data[$index]['id']);
-
-                if (!empty($data[$index]['title'])) {
-                    $movie->setTitle($data[$index]['title']);
-                }
-
-                if (!empty($data[$index]['description'])) {
-                    $movie->setDescription($data[$index]['description']);
-                }
-
-                if (!empty($data[$index]['image'])) {
-                    $movie->setImage($data[$index]['image']);
-                }
-
-                if (!empty($data[$index]['format'])) {
-                    $movie->setFormat($data[$index]['format']);
-                }
-
-                if (!empty($data[$index]['rating'])) {
-                    $movie->setRating($data[$index]['rating']);
-                }
-
-                if (!empty($data[$index]['trailer'])) {
-                    $movie->setTrailer($data[$index]['trailer']);
-                }
-
-                if (!empty($data[$index]['year'])) {
-                    $movie->setYear($data[$index]['year']);
-                }
-
-                if (!empty($data[$index]['duration'])) {
-                    $movie->setDuration($data[$index]['duration']);
-                }
-
                 if (!empty($data[$index]['id']) && ctype_digit($data[$index]['id'])) {
-                    $data[$index]['genre'] = $this->fetchAssociatedGenre($data[$index]['id'], array('genre.name'));
+//                    $data[$index]['genre'] = $this->fetchAssociatedGenre($data[$index]['id'], array('genre.name'));
+                    $this->genreRepository->fetchAssoc($data[$index]['id']);
                 }
-                
+
+                $movie = MovieRepository::create($data[$index]);
+                var_dump($movie);
                 $movies[] = $movie;
             }
         }
         return $movies;
     }
 
-    /**
-     * Fetches associated Genre
-     * from a Movie
-     *
-     * @param   type    $id
-     * @param   type    $fields
-     * @return  type    array
-     */
-    public function fetchAssociatedGenre($id=null, $fields='*') {
-        if ($id != null) {
-            $select = $this->db->select();
-            $select->from($this->tableAssociatedGenre, $fields);
-            $select->where($this->tableAssociatedGenre . '.table = "' . $this->tableMovie . '" AND ' . $this->tableAssociatedGenre . '.table_id = "' . $id . '"');
-            $select->joinLeft($this->tableGenre, $this->tableGenre . '.id = ' . $this->tableAssociatedGenre . '.genre_id', $this->tableGenre . '.name as genre');
-            $sql = $this->db->query($select);
-            $genre = $sql->fetchAll();
-            return $genre;
-        } else {
-            throw new MovieException('(#5) : There must be an ID given to fetch Associated Genre!');
-        }
-    }
-
+//    /**
+//     * Fetches associated Genre
+//     * from a Movie
+//     *
+//     * @param   type    $id
+//     * @param   type    $fields
+//     * @return  type    array
+//     */
+//    public function fetchAssociatedGenre($id=null, $fields='*') {
+//        if ($id != null) {
+//            $select = $this->db->select();
+//            $select->from($this->tableAssociatedGenre, $fields);
+//            $select->where($this->tableAssociatedGenre . '.table = "' . $this->tableMovie . '" AND ' . $this->tableAssociatedGenre . '.table_id = "' . $id . '"');
+//            $select->joinLeft($this->tableGenre, $this->tableGenre . '.id = ' . $this->tableAssociatedGenre . '.genre_id', $this->tableGenre . '.name as genre');
+//            $sql = $this->db->query($select);
+//            $genre = $sql->fetchAll();
+//            return $genre;
+//        } else {
+//            throw new MovieException('(#5) : There must be an ID given to fetch Associated Genre!');
+//        }
+//    }
 //
 //    /**
 //     * Fetches all Genres according

@@ -12,7 +12,7 @@
  * @file    GenreValidation.php
  * @since   17.06.2011 - 20:47:58
  */
-class GenreValidation {
+class GenreValidate {
     
 }
 
