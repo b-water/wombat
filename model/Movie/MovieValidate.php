@@ -19,6 +19,10 @@ class MovieValidate {
         
     }
     
+    static public function start() {
+        
+    }
+    
 }
 
 ?>

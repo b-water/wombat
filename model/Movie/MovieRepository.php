@@ -13,50 +13,49 @@
  * @since   08.06.2011 - 18:45:47
  * @version Expression id is undefined on line 13, column 15 in Templates/Scripting/PHPClass.php.
  */
+
+require_once('Movie.php');
+
 class MovieRepository {
-    
-    private $_data_mapper;
-    
-    public function __construct(MovieDataMapper $data_mapper)
-    {
-        if (is_null($data_mapper))
-        {
+
+    private $dataMapper;
+
+    public function __construct(MovieDataMapper $dataMapper) {
+        if (is_null($dataMapper)) {
             throw new MovieException('MovieDataMapper is missing');
         }
-        $this->_data_mapper = $data_mapper;
+        $this->dataMapper = $dataMapper;
     }
-    
+
     public static function create($title) {
         $movie = new Movie();
         $movie->setTrailer($title);
-        if ($movie->isValid())
-        {
+        if ($movie->isValid()) {
             return $movie;
         }
     }
-    
-    public function fetch($id = null) {
-        $dataMapper = new MovieDataMapper();
-        $object = $dataMapper->fetch($object,$id);
-        return $object;
+
+    public function fetch(array $fields, $filter='', $orderby='', $limit='', $offset='') {
+        $movie = $this->dataMapper->fetch($fields, $filter, $orderby, $limit, $offset);
+        return $movie;
     }
-    
+
     public function update(array $object) {
         
     }
-    
+
     public function append(Movie $movie) {
         $this->_data_mapper->append($movie);
     }
-    
+
     public function delete(array $object) {
         
     }
-    
-    public function fetchAll()
-    {
-        $this->_data_mapper->fetchAll();
-    }
+
+//    public function fetchAll() {
+//        $this->dataMapper->fetchAll();
+//    }
+
 }
 
 ?>

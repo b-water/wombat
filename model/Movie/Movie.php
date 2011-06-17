@@ -8,15 +8,11 @@
  * @since   08.06.2011 - 18:45:38
  * @version Expression id is undefined on line 13, column 15 in Templates/Scripting/PHPClass.php.
  */
+require_once('core/Object.php');
+require_once('MovieValidate.php');
+
 class Movie extends Object {
 
-    /**
-     * Primary Key of the
-     * Movie Object
-     * 
-     * @var int
-     */
-    private $id;
     /**
      * Title of the
      * Movie Object
@@ -80,12 +76,16 @@ class Movie extends Object {
      */
     private $genre = array();
 
+
     public function __construct() {
+
+    }
+
+    public function __destruct() {
         
     }
-    
-    public function isValid()
-    {
+
+    public function isValid() {
         $validation = new MovieValidate($this);
         $validation->start();
     }
@@ -142,14 +142,6 @@ class Movie extends Object {
         return $this->format;
     }
 
-    public function setId($value) {
-        $this->id = $value;
-    }
-
-    public function getId() {
-        return $this->id;
-    }
-
     public function setTrailer($value) {
         $this->trailer = $value;
     }
@@ -180,6 +172,14 @@ class Movie extends Object {
 
     public function getGenre() {
         return $this->genre;
+    }
+
+    public function setTitle($value) {
+        $this->title = $value;
+    }
+
+    public function getTitle() {
+        return $this->title;
     }
 
 }

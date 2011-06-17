@@ -17,7 +17,7 @@ abstract class Controller {
     // The url parser object
     protected $url;
 
-    function __construct() {
+    public function __construct() {
 
         $this->smarty = Registry::get('smarty');
         $this->config = Config::getInstance();

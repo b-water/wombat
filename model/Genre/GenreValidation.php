@@ -6,13 +6,13 @@
  */
 
 /**
- * Description of DomainObjectException
+ * Description of GenreValidation
  *
  * @author  Nico Schmitz - cofilew@gmail.com
- * @file    DomainObjectException.php
- * @since   09.06.2011 - 19:09:29
+ * @file    GenreValidation.php
+ * @since   17.06.2011 - 20:47:58
  */
-class ObjectException extends Exception {
+class GenreValidation {
     
 }
 

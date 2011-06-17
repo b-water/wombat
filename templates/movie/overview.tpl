@@ -11,35 +11,29 @@
         </tr>
     </thead>
     <tbody>
-        {foreach item=item from=$movie}
-        <tr id="{$item.id}">
-            <td class="name">{$item.title}</td>
+        {foreach item=item from=$movies}
+        <tr id="{$item->getId()}">
+            <td class="name">{$item->getTitle()}</td>
             <td class="genre">
-            {if $item.genre}
-                {foreach item=genre_item from=$item.genre}
-                <span class="overview-genre">{$genre_item.name}</span>
-                {/foreach}
-            {else}
                 -
-            {/if}
             </td>
             <td class="rating">
-            {if $item.rating != ''}
-                {$item.rating}
+            {if $item->getRating() != ''}
+                {$item->getRating()}
             {else}
                 -
             {/if}
             </td>
             <td class="format">
-            {if $item.format != ''}
-                {$item.format}
+            {if $item->getFormat() != ''}
+                {$item->getFormat()}
             {else}
                 -
             {/if}
             </td>
-            <td class="show"><a class="show" title="Anzeige" href="movie/show/id/{$item.id}/"></a></td>
-            <td class="edit"><a class="edit" title="Bearbeiten" href="movie/edit/id/{$item.id}/"></a></td>
-            <td class="delete"><a class="delete" title="L&ouml;schen" href="movie/delete/id/{$item.id}/"></a></td>
+            <td class="show"><a class="show" title="Anzeige" href="movie/show/id/{$item->getId()}/"></a></td>
+            <td class="edit"><a class="edit" title="Bearbeiten" href="movie/edit/id/{$item->getId()}/"></a></td>
+            <td class="delete"><a class="delete" title="L&ouml;schen" href="movie/delete/id/{$item->getId()}/"></a></td>
         </tr>
         {/foreach}
     </tbody>

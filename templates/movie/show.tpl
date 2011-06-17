@@ -3,16 +3,16 @@
         <div class="movie-image-container left">
             <div class="dvd-case">
             </div>
-            {if $movie.image != ''}
-             <img class="movie-image left" src="{$movie.image}" alt="Film Bild" />
+            {if $movie->getImage() != ''}
+             <img class="movie-image left" src="{$movie->getImage()}" alt="Film Bild" />
             {else}
                 <img class="movie-image left" src="images/movie-default.png" alt="Film Bild" />
             {/if}
         </div>
-        <p><span>Name:</span> {$movie.name}</p>
-        <p><span>Format:</span> {$movie.format}</p>
-        <p><span>Genre:</span> {$movie.genre}</p>
-        <p><span>Bewertung:</span> {$movie.rating}</p>
+        <p><span>Titel:</span> {$movie->getTitle()}</p>
+        <p><span>Format:</span> {$movie->getFormat()}</p>
+        <p><span>Genre:</span> {$movie->getGenre()}</p>
+        <p><span>Bewertung:</span> {$movie->getRating()}</p>
     </div>
-    <p class="description">{$movie.description}</p>
+    <p class="description">{$movie->getDescription()}</p>
 </div>

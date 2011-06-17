@@ -7,10 +7,9 @@
  * @file    MovieController.php
  * @since   13.05.2011 - 23:35:14
  */
-
 require_once('core/Controller.php');
-require_once('model/Movie.php');
-
+require_once('model/Movie/MovieRepository.php');
+require_once('model/Movie/MovieDataMapper.php');
 
 class MovieController extends Controller {
 
@@ -19,70 +18,45 @@ class MovieController extends Controller {
     private $template;
     private $template_dir = 'movie/';
     private $tableMovie;
-    
-//    private $movie_repository;
+    private $movieRepository;
 
     public function __construct() {
         parent::__construct();
     }
 
     public function init() {
-        $this->movie = new Movie();
         $this->template = $this->config->get('template.mainfile');
         $this->tableMovie = $this->config->get('database.tables.movie');
-//        $data_mapper = new Movi   eDataMapper(Registry::get('db'));
-//        $this->movie_repository = new MovieRepository($data_mapper);
+        $dataMapper = new MovieDataMapper(Registry::get('db'));
+        $this->movieRepository = new MovieRepository($dataMapper);
     }
 
     public function index() {
-        
-//        $movie = MovieRepository::create('Toller Titel');
-//        $this->movie_repository->save($movie);
-//        
-//        $this->movie_repository->fetchAll();
-        
-        $movies = $this->movie->fetch(array('id','title','rating'));
 
-        $this->smarty->assign('movie', $movies);
+        $movies = $this->movieRepository->fetch(array('id', 'title', 'rating'));
+
+        $this->smarty->assign('movies', $movies);
         
         /* add page title */
         $this->smarty->assign('title', 'Filme');
 
         $content = $this->smarty->fetch($this->template_dir . 'overview.tpl');
         $content .= $this->smarty->fetch('pager.tpl');
-        
+
         $this->smarty->assign('content', $content);
 
         $this->smarty->display($this->template);
     }
 
-//    /**
-//     * Search through the Movie Database
-//     */
-//    public function search() {
-//
-//        $filter = ' WHERE title like "%' . $_REQUEST['searchbar'] . '%"';
-//        $movies = $this->movie->fetch('*', $filter);
-//
-//        $this->smarty->assign('title', 'Filme (Suche)');
-//        $this->smarty->assign('movie', $movies);
-//
-//        $content = $this->smarty->fetch('toolbar.tpl');
-//        $content .= $this->smarty->fetch($this->template_dir . 'index.tpl');
-//
-//        $this->smarty->assign('content', $content);
-//
-//        $this->smarty->display($this->template);
-//    }
-
     /**
-     * Show a single Movie
+     * show a single Movie
      */
     public function show() {
 
         $this->smarty->assign('title', 'Film Detailansicht');
         $filter = $this->tableMovie . '.' . $this->url->get('key') . ' = "' . $this->url->get('value') . '"';
-        $movie = $this->movie->fetch('*', $filter);
+//        $movie = $this->movie->fetch('*', $filter);
+        $movie = $this->movieRepository->fetch(array('*'), $filter);
 
         $this->smarty->assign('movie', $movie[0]);
         $content = $this->smarty->fetch($this->template_dir . 'show.tpl');
@@ -99,21 +73,21 @@ class MovieController extends Controller {
 
         $this->smarty->assign('title', 'Film Bearbeiten');
         $filter = $this->tableMovie . '.' . $this->url->get('key') . ' = "' . $this->url->get('value') . '"';
-        $movie = $this->movie->fetch(array('*'), $filter);
+        $movie = $this->movieRepository->fetch(array('*'), $filter);
 
         // gather Meta Information
 //        $genre2 = new Genre();
 //        $genre = $genre2->fetch('movie');
 //        $genre = $this->movie->fetchGenre();
-        $format = $this->movie->fetchFormat();
-        $rating = $this->movie->fetchRating();
+//        $format = $this->movie->fetchFormat();
+//        $rating = $this->movie->fetchRating();
 
         // assign smarty variables
-        $this->smarty->assign('format', $format);
-//        $this->smarty->assign('genre', $genre);
-        $this->smarty->assign('rating', $rating);
+//        $this->smarty->assign('format', $format);
+////        $this->smarty->assign('genre', $genre);
+//        $this->smarty->assign('rating', $rating);
         $this->smarty->assign('movie', $movie[0]);
-        
+
         // fetches smarty templates
         $content = $this->smarty->fetch($this->template_dir . 'edit.tpl');
         $this->smarty->assign('content', $content);
@@ -148,16 +122,16 @@ class MovieController extends Controller {
 //        $genre = $this->movie->fetchGenre();
         $genre = new Genre();
         $genre_data = $genre->fetch('movie');
-        
+
         var_dump($genre_data);
 
         foreach ($genre_data as $item) {
 //            if (strpos(strtolower($item['title']), $q) !== false) {
 //            echo $item['title'] . '|' . $item['id'] . '';
 //            if (strpos(strtolower($item['title']), $q) !== false) {
-                $key = $item['title'];
-                $value = $item['id'];
-                echo "$key|$value\n";
+            $key = $item['title'];
+            $value = $item['id'];
+            echo "$key|$value\n";
 //            }
 //            }
         }

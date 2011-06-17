@@ -24,11 +24,6 @@ class Image {
     private $maxSize = null;
 
     public function __construct($params) {
-
-
-        $thumb->adaptiveResize(self::IMAGE_WIDTH, $this->imageHeight)->cropFromCenter($this->imageCrop)->save($filename);
-
-        $data['image'] = $filename;
     }
 
     public function save() {
@@ -144,6 +139,10 @@ class Image {
      */
     public function getWidth() {
         return $this->width;
+    }
+    
+    public function __destruct() {
+        
     }
 
 }

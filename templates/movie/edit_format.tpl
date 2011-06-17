@@ -1,6 +1,6 @@
 <select name="format" id="format" class="format">
     {foreach item=item from=$format}
-        {if $item.name == $movie.format}
+        {if $item.name == $movie->getFormat()}
             <option value="{$item.id}" selected="selected">{$item.name}</option>
         {else}
             <option value="{$item.id}">{$item.name}</option>

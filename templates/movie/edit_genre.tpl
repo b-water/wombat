@@ -1,4 +1,4 @@
-<label>Genre</label>
+<!--<label>Genre</label>
 <input type="text" name="autoCompleteGenre" id="autoCompleteGenre"/>
 <div id="associatedGenres">
     {foreach item=item from=$movie.genre}
@@ -8,4 +8,4 @@
             <span class="delete">L&ouml;schen</span>
         </span>
     {/foreach}
-</div>
+</div>-->
