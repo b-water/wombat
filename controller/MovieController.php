@@ -40,7 +40,7 @@ class MovieController extends Controller {
 
     public function index() {
 
-        $movies = $this->movieRepository->fetch(array('id', 'title', 'rating'));
+        $movies = $this->movieRepository->fetch(array('id', 'title', 'rating','year'));
 //        $genre = $this->genreRepository->fetch(array('*'));
 
         $this->smarty->assign('movies', $movies);

@@ -239,11 +239,10 @@ class MovieDataMapper extends DataMapper {
 
                 if (!empty($data[$index]['id']) && ctype_digit($data[$index]['id'])) {
 //                    $data[$index]['genre'] = $this->fetchAssociatedGenre($data[$index]['id'], array('genre.name'));
-                    $this->genreRepository->fetchAssoc($data[$index]['id']);
+                    $data[$index]['genre'] = $this->genreRepository->fetchAssoc($data[$index]['id']);
                 }
 
                 $movie = MovieRepository::create($data[$index]);
-                var_dump($movie);
                 $movies[] = $movie;
             }
         }

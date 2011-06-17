@@ -27,9 +27,9 @@ class MovieRepository {
     }
 
     public static function create(array $data) {
-        
+
         $movie = new Movie();
-        
+
         if (!empty($data['title'])) {
             $movie->setTitle($data['title']);
         }
@@ -60,6 +60,10 @@ class MovieRepository {
 
         if (!empty($data['duration'])) {
             $movie->setDuration($data['duration']);
+        }
+
+        if (!empty($data['genre'])) {
+            $movie->setGenre($data['genre']);
         }
 
         if (MovieValidate::isValid($movie)) {

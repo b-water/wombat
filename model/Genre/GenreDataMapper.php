@@ -14,14 +14,29 @@
  */
 class GenreDataMapper extends DataMapper {
 
-    private $table = null;
-
+    /**
+     * mysql table
+     * @var String 
+     */
+    private $tableMovie = null;
+    /**
+     * mysql table
+     * @var String 
+     */
+    private $tableGenre = null;
+    /**
+     * mysql table
+     * @var String 
+     */
+    private $tableGenreAssociated = null;
     public function __construct($db) {
         parent::__construct($db);
     }
 
     public function init() {
-        $this->table = $this->config->get('database.tables.genre');
+        $this->tableGenre = $this->config->get('database.tables.genre');
+        $this->tableGenreAssociated = $this->config->get('database.tables.genre_associated');
+        $this->tableMovie = $this->config->get('database.tables.movie');
     }
 
     /**
@@ -67,15 +82,15 @@ class GenreDataMapper extends DataMapper {
 
         $select = $this->db->select();
 
-        $select->from($this->tableAssociatedGenre, $fields);
+        $select->from($this->tableGenreAssociated, array('genre.name'));
 
-        $select->where($this->tableAssociatedGenre . '.table = "' . $this->tableMovie . '" AND ' . $this->tableAssociatedGenre . '.table_id = "' . $id . '"');
+        $select->where($this->tableGenreAssociated . '.table = "' . $this->tableMovie . '" AND ' . $this->tableGenreAssociated . '.table_id = "' . $id . '"');
 
-        $select->joinLeft($this->tableGenre, $this->tableGenre . '.id = ' . $this->tableAssociatedGenre . '.genre_id', $this->tableGenre . '.id');
+        $select->joinLeft($this->tableGenre, $this->tableGenre . '.id = ' . $this->tableGenreAssociated . '.genre_id', $this->tableGenre . '.id');
 
         $sql = $this->db->query($select);
         $genre = $sql->fetchAll();
-
+        
         if (!empty($genre)) {
             return $genre;
         } else {

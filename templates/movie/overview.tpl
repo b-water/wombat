@@ -14,8 +14,14 @@
         {foreach item=item from=$movies}
         <tr id="{$item->getId()}">
             <td class="name">{$item->getTitle()}</td>
-            <td class="genre">
+           <td class="genre">
+           {if $item->getGenre()}
+                {foreach item=genre_item from=$item->getGenre()}
+                    <span class="overview-genre">{$genre_item.name}</span>
+                {/foreach}
+            {else}
                 -
+            {/if}
             </td>
             <td class="rating">
             {if $item->getRating() != ''}
