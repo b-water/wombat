@@ -12,6 +12,9 @@
  * @file    GenreRepository.php
  * @since   17.06.2011 - 21:06:10
  */
+require_once('Genre.php');
+require_once('GenreRepository.php');
+
 class GenreRepository {
 
     private $dataMapper = null;
@@ -21,6 +24,33 @@ class GenreRepository {
             throw new GenreException('GenreDataMapper is missing');
         }
         $this->dataMapper = $dataMapper;
+    }
+
+    public static function create(array $data) {
+
+        $genre = new Genre();
+
+        if (!empty($data['type'])) {
+            $genre->setType($data['type']);
+        }
+
+        if (!empty($data['name'])) {
+            $genre->setName($data['name']);
+        }
+
+        if (!empty($data['table'])) {
+            $genre->setTable($data['table']);
+        }
+
+        if (!empty($data['id'])) {
+            $genre->setId($data['id']);
+        }
+
+        if (GenreValidate::isValid($genre)) {
+            return $genre;
+        } else {
+            throw new GenreException('Can´t create Movie Object, data is not valid');
+        }
     }
 
     public function fetch(array $fields, $filter='', $orderby='', $limit='', $offset='') {

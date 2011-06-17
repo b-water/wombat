@@ -14,6 +14,10 @@
  */
 class GenreValidate {
     
+    static public function isValid($genre) {
+        return true;
+    }
+    
 }
 
 ?>

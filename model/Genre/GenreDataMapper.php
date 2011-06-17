@@ -33,6 +33,9 @@ class GenreDataMapper extends DataMapper {
         parent::__construct($db);
     }
 
+    /**
+     * custom constructor, init the genre repo
+     */
     public function init() {
         $this->tableGenre = $this->config->get('database.tables.genre');
         $this->tableGenreAssociated = $this->config->get('database.tables.genre_associated');
@@ -71,10 +74,19 @@ class GenreDataMapper extends DataMapper {
 
         $sql = $this->db->query($select);
         $data = $sql->fetchAll();
+        
+        if(!empty($data)) {
+        }
+        
+        return $data;
 
-        var_dump($data);
     }
 
+    /**
+     *
+     * @param int $id
+     * @return array $genre
+     */
     public function fetchAssoc($id=null) {
         if ($id != null && !ctype_digit($id)) {
             throw new GenreException('(#8) : Id is not set or invalid!');
@@ -89,10 +101,17 @@ class GenreDataMapper extends DataMapper {
         $select->joinLeft($this->tableGenre, $this->tableGenre . '.id = ' . $this->tableGenreAssociated . '.genre_id', $this->tableGenre . '.id');
 
         $sql = $this->db->query($select);
-        $genre = $sql->fetchAll();
+        $data = $sql->fetchAll();
         
-        if (!empty($genre)) {
-            return $genre;
+        $genre_cont = array();
+        
+        if (!empty($data)) {
+            foreach($data as $item) {
+                $genre = GenreRepository::create($item);
+                $genre_cont[] = $genre;
+            }
+            var_dump($genre_cont);
+            return $genre_cont;
         } else {
             return '';
         }
