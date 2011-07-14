@@ -2,14 +2,13 @@
 
 /* * **********************************************************************************************
  * @Name wombat
- * @Author Nico Schmitz
- * @Date 01.04.2010
+ * @Author Nico Schmitz - nschmitz1991@gmail.com
+ * @Since 01.04.2010
  * @Version 0.1
- * @licence : All Right Reserved
+ * @Licence : All Right Reserved
  * ****************************************************************************************** */
 
 require 'core/Bootstrap.php';
 Bootstrap::run();
-echo memory_get_usage();
 
 ?>
