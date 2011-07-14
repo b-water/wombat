@@ -1,32 +1,25 @@
 <?php
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
  * Description of GenreRepository
  *
- * @author  Nico Schmitz - cofilew@gmail.com
+ * @author  Nico Schmitz - nschmitz1991@gmail.com
  * @file    GenreRepository.php
  * @since   17.06.2011 - 21:06:10
  */
-require_once('Genre.php');
-require_once('GenreRepository.php');
+require_once('core/Repository.php');
 
-class GenreRepository {
+class GenreRepository implements Repository {
 
     private $dataMapper = null;
 
     public function __construct(GenreDataMapper $dataMapper) {
-        if (is_null($dataMapper)) {
-            throw new GenreException('GenreDataMapper is missing');
-        }
         $this->dataMapper = $dataMapper;
     }
 
     public static function create(array $data) {
+
+        require_once('Genre.php');
 
         $genre = new Genre();
 
@@ -45,11 +38,11 @@ class GenreRepository {
         if (!empty($data['id'])) {
             $genre->setId($data['id']);
         }
-
-        if (GenreValidate::isValid($genre)) {
+        require_once('GenreValidate.php');
+        if ($genre->isValid()) {
             return $genre;
         } else {
-            throw new GenreException('Can´t create Movie Object, data is not valid');
+            throw new GenreException('Can´t create Genre Object, data is not valid');
         }
     }
 
@@ -61,6 +54,18 @@ class GenreRepository {
     public function fetchAssoc($id=null) {
         $genre = $this->dataMapper->fetchAssoc($id);
         return $genre;
+    }
+
+    public function append($object) {
+        
+    }
+
+    public function delete($object) {
+        
+    }
+
+    public function update($object) {
+        
     }
 
 }

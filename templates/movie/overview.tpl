@@ -16,8 +16,8 @@
             <td class="name">{$item->getTitle()}</td>
            <td class="genre">
            {if $item->getGenre()}
-                {foreach item=genre_item from=$item->getGenre()}
-                    <span class="overview-genre">{$genre_item.name}</span>
+                {foreach item=genreItem from=$item->getGenre()}
+                    <span class="overview-genre">{$genreItem->getName()}</span>
                 {/foreach}
             {else}
                 -

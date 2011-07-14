@@ -3,96 +3,82 @@
 /**
  * Description of Movie
  *
- * @author  Nico Schmitz - cofilew@gmail.com
+ * @author  Nico Schmitz - nschmitz1991@gmail.com
  * @file    Movie.php
  * @since   08.06.2011 - 18:45:38
- * @version Expression id is undefined on line 13, column 15 in Templates/Scripting/PHPClass.php.
  */
 require_once('core/Object.php');
-require_once('MovieValidate.php');
-
 class Movie extends Object {
 
     /**
      * Title of the
      * Movie Object
-     * 
      * @var string
      */
     private $title;
     /**
      * Description of the
      * Movie Object
-     * 
      * @var string
      */
     private $description;
     /**
      * Key value for star rating
-     * 
      * @var int
      */
     private $rating;
     /**
      * Key value relation to 
      * mysql table format
-     *
      * @var int 
      */
     private $format;
     /**
      * Trailer link of the
      * Movie Object
-     *
      * @var string 
      */
     private $trailer;
     /**
      * Path of the Image of the
      * Movie Object
-     *
      * @var string
      */
     private $image;
     /**
      * Year of the
      * Movie Object
-     *
      * @var int 
      */
     private $year;
     /**
      * Duration of the
      * Movie Object
-     *
      * @var type 
      */
     private $duration;
     /**
      * Associated Genres of the
      * Movie Object
-     *
      * @var array
      */
     private $genre = array();
 
-
-    public function __construct() {
-
-    }
-
-    public function __destruct() {
-        
-    }
-
+    /**
+     * Validates the Movie object
+     * returns an array with the error
+     * messages.
+     * @return array error
+     */
     public function isValid() {
-        $validation = new MovieValidate($this);
-        $validation->start();
+        require_once('MovieValidate.php');
+        $validation = new MovieValidate();
+        $output = $validation->isValid($this);
+        return $output;
     }
 
     /**
      * Sets the Duration
-     * 
      * @param string $value 
      */
     public function setDuration($value) {
@@ -101,7 +87,6 @@ class Movie extends Object {
 
     /**
      * Gets the Duration
-     * 
      * @return type string
      */
     public function getDuration() {
@@ -110,7 +95,6 @@ class Movie extends Object {
 
     /**
      * Sets the Description
-     * 
      * @param string $value 
      */
     public function setDescription($value) {
@@ -119,7 +103,6 @@ class Movie extends Object {
 
     /**
      * Gets the Description
-     * 
      * @return type string
      */
     public function getDescription() {

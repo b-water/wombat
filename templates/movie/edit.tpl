@@ -1,4 +1,4 @@
-<form id="edit" class="jqtransform" method="POST" action="movie/update/id/{$movie->getId()}/" enctype="multipart/form-data" >
+<form id="edit" method="POST" action="movie/update/id/{$movie->getId()}/" enctype="multipart/form-data" >
     <div class="notice good">Die Änderungen wurden erfolgreich in die Datenbank übertragen! Bitte warten Sie nun einen kurzen Augenblick, die Seite wird nun neu geladen!</div>
     <div id="left-fields">
         <fieldset>
@@ -49,9 +49,12 @@
             <label for="description">Beschreibung</label>
             <textarea id="description" name="description">{$movie->getDescription()}</textarea>
         </fieldset>
+        <fieldset class="col col-left">
+            {include file='/movie/edit_genre.tpl'}
+        </fieldset>
         <fieldset class="col">
             {include file='/movie/edit_artist.tpl'}
-        </fieldset>-->
+        </fieldset>
     </div>
     <div id="center-fields">
         <input type="submit" class="small awesome right" value="Speichern" />

@@ -1,14 +1,9 @@
 <?php
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
  * Description of RegistryException
  *
- * @author  Nico Schmitz - cofilew@gmail.com
+ * @author  Nico Schmitz - nschmitz1991@gmail.com
  * @file    RegistryException.php
  * @since   04.06.2011 - 00:32:12
  */

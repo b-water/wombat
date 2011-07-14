@@ -10,5 +10,6 @@
 
 require 'core/Bootstrap.php';
 Bootstrap::run();
+echo memory_get_usage();
 
 ?>

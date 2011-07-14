@@ -1,14 +1,10 @@
 <?php
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 
 /**
  * Description of DomainModel
  *
- * @author  Nico Schmitz - cofilew@gmail.com
+ * @author  Nico Schmitz - nschmitz1991@gmail.com
  * @file    DomainModel.php
  * @since   09.06.2011 - 19:07:18
  */
@@ -37,9 +33,10 @@ abstract class Object
     public function setId($id)
     {
         if (!is_null($this->id)) {
+            require_once('ObjectException.php');
             throw new ObjectException('(#1) : ID is immutable');
         }
-        return $this->id = $id;
+        $this->id = $id;
     }
 }
 

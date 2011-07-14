@@ -1,98 +1,102 @@
 <?php
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
  * Description of MovieInterface
  *
- * @author  Nico Schmitz - cofilew@gmail.com
+ * @author  Nico Schmitz - nschmitz1991@gmail.com
  * @file    MovieInterface.php
  * @since   08.06.2011 - 18:45:47
- * @version Expression id is undefined on line 13, column 15 in Templates/Scripting/PHPClass.php.
  */
-require_once('Movie.php');
 
-class MovieRepository {
+require_once('core/Repository.php');
+
+class MovieRepository implements Repository {
 
     private $dataMapper;
 
+    /**
+     * Constructor, needs MovieDataMapper Object
+     * @param MovieDataMapper $dataMapper 
+     */
     public function __construct(MovieDataMapper $dataMapper) {
-        if (is_null($dataMapper)) {
-            throw new MovieException('MovieDataMapper is missing');
-        }
         $this->dataMapper = $dataMapper;
     }
 
+    /**
+     * Creates a Movie Object
+     * @param array $data
+     * @return Movie object or throws an Exception 
+     */
     public static function create(array $data) {
-
+        require_once('Movie.php');
         $movie = new Movie();
 
-        if (!empty($data['title'])) {
-            $movie->setTitle($data['title']);
-        }
+        $movie->setId($data['id']);
 
-        if (!empty($data['description'])) {
-            $movie->setDescription($data['description']);
-        }
+        (isset($data['title'])) ? $movie->setTitle($data['title']) : '';
+        (isset($data['description'])) ? $movie->setDescription($data['description']) : '';
+        (isset($data['image'])) ? $movie->setImage($data['image']) : '';
+        (isset($data['format'])) ? $movie->setFormat($data['format']) : '';
+        (isset($data['rating'])) ? $movie->setRating($data['rating']) : '';
+        (isset($data['trailer'])) ? $movie->setTrailer($data['trailer']) : '';
+        (isset($data['year'])) ? $movie->setYear($data['year']) : '';
+        (isset($data['duration'])) ? $movie->setDuration($data['duration']) : '';
+        (isset($data['genre']) && is_array($data['genre'])) ? $movie->setGenre($data['genre']) : '';
+        (isset($data['trailer'])) ? $movie->setTrailer($data['trailer']) : '';
 
-        if (!empty($data['image'])) {
-            $movie->setImage($data['image']);
-        }
-
-        if (!empty($data['format'])) {
-            $movie->setFormat($data['format']);
-        }
-
-        if (!empty($data['rating'])) {
-            $movie->setRating($data['rating']);
-        }
-
-        if (!empty($data['trailer'])) {
-            $movie->setTrailer($data['trailer']);
-        }
-
-        if (!empty($data['year'])) {
-            $movie->setYear($data['year']);
-        }
-
-        if (!empty($data['duration'])) {
-            $movie->setDuration($data['duration']);
-        }
-
-        if (!empty($data['genre'])) {
-            $movie->setGenre($data['genre']);
-        }
-
-        if (MovieValidate::isValid($movie)) {
+        if ($movie->isValid()) {
             return $movie;
         } else {
-            throw new MovieException('Can´t create Movie Object, data is not valid');
+            require_once('MovieException.php');
+            throw new MovieException('Movie Object is not valid!');
         }
     }
 
+    /**
+     * Fetches Movie Data
+     *
+     * @param array $fields
+     * @param type $filter
+     * @param type $orderby
+     * @param type $limit
+     * @param type $offset
+     * @return type 
+     */
     public function fetch(array $fields, $filter='', $orderby='', $limit='', $offset='') {
         $movie = $this->dataMapper->fetch($fields, $filter, $orderby, $limit, $offset);
         return $movie;
     }
 
-    public function update(array $object) {
-        
+    /**
+     * Updates a Movie
+     * @param  object $movie
+     * @return bool $success
+     */
+    public function update($movie) {
+        $success = $this->dataMapper->update($movie);
+        return $success;
     }
 
-    public function append(Movie $movie) {
-        $this->_data_mapper->append($movie);
+    /**
+     * Creates a new Movie
+     * @param  object $movie
+     * @return bool $success
+     */
+    public function append($movie) {
+        $success = $this->dataMapper->append($movie);
+        return $success;
     }
 
-    public function delete(array $object) {
-        
+    /**
+     * Deletes a Movie
+     * @param  object $movie
+     * @return bool $success
+     */
+    public function delete($movie) {
+        $success = $this->dataMapper->delete($movie);
+        return $success;
     }
 
-//    public function fetchAll() {
-//        $this->dataMapper->fetchAll();
-//    }
 }
 
 ?>

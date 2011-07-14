@@ -1,15 +1,10 @@
 <?php
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
- * Description of DomainObjectException
+ * Description of ObjectException
  *
- * @author  Nico Schmitz - cofilew@gmail.com
- * @file    DomainObjectException.php
+ * @author  Nico Schmitz - nschmitz1991@gmail.com
+ * @file    ObjectException.php
  * @since   09.06.2011 - 19:09:29
  */
 class ObjectException extends Exception {

@@ -1,0 +1,1 @@
+<p class="notice error"><strong>{$errorText}</strong><br /><em>{$errorMessage}</em></p>

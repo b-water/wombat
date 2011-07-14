@@ -1,17 +1,17 @@
-<?php /* Smarty version Smarty-3.0.6, created on 2011-06-17 20:46:45
+<?php /* Smarty version Smarty-3.0.6, created on 2011-07-07 17:48:38
          compiled from ".\templates\/movie/edit_rating.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:280644dfba115231433-18230851%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:74174e15d55682e169-68441248%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '282e7224912d0a15aea8f8f743d7dd777621c593' => 
     array (
       0 => '.\\templates\\/movie/edit_rating.tpl',
-      1 => 1308336386,
+      1 => 1310053714,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '280644dfba115231433-18230851',
+  'nocache_hash' => '74174e15d55682e169-68441248',
   'function' => 
   array (
   ),
@@ -23,13 +23,13 @@ $_smarty_tpl->decodeProperties(array (
 if ($_smarty_tpl->_count($_from) > 0){
     foreach ($_from as $_smarty_tpl->tpl_vars['item']->key => $_smarty_tpl->tpl_vars['item']->value){
 ?>
-        <?php if ($_smarty_tpl->tpl_vars['item']->value['name']==$_smarty_tpl->getVariable('movie')->value->getRating()){?>
-            <option value="<?php echo $_smarty_tpl->tpl_vars['item']->value['id'];?>
-" selected="selected"><?php echo $_smarty_tpl->tpl_vars['item']->value['name'];?>
+        <?php if ($_smarty_tpl->getVariable('item')->value->getName()==$_smarty_tpl->getVariable('movie')->value->getRating()){?>
+            <option value="<?php echo $_smarty_tpl->getVariable('item')->value->getId();?>
+" selected="selected"><?php echo $_smarty_tpl->getVariable('item')->value->getName();?>
 </option>
         <?php }else{ ?>
-            <option value="<?php echo $_smarty_tpl->tpl_vars['item']->value['id'];?>
-"><?php echo $_smarty_tpl->tpl_vars['item']->value['name'];?>
+            <option value="<?php echo $_smarty_tpl->getVariable('item')->value->getId();?>
+"><?php echo $_smarty_tpl->getVariable('item')->value->getName();?>
 </option>
         <?php }?>
     <?php }} ?>

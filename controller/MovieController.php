@@ -3,68 +3,161 @@
 /**
  * Description of MovierController
  *
- * @author  Nico Schmitz - cofilew@gmail.com
+ * @author  Nico Schmitz - nschmitz1991@gmail.com
  * @file    MovieController.php
  * @since   13.05.2011 - 23:35:14
  */
 require_once('core/Controller.php');
-require_once('model/Movie/MovieRepository.php');
-require_once('model/Movie/MovieDataMapper.php');
-require_once('model/Genre/GenreRepository.php');
-require_once('model/Genre/GenreDataMapper.php');
 
 class MovieController extends Controller {
 
-    // The Movie Object
-    private $movie;
-    private $template;
+    /**
+     *  Main Template File
+     * @var string 
+     */
+    private $template = null;
+    /**
+     * Image Path
+     * @var string 
+     */
     private $template_dir = 'movie/';
-    private $tableMovie;
-    private $movieRepository;
-    private $genreRepository;
+    /**
+     * Tablename
+     * @var string
+     */
+    private $tableMovie = null;
+    /**
+     * Movie Repository
+     * @var object
+     */
+    private $movieRepository = null;
+    /**
+     * Genre Repository
+     * @var object
+     */
+    private $genreRepository = null;
+    /**
+     * Format Repository
+     * @var object 
+     */
+    private $formatRepository = null;
+    /**
+     * Rating Repository
+     * @var object 
+     */
+    private $ratingRepository = null;
 
+    /**
+     * Call parent Constructor
+     */
     public function __construct() {
         parent::__construct();
     }
 
+    /**
+     * Custom constructor
+     */
     public function init() {
+
         $this->template = $this->config->get('template.mainfile');
         $this->tableMovie = $this->config->get('database.tables.movie');
-        
-        $movieDataMapper = new MovieDataMapper(Registry::get('db'));
-        $this->movieRepository = new MovieRepository($movieDataMapper);
-        
-        $genreDataMapper = new GenreDataMapper(Registry::get('db'));
-        $this->genreRepository = new GenreRepository($genreDataMapper);
+
+        require_once('model/Movie/MovieDataMapper.php');
+
+        try {
+            $movieDataMapper = new MovieDataMapper(Registry::get('db'));
+        } catch (MovieException $movieException) {
+            die($movieException);
+        }
+
+        require_once('model/Movie/MovieRepository.php');
+        try {
+            $this->movieRepository = new MovieRepository($movieDataMapper);
+        } catch (MovieException $movieException) {
+            die($movieException);
+        }
+
+        require_once('model/Genre/GenreDataMapper.php');
+        try {
+            $genreDataMapper = new GenreDataMapper(Registry::get('db'));
+        } catch (MovieException $movieException) {
+            die($movieException);
+        }
+
+        require_once('model/Genre/GenreRepository.php');
+        try {
+            $this->genreRepository = new GenreRepository($genreDataMapper);
+        } catch (MovieException $movieException) {
+            die($movieException);
+        }
+
+        require_once('model/Format/FormatDataMapper.php');
+
+        try {
+            $formatDataMapper = new FormatDataMapper(Registry::get('db'));
+        } catch (MovieException $movieException) {
+            die($movieException);
+        }
+
+        require_once('model/Format/FormatRepository.php');
+        try {
+            $this->formatRepository = new FormatRepository($formatDataMapper);
+        } catch (MovieException $movieException) {
+            die($movieException);
+        }
+
+        require_once('model/Rating/RatingDataMapper.php');
+
+        try {
+            $ratingDataMapper = new RatingDataMapper(Registry::get('db'));
+        } catch (RatingException $ratingException) {
+            die($ratingException);
+        }
+
+        require_once('model/Rating/RatingRepository.php');
+        try {
+            $this->ratingRepository = new RatingRepository($ratingDataMapper);
+        } catch (RatingException $ratingException) {
+            die($ratingException);
+        }
     }
 
+    /**
+     * @example movie/
+     */
     public function index() {
 
-        $movies = $this->movieRepository->fetch(array('id', 'title', 'rating','year'));
-//        $genre = $this->genreRepository->fetch(array('*'));
+        try {
+            $movies = $this->movieRepository->fetch(array('id', 'title', 'rating', 'year'));
+        } catch (MovieException $movieException) {
+            die($movieException);
+            $this->smarty->assign('Exception');
+            $this->smarty->display('exception template');
+        }
 
         $this->smarty->assign('movies', $movies);
-        
-        /* add page title */
         $this->smarty->assign('title', 'Filme');
 
         $content = $this->smarty->fetch($this->template_dir . 'overview.tpl');
         $content .= $this->smarty->fetch('pager.tpl');
-
         $this->smarty->assign('content', $content);
 
         $this->smarty->display($this->template);
     }
 
     /**
-     * show a single Movie
+     * @example movie/show/id/xx
      */
     public function show() {
 
         $this->smarty->assign('title', 'Film Detailansicht');
         $filter = $this->tableMovie . '.' . $this->url->get('key') . ' = "' . $this->url->get('value') . '"';
-//        $movie = $this->movie->fetch('*', $filter);
-        $movie = $this->movieRepository->fetch(array('*'), $filter);
+
+        try {
+            $movie = $this->movieRepository->fetch(array('*'), $filter);
+        } catch (MovieException $movieException) {
+            die($movieException);
+        }
 
         $this->smarty->assign('movie', $movie[0]);
         $content = $this->smarty->fetch($this->template_dir . 'show.tpl');
@@ -75,49 +168,59 @@ class MovieController extends Controller {
     }
 
     /**
-     * Edit a Movie
+     * @example movie/edit/id/xx
      */
     public function edit() {
 
         $this->smarty->assign('title', 'Film Bearbeiten');
-        $filter = $this->tableMovie . '.' . $this->url->get('key') . ' = "' . $this->url->get('value') . '"';
-        $movie = $this->movieRepository->fetch(array('*'), $filter);
+        $filter = $this->tableMovie . '.id = "' . $this->url->get('value') . '"';
 
-        // gather Meta Information
-//        $genre2 = new Genre();
-//        $genre = $genre2->fetch('movie');
-//        $genre = $this->movie->fetchGenre();
-//        $format = $this->movie->fetchFormat();
-//        $rating = $this->movie->fetchRating();
+        try {
+            $movie = $this->movieRepository->fetch(array('*'), $filter);
+        } catch (MovieException $movieException) {
+            die($movieException);
+        }
 
-        // assign smarty variables
-//        $this->smarty->assign('format', $format);
-////        $this->smarty->assign('genre', $genre);
-//        $this->smarty->assign('rating', $rating);
+        try {
+            $format = $this->formatRepository->fetch(array('*'), 'type="movie"');
+        } catch (FormatException $formatException) {
+            die($formatException);
+        }
+
+        try {
+            $rating = $this->ratingRepository->fetch(array('*'), 'type="movie"');
+        } catch (RatingException $ratingException) {
+            die($ratingException);
+        }
+
         $this->smarty->assign('movie', $movie[0]);
-
-        // fetches smarty templates
+        $this->smarty->assign('format', $format);
+        $this->smarty->assign('rating', $rating);
         $content = $this->smarty->fetch($this->template_dir . 'edit.tpl');
         $this->smarty->assign('content', $content);
-
-        // display smarty templates
         $this->smarty->display($this->template);
     }
 
     /**
-     * Updates the values of a Movie
+     * @example movie/update/id/xx 
      */
     public function update() {
         /* update the dataset */
         try {
-            $this->movie->update($_REQUEST);
+            $movie = MovieRepository::create($_REQUEST);
+        } catch (MovieException $movieException) {
+            die($movieException);
+        }
+
+        try {
+            $this->movieRepository->update($movie);
         } catch (MovieException $movieException) {
             die($movieException);
         }
     }
 
     /**
-     * Deletes a Movie
+     * @example movie/delete/id/xx
      */
     public function delete() {
         $this->movie->delete($this->url->get('value'));
@@ -128,20 +231,14 @@ class MovieController extends Controller {
 
     public function autoCompleteGenre() {
 //        $genre = $this->movie->fetchGenre();
+        $this->genreRepository->fetch();
         $genre = new Genre();
         $genre_data = $genre->fetch('movie');
 
         var_dump($genre_data);
 
         foreach ($genre_data as $item) {
-//            if (strpos(strtolower($item['title']), $q) !== false) {
-//            echo $item['title'] . '|' . $item['id'] . '';
-//            if (strpos(strtolower($item['title']), $q) !== false) {
-            $key = $item['title'];
-            $value = $item['id'];
-            echo "$key|$value\n";
-//            }
-//            }
+            
         }
 
 //        var_dump($data);

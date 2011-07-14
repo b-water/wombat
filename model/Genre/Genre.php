@@ -11,6 +11,8 @@
  * @author nico
  * @since 13:39:59
  */
+require_once('core/Object.php');
+
 class Genre extends Object {
 
     /**
@@ -105,6 +107,13 @@ class Genre extends Object {
 
     public function getGenreId() {
         return $this->genreId;
+    }
+
+    public function isValid() {
+        require_once('GenreValidate.php');
+        $validate = new GenreValidate();
+        $success = $validate->isValid($this);
+        return $success;
     }
 
 }

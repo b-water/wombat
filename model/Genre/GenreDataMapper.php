@@ -1,18 +1,13 @@
 <?php
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
  * Description of GenreDataMapper
  *
- * @author  Nico Schmitz - cofilew@gmail.com
+ * @author  Nico Schmitz - nschmitz1991@gmail.com
  * @file    GenreDataMapper.php
  * @since   17.06.2011 - 20:47:47
  */
-class GenreDataMapper extends DataMapper {
+class GenreDataMapper implements DataMapper {
 
     /**
      * mysql table
@@ -28,15 +23,13 @@ class GenreDataMapper extends DataMapper {
      * mysql table
      * @var String 
      */
+    private $db = null;
+    private $config = null;
     private $tableGenreAssociated = null;
-    public function __construct($db) {
-        parent::__construct($db);
-    }
-
-    /**
-     * custom constructor, init the genre repo
-     */
-    public function init() {
+    
+    public function __construct(Zend_Db_Adapter_Pdo_Mysql $db) {
+        $this->db = $db;
+        $this->config = Config::getInstance();
         $this->tableGenre = $this->config->get('database.tables.genre');
         $this->tableGenreAssociated = $this->config->get('database.tables.genre_associated');
         $this->tableMovie = $this->config->get('database.tables.movie');
@@ -74,12 +67,12 @@ class GenreDataMapper extends DataMapper {
 
         $sql = $this->db->query($select);
         $data = $sql->fetchAll();
-        
-        if(!empty($data)) {
-        }
-        
-        return $data;
 
+        if (!empty($data)) {
+            
+        }
+
+        return $data;
     }
 
     /**
@@ -94,24 +87,22 @@ class GenreDataMapper extends DataMapper {
 
         $select = $this->db->select();
 
-        $select->from($this->tableGenreAssociated, array('genre.name'));
+        $select->from($this->tableGenreAssociated, array('*'));
 
         $select->where($this->tableGenreAssociated . '.table = "' . $this->tableMovie . '" AND ' . $this->tableGenreAssociated . '.table_id = "' . $id . '"');
 
-        $select->joinLeft($this->tableGenre, $this->tableGenre . '.id = ' . $this->tableGenreAssociated . '.genre_id', $this->tableGenre . '.id');
+        $select->joinLeft($this->tableGenre, $this->tableGenre . '.id = ' . $this->tableGenreAssociated . '.genre_id', '*');
 
         $sql = $this->db->query($select);
         $data = $sql->fetchAll();
-        
-        $genre_cont = array();
-        
+
+        $result = array();
         if (!empty($data)) {
-            foreach($data as $item) {
+            foreach ($data as $item) {
                 $genre = GenreRepository::create($item);
-                $genre_cont[] = $genre;
+                $result[] = $genre;
             }
-            var_dump($genre_cont);
-            return $genre_cont;
+            return $result;
         } else {
             return '';
         }

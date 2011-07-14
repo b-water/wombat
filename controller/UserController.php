@@ -3,7 +3,7 @@
 /**
  * Description of UserController
  *
- * @author  Nico Schmitz - cofilew@gmail.com
+ * @author  Nico Schmitz - nschmitz1991@gmail.com
  * @file    UserController.php
  * @since   13.05.2011 - 23:35:14
  */

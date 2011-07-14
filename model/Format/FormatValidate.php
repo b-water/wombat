@@ -1,13 +1,13 @@
 <?php
 
 /**
- * Description of GenreValidation
+ * Description of FormatValidate
  *
  * @author  Nico Schmitz - nschmitz1991@gmail.com
- * @file    GenreValidation.php
- * @since   17.06.2011 - 20:47:58
+ * @file    FormatValidate.php
+ * @since   18.06.2011 - 20:21:46
  */
-class GenreValidate {
+class FormatValidate {
 
     /**
      * success, true or false
@@ -21,14 +21,15 @@ class GenreValidate {
     public $error_cache = array();
 
     /**
-     * Validates the Genre object
-     * @param Genre $genre
+     * Validates the format object
+     * @param Format $format
      * @return type 
      */
-    public function isValid(Genre $genre) {
-        $this->success = $this->isId($genre->getId());
-        $this->success = $this->isType($genre->getType());
-        $this->success = $this->isName($genre->getName());
+    public function isValid(Format $format) {
+        // mandatory fields
+        $this->success = $this->isId($format->getId());
+        $this->success = $this->isType($format->getType());
+        $this->success = $this->isName($format->getName());
 
         return $this->success;
     }

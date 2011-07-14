@@ -1,23 +1,23 @@
-<?php /* Smarty version Smarty-3.0.6, created on 2011-06-17 20:47:01
+<?php /* Smarty version Smarty-3.0.6, created on 2011-07-02 18:22:19
          compiled from ".\templates\movie/edit.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:75134dfba125b967a9-63602696%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:277724e0f45bbce8938-59625885%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     'df4b0b48e76d7fe549ee68fc19b2c4f49a830454' => 
     array (
       0 => '.\\templates\\movie/edit.tpl',
-      1 => 1308336417,
+      1 => 1309623723,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '75134dfba125b967a9-63602696',
+  'nocache_hash' => '277724e0f45bbce8938-59625885',
   'function' => 
   array (
   ),
   'has_nocache_code' => false,
 )); /*/%%SmartyHeaderCode%%*/?>
-<form id="edit" class="jqtransform" method="POST" action="movie/update/id/<?php echo $_smarty_tpl->getVariable('movie')->value->getId();?>
+<form id="edit" method="POST" action="movie/update/id/<?php echo $_smarty_tpl->getVariable('movie')->value->getId();?>
 /" enctype="multipart/form-data" >
     <div class="notice good">Die Änderungen wurden erfolgreich in die Datenbank übertragen! Bitte warten Sie nun einen kurzen Augenblick, die Seite wird nun neu geladen!</div>
     <div id="left-fields">
@@ -78,10 +78,14 @@ $_smarty_tpl->decodeProperties(array (
             <textarea id="description" name="description"><?php echo $_smarty_tpl->getVariable('movie')->value->getDescription();?>
 </textarea>
         </fieldset>
+        <fieldset class="col col-left">
+            <?php $_template = new Smarty_Internal_Template('/movie/edit_genre.tpl', $_smarty_tpl->smarty, $_smarty_tpl, $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null);
+ echo $_template->getRenderedTemplate();?><?php $_template->updateParentVariables(0);?><?php unset($_template);?>
+        </fieldset>
         <fieldset class="col">
             <?php $_template = new Smarty_Internal_Template('/movie/edit_artist.tpl', $_smarty_tpl->smarty, $_smarty_tpl, $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null);
  echo $_template->getRenderedTemplate();?><?php $_template->updateParentVariables(0);?><?php unset($_template);?>
-        </fieldset>-->
+        </fieldset>
     </div>
     <div id="center-fields">
         <input type="submit" class="small awesome right" value="Speichern" />

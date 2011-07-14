@@ -3,7 +3,7 @@
 /**
  * Description of Config
  *
- * @author  Nico Schmitz - cofilew@gmail.com
+ * @author  Nico Schmitz - nschmitz1991@gmail.com
  * @file    Config.php
  * @since   13.05.2011 - 23:35:14
  */

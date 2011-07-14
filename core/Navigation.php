@@ -3,7 +3,7 @@
 /**
  * Description of Navigation
  *
- * @author  Nico Schmitz - cofilew@gmail.com
+ * @author  Nico Schmitz - nschmitz1991@gmail.com
  * @file    Navigation.php
  * @since   26.05.2011 - 18:33:39
  */

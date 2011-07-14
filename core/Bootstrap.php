@@ -3,7 +3,7 @@
 /**
  * Description of Bootstrap
 
- *  * @author  Nico Schmitz - cofilew@gmail.com
+ *  * @author  Nico Schmitz - nschmitz1991@gmail.com
  * @file    Bootstrap.php
  * @since   03.06.2011 - 23:58:40
  */
@@ -23,7 +23,6 @@ class Bootstrap {
 
         self::setupConfiguration();
         require_once(self::$config->get('path.library') . 'Zend/File/Transfer.php');
-
         self::setupErrorReporting();
         self::setupDatabase();
         self::setupSmarty();
@@ -35,17 +34,12 @@ class Bootstrap {
         self::closeDatabaseConnection();
     }
 
-    public static function setupAutoloader() {
-        /* call the autoloader */
-        require_once('core/Autoloader.php');
-        Autoloader::init();
-    }
 
     //Error reporting setting
     public static function setupErrorReporting() {
         /* prints out all error messages */
         error_reporting(E_ALL);
-        self::$smarty->error_reporting = self::$config->get('smarty.errorHandling');
+        self::$smarty->error_reporting = E_ALL;
     }
 
     //Date time setting will be done here

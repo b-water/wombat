@@ -53,7 +53,7 @@ var core = {
                     $('.notice').show();
                     
                     setTimeout(function(){
-                        core.http.redirectToUrl(window.location.pathname);
+//                        core.http.redirectToUrl(window.location.pathname);
                     }, 2000);
                     
                 }

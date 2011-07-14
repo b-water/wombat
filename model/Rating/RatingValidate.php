@@ -1,13 +1,13 @@
 <?php
 
 /**
- * Description of GenreValidation
+ * Description of RatingValidate
  *
  * @author  Nico Schmitz - nschmitz1991@gmail.com
- * @file    GenreValidation.php
- * @since   17.06.2011 - 20:47:58
+ * @file    RatingValidate.php
+ * @since   18.06.2011 - 20:23:28
  */
-class GenreValidate {
+class RatingValidate {
 
     /**
      * success, true or false
@@ -21,14 +21,14 @@ class GenreValidate {
     public $error_cache = array();
 
     /**
-     * Validates the Genre object
-     * @param Genre $genre
+     * Validates the Rating object
+     * @param Rating $rating
      * @return type 
      */
-    public function isValid(Genre $genre) {
-        $this->success = $this->isId($genre->getId());
-        $this->success = $this->isType($genre->getType());
-        $this->success = $this->isName($genre->getName());
+    public function isValid(Rating $rating) {
+        $this->success = $this->isId($rating->getId());
+        $this->success = $this->isType($rating->getType());
+        $this->success = $this->isName($rating->getName());
 
         return $this->success;
     }

@@ -1,23 +1,16 @@
 <?php
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
  * Description of MovieDataMapper
  *
- * @author  Nico Schmitz - cofilew@gmail.com
+ * @author  Nico Schmitz - nschmitz1991@gmail.com
  * @file    MovieDataMapper.php
  * @since   08.06.2011 - 18:46:04
- * @version Expression id is undefined on line 13, column 15 in Templates/Scripting/PHPClass.php.
  */
 require_once('core/DataMapper.php');
-require_once('model/Genre/GenreDataMapper.php');
-require_once('model/Genre/GenreRepository.php');
+require_once('MovieException.php');
 
-class MovieDataMapper extends DataMapper {
+class MovieDataMapper implements DataMapper {
 
     /**
      * mysql table
@@ -48,17 +41,13 @@ class MovieDataMapper extends DataMapper {
      * object from genre repo
      * @var object 
      */
+    private $db = null;
+    private $config = null;
     private $genreRepository = null;
 
-    public function __construct($db) {
-        parent::__construct($db);
-    }
-
-    /**
-     * custom constructor, init the repo
-     */
-    public function init() {
-
+    public function __construct(Zend_Db_Adapter_Pdo_Mysql $db) {
+        $this->db = $db;
+        $this->config = Config::getInstance();
         // get tablenames from config
         $this->tableMovie = $this->config->get('database.tables.movie');
         $this->tableGenre = $this->config->get('database.tables.genre');
@@ -67,7 +56,9 @@ class MovieDataMapper extends DataMapper {
         $this->tableRating = $this->config->get('database.tables.rating');
 
         // setup datamapper for genre
+        require_once('model/Genre/GenreDataMapper.php');
         $genreDataMapper = new GenreDataMapper($this->db);
+        require_once('model/Genre/GenreRepository.php');
         $this->genreRepository = new GenreRepository($genreDataMapper);
     }
 
@@ -82,7 +73,11 @@ class MovieDataMapper extends DataMapper {
      *
      * @param array $values 
      */
-    public function update($object) {
+    public function update($movie) {
+
+        var_dump($movie);
+        die();
+
         $this->deleteAssociatedGenre($this->url->get('value'));
 
         $data = array(
@@ -139,7 +134,7 @@ class MovieDataMapper extends DataMapper {
             }
 
             // creating the thumbnail
-
+            require_once('library/phpthumb/ThumbLib.inc.php');
 
             try {
                 $thumb = PhpThumbFactory::create($filename);
@@ -147,7 +142,7 @@ class MovieDataMapper extends DataMapper {
                 die($thumbnailException);
             }
 
-            $thumb->adaptiveResize(self::IMAGE_WIDTH, $this->imageHeight)->cropFromCenter($this->imageCrop)->save($filename);
+            $thumb->adaptiveResize($this->imageWidth, $this->imageHeight)->cropFromCenter($this->imageCrop)->save($filename);
 
             $data['image'] = $filename;
         }
@@ -156,10 +151,6 @@ class MovieDataMapper extends DataMapper {
         if ($affectedRows != 1) {
             throw new MovieException('(#1) : The dataset coud not habe been updated!');
         }
-    }
-
-    public function saveImage($file) {
-        
     }
 
     /**
@@ -171,11 +162,15 @@ class MovieDataMapper extends DataMapper {
      */
     public function delete($object) {
 
+        if ($id != null && ctype_digit($id)) {
+            throw new MovieException('(#8) : Id is not set or invalid!');
+        }
+
         /* deleting the movie from the database */
         $affectedRows = $this->db->delete($this->tableMovie, $this->url->get('key') . '="' . $id . '"');
 
         if ($affectedRows != 1) {
-            throw new MovieException('(#2) : The dataset could not be deleted!');
+            throw new MovieException('(#2) : The dataset coud not have been deleted!');
         } else {
             /* delete associated genres */
             $this->deleteAssociatedGenre($id);
@@ -203,6 +198,7 @@ class MovieDataMapper extends DataMapper {
      * @return  array   movies
      */
     public function fetch(array $fields, $filter='', $orderby='', $limit='', $offset='') {
+        
         $select = $this->db->select();
 
         if (!empty($fields)) {
@@ -228,19 +224,13 @@ class MovieDataMapper extends DataMapper {
 
         $sql = $this->db->query($select);
         $data = $sql->fetchAll();
-
         if (empty($data)) {
             throw new MovieException('(#3) : No Movies found!');
         } else {
-            // TODO: array to object
             $movies = array();
 
             for ($index = 0; $index <= count($data) - 1; $index++) {
-
-                if (!empty($data[$index]['id']) && ctype_digit($data[$index]['id'])) {
-//                    $data[$index]['genre'] = $this->fetchAssociatedGenre($data[$index]['id'], array('genre.name'));
-                    $data[$index]['genre'] = $this->genreRepository->fetchAssoc($data[$index]['id']);
-                }
+                $data[$index]['genre'] = $this->genreRepository->fetchAssoc($data[$index]['id']);
 
                 $movie = MovieRepository::create($data[$index]);
                 $movies[] = $movie;
@@ -249,116 +239,6 @@ class MovieDataMapper extends DataMapper {
         return $movies;
     }
 
-//    /**
-//     * Fetches associated Genre
-//     * from a Movie
-//     *
-//     * @param   type    $id
-//     * @param   type    $fields
-//     * @return  type    array
-//     */
-//    public function fetchAssociatedGenre($id=null, $fields='*') {
-//        if ($id != null) {
-//            $select = $this->db->select();
-//            $select->from($this->tableAssociatedGenre, $fields);
-//            $select->where($this->tableAssociatedGenre . '.table = "' . $this->tableMovie . '" AND ' . $this->tableAssociatedGenre . '.table_id = "' . $id . '"');
-//            $select->joinLeft($this->tableGenre, $this->tableGenre . '.id = ' . $this->tableAssociatedGenre . '.genre_id', $this->tableGenre . '.name as genre');
-//            $sql = $this->db->query($select);
-//            $genre = $sql->fetchAll();
-//            return $genre;
-//        } else {
-//            throw new MovieException('(#5) : There must be an ID given to fetch Associated Genre!');
-//        }
-//    }
-//
-//    /**
-//     * Fetches all Genres according
-//     * to movies.
-//     * 
-//     * @param   string  $type
-//     * @return  array   $genre
-//     */
-//    public function fetchGenre($type='movie') {
-//        // get all genre options
-//        $genreObj = new Genre();
-//
-//        try {
-//            $genre = $genreObj->fetch($type);
-//        } catch (GenreException $genreException) {
-//            die($genreException);
-//        }
-//
-//        return $genre;
-//    }
-//
-//    /**
-//     * Fetches all Formats according
-//     * to movies.
-//     * 
-//     * @param   string  $type
-//     * @return  array   $format
-//     */
-//    public function fetchFormat($type='movie') {
-//        // get all format options
-//        $formatObj = new Format();
-//
-//        try {
-//            $format = $formatObj->fetch($type);
-//        } catch (FormatException $formatException) {
-//            die($formatException);
-//        }
-//
-//        return $format;
-//    }
-//
-//    /**
-//     * Fetches all Ratings according
-//     * to movies.
-//     *
-//     * @param   string  $type
-//     * @return  array   $rating 
-//     */
-//    public function fetchRating($type='movie') {
-//        // get all rating options
-//        $ratingObj = new Rating();
-//
-//        try {
-//            $rating = $ratingObj->fetch($type);
-//        } catch (RatingException $ratingException) {
-//            die($ratingException);
-//        }
-//
-//        return $rating;
-//    }
-//
-//    /**
-//     * Deletes all Genre According
-//     * to a Movie
-//     *
-//     * @param   string    $id 
-//     */
-//    private function deleteAssociatedGenre($id) {
-//        if (!empty($id)) {
-//            /* deleting the movie from the database */
-//            $this->db->delete($this->tableAssociatedGenre, ' table_id ="' . $id . '"');
-//        } else {
-//            throw new MovieException('(#6) : There must be an ID given to delete Associated Genre!');
-//        }
-//    }
-//
-//    /**
-//     * Creates a Genre According to a Movie
-//     *
-//     * @param   array     $params 
-//     */
-//    private function createAssociatedGenre(array $params) {
-//        if (!empty($params)) {
-//            $affectedRows = $this->db->insert($this->tableAssociatedGenre, $params);
-//            if ($affectedRows != 1) {
-//                throw new MovieException('(#7) : Coud not create associated Genre!');
-//            }
-//        }
-//    }
 }
 
 ?>

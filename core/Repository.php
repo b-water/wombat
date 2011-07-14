@@ -1,21 +1,17 @@
 <?php
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
- * Description of DataMapper
+ * Description of Repository
  *
  * @author  Nico Schmitz - nschmitz1991@gmail.com
- * @file    DataMapper.php
- * @since   09.06.2011 - 18:53:06
+ * @file    Repository.php
+ * @since   21.06.2011 - 18:30:53
  */
-interface DataMapper {
-
-
-    // main functions
+interface Repository {
+    
+    
+    public static function create(array $data);
+    
     public function append($object);
 
     public function delete($object);
@@ -23,8 +19,6 @@ interface DataMapper {
     public function update($object);
 
     public function fetch(array $fields, $filter='', $orderby='', $limit='', $offset='');
-
- }
-
+}
 
 ?>

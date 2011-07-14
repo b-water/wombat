@@ -1,11 +1,11 @@
-<!--<label>Genre</label>
+<label>Genre</label>
 <input type="text" name="autoCompleteGenre" id="autoCompleteGenre"/>
 <div id="associatedGenres">
-    {foreach item=item from=$movie.genre}
+    {foreach item=item from=$movie->getGenre()}
         <span class="genre">
-            <input type="hidden" name="genre[]" value="{$item.id}" />
-            <span class="text">{$item.name}</span>
+            <input type="hidden" name="genre[]" value="{$item->getId()}" />
+            <span class="text">{$item->getName()}</span>
             <span class="delete">L&ouml;schen</span>
         </span>
     {/foreach}
-</div>-->
+</div>
