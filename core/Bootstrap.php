@@ -44,7 +44,7 @@ class Bootstrap {
 
     //Date time setting will be done here
     public static function setupDateTime() {
-        date_default_timezone_set(self::$config->get('phpSetting.defaultTimezone'));
+        date_default_timezone_set('Europe/Berlin');
     }
 
     public static function setupSession() {
@@ -58,7 +58,7 @@ class Bootstrap {
         /* load the configurations */
         require_once('core/Config.php');
         Config::$file = 'config.ini';
-        self::$config = Config::getInstance('config.ini');
+        self::$config = Config::getInstance();
     }
 
     // Template Engine setting will be done here
