@@ -1,6 +1,6 @@
 <?php
 
-/* *
+/**
  * wombat
  * 
  * LICENCE
@@ -12,6 +12,7 @@
  * @name wombat
  * @author Nico Schmitz - nschmitz1991@gmail.com
  * @copyright  Copyright (c) 2010-2011 Nico Schmitz (nschmitz1991@gmail.com)
+ * @since 01.04.2010
  * @version 0.1
  * @license http://creativecommons.org/licenses/by-nc-nd/3.0/ Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License
  */
@@ -118,11 +119,11 @@ class Bootstrap {
         require_once('library/Zend/Db/Adapter/Pdo/Mysql.php');
 
         $params = array(
-            'host' => self::$config->get('database.params.host'),
-            'username' => self::$config->get('database.params.user'),
-            'password' => self::$config->get('database.params.password'),
-            'charset' => self::$config->get('database.params.charset'),
-            'dbname' => self::$config->get('database.params.database'));
+            'host' => self::$config->get('database.host'),
+            'username' => self::$config->get('database.user'),
+            'password' => self::$config->get('database.password'),
+            'charset' => self::$config->get('database.charset'),
+            'dbname' => self::$config->get('database.dbname'));
 
         try {
             self::$db = new \Zend_Db_Adapter_Pdo_Mysql($params);
@@ -135,18 +136,18 @@ class Bootstrap {
      * Url Parser
      */
     public static function setupUrlParser() {
-        // parse the url
         require_once('core/Url.php');
         self::$url = new Url();
-
         try {
             self::$url->parse();
         } catch (UrlException $urlException) {
             die($urlException);
         }
     }
-
-    // navigation setup will be done here
+    
+    /**
+     * Navigation Menu
+     */
     public static function setupNavigation() {
         require_once('core/Navigation.php');
         $navi = new Navigation();
@@ -154,18 +155,20 @@ class Bootstrap {
         $navi->create($data);
     }
 
-    // registry objects will be set here
+    /**
+     * Registry
+     */
     public static function setRegistryObjects() {
-        // registers $db and $smarty
         require_once('core/Registry.php');
         Registry::set('db', self::$db);
         Registry::set('smarty', self::$smarty);
         Registry::set('url', self::$url);
     }
 
-    // smarty variables will be assigned here
+    /**
+     * Smarty Assigns
+     */
     public static function assignSmartyVariables() {
-        // assign them to smarty
         self::$smarty->assign('file', 'bootstrap.php');
         self::$smarty->assign('maintitle', self::$config->get('html.title'));
         self::$smarty->assign('author', self::$config->get('html.author'));
@@ -174,11 +177,12 @@ class Bootstrap {
         self::$smarty->assign('controller', self::$url->get('controller'));
     }
 
-    // router setup will be done here
+    /**
+     * Router
+     */
     public static function setupRouter() {
         require_once('core/Router.php');
         $router = new Router();
-
         try {
             $router->run();
         } catch (RouterException $routerException) {
@@ -186,7 +190,9 @@ class Bootstrap {
         }
     }
 
-    // databse connection will be closed here
+    /**
+     * Close Database Connection
+     */
     public static function closeDatabaseConnection() {
         self::$db->closeConnection();
     }
