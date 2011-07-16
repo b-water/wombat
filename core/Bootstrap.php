@@ -1,28 +1,62 @@
 <?php
 
-/**
- * Description of Bootstrap
+/* *
+ * wombat
+ * 
+ * LICENCE
+ * 
+ * This work is licensed under the Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License. 
+ * To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-nd/3.0/ or send a letter to Creative Commons, 
+ * 444 Castro Street, Suite 900, Mountain View, California, 94041, USA.
+ * 
+ * @name wombat
+ * @author Nico Schmitz - nschmitz1991@gmail.com
+ * @copyright  Copyright (c) 2010-2011 Nico Schmitz (nschmitz1991@gmail.com)
+ * @version 0.1
+ * @license http://creativecommons.org/licenses/by-nc-nd/3.0/ Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License
+ */
 
- *  * @author  Nico Schmitz - nschmitz1991@gmail.com
+/**
+ * @author  Nico Schmitz - nschmitz1991@gmail.com
  * @file    Bootstrap.php
  * @since   03.06.2011 - 23:58:40
  */
-
 class Bootstrap {
 
+    /**
+     * Configuration Object
+     * @var type object 
+     */
     public static $config = null;
+    /**
+     * Url Object
+     * @var type object
+     */
     public static $url = null;
+    /**
+     * Database Object
+     * @var type object
+     */
     public static $db = null;
+    /**
+     * Smarty Object
+     * @var type object
+     */
     public static $smarty = null;
 
+    /**
+     * Runs the Application
+     */
     public static function run() {
         self::prepare();
     }
 
+    /**
+     * Prepares the System
+     */
     public static function prepare() {
-
         self::setupConfiguration();
-        require_once(self::$config->get('path.library') . 'Zend/File/Transfer.php');
+        require_once('library/Zend/File/Transfer.php');
         self::setupErrorReporting();
         self::setupDatabase();
         self::setupSmarty();
@@ -34,45 +68,54 @@ class Bootstrap {
         self::closeDatabaseConnection();
     }
 
-
-    //Error reporting setting
+    /**
+     * Error Reporting
+     * Print out all Error Messages
+     */
     public static function setupErrorReporting() {
-        /* prints out all error messages */
         error_reporting(E_ALL);
         self::$smarty->error_reporting = E_ALL;
     }
 
-    //Date time setting will be done here
+    /**
+     * Date Time Settings
+     * set to Europe Berlin
+     */
     public static function setupDateTime() {
         date_default_timezone_set('Europe/Berlin');
     }
 
+    /**
+     * Start and configure Session
+     */
     public static function setupSession() {
-        /* Launching Session */
         session_start();
         session_set_cookie_params(7200, '', true);
     }
 
-    //Configuration file reading & setting up configuration will be done using following.
+    /**
+     * Configuration
+     */
     public function setupConfiguration() {
-        /* load the configurations */
         require_once('core/Config.php');
-        Config::$file = 'config.ini';
-        self::$config = Config::getInstance();
+//        Config::$file = 'config.ini';
+        self::$config = Config::getInstance('config.ini');
     }
 
-    // Template Engine setting will be done here
+    /**
+     * Smarty
+     */
     public static function setupSmarty() {
-        /* initalize Smarty */
-        require_once(self::$config->get('path.library') . 'Smarty/Smarty.class.php');
+        require_once('library/Smarty/Smarty.class.php');
         self::$smarty = new Smarty();
     }
 
-    // Databse Setup done here
+    /**
+     * Database
+     */
     public static function setupDatabase() {
 
-        // include zend db pdo
-        require_once(self::$config->get('path.library') . 'Zend/Db/Adapter/Pdo/Mysql.php');
+        require_once('library/Zend/Db/Adapter/Pdo/Mysql.php');
 
         $params = array(
             'host' => self::$config->get('database.params.host'),
@@ -88,7 +131,9 @@ class Bootstrap {
         }
     }
 
-    // Url Parset setup will be done here
+    /**
+     * Url Parser
+     */
     public static function setupUrlParser() {
         // parse the url
         require_once('core/Url.php');

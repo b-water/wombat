@@ -13,7 +13,6 @@ class Router {
 
     private $action;
     private $controller;
-    // the url object
     private $url;
 
     /**
