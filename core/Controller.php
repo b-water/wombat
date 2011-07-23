@@ -27,11 +27,20 @@
 
 abstract class Controller {
 
-    // The smarty template object
+    /**
+     * Smarty Object
+     * @var object 
+     */
     protected $smarty;
-    // The configuration object
+    /**
+     * Configuration Object
+     * @var object 
+     */
     protected $config;
-    // The url parser object
+    /**
+     * Url Object
+     * @var object
+     */
     protected $url;
 
     public function __construct() {
@@ -48,5 +57,3 @@ abstract class Controller {
     // First load Action
     abstract function index();
 }
-
-?>
