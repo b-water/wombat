@@ -124,6 +124,10 @@ class GenreDataMapper implements DataMapper {
             return '';
         }
     }
+    
+    public function deleteAssoc($id=null) {
+        
+    }
 
     public function append($object) {
         

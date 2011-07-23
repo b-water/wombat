@@ -16,7 +16,6 @@
  * @version 0.1
  * @license http://creativecommons.org/licenses/by-nc-nd/3.0/ Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License
  */
-
 /**
  * Description of GenreRepository
  *
@@ -77,7 +76,15 @@ class GenreRepository implements Repository {
         
     }
 
+    public function appendAssoc() {
+        
+    }
+
     public function delete($object) {
+        
+    }
+
+    public function deleteAssoc($id=null) {
         
     }
 

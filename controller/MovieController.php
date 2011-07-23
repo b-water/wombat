@@ -16,7 +16,6 @@
  * @version 0.1
  * @license http://creativecommons.org/licenses/by-nc-nd/3.0/ Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License
  */
-
 /**
  * Description of MovierController
  *
@@ -247,13 +246,13 @@ class MovieController extends Controller {
     }
 
     public function autoComplete() {
-        $filter = 'type="movie" AND name like "'.$_REQUEST['q'].'%"';
-        $data = $this->genreRepository->fetch(array('*'),$filter);
-        $html = '';
-        foreach($data as $item) {
-            $html .= '<option value="'.$item['id'].'">'.$item['name'].'</option>';
+        $filter = 'type="movie" AND name like "' . $_REQUEST['q'] . '%"';
+        $data = $this->genreRepository->fetch(array('*'), $filter);
+        foreach ($data as $item) {
+            $name = $item['name'];
+            $id = $item['id'];
+            echo "$name|$id\n";
         }
-        echo $html;
     }
 
 }

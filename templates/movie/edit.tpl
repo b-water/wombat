@@ -1,4 +1,5 @@
 <form id="edit" method="POST" action="movie/update/id/{$movie->getId()}/" enctype="multipart/form-data" >
+    <input id="id" name="id" value="{$movie->getId()}" type="hidden" />
     <div class="notice good">Die Änderungen wurden erfolgreich in die Datenbank übertragen! Bitte warten Sie nun einen kurzen Augenblick, die Seite wird nun neu geladen!</div>
     <div id="left-fields">
         <fieldset>

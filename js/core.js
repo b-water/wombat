@@ -98,9 +98,10 @@ var core = {
         },
         autoComplete: function(obj)
         {
-            obj.autocomplete("movie/autoComplete/", {
+            obj.autocomplete('movie/autoComplete/', {
                 width: 260,
-                selectFirst: false
+                selectFirst: true,
+                scroll: false
             });
 
             obj.result(function(event, data) {

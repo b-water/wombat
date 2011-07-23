@@ -1,17 +1,17 @@
-<?php /* Smarty version Smarty-3.0.6, created on 2011-07-14 23:14:34
+<?php /* Smarty version Smarty-3.0.6, created on 2011-07-23 16:30:20
          compiled from ".\templates\movie/edit.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:277724e0f45bbce8938-59625885%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:283114e2adafc7197b8-67359163%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     'df4b0b48e76d7fe549ee68fc19b2c4f49a830454' => 
     array (
       0 => '.\\templates\\movie/edit.tpl',
-      1 => 1310676415,
+      1 => 1311431404,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '277724e0f45bbce8938-59625885',
+  'nocache_hash' => '283114e2adafc7197b8-67359163',
   'function' => 
   array (
   ),
@@ -19,6 +19,8 @@ $_smarty_tpl->decodeProperties(array (
 )); /*/%%SmartyHeaderCode%%*/?>
 <form id="edit" method="POST" action="movie/update/id/<?php echo $_smarty_tpl->getVariable('movie')->value->getId();?>
 /" enctype="multipart/form-data" >
+    <input id="id" name="id" value="<?php echo $_smarty_tpl->getVariable('movie')->value->getId();?>
+" type="hidden" />
     <div class="notice good">Die Änderungen wurden erfolgreich in die Datenbank übertragen! Bitte warten Sie nun einen kurzen Augenblick, die Seite wird nun neu geladen!</div>
     <div id="left-fields">
         <fieldset>

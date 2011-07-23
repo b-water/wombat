@@ -16,7 +16,6 @@
  * @version 0.1
  * @license http://creativecommons.org/licenses/by-nc-nd/3.0/ Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License
  */
-
 /**
  * Description of MovieDataMapper
  *
@@ -93,9 +92,8 @@ class MovieDataMapper implements DataMapper {
     public function update($movie) {
 
         var_dump($movie);
-        die();
 
-        $this->deleteAssociatedGenre($this->url->get('value'));
+        $this->deleteAssociatedGenre($movie->getId());
 
         $data = array(
             'name' => $values['name'],
@@ -215,7 +213,7 @@ class MovieDataMapper implements DataMapper {
      * @return  array   movies
      */
     public function fetch(array $fields, $filter='', $orderby='', $limit='', $offset='') {
-        
+
         $select = $this->db->select();
 
         if (!empty($fields)) {
@@ -254,6 +252,21 @@ class MovieDataMapper implements DataMapper {
             }
         }
         return $movies;
+    }
+
+    /**
+     * Deletes all Genre According
+     * to a Movie
+     *
+     * @param   string    $id 
+     */
+    private function deleteAssocGenre($id) {
+
+        if ($id != null && ctype_digit($id)) {
+            throw new MovieException('(#8) : Id is not set or invalid!');
+        }
+        /* deleting the movie from the database */
+        $this->db->delete($this->tableAssociatedGenre, ' table_id ="' . $id . '"');
     }
 
 }
