@@ -41,7 +41,7 @@ class MovieController extends Controller {
      * Tablename
      * @var string
      */
-    private $tableMovie = null;
+    private $table = 'wombat_movie';
     /**
      * Movie Repository
      * @var object
@@ -189,7 +189,7 @@ class MovieController extends Controller {
     public function edit() {
 
         $this->smarty->assign('title', 'Film Bearbeiten');
-        $filter = $this->tableMovie . '.id = "' . $this->url->get('value') . '"';
+        $filter = $this->table . '.id = "' . $this->url->get('value') . '"';
 
         try {
             $movie = $this->movieRepository->fetch(array('*'), $filter);

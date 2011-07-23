@@ -27,12 +27,25 @@ require_once('core/Repository.php');
 
 class GenreRepository implements Repository {
 
+    /**
+     * DataMapper Object
+     * @var object
+     */
     private $dataMapper = null;
 
+    /**
+     *  Constructor
+     * @param GenreDataMapper $dataMapper 
+     */
     public function __construct(GenreDataMapper $dataMapper) {
         $this->dataMapper = $dataMapper;
     }
 
+    /**
+     * Creates a Genre Object
+     * @param array $data
+     * @return Genre 
+     */
     public static function create(array $data) {
 
         require_once('Genre.php');
@@ -62,11 +75,26 @@ class GenreRepository implements Repository {
         }
     }
 
+    /**
+     * Fetch Genre
+     * 
+     * @param array $fields
+     * @param type $filter
+     * @param type $orderby
+     * @param type $limit
+     * @param type $offset
+     * @return type 
+     */
     public function fetch(array $fields, $filter='', $orderby='', $limit='', $offset='') {
         $genre = $this->dataMapper->fetch($fields, $filter, $orderby, $limit, $offset);
         return $genre;
     }
 
+    /**
+     * Fetches Associated Genre
+     * @param type $id
+     * @return object
+     */
     public function fetchAssoc($id=null) {
         $genre = $this->dataMapper->fetchAssoc($id);
         return $genre;
@@ -76,6 +104,11 @@ class GenreRepository implements Repository {
         
     }
 
+    /**
+     * Appends a new Associated Genre
+     * @param type $object
+     * @return bool
+     */
     public function appendAssoc($object) {
         $success = $this->dataMapper->appendAssoc($object);
         return $success;
@@ -85,6 +118,11 @@ class GenreRepository implements Repository {
         
     }
 
+    /**
+     * Deletes a Associated Genre
+     * @param type $id
+     * @return bool
+     */
     public function deleteAssoc($id=null) {
         $success = $this->dataMapper->deleteAssoc($id);
         return $success;

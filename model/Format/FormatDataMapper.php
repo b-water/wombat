@@ -28,15 +28,19 @@ require_once('core/DataMapper.php');
 
 class FormatDataMapper implements DataMapper {
 
+    /**
+     * Database Object
+     * @var object
+     */
     private $db = null;
-    private $config = null;
-    private $table = null;
+    /**
+     * MySQL Tablename
+     * @var string 
+     */
+    private $table = 'wombat_format';
 
     public function __construct(Zend_Db_Adapter_Pdo_Mysql $db) {
         $this->db = $db;
-        $this->config = Config::getInstance();
-        // get tablename from config
-        $this->table = $this->config->get('database.tables.format');
     }
 
     public function append($object) {

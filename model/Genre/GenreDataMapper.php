@@ -30,12 +30,12 @@ class GenreDataMapper implements DataMapper {
      * mysql table
      * @var String 
      */
-    private $tableMovie = 'movie';
+    private $tableMovie = 'wombat_movie';
     /**
      * mysql table
      * @var String 
      */
-    private $table = 'genre';
+    private $table = 'wombat_genre';
     /**
      * Database Object
      * @var object
@@ -45,7 +45,7 @@ class GenreDataMapper implements DataMapper {
      * Genre Assoc Table
      * @var string
      */
-    private $tableGenreAssoc = 'genre_assoc';
+    private $tableGenreAssoc = 'wombat_genre_assoc';
     
     public function __construct(Zend_Db_Adapter_Pdo_Mysql $db) {
         $this->db = $db;

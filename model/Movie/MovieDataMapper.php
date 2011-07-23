@@ -32,7 +32,7 @@ class MovieDataMapper implements DataMapper {
      * mysql table
      * @var String 
      */
-    private $tableMovie = 'wombat_movie';
+    private $table = 'wombat_movie';
     /**
      * mysql table
      * @var String 
@@ -106,7 +106,7 @@ class MovieDataMapper implements DataMapper {
             $params = array(
                 'genre_id' => $val,
                 'table_id' => $this->url->get('value'),
-                'table' => $this->tableMovie
+                'table' => $this->table
             );
 
             $this->createAssociatedGenre($params);
@@ -159,7 +159,7 @@ class MovieDataMapper implements DataMapper {
             $data['image'] = $filename;
         }
 
-        $affectedRows = $this->db->update($this->tableMovie, $data, $this->url->get('key') . '="' . $this->url->get('value') . '"');
+        $affectedRows = $this->db->update($this->table, $data, $this->url->get('key') . '="' . $this->url->get('value') . '"');
         if ($affectedRows != 1) {
             throw new MovieException('(#1) : The dataset coud not habe been updated!');
         }
@@ -179,7 +179,7 @@ class MovieDataMapper implements DataMapper {
         }
 
         /* deleting the movie from the database */
-        $affectedRows = $this->db->delete($this->tableMovie, $this->url->get('key') . '="' . $id . '"');
+        $affectedRows = $this->db->delete($this->table, $this->url->get('key') . '="' . $id . '"');
 
         if ($affectedRows != 1) {
             throw new MovieException('(#2) : The dataset coud not have been deleted!');
@@ -214,17 +214,17 @@ class MovieDataMapper implements DataMapper {
         $select = $this->db->select();
 
         if (!empty($fields)) {
-            $select->from($this->tableMovie, $fields);
+            $select->from($this->table, $fields);
         } else {
-            $select->from($this->tableMovie, '*');
+            $select->from($this->table, '*');
         }
 
         if (!empty($filter)) {
             $select->where($filter);
         }
 
-        $select->joinLeft($this->tableRating, $this->tableRating . '.id = ' . $this->tableMovie . '.rating', $this->tableRating . '.name as rating');
-        $select->joinLeft($this->tableFormat, $this->tableFormat . '.id = ' . $this->tableMovie . '.format', $this->tableFormat . '.name as format');
+        $select->joinLeft($this->tableRating, $this->tableRating . '.id = ' . $this->table . '.rating', $this->tableRating . '.name as rating');
+        $select->joinLeft($this->tableFormat, $this->tableFormat . '.id = ' . $this->table . '.format', $this->tableFormat . '.name as format');
 
         if (!empty($orderby)) {
             $select->order($orderby);
@@ -233,7 +233,6 @@ class MovieDataMapper implements DataMapper {
         if (!empty($limit) && !empty($offset)) {
             $select->limit($limit, $offset);
         }
-
         $sql = $this->db->query($select);
         $data = $sql->fetchAll();
         if (empty($data)) {
