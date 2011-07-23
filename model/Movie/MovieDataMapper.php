@@ -262,11 +262,6 @@ class MovieDataMapper implements DataMapper {
      */
     private function deleteAssocGenre($id) {
 
-        if ($id != null && ctype_digit($id)) {
-            throw new MovieException('(#8) : Id is not set or invalid!');
-        }
-        /* deleting the movie from the database */
-        $this->db->delete($this->tableAssociatedGenre, ' table_id ="' . $id . '"');
     }
 
 }

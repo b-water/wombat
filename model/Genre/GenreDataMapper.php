@@ -30,26 +30,25 @@ class GenreDataMapper implements DataMapper {
      * mysql table
      * @var String 
      */
-    private $tableMovie = null;
+    private $tableMovie = 'movie';
     /**
      * mysql table
      * @var String 
      */
-    private $tableGenre = null;
+    private $table = 'genre';
     /**
-     * mysql table
-     * @var String 
+     * Database Object
+     * @var object
      */
     private $db = null;
-    private $config = null;
-    private $tableGenreAssociated = null;
+    /**
+     * Genre Assoc Table
+     * @var string
+     */
+    private $tableGenreAssoc = 'genre_assoc';
     
     public function __construct(Zend_Db_Adapter_Pdo_Mysql $db) {
         $this->db = $db;
-        $this->config = Config::getInstance();
-        $this->tableGenre = $this->config->get('database.tables.genre');
-        $this->tableGenreAssociated = $this->config->get('database.tables.genre_associated');
-        $this->tableMovie = $this->config->get('database.tables.movie');
     }
 
     /**
@@ -65,9 +64,9 @@ class GenreDataMapper implements DataMapper {
         $select = $this->db->select();
 
         if (!empty($fields)) {
-            $select->from($this->tableGenre, $fields);
+            $select->from($this->table, $fields);
         } else {
-            $select->from($this->tableGenre, '*');
+            $select->from($this->table, '*');
         }
 
         if (!empty($filter)) {
@@ -104,11 +103,11 @@ class GenreDataMapper implements DataMapper {
 
         $select = $this->db->select();
 
-        $select->from($this->tableGenreAssociated, array('*'));
+        $select->from($this->tableGenreAssoc, array('*'));
 
-        $select->where($this->tableGenreAssociated . '.table = "' . $this->tableMovie . '" AND ' . $this->tableGenreAssociated . '.table_id = "' . $id . '"');
+        $select->where($this->tableGenreAssoc . '.table = "' . $this->tableMovie . '" AND ' . $this->tableGenreAssoc . '.table_id = "' . $id . '"');
 
-        $select->joinLeft($this->tableGenre, $this->tableGenre . '.id = ' . $this->tableGenreAssociated . '.genre_id', '*');
+        $select->joinLeft($this->table, $this->table . '.id = ' . $this->tableGenreAssoc . '.genre_id', '*');
 
         $sql = $this->db->query($select);
         $data = $sql->fetchAll();
@@ -126,7 +125,10 @@ class GenreDataMapper implements DataMapper {
     }
     
     public function deleteAssoc($id=null) {
-        
+        if ($id != null && ctype_digit($id)) {
+            throw new MovieException('(#8) : Id is not set or invalid!');
+        }
+        $this->db->delete($this->tableGenreAssoc, ' table_id ="' . $id . '"');
     }
 
     public function append($object) {

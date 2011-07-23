@@ -99,7 +99,6 @@ class Bootstrap {
      */
     public function setupConfiguration() {
         require_once('core/Config.php');
-//        Config::$file = 'config.ini';
         self::$config = Config::getInstance('config.ini');
     }
 
