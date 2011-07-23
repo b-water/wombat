@@ -1,4 +1,5 @@
 <?php
+
 /**
  * wombat
  * 
@@ -15,7 +16,6 @@
  * @version 0.1
  * @license http://creativecommons.org/licenses/by-nc-nd/3.0/ Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License
  */
-
 /**
  * Description of RatingDataMapper
  *
@@ -27,14 +27,19 @@ require_once('core/DataMapper.php');
 
 class RatingDataMapper implements DataMapper {
 
+    /**
+     * Database Object
+     * @var object 
+     */
     private $db = null;
+    /**
+     * MySQL Tablename
+     * @var string 
+     */
     private $table = null;
-    private $config = null;
 
     public function __construct(Zend_Db_Adapter_Pdo_Mysql $db) {
         $this->db = $db;
-        $this->config = Config::getInstance();
-        $this->table = $this->config->get('database.tables.rating');
     }
 
     public function append($object) {
@@ -88,4 +93,5 @@ class RatingDataMapper implements DataMapper {
 
         return $ratings;
     }
+
 }
