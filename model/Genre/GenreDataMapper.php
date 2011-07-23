@@ -105,7 +105,7 @@ class GenreDataMapper implements DataMapper {
 
         $select->from($this->tableGenreAssoc, array('*'));
 
-        $select->where($this->tableGenreAssoc . '.table = "' . $this->tableMovie . '" AND ' . $this->tableGenreAssoc . '.table_id = "' . $id . '"');
+        $select->where($this->tableGenreAssoc . '.table = "movie" AND ' . $this->tableGenreAssoc . '.table_id = "' . $id . '"');
 
         $select->joinLeft($this->table, $this->table . '.id = ' . $this->tableGenreAssoc . '.genre_id', '*');
 

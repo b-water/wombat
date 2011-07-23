@@ -36,7 +36,7 @@ class RatingDataMapper implements DataMapper {
      * MySQL Tablename
      * @var string 
      */
-    private $table = null;
+    private $table = 'wombat_rating';
 
     public function __construct(Zend_Db_Adapter_Pdo_Mysql $db) {
         $this->db = $db;
