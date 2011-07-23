@@ -87,5 +87,3 @@ class Format extends Object {
     }
 
 }
-
-?>

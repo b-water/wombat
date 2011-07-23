@@ -86,5 +86,3 @@ class GenreRepository implements Repository {
     }
 
 }
-
-?>

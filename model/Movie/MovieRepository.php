@@ -115,5 +115,3 @@ class MovieRepository implements Repository {
     }
 
 }
-
-?>

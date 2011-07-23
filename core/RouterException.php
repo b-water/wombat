@@ -21,7 +21,4 @@
  * @author nico
  */
 
-class RouterException extends Exception {
-    //put your code here
-}
-?>
+class RouterException extends Exception {}

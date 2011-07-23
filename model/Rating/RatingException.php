@@ -23,4 +23,3 @@
  * @since 13:17:28
  */
 class RatingException extends Exception {}
-?>

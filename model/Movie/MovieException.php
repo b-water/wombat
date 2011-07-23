@@ -22,7 +22,4 @@
  *
  * @author nico
  */
-class MovieException extends Exception {
-    //put your code here
-}
-?>
+class MovieException extends Exception {}

@@ -67,5 +67,3 @@ class FormatRepository implements Repository {
     }
 
 }
-
-?>

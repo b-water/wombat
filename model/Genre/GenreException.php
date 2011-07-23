@@ -22,7 +22,4 @@
  * @author nico
  * @since 13:40:07
  */
-class GenreException extends Exception {
-    //put your code here
-}
-?>
+class GenreException extends Exception {}

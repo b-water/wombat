@@ -88,34 +88,4 @@ class RatingDataMapper implements DataMapper {
 
         return $ratings;
     }
-
-    //    //put your code here
-//    private $table = 'rating';
-//    private $db = null;
-//
-//    public function __construct()
-//    {
-//        $this->db = Registry::get('db');
-//    }
-//
-//        /**
-//     * fetchs all ratings that are set in the rating table
-//     *
-//     * @return  array
-//     */
-//    public function fetch($type = '*', $fields = '*', $order = 'name') {
-//
-//        $select = $this->db->select()->from($this->table, $fields)->where('type = "'.$type.'"')->order($order);
-//        $sql = $this->db->query($select);
-//        $data = $sql->fetchAll();
-//
-//        if(empty($data))
-//        {
-//            throw new RatingException('(#1) : No Ratings found!');
-//        }
-//
-//        return $data;
-//    }
 }
-
-?>

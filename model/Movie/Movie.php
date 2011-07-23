@@ -183,5 +183,3 @@ class Movie extends Object {
     }
 
 }
-
-?>

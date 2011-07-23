@@ -77,5 +77,3 @@ class FormatDataMapper implements DataMapper {
     }
 
 }
-
-?>

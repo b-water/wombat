@@ -257,5 +257,3 @@ class MovieDataMapper implements DataMapper {
     }
 
 }
-
-?>

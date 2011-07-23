@@ -22,7 +22,4 @@
  * @author nico
  * @since 13:11:28
  */
-class FormatException extends Exception {
-    //put your code here
-}
-?>
+class FormatException extends Exception {}
