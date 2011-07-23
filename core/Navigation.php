@@ -26,16 +26,36 @@
  */
 class Navigation {
 
-    /* fields to fetch from the mysql table */
+    /**
+     * Fields
+     * @var array 
+     */
     private $fields = array('title', 'url', 'sequence');
-    /* mysql setorder */
+    /**
+     * Setorder
+     * @var string 
+     */
     private $order = 'sequence';
-    /* smarty template to fill */   
+    /**
+     * Template
+     * @var string
+     */   
     private $tpl = 'navigation.tpl';
-    /* db object */
+    /**
+     * Database Object
+     * @var object 
+     */
     private $db;
-    /* smarty object */
+    /**
+     * Smarty Object
+     * @var object 
+     */
     private $smarty;
+    /**
+     * MySQl Table
+     * @var string
+     */
+    private $table = 'wombat_navigation';
 
     public function __construct() {
         $this->db = Registry::get('db');
@@ -51,7 +71,7 @@ class Navigation {
      */
     public function fetch() {
         $select = $this->db->select();
-        $select->from('navigation', $this->fields);
+        $select->from($this->table, $this->fields);
         if (!empty($filter)) {
             $select->where($filter);
         }
