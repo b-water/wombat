@@ -32,48 +32,45 @@ class MovieDataMapper implements DataMapper {
      * mysql table
      * @var String 
      */
-    private $tableMovie = null;
+    private $tableMovie = 'wombat_movie';
     /**
      * mysql table
      * @var String 
      */
-    private $tableGenre = null;
+    private $tableGenre = 'wombat_genre';
     /**
      * mysql table
      * @var String 
      */
-    private $tableGenreAssociated = null;
+    private $tableGenreAssoc = 'wombat_genre_assoc';
     /**
      * mysql table
      * @var String 
      */
-    private $tableFormat = null;
+    private $tableFormat = 'wombat_format';
     /**
      * mysql table
      * @var String 
      */
-    private $tableRating = null;
+    private $tableRating = 'wombat_rating';
     /**
      * object from genre repo
      * @var object 
      */
     private $db = null;
-    private $config = null;
+    /**
+     * Genre Repository
+     * @var object
+     */
     private $genreRepository = null;
 
     public function __construct(Zend_Db_Adapter_Pdo_Mysql $db) {
         $this->db = $db;
-        $this->config = Config::getInstance();
-        // get tablenames from config
-        $this->tableMovie = $this->config->get('database.tables.movie');
-        $this->tableGenre = $this->config->get('database.tables.genre');
-        $this->tableGenreAssociated = $this->config->get('database.tables.genre_associated');
-        $this->tableFormat = $this->config->get('database.tables.format');
-        $this->tableRating = $this->config->get('database.tables.rating');
-
+        
         // setup datamapper for genre
         require_once('model/Genre/GenreDataMapper.php');
         $genreDataMapper = new GenreDataMapper($this->db);
+        
         require_once('model/Genre/GenreRepository.php');
         $this->genreRepository = new GenreRepository($genreDataMapper);
     }
@@ -123,7 +120,7 @@ class MovieDataMapper implements DataMapper {
             $upload = new Zend_File_Transfer();
             $upload->addValidator('Count', false, array('min' => 1, 'max' => 1));
             $upload->addValidator('IsImage', true);
-            $upload->addValidator('Size', false, array('max' => $this->imageSize));
+            $upload->addValidator('Size', false, array('max' => '6144kB'));
 
             /* get the file mimetype for the new name */
             $info = $upload->getFileInfo();
