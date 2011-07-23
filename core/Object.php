@@ -56,6 +56,3 @@ abstract class Object
         $this->id = $id;
     }
 }
-
-
-?>

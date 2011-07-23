@@ -24,6 +24,4 @@
  * @file    NavigationException.php
  * @since   26.05.2011 - 18:39:44
  */
-class NavigationException extends Exception {
-}
-?>
+class NavigationException extends Exception {}

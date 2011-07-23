@@ -51,5 +51,3 @@ class ImageValidation {
     }
 
 }
-
-?>
