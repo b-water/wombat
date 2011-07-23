@@ -24,14 +24,14 @@ $(document).ready(function() {
     core.init.genreDelete($('span.genre'));
 });
 
+/**
+ * Extend jQuery Scope with an
+ * isset Function.
+ **/
 jQuery.fn.exists = function(){
     return jQuery(this).length>0;
 }
 
-/**
- *
- *
- */
 var core = {
     init : {
         tablesorter: function(obj) {
@@ -71,8 +71,8 @@ var core = {
                     $('.notice').show();
                     
                     setTimeout(function(){
-//                        core.http.redirectToUrl(window.location.pathname);
-                    }, 2000);
+                        //                        core.http.redirectToUrl(window.location.pathname);
+                        }, 2000);
                     
                 }
                 var options = {
@@ -98,7 +98,7 @@ var core = {
         },
         autoComplete: function(obj)
         {
-            obj.autocomplete("movie/autoCompleteGenre/", {
+            obj.autocomplete("movie/autoComplete/", {
                 width: 260,
                 selectFirst: false
             });

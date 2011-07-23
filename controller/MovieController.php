@@ -246,19 +246,14 @@ class MovieController extends Controller {
         $this->smarty->display('delete.tpl');
     }
 
-    public function autoCompleteGenre() {
-//        $genre = $this->movie->fetchGenre();
-        $this->genreRepository->fetch();
-        $genre = new Genre();
-        $genre_data = $genre->fetch('movie');
-
-        var_dump($genre_data);
-
-        foreach ($genre_data as $item) {
-            
+    public function autoComplete() {
+        $filter = 'type="movie" AND name like "'.$_REQUEST['q'].'%"';
+        $data = $this->genreRepository->fetch(array('*'),$filter);
+        $html = '';
+        foreach($data as $item) {
+            $html .= '<option value="'.$item['id'].'">'.$item['name'].'</option>';
         }
-
-//        var_dump($data);
+        echo $html;
     }
 
 }

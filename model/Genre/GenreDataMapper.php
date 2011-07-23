@@ -65,9 +65,9 @@ class GenreDataMapper implements DataMapper {
         $select = $this->db->select();
 
         if (!empty($fields)) {
-            $select->from($this->table, $fields);
+            $select->from($this->tableGenre, $fields);
         } else {
-            $select->from($this->table, '*');
+            $select->from($this->tableGenre, '*');
         }
 
         if (!empty($filter)) {
