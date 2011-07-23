@@ -76,8 +76,9 @@ class GenreRepository implements Repository {
         
     }
 
-    public function appendAssoc() {
-        
+    public function appendAssoc($object) {
+        $success = $this->dataMapper->appendAssoc($object);
+        return $success;
     }
 
     public function delete($object) {
@@ -85,7 +86,8 @@ class GenreRepository implements Repository {
     }
 
     public function deleteAssoc($id=null) {
-        
+        $success = $this->dataMapper->deleteAssoc($id);
+        return $success;
     }
 
     public function update($object) {
