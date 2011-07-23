@@ -122,7 +122,8 @@ class Bootstrap {
             'username' => self::$config->get('database.user'),
             'password' => self::$config->get('database.password'),
             'charset' => self::$config->get('database.charset'),
-            'dbname' => self::$config->get('database.dbname'));
+            'dbname' => self::$config->get('database.dbname')
+        );
 
         try {
             self::$db = new \Zend_Db_Adapter_Pdo_Mysql($params);
@@ -143,7 +144,7 @@ class Bootstrap {
             die($urlException);
         }
     }
-    
+
     /**
      * Navigation Menu
      */

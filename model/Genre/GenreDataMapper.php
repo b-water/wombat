@@ -46,7 +46,7 @@ class GenreDataMapper implements DataMapper {
      * @var string
      */
     private $tableGenreAssoc = 'wombat_genre_assoc';
-    
+
     public function __construct(Zend_Db_Adapter_Pdo_Mysql $db) {
         $this->db = $db;
     }
@@ -123,9 +123,13 @@ class GenreDataMapper implements DataMapper {
             return '';
         }
     }
-    
+
+    /**
+     * Deletes a Associated Genre
+     * @param int $id 
+     */
     public function deleteAssoc($id=null) {
-        if ($id != null && ctype_digit($id)) {
+        if ($id == null && !ctype_digit($id)) {
             throw new MovieException('(#8) : Id is not set or invalid!');
         }
         $this->db->delete($this->tableGenreAssoc, ' table_id ="' . $id . '"');
@@ -133,6 +137,19 @@ class GenreDataMapper implements DataMapper {
 
     public function append($object) {
         
+    }
+
+    /**
+     *  Appends a Associated Genre
+     * @param array $params 
+     */
+    public function appendAssoc(array $params) {
+        if (!empty($params)) {
+            $affectedRows = $this->db->insert($this->tableGenreAssoc, $params);
+            if ($affectedRows != 1) {
+                throw new MovieException('(#7) : Coud not create associated Genre!');
+            }
+        }
     }
 
     public function delete($object) {

@@ -1,17 +1,17 @@
-<?php /* Smarty version Smarty-3.0.6, created on 2011-07-23 14:38:58
+<?php /* Smarty version Smarty-3.0.6, created on 2011-07-23 19:36:55
          compiled from ".\templates\foot.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:62044e2ac0e2c8a4d3-78727235%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:152784e2b06b71925a5-82319341%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     'a12479775d49ae3c41daa1d1d3a5f3553b5d6ae5' => 
     array (
       0 => '.\\templates\\foot.tpl',
-      1 => 1311424735,
+      1 => 1311442607,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '62044e2ac0e2c8a4d3-78727235',
+  'nocache_hash' => '152784e2b06b71925a5-82319341',
   'function' => 
   array (
   ),
@@ -26,7 +26,6 @@ $_smarty_tpl->decodeProperties(array (
       <script type="text/javascript" src="library/jquery/jquery.tipTip.minified.js"></script>
       <script type="text/javascript" src="library/jquery/jquery.autocomplete.pack.js"></script>
       <script type="text/javascript" src="library/jquery/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
-      <script type="text/javascript" src="library/jquery/jquery.rating.pack.js"></script>
       <script type="text/javascript" src="js/core.js"></script>
     </body>
 </html>

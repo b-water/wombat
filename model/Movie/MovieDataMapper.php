@@ -66,11 +66,11 @@ class MovieDataMapper implements DataMapper {
 
     public function __construct(Zend_Db_Adapter_Pdo_Mysql $db) {
         $this->db = $db;
-        
+
         // setup datamapper for genre
         require_once('model/Genre/GenreDataMapper.php');
         $genreDataMapper = new GenreDataMapper($this->db);
-        
+
         require_once('model/Genre/GenreRepository.php');
         $this->genreRepository = new GenreRepository($genreDataMapper);
     }
@@ -90,29 +90,36 @@ class MovieDataMapper implements DataMapper {
 
         var_dump($movie);
 
-        $this->deleteAssociatedGenre($movie->getId());
+        try {
+            $this->genreRepository->deleteAssoc($movie->getId());
+        } catch (Exception $exception) {
+            die($exception);
+        }
 
-        $data = array(
-            'name' => $values['name'],
-            'format' => $values['format'],
-            'year' => $values['year'],
-            'duration' => $values['duration'],
-            'trailer' => $values['trailer'],
-            'rating' => $values['rating'],
-            'description' => $values['description']
-        );
+        foreach ($movie->getGenre() as $key => $val) {
 
-        foreach ($values['genre'] as $key => $val) {
             $params = array(
                 'genre_id' => $val,
-                'table_id' => $this->url->get('value'),
+                'table_id' => $movie->getId(),
                 'table' => $this->table
             );
 
-            $this->createAssociatedGenre($params);
+            try {
+                $this->genreRepository->appendAssoc($params);
+            } catch (Exception $exception) {
+                die($exception);
+            }
         }
 
-
+        $data = array(
+            'title' => $movie->getTitle(),
+            'format' => $movie->getFormat(),
+            'year' => $movie->getYear(),
+            'duration' => $movie->getDuration(),
+            'trailer' => $movie->getTrailer(),
+            'rating' => $movie->getRating(),
+            'description' => $movie->getDescription()
+        );
 
         if (isset($_FILES['cover']['name']) && !empty($_FILES['cover']['name'])) {
 
@@ -159,7 +166,8 @@ class MovieDataMapper implements DataMapper {
             $data['image'] = $filename;
         }
 
-        $affectedRows = $this->db->update($this->table, $data, $this->url->get('key') . '="' . $this->url->get('value') . '"');
+        $affectedRows = $this->db->update($this->table, $data, $movie->getId() . '="' . $movie->getId() . '"');
+
         if ($affectedRows != 1) {
             throw new MovieException('(#1) : The dataset coud not habe been updated!');
         }
@@ -257,7 +265,7 @@ class MovieDataMapper implements DataMapper {
      * @param   string    $id 
      */
     private function deleteAssocGenre($id) {
-
+        
     }
 
 }
