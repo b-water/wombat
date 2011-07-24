@@ -97,7 +97,7 @@ class Bootstrap {
     /**
      * Configuration
      */
-    public function setupConfiguration() {
+    public static function setupConfiguration() {
         require_once('core/Config.php');
         self::$config = Config::getInstance('config.ini');
     }

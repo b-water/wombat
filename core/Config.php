@@ -62,7 +62,7 @@ class Config {
      * 
      * @return  config
      */
-    public function getInstance($file = null) {
+    public static function getInstance($file = null) {
         if (self::$instance == null) {
             self::$instance = new Config($file);
         }
