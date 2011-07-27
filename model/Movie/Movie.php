@@ -159,11 +159,11 @@ class Movie extends Object {
     }
 
     public function setRating($value) {
-        $this->trailer = $value;
+        $this->rating = $value;
     }
 
     public function getRating() {
-        return $this->trailer;
+        return $this->rating;
     }
 
     public function setGenre(array $array) {

@@ -10,18 +10,11 @@
  * 444 Castro Street, Suite 900, Mountain View, California, 94041, USA.
  * 
  * @name wombat
- * @author Nico Schmitz - nschmitz1991@gmail.com
- * @copyright  Copyright (c) 2010-2011 Nico Schmitz (nschmitz1991@gmail.com)
+ * @author Nico Schmitz - mail@nicoschmitz.eu
+ * @copyright  Copyright (c) 2010-2011 Nico Schmitz
  * @since 01.04.2010
  * @version 0.1
  * @license http://creativecommons.org/licenses/by-nc-nd/3.0/ Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License
- */
-/**
- * Description of MovieDataMapper
- *
- * @author  Nico Schmitz - nschmitz1991@gmail.com
- * @file    MovieDataMapper.php
- * @since   08.06.2011 - 18:46:04
  */
 require_once('core/DataMapper.php');
 require_once('MovieException.php');
@@ -63,9 +56,41 @@ class MovieDataMapper implements DataMapper {
      * @var object
      */
     private $genreRepository = null;
+    /**
+     * Path to Cover Images
+     * @var string
+     */
+    private $path = 'files/movie/';
+    /**
+     * Width of the Cropped/Resized Image
+     * @var string
+     */
+    private $imageWidth = '193';
+    /**
+     * Height of the Cropped/Resized Image
+     * @var string
+     */
+    private $imageHeight = '272';
+    /**
+     * Where to Crop
+     * @var string
+     */
+    private $imageCrop = '193';
+    /**
+     * Url Parser
+     * @var object
+     */
+    private $url = null;
 
+    /**
+     * MovieDataMapper Constructor
+     * @param Zend_Db_Adapter_Pdo_Mysql $db
+     */
     public function __construct(Zend_Db_Adapter_Pdo_Mysql $db) {
+
         $this->db = $db;
+
+        $this->url = Registry::get('url');
 
         // setup datamapper for genre
         require_once('model/Genre/GenreDataMapper.php');
@@ -76,7 +101,7 @@ class MovieDataMapper implements DataMapper {
     }
 
     public function append($object) {
-        
+        $this->db->select();
     }
 
     /**
@@ -87,8 +112,6 @@ class MovieDataMapper implements DataMapper {
      * @param array $values 
      */
     public function update($movie) {
-
-        var_dump($movie);
 
         try {
             $this->genreRepository->deleteAssoc($movie->getId());
@@ -101,7 +124,7 @@ class MovieDataMapper implements DataMapper {
             $params = array(
                 'genre_id' => $val,
                 'table_id' => $movie->getId(),
-                'table' => $this->table
+                'table' => 'movie'
             );
 
             try {
@@ -133,7 +156,7 @@ class MovieDataMapper implements DataMapper {
             $info = $upload->getFileInfo();
             $point = strpos($info['cover']['name'], '.');
             $ending = substr($info['cover']['name'], $point);
-            $filename = $this->path . $this->url->get('value') . $ending;
+            $filename = $this->path . $movie->getId() . $ending;
             $upload->addFilter('Rename', $filename);
 
             // delete exisiting file
@@ -166,7 +189,7 @@ class MovieDataMapper implements DataMapper {
             $data['image'] = $filename;
         }
 
-        $affectedRows = $this->db->update($this->table, $data, $movie->getId() . '="' . $movie->getId() . '"');
+        $affectedRows = $this->db->update($this->table, $data, ' id ="' . $movie->getId() . '"');
 
         if ($affectedRows != 1) {
             throw new MovieException('(#1) : The dataset coud not habe been updated!');
@@ -180,23 +203,19 @@ class MovieDataMapper implements DataMapper {
      * 
      * @param type $id 
      */
-    public function delete($object) {
-
-        if ($id != null && ctype_digit($id)) {
-            throw new MovieException('(#8) : Id is not set or invalid!');
-        }
+    public function delete($movie) {
 
         /* deleting the movie from the database */
-        $affectedRows = $this->db->delete($this->table, $this->url->get('key') . '="' . $id . '"');
+        $affectedRows = $this->db->delete($this->table, 'id ="' . $movie->getId() . '"');
 
         if ($affectedRows != 1) {
             throw new MovieException('(#2) : The dataset coud not have been deleted!');
         } else {
             /* delete associated genres */
-            $this->deleteAssociatedGenre($id);
+            $affectedRows = $this->genreRepository->deleteAssoc($movie->getId());
             /* deleting files according to the movie */
             $di = new DirectoryIterator($this->path);
-            $length = strlen($id);
+            $length = strlen($movie->getId());
             foreach ($di as $file) {
                 if (!$file->isDot() && substr($file->getFilename(), 0, $length) == $id) {
                     $image = $this->path . $file->getFilename();
@@ -256,16 +275,6 @@ class MovieDataMapper implements DataMapper {
             }
         }
         return $movies;
-    }
-
-    /**
-     * Deletes all Genre According
-     * to a Movie
-     *
-     * @param   string    $id 
-     */
-    private function deleteAssocGenre($id) {
-        
     }
 
 }

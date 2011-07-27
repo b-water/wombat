@@ -2,26 +2,19 @@
 
 /**
  * wombat
- * 
+ *
  * LICENCE
- * 
- * This work is licensed under the Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License. 
- * To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-nd/3.0/ or send a letter to Creative Commons, 
+ *
+ * This work is licensed under the Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License.
+ * To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-nd/3.0/ or send a letter to Creative Commons,
  * 444 Castro Street, Suite 900, Mountain View, California, 94041, USA.
- * 
+ *
  * @name wombat
- * @author Nico Schmitz - nschmitz1991@gmail.com
- * @copyright  Copyright (c) 2010-2011 Nico Schmitz (nschmitz1991@gmail.com)
+ * @author Nico Schmitz - mail@nicoschmitz.eu
+ * @copyright  Copyright (c) 2010-2011 Nico Schmitz
  * @since 01.04.2010
  * @version 0.1
  * @license http://creativecommons.org/licenses/by-nc-nd/3.0/ Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License
- */
-/**
- * Description of MovierController
- *
- * @author  Nico Schmitz - nschmitz1991@gmail.com
- * @file    MovieController.php
- * @since   13.05.2011 - 23:35:14
  */
 require_once('core/Controller.php');
 
@@ -239,7 +232,17 @@ class MovieController extends Controller {
      * @example movie/delete/id/xx
      */
     public function delete() {
-        $this->movie->delete($this->url->get('value'));
+
+        $data = array('id' => $this->url->get('value'));
+
+        try {
+            $movie = MovieRepository::create($data);
+        } catch (MovieException $movieException) {
+            die($movieException);
+        }
+        
+        $success = $this->movieRepository->delete($movie);
+
         $text = 'Der Film wurde erfolgreich aus der Datenbank gel&ouml;scht!';
         $this->smarty->assign('text', $text);
         $this->smarty->display('delete.tpl');

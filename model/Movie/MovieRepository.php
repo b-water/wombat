@@ -16,7 +16,6 @@
  * @version 0.1
  * @license http://creativecommons.org/licenses/by-nc-nd/3.0/ Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License
  */
-
 /**
  * Description of MovieInterface
  *
@@ -24,7 +23,6 @@
  * @file    MovieInterface.php
  * @since   08.06.2011 - 18:45:47
  */
-
 require_once('core/Repository.php');
 
 class MovieRepository implements Repository {
@@ -46,6 +44,7 @@ class MovieRepository implements Repository {
      */
     public static function create(array $data) {
         require_once('Movie.php');
+        
         $movie = new Movie();
 
         $movie->setId($data['id']);
@@ -109,8 +108,8 @@ class MovieRepository implements Repository {
      * @param  object $movie
      * @return bool $success
      */
-    public function delete($movie) {
-        $success = $this->dataMapper->delete($movie);
+    public function delete($id) {
+        $success = $this->dataMapper->delete($id);
         return $success;
     }
 
