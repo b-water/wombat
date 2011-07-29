@@ -98,7 +98,7 @@ class MovieRepository implements Repository {
 
     /**
      * Deletes a Movie
-     * @param  object $movie
+     * @param  int $id
      * @return bool $success
      */
     public function delete($id) {

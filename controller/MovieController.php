@@ -233,15 +233,14 @@ class MovieController extends Controller {
      */
     public function delete() {
 
-        $data = array('id' => $this->url->get('value'));
+        $id = $this->url->get('value');
 
         try {
-            $movie = MovieRepository::create($data);
+            $success = $this->movieRepository->delete($id);
         } catch (MovieException $movieException) {
-            die($movieException);
+            echo $movieException->getTraceAsString();
         }
-        
-        $success = $this->movieRepository->delete($movie);
+
 
         $text = 'Der Film wurde erfolgreich aus der Datenbank gel&ouml;scht!';
         $this->smarty->assign('text', $text);

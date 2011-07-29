@@ -203,19 +203,19 @@ class MovieDataMapper implements DataMapper {
      * 
      * @param type $id 
      */
-    public function delete($movie) {
+    public function delete($id) {
 
         /* deleting the movie from the database */
-        $affectedRows = $this->db->delete($this->table, 'id ="' . $movie->getId() . '"');
+        $affectedRows = $this->db->delete($this->table, 'id ="' . $id . '"');
 
         if ($affectedRows != 1) {
             throw new MovieException('(#2) : The dataset coud not have been deleted!');
         } else {
             /* delete associated genres */
-            $affectedRows = $this->genreRepository->deleteAssoc($movie->getId());
+            $affectedRows = $this->genreRepository->deleteAssoc($id);
             /* deleting files according to the movie */
             $di = new DirectoryIterator($this->path);
-            $length = strlen($movie->getId());
+            $length = strlen($id);
             foreach ($di as $file) {
                 if (!$file->isDot() && substr($file->getFilename(), 0, $length) == $id) {
                     $image = $this->path . $file->getFilename();
