@@ -137,19 +137,27 @@ class MovieController extends Controller {
     public function index() {
 
         try {
-            $movies = $this->movieRepository->fetch(array('id', 'title', 'rating', 'year'));
+            $movies = $this->movieRepository->fetchByPage(array('id', 'title', 'rating', 'year'));
         } catch (MovieException $movieException) {
             die($movieException);
             $this->smarty->assign('Exception');
             $this->smarty->display('exception template');
         }
 
+        try {
+            $pagination = $this->movieRepository->buildPagination();
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+
+
         $this->smarty->assign('movies', $movies);
         $this->smarty->assign('title', 'Filme');
 
         $content = $this->smarty->fetch($this->template_dir . 'overview.tpl');
-        $content .= $this->smarty->fetch('pager.tpl');
+//        $content .= $this->smarty->fetch('pager.tpl');
         $this->smarty->assign('content', $content);
+        $this->smarty->assign('pagination',$pagination);
 
         $this->smarty->display($this->template);
     }

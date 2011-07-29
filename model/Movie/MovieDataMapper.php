@@ -65,22 +65,28 @@ class MovieDataMapper implements DataMapper {
      * Width of the Cropped/Resized Image
      * @var string
      */
-    private $imageWidth = '193';
+    private $imageWidth = 193;
     /**
      * Height of the Cropped/Resized Image
      * @var string
      */
-    private $imageHeight = '272';
+    private $imageHeight = 272;
     /**
      * Where to Crop
      * @var string
      */
-    private $imageCrop = '193';
+    private $imageCrop = 193;
     /**
      * Url Parser
      * @var object
      */
     private $url = null;
+    /**
+     *
+     * @var int
+     */
+    private $itemCountPerPage = 20;
+    private $pageRange = 10;
 
     /**
      * MovieDataMapper Constructor
@@ -262,6 +268,69 @@ class MovieDataMapper implements DataMapper {
         }
         $sql = $this->db->query($select);
         $data = $sql->fetchAll();
+        if (empty($data)) {
+            throw new MovieException('(#3) : No Movies found!');
+        } else {
+            $movies = array();
+
+            for ($index = 0; $index <= count($data) - 1; $index++) {
+                $data[$index]['genre'] = $this->genreRepository->fetchAssoc($data[$index]['id']);
+
+                $movie = MovieRepository::create($data[$index]);
+                $movies[] = $movie;
+            }
+        }
+        return $movies;
+    }
+
+    /**
+     * Gather Movies from Database
+     *
+     * @param   string  $fields
+     * @param   string  $filter
+     * @param   string  $orderby
+     * @param   string  $limit
+     * @return  array   movies
+     */
+    public function fetchByPage(array $fields, $filter='', $orderby='', $limit='', $offset='') {
+
+        $select = $this->db->select();
+
+        if (!empty($fields)) {
+            $select->from($this->table, $fields);
+        } else {
+            $select->from($this->table, '*');
+        }
+
+        if (!empty($filter)) {
+            $select->where($filter);
+        }
+
+        $select->joinLeft($this->tableRating, $this->tableRating . '.id = ' . $this->table . '.rating', $this->tableRating . '.name as rating');
+        $select->joinLeft($this->tableFormat, $this->tableFormat . '.id = ' . $this->table . '.format', $this->tableFormat . '.name as format');
+
+        if (!empty($orderby)) {
+            $select->order($orderby);
+        }
+
+        if (!empty($limit) && !empty($offset)) {
+            $select->limit($limit, $offset);
+        }
+
+        require_once('library/Zend/Paginator/Adapter/DbSelect.php');
+        $selectAdapter = new Zend_Paginator_Adapter_DbSelect($select);
+        require_once('library/Zend/Paginator.php');
+
+        $zfPaginator = new Zend_Paginator($selectAdapter);
+        $zfPaginator->setItemCountPerPage($this->itemCountPerPage);
+        $zfPaginator->setCurrentPageNumber($this->url->get('value'));
+        $zfPaginator->getPages();
+
+        $this->currentPageNumber = $this->url->get('value');
+        $this->pageCount = $zfPaginator->count();
+
+        $data = $zfPaginator->getCurrentItems();
+
         if (empty($data)) {
             throw new MovieException('(#3) : No Movies found!');
         } else {

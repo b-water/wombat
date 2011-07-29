@@ -17,7 +17,7 @@
  */
 
 $(document).ready(function() {
-    core.init.tablesorter($('table.tablesorter'));
+//    core.init.tablesorter($('table.tablesorter'));
     core.init.form($('form#edit'));
     core.init.tooltip($('a'));
     core.init.autoComplete($('#autoCompleteGenre'));

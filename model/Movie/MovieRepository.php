@@ -37,7 +37,7 @@ class MovieRepository implements Repository {
      */
     public static function create(array $data) {
         require_once('Movie.php');
-        
+
         $movie = new Movie();
 
         $movie->setId($data['id']);
@@ -73,6 +73,21 @@ class MovieRepository implements Repository {
      */
     public function fetch(array $fields, $filter='', $orderby='', $limit='', $offset='') {
         $movie = $this->dataMapper->fetch($fields, $filter, $orderby, $limit, $offset);
+        return $movie;
+    }
+
+    /**
+     * Fetches Movie Data
+     *
+     * @param array $fields
+     * @param type $filter
+     * @param type $orderby
+     * @param type $limit
+     * @param type $offset
+     * @return type
+     */
+    public function fetchByPage(array $fields, $filter='', $orderby='', $limit='', $offset='') {
+        $movie = $this->dataMapper->fetchByPage($fields, $filter, $orderby, $limit, $offset);
         return $movie;
     }
 
