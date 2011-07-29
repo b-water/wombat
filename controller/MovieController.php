@@ -70,6 +70,7 @@ class MovieController extends Controller {
 
         $this->template = $this->config->get('template.mainfile');
         $this->tableMovie = $this->config->get('database.tables.movie');
+        $this->url = Registry::get('url');
 
         require_once('model/Movie/MovieDataMapper.php');
 
@@ -136,6 +137,7 @@ class MovieController extends Controller {
      */
     public function index() {
 
+
         try {
             $movies = $this->movieRepository->fetchByPage(array('id', 'title', 'rating', 'year'));
         } catch (MovieException $movieException) {
@@ -144,12 +146,16 @@ class MovieController extends Controller {
             $this->smarty->display('exception template');
         }
 
-        $currentPageNumber = $this->movieRepository->getCurrentPageNumber();
-        $pageCount = $this->movieRepository->getPageCount();
+        require_once('model/Movie/MovieViewHelper.php');
 
-        $this->smarty->assign('currentPageNumber',$currentPageNumber);
-        $this->smarty->assign('pageCount',$pageCount);
+        $viewHelper = new MovieViewHelper();
+        $pageParams = array('countPages' => $this->movieRepository->getPageCount(),
+            'currentPageNumber' => $this->movieRepository->getCurrentPageNumber(),
+            'controller' => $this->url->get('controller'),
+            'action' => $this->url->get('action'));
+        $pages = $viewHelper->buildPages('page', 'dflt_paginator_control.tpl', $pageParams);
 
+        $this->smarty->assign('pages', $pages);
         $this->smarty->assign('movies', $movies);
         $this->smarty->assign('title', 'Filme');
 

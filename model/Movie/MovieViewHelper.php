@@ -17,23 +17,20 @@
  */
 class MovieViewHelper {
 
-    private $currentPage = null;
-    private $countPages = null;
-    private $pageRange = null;
-    private $tpl = null;
-    private $smarty = null;
-
     public function __constructs() {
-        $this->smarty = Registry::get('smarty');
+
     }
 
-    public function buildPaginatorControl($class) {
-        if (!empty($this->countPages) && !empty($this->currentPage)
-                && !empty($this->pageRange) && !empty($this->tpl)) {
-            for ($i = 0; $i >= $this->countPages; $i++) {
-                
+    public function buildPages($class=null, $tpl=null, array $pageParams) {
+        $pages = array();
+        for ($index = 1; $index < $pageParams['countPages']+1; $index++) {
+            $pages[$index]['url'] = $pageParams['controller'] . '/' . $pageParams['action'] . '/page/' . $index;
+            $pages[$index]['name'] = $index;
+            if (!empty($class)) {
+                $pages[$index]['class'] = $class;
             }
         }
+        return $pages;
     }
 
 }
