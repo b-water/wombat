@@ -144,20 +144,18 @@ class MovieController extends Controller {
             $this->smarty->display('exception template');
         }
 
-        try {
-            $pagination = $this->movieRepository->buildPagination();
-        } catch (Exception $exc) {
-            echo $exc->getTraceAsString();
-        }
+        $currentPageNumber = $this->movieRepository->getCurrentPageNumber();
+        $pageCount = $this->movieRepository->getPageCount();
 
+        $this->smarty->assign('currentPageNumber',$currentPageNumber);
+        $this->smarty->assign('pageCount',$pageCount);
 
         $this->smarty->assign('movies', $movies);
         $this->smarty->assign('title', 'Filme');
 
         $content = $this->smarty->fetch($this->template_dir . 'overview.tpl');
-//        $content .= $this->smarty->fetch('pager.tpl');
+        $content .= $this->smarty->fetch('dflt_paginator_control.tpl');
         $this->smarty->assign('content', $content);
-        $this->smarty->assign('pagination',$pagination);
 
         $this->smarty->display($this->template);
     }

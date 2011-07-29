@@ -87,6 +87,8 @@ class MovieDataMapper implements DataMapper {
      */
     private $itemCountPerPage = 20;
     private $pageRange = 10;
+    private $pageCount = null;
+    private $currentPageNumber = null;
 
     /**
      * MovieDataMapper Constructor
@@ -321,12 +323,17 @@ class MovieDataMapper implements DataMapper {
         $selectAdapter = new Zend_Paginator_Adapter_DbSelect($select);
         require_once('library/Zend/Paginator.php');
 
+        if ($this->url->get('key') == 'page') {
+            $this->currentPageNumber = $this->url->get('value');
+        } else {
+            $this->currentPageNumber = 1;
+        }
+
         $zfPaginator = new Zend_Paginator($selectAdapter);
         $zfPaginator->setItemCountPerPage($this->itemCountPerPage);
         $zfPaginator->setCurrentPageNumber($this->url->get('value'));
         $zfPaginator->getPages();
 
-        $this->currentPageNumber = $this->url->get('value');
         $this->pageCount = $zfPaginator->count();
 
         $data = $zfPaginator->getCurrentItems();
@@ -344,6 +351,19 @@ class MovieDataMapper implements DataMapper {
             }
         }
         return $movies;
+    }
+
+    /**
+     * Get the number of the
+     * current Pages
+     * @return int
+     */
+    public function getPageCount() {
+        return $this->pageCount;
+    }
+
+    public function getCurrentPageNumber() {
+        return $this->currentPageNumber;
     }
 
 }

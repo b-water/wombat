@@ -91,6 +91,16 @@ class MovieRepository implements Repository {
         return $movie;
     }
 
+    public function getPageCount() {
+        $pageCount = $this->dataMapper->getPageCount();
+        return $pageCount;
+    }
+
+    public function getCurrentPageNumber() {
+        $currentPageNumber = $this->dataMapper->getCurrentPageNumber();
+        return $currentPageNumber;
+    }
+
     /**
      * Updates a Movie
      * @param  object $movie
