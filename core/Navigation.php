@@ -39,29 +39,30 @@ class Navigation {
     /**
      * Template
      * @var string
-     */   
+     */
     private $tpl = 'navigation.tpl';
     /**
      * Database Object
      * @var object 
      */
-    private $db;
+    private $db = null;
     /**
      * Smarty Object
      * @var object 
      */
-    private $smarty;
+    private $smarty = null;
     /**
      * MySQl Table
      * @var string
      */
     private $table = 'wombat_navigation';
+    private $urlParser = null;
 
     public function __construct() {
         $this->db = Registry::get('db');
         $this->smarty = Registry::get('smarty');
+        $this->urlParser = Registry::get('urlParser');
     }
-
 
     /**
      * Fetches all Data from
@@ -95,11 +96,10 @@ class Navigation {
     public function create(array $data) {
         if (!empty($data)) {
             $this->smarty->assign('navigation', $data);
-            if (isset($_REQUEST['rt']) && !empty($_REQUEST['rt'])) {
-                $needle = strpos($_REQUEST['rt'], '/');
-                $this->smarty->assign('activ', substr($_REQUEST['rt'], 0, $needle + 1));
-            } else {
-                $this->smarty->assign('activ', 'dashboard/');
+            if (isset($this->urlParser)) {
+                $slashpos = strpos($this->urlParser->getUrl(),'/');
+                $activ = substr($this->urlParser->getUrl(),0,$slashpos);
+                $this->smarty->assign('activ', $activ);
             }
         } else {
             throw new NavigationException('(#2) : You must assign the Data for the Menu!');

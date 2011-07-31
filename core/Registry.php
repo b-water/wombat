@@ -10,23 +10,20 @@
  * 444 Castro Street, Suite 900, Mountain View, California, 94041, USA.
  * 
  * @name wombat
- * @author Nico Schmitz - nschmitz1991@gmail.com
- * @copyright  Copyright (c) 2010-2011 Nico Schmitz (nschmitz1991@gmail.com)
+ * @author Nico Schmitz - mail@nicoschmitz.eu
+ * @copyright  Copyright (c) 2010-2011 Nico Schmitz
  * @since 01.04.2010
  * @version 0.1
  * @license http://creativecommons.org/licenses/by-nc-nd/3.0/ Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License
  */
 
-/**
- * Description of Registry
- *
- * @author nico
- */
-
 abstract class Registry {
 
+    /**
+     * Object Container
+     * @var array
+     */
     private static $registry = array();
-    protected static $instance = null;
 
     /**
      * Registers a object
@@ -48,7 +45,8 @@ abstract class Registry {
         if (isset(self::$registry[$index]) && !empty(self::$registry[$index])) {
             return self::$registry[$index];
         } else {
-            throw new RegistryException('(#1) : Registry Object does not exists!');
+            require_once('core/RegistryException.php');
+            throw new RegistryException('System Error : Registry Object does not exists!');
         }
     }
 

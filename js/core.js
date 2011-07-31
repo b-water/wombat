@@ -17,7 +17,6 @@
  */
 
 $(document).ready(function() {
-//    core.init.tablesorter($('table.tablesorter'));
     core.init.form($('form#edit'));
     core.init.tooltip($('a'));
     core.init.autoComplete($('#autoCompleteGenre'));
@@ -34,35 +33,6 @@ jQuery.fn.exists = function(){
 
 var core = {
     init : {
-        tablesorter: function(obj) {
-            if(obj.exists())
-            {
-                /* call the tablesorter plugin
-                for all tables with the tablesorter class */
-                $(obj).tablesorter({
-                    widthFixed: true,
-                    widgets: ['zebra'],
-                    headers: {
-                        // show column
-                        5: {
-                            sorter:false
-                        },
-                        // edit column
-                        6: {
-                            sorter:false
-                        },
-                        // delete column
-                        7: {
-                            sorter:false
-                        }
-                    }
-                });
-                // init the tablepager
-                $(obj).tablesorterPager({
-                    container: $('#pager')
-                });
-            }
-        },
         form : function(obj)
         {
             if(obj.exists())

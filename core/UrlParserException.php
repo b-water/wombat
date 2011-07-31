@@ -12,9 +12,9 @@
  * @name wombat
  * @author Nico Schmitz - mail@nicoschmitz.eu
  * @copyright  Copyright (c) 2010-2011 Nico Schmitz
- * @since 01.04.2010
+ * @since   13.05.2011 - 23:35:14
  * @version 0.1
  * @license http://creativecommons.org/licenses/by-nc-nd/3.0/ Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License
  */
 
-class NavigationException extends Exception {}
+class UrlParserException extends Exception {}

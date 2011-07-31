@@ -37,9 +37,9 @@
                 -
             {/if}
             </td>
-            <td class="show"><a class="show" title="Anzeige" href="movie/show/id/{$item->getId()}/"></a></td>
-            <td class="edit"><a class="edit" title="Bearbeiten" href="movie/edit/id/{$item->getId()}/"></a></td>
-            <td class="delete"><a class="delete" title="L&ouml;schen" href="movie/delete/id/{$item->getId()}/"></a></td>
+            <td class="show"><a class="show" title="Anzeige" href="movie/show/single/id/{$item->getId()}/"></a></td>
+            <td class="edit"><a class="edit" title="Bearbeiten" href="movie/edit/single/id/{$item->getId()}/"></a></td>
+            <td class="delete"><a class="delete" title="L&ouml;schen" href="movie/edit/delete/id/{$item->getId()}/"></a></td>
         </tr>
         {/foreach}
     </tbody>

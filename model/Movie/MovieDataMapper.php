@@ -80,15 +80,22 @@ class MovieDataMapper implements DataMapper {
      * Url Parser
      * @var object
      */
-    private $url = null;
+    private $urlParser = null;
     /**
-     *
+     * Items per Page
      * @var int
      */
     private $itemCountPerPage = 20;
-    private $pageRange = 10;
-    private $pageCount = null;
-    private $currentPageNumber = null;
+    /**
+     * Page Range
+     * @var int
+     */
+    private $pageRange = 5;
+    /**
+     * Zend_Paginator
+     * @var object
+     */
+    private $paginator = null;
 
     /**
      * MovieDataMapper Constructor
@@ -98,7 +105,7 @@ class MovieDataMapper implements DataMapper {
 
         $this->db = $db;
 
-        $this->url = Registry::get('url');
+        $this->urlParser = Registry::get('urlParser');
 
         // setup datamapper for genre
         require_once('model/Genre/GenreDataMapper.php');
@@ -323,20 +330,20 @@ class MovieDataMapper implements DataMapper {
         $selectAdapter = new Zend_Paginator_Adapter_DbSelect($select);
         require_once('library/Zend/Paginator.php');
 
-        if ($this->url->get('key') == 'page') {
-            $this->currentPageNumber = $this->url->get('value');
+        if ($this->urlParser->getKey() == 'page') {
+            $this->currentPageNumber = $this->urlParser->getValue();
         } else {
             $this->currentPageNumber = 1;
         }
 
-        $zfPaginator = new Zend_Paginator($selectAdapter);
-        $zfPaginator->setItemCountPerPage($this->itemCountPerPage);
-        $zfPaginator->setCurrentPageNumber($this->url->get('value'));
-        $zfPaginator->getPages();
+        $this->paginator = new Zend_Paginator($selectAdapter);
+        $this->paginator->setItemCountPerPage($this->itemCountPerPage);
+        $this->paginator->setCurrentPageNumber($this->urlParser->getValue());
+        $this->paginator->setPageRange($this->pageRange);
 
-        $this->pageCount = $zfPaginator->count();
+        $this->pageCount = $this->paginator->count();
 
-        $data = $zfPaginator->getCurrentItems();
+        $data = $this->paginator->getCurrentItems();
 
         if (empty($data)) {
             throw new MovieException('(#3) : No Movies found!');
@@ -354,16 +361,11 @@ class MovieDataMapper implements DataMapper {
     }
 
     /**
-     * Get the number of the
-     * current Pages
-     * @return int
+     * Return Zend_Paginator
+     * @return object
      */
-    public function getPageCount() {
-        return $this->pageCount;
-    }
-
-    public function getCurrentPageNumber() {
-        return $this->currentPageNumber;
+    public function getPaginator() {
+        return $this->paginator;
     }
 
 }

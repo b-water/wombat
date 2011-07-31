@@ -10,40 +10,47 @@
  * 444 Castro Street, Suite 900, Mountain View, California, 94041, USA.
  * 
  * @name wombat
- * @author Nico Schmitz - nschmitz1991@gmail.com
- * @copyright  Copyright (c) 2010-2011 Nico Schmitz (nschmitz1991@gmail.com)
+ * @author Nico Schmitz - mail@nicoschmitz.eu
+ * @copyright  Copyright (c) 2010-2011 Nico Schmitz
  * @since 01.04.2010
  * @version 0.1
  * @license http://creativecommons.org/licenses/by-nc-nd/3.0/ Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License
- */
-
-/**
- * Description of Router
- *
- * @author  Nico Schmitz - nschmitz1991@gmail.com
- * @file    Router.php
- * @since   13.05.2011 - 23:35:14
  */
 require_once('RouterException.php');
 
 class Router {
 
     /**
+     * The Package
+     * @var string
+     */
+    private $package = null;
+    /**
      * The Method to Call
      * @var string 
      */
-    private $action;
+    private $action = null;
     /**
      * The Controller to call in 
      * the Directory controller/
      * @var string 
      */
-    private $controller;
+    private $controller = null;
     /**
      * Url Object
      * @var string
      */
-    private $url;
+    private $urlParser = null;
+    /**
+     * The Path to the Controller Class
+     * @var string
+     */
+    private $controllerpath = null;
+    /**
+     * The real Class name
+     * @var string
+     */
+    private $classname = null;
 
     /**
      * Loads the URL values from the
@@ -55,10 +62,12 @@ class Router {
      *
      */
     public function __construct() {
-        $this->url = Registry::get('url');
-        $this->action = $this->url->get('action');
-        $this->controller = ucfirst($this->url->get('controller'));
-        $this->controller .= 'Controller';
+        $this->urlParser = Registry::get('urlParser');
+        $this->action = $this->urlParser->getAction();
+        $this->package = ucfirst($this->urlParser->getPackage());
+        $this->controller = ucfirst($this->urlParser->getController());
+        $this->controllerpath = 'controller/' . $this->package . '/' . $this->controller . '.php';
+        $this->classname = $this->package . $this->controller . 'Controller';
     }
 
     /**
@@ -68,21 +77,20 @@ class Router {
      */
     public function run() {
 
-        $controllerpath = "controller/" . $this->controller . ".php";
-        if (file_exists($controllerpath)) {
-            require_once($controllerpath);
-            if (!class_exists($this->controller)) {
-                throw new RouterException("(#1) : Controller not found!");
+        if (file_exists($this->controllerpath)) {
+            require_once($this->controllerpath);
+            if (!class_exists($this->classname)) {
+                throw new RouterException('System Error : Controller or Package not found!');
             }
 
-            $controller = new $this->controller();
+            $controller = new $this->classname();
             if (in_array($this->action, get_class_methods($controller))) {
                 $controller->{$this->action}();
             } else {
-                throw new RouterException("(#2) : Action not found!");
+                throw new RouterException('(#2) : Action not found!');
             }
         } else {
-            throw new RouterException("(#3) : Controller not found!");
+            throw new RouterException('(#3) : Controller not found!');
         }
     }
 

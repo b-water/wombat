@@ -18,10 +18,35 @@
  */
 
 /**
- * Description of UrlException
+ * Description of DashboardController
  *
  * @author  Nico Schmitz - nschmitz1991@gmail.com
- * @file    UrlException.php
+ * @file    DashboardController.php
  * @since   13.05.2011 - 23:35:14
  */
-class UrlException extends Exception {}
+require_once('core/Controller.php');
+
+class DashboardAbstractController extends Controller {
+
+    private $template_dir = 'dashboard/';
+    private $template;
+    
+    public function __construct() {
+        parent::__construct();
+    }
+
+    public function init() {
+        $this->template = $this->config->get('template.mainfile');
+    }
+
+    public function index() {
+        $this->smarty->assign('title', 'Dashboard');
+
+        $content = $this->smarty->fetch($this->template_dir . 'overview.tpl');
+        $this->smarty->assign('content', $content);
+        $this->smarty->display($this->template);
+    }
+
+
+}
+

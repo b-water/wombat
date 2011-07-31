@@ -10,17 +10,11 @@
  * 444 Castro Street, Suite 900, Mountain View, California, 94041, USA.
  * 
  * @name wombat
- * @author Nico Schmitz - nschmitz1991@gmail.com
- * @copyright  Copyright (c) 2010-2011 Nico Schmitz (nschmitz1991@gmail.com)
- * @since 01.04.2010
+ * @author Nico Schmitz - mail@nicoschmitz.eu
+ * @copyright  Copyright (c) 2010-2011 Nico Schmitz
+ * @since   03.06.2011 - 23:58:40
  * @version 0.1
  * @license http://creativecommons.org/licenses/by-nc-nd/3.0/ Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License
- */
-
-/**
- * @author  Nico Schmitz - nschmitz1991@gmail.com
- * @file    Bootstrap.php
- * @since   03.06.2011 - 23:58:40
  */
 class Bootstrap {
 
@@ -33,7 +27,7 @@ class Bootstrap {
      * Url Object
      * @var type object
      */
-    public static $url = null;
+    public static $urlParser = null;
     /**
      * Database Object
      * @var type object
@@ -57,7 +51,6 @@ class Bootstrap {
      */
     public static function prepare() {
         self::setupConfiguration();
-        require_once('library/Zend/File/Transfer.php');
         self::setupErrorReporting();
         self::setupDatabase();
         self::setupSmarty();
@@ -136,12 +129,12 @@ class Bootstrap {
      * Url Parser
      */
     public static function setupUrlParser() {
-        require_once('core/Url.php');
-        self::$url = new Url();
+        require_once('core/UrlParser.php');
+        self::$urlParser = new UrlParser();
         try {
-            self::$url->parse();
-        } catch (UrlException $urlException) {
-            die($urlException);
+            self::$urlParser->parse();
+        } catch (UrlParserException $urlParserException) {
+            die($urlParserException->getMessage());
         }
     }
 
@@ -162,7 +155,7 @@ class Bootstrap {
         require_once('core/Registry.php');
         Registry::set('db', self::$db);
         Registry::set('smarty', self::$smarty);
-        Registry::set('url', self::$url);
+        Registry::set('urlParser', self::$urlParser);
     }
 
     /**
@@ -170,11 +163,12 @@ class Bootstrap {
      */
     public static function assignSmartyVariables() {
         self::$smarty->assign('file', 'bootstrap.php');
+        self::$smarty->assign('urlParser',self::$urlParser);
         self::$smarty->assign('maintitle', self::$config->get('html.title'));
         self::$smarty->assign('author', self::$config->get('html.author'));
         self::$smarty->assign('copyright', self::$config->get('html.copyright'));
         self::$smarty->assign('basepath', self::$config->get('path.base'));
-        self::$smarty->assign('controller', self::$url->get('controller'));
+        self::$smarty->assign('controller', self::$urlParser->getController());
     }
 
     /**

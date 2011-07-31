@@ -1,17 +1,17 @@
-<?php /* Smarty version Smarty-3.0.6, created on 2011-07-25 19:55:10
+<?php /* Smarty version Smarty-3.0.6, created on 2011-07-31 14:24:38
          compiled from "./templates/movie/overview.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:4172724264e2dadfe3a5679-02266911%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:8786286034e3549868c2db5-03824040%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     'c872a3d6a8b5a72b87338529ea53361f9f7778fc' => 
     array (
       0 => './templates/movie/overview.tpl',
-      1 => 1311470558,
+      1 => 1312115027,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '4172724264e2dadfe3a5679-02266911',
+  'nocache_hash' => '8786286034e3549868c2db5-03824040',
   'function' => 
   array (
   ),
@@ -69,11 +69,11 @@ if ($_smarty_tpl->_count($_from) > 0){
                 -
             <?php }?>
             </td>
-            <td class="show"><a class="show" title="Anzeige" href="movie/show/id/<?php echo $_smarty_tpl->getVariable('item')->value->getId();?>
+            <td class="show"><a class="show" title="Anzeige" href="movie/show/single/id/<?php echo $_smarty_tpl->getVariable('item')->value->getId();?>
 /"></a></td>
-            <td class="edit"><a class="edit" title="Bearbeiten" href="movie/edit/id/<?php echo $_smarty_tpl->getVariable('item')->value->getId();?>
+            <td class="edit"><a class="edit" title="Bearbeiten" href="movie/edit/single/id/<?php echo $_smarty_tpl->getVariable('item')->value->getId();?>
 /"></a></td>
-            <td class="delete"><a class="delete" title="L&ouml;schen" href="movie/delete/id/<?php echo $_smarty_tpl->getVariable('item')->value->getId();?>
+            <td class="delete"><a class="delete" title="L&ouml;schen" href="movie/edit/delete/id/<?php echo $_smarty_tpl->getVariable('item')->value->getId();?>
 /"></a></td>
         </tr>
         <?php }} ?>

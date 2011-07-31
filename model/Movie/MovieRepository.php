@@ -91,14 +91,13 @@ class MovieRepository implements Repository {
         return $movie;
     }
 
-    public function getPageCount() {
-        $pageCount = $this->dataMapper->getPageCount();
-        return $pageCount;
-    }
-
-    public function getCurrentPageNumber() {
-        $currentPageNumber = $this->dataMapper->getCurrentPageNumber();
-        return $currentPageNumber;
+    /**
+     * Return the Zend_Paginator
+     * @return object
+     */
+    public function getPaginator() {
+        $paginator = $this->dataMapper->getPaginator();
+        return $paginator;
     }
 
     /**

@@ -13,13 +13,6 @@
  * @since 01.04.2010
  * @version 0.1
  * @license http://creativecommons.org/licenses/by-nc-nd/3.0/ Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License
- */
-/*
-    Document   : template
-    Created on : 01.04.2010, 20:08:57
-    Author     : Nico Schmitz <cofilew@gmail.com>
-    Description: This is the main stylesheet for the
-    wombat system.
 */
 
 /**************************************
@@ -310,7 +303,6 @@ table th {
     border-top:1px solid #DFDFDF;
     background-repeat: no-repeat;
     background-position: center right;
-    cursor: pointer;
 }
 
 table td {
@@ -319,7 +311,7 @@ table td {
     border-bottom:1px solid #CFCFCF;
     border-top:1px solid #fff;
     color:#3F3F3F;
-    vertical-align: top;
+    vertical-align: middle;
 }
 
 table.tablesorter thead tr .headerSortDown, table.tablesorter thead tr .headerSortUp {
@@ -580,12 +572,8 @@ span.genre span.text {
 }
 
 span.overview-genre {
-    background-color:#2DAEBF;
-    color:#fff;
-    padding:2px 5px;
-    border-radius:2px;
+    padding:2px 3px;
     display: inline-block;
-    vertical-align: center;
     text-align: center;
 }
 
@@ -741,6 +729,20 @@ img.movie-image {
     border-radius:5px;
 }
 
+/**************************************
+          pagination
+**************************************/
+
+ul.dflt_paginator_control {
+    list-style:none;
+    margin-top:20px;
+    float:right;
+}
+
+ul.dflt_paginator_control li {
+    float:left;
+    margin:0 5px;
+}
 
 select#genre option[selected] {
     /*    background-color:red;*/
@@ -805,137 +807,119 @@ select#genre option[selected] {
 
 
 /**************************************
-          jquery Star Rating
-**************************************/
-
-/* jQuery.Rating Plugin CSS - http://www.fyneworks.com/jquery/star-rating/ */
-div.rating-cancel,div.star-rating{float:left;width:17px;height:15px;text-indent:-999em;cursor:pointer;display:block;background:transparent;overflow:hidden}
-div.rating-cancel,div.rating-cancel a{background:url(../images/delete.gif) no-repeat 0 -16px}
-div.star-rating,div.star-rating a{background:url(../images/star.gif) no-repeat 0 0px}
-div.rating-cancel a,div.star-rating a{display:block;width:16px;height:100%;background-position:0 0px;border:0}
-div.star-rating-on a{background-position:0 -16px!important}
-div.star-rating-hover a{background-position:0 -32px}
-/* Read Only CSS */
-div.star-rating-readonly a{cursor:default !important}
-/* Partial Star CSS */
-div.star-rating{background:transparent!important;overflow:hidden!important}
-/* END jQuery.Rating Plugin CSS */
-
-
-/**************************************
           jQuery TipTip
 **************************************/
 
 /* TipTip CSS - Version 1.2 */
 
 #tiptip_holder {
-	display: none;
-	position: absolute;
-	top: 0;
-	left: 0;
-	z-index: 99999;
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 99999;
 }
 
 #tiptip_holder.tip_top {
-	padding-bottom: 5px;
+    padding-bottom: 5px;
 }
 
 #tiptip_holder.tip_bottom {
-	padding-top: 5px;
+    padding-top: 5px;
 }
 
 #tiptip_holder.tip_right {
-	padding-left: 5px;
+    padding-left: 5px;
 }
 
 #tiptip_holder.tip_left {
-	padding-right: 5px;
+    padding-right: 5px;
 }
 
 #tiptip_content {
-	font-size: 11px;
-	color: #fff;
-	text-shadow: 0 0 2px #000;
-	padding: 4px 8px;
-	border: 1px solid rgba(255,255,255,0.25);
-	background-color: rgb(25,25,25);
-	background-color: rgba(25,25,25,0.92);
-	background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(transparent), to(#000));
-	border-radius: 3px;
-	-webkit-border-radius: 3px;
-	-moz-border-radius: 3px;
-	box-shadow: 0 0 3px #555;
-	-webkit-box-shadow: 0 0 3px #555;
-	-moz-box-shadow: 0 0 3px #555;
+    font-size: 11px;
+    color: #fff;
+    text-shadow: 0 0 2px #000;
+    padding: 4px 8px;
+    border: 1px solid rgba(255,255,255,0.25);
+    background-color: rgb(25,25,25);
+    background-color: rgba(25,25,25,0.92);
+    background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(transparent), to(#000));
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    box-shadow: 0 0 3px #555;
+    -webkit-box-shadow: 0 0 3px #555;
+    -moz-box-shadow: 0 0 3px #555;
 }
 
 #tiptip_arrow, #tiptip_arrow_inner {
-	position: absolute;
-	border-color: transparent;
-	border-style: solid;
-	border-width: 6px;
-	height: 0;
-	width: 0;
+    position: absolute;
+    border-color: transparent;
+    border-style: solid;
+    border-width: 6px;
+    height: 0;
+    width: 0;
 }
 
 #tiptip_holder.tip_top #tiptip_arrow {
-	border-top-color: #fff;
-	border-top-color: rgba(255,255,255,0.35);
+    border-top-color: #fff;
+    border-top-color: rgba(255,255,255,0.35);
 }
 
 #tiptip_holder.tip_bottom #tiptip_arrow {
-	border-bottom-color: #fff;
-	border-bottom-color: rgba(255,255,255,0.35);
+    border-bottom-color: #fff;
+    border-bottom-color: rgba(255,255,255,0.35);
 }
 
 #tiptip_holder.tip_right #tiptip_arrow {
-	border-right-color: #fff;
-	border-right-color: rgba(255,255,255,0.35);
+    border-right-color: #fff;
+    border-right-color: rgba(255,255,255,0.35);
 }
 
 #tiptip_holder.tip_left #tiptip_arrow {
-	border-left-color: #fff;
-	border-left-color: rgba(255,255,255,0.35);
+    border-left-color: #fff;
+    border-left-color: rgba(255,255,255,0.35);
 }
 
 #tiptip_holder.tip_top #tiptip_arrow_inner {
-	margin-top: -7px;
-	margin-left: -6px;
-	border-top-color: rgb(25,25,25);
-	border-top-color: rgba(25,25,25,0.92);
+    margin-top: -7px;
+    margin-left: -6px;
+    border-top-color: rgb(25,25,25);
+    border-top-color: rgba(25,25,25,0.92);
 }
 
 #tiptip_holder.tip_bottom #tiptip_arrow_inner {
-	margin-top: -5px;
-	margin-left: -6px;
-	border-bottom-color: rgb(25,25,25);
-	border-bottom-color: rgba(25,25,25,0.92);
+    margin-top: -5px;
+    margin-left: -6px;
+    border-bottom-color: rgb(25,25,25);
+    border-bottom-color: rgba(25,25,25,0.92);
 }
 
 #tiptip_holder.tip_right #tiptip_arrow_inner {
-	margin-top: -6px;
-	margin-left: -5px;
-	border-right-color: rgb(25,25,25);
-	border-right-color: rgba(25,25,25,0.92);
+    margin-top: -6px;
+    margin-left: -5px;
+    border-right-color: rgb(25,25,25);
+    border-right-color: rgba(25,25,25,0.92);
 }
 
 #tiptip_holder.tip_left #tiptip_arrow_inner {
-	margin-top: -6px;
-	margin-left: -7px;
-	border-left-color: rgb(25,25,25);
-	border-left-color: rgba(25,25,25,0.92);
+    margin-top: -6px;
+    margin-left: -7px;
+    border-left-color: rgb(25,25,25);
+    border-left-color: rgba(25,25,25,0.92);
 }
 
 /* Webkit Hacks  */
 @media screen and (-webkit-min-device-pixel-ratio:0) {	
-	#tiptip_content {
-		padding: 4px 8px 5px 8px;
-		background-color: rgba(45,45,45,0.88);
-	}
-	#tiptip_holder.tip_bottom #tiptip_arrow_inner { 
-		border-bottom-color: rgba(45,45,45,0.88);
-	}
-	#tiptip_holder.tip_top #tiptip_arrow_inner { 
-		border-top-color: rgba(20,20,20,0.92);
-	}
+    #tiptip_content {
+        padding: 4px 8px 5px 8px;
+        background-color: rgba(45,45,45,0.88);
+    }
+    #tiptip_holder.tip_bottom #tiptip_arrow_inner {
+        border-bottom-color: rgba(45,45,45,0.88);
+    }
+    #tiptip_holder.tip_top #tiptip_arrow_inner {
+        border-top-color: rgba(20,20,20,0.92);
+    }
 }
