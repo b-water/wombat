@@ -39,7 +39,7 @@
             </td>
             <td class="show"><a class="show" title="Anzeige" href="movie/show/single/id/{$item->getId()}/"></a></td>
             <td class="edit"><a class="edit" title="Bearbeiten" href="movie/edit/single/id/{$item->getId()}/"></a></td>
-            <td class="delete"><a class="delete" title="L&ouml;schen" href="movie/edit/delete/id/{$item->getId()}/"></a></td>
+            <td class="delete"><a class="delete fancydelete" title="L&ouml;schen" href="movie/edit/delete/id/{$item->getId()}/"></a></td>
         </tr>
         {/foreach}
     </tbody>

@@ -16,21 +16,27 @@
  * @license http://creativecommons.org/licenses/by-nc-nd/3.0/ Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License
  */
 
+jQuery.fn.exists = function(){
+    return jQuery(this).length>0;
+}
+
 $(document).ready(function() {
+    //jquery plugins
     core.init.form($('form#edit'));
     core.init.tooltip($('a'));
-//    core.init.autoComplete($('#autoCompleteGenre'));
+    core.init.fancybox($('.fancybox'));
+    //    core.init.autoComplete($('#autoCompleteGenre'));
     core.init.genreDelete($('span.genre'));
+    // table init
     core.table.addEven($('table tr:even'));
+    core.table.addFancyDelete($('a.fancydelete'));
 });
 
 /**
  * Extend jQuery Scope with an
  * isset Function.
  **/
-jQuery.fn.exists = function(){
-    return jQuery(this).length>0;
-}
+
 
 var core = {
     init : {
@@ -43,7 +49,7 @@ var core = {
                     
                     setTimeout(function(){
                         core.http.redirectToUrl(window.location.pathname);
-                        }, 2000);
+                    }, 2000);
                     
                 }
                 var options = {
@@ -112,6 +118,9 @@ var core = {
                     });
                 });
             }
+        },
+        fancybox : function(obj) {
+            obj.fancybox();
         }
     },
     ajax : {
@@ -163,10 +172,27 @@ var core = {
         }
     },
     table : {
-        addEven : function(object)
+        addEven : function(obj)
         {
-            object.addClass('even');
+            if(obj.exists())
+            {
+                obj.addClass('even');
+
+            }
+        },
+        addFancyDelete : function(obj)
+        {
+            if(obj.exists())
+            {
+                obj.fancybox({
+                    'onClosed' : function() {
+                        core.http.redirectToUrl(location.href);
+                    }
+                });
+
+            }
         }
+
     }
 
 }

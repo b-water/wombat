@@ -188,7 +188,6 @@ input[type=submit], input[type=button] {
 .notice {
     border: 1px solid #FFDD3F;
     border-radius: 6px 6px 6px 6px;
-    /*    box-shadow: 1px 1px 4px #EDE4C2;*/
     font-size: 14px;
     font-weight: normal;
     margin-bottom: 20px;
@@ -339,42 +338,39 @@ table.tablesorter tr:hover td {
     background: url("../images/awesome/alert-overlay.png") repeat-x scroll 0 0 #2DAEBF;
     color:#fff;
     border-radius:3px;
-}/*
-
-table.tablesorter tr:hover td {
-    color:#fff;
-}*/
+}
 
 table a.edit {
     background:url('../images/icons/pencil.png') 0 0 no-repeat;
     width:16px;
     height:16px;
-    display:block;
+    display:inline-block;
 }
 
 table a.show {
     background:url('../images/icons/page.png') 0 0 no-repeat;
     width:16px;
     height:16px;
-    display:block;
-}
-
-table th.show, table th.edit, table th.delete {
-    border-top:none;
-    border-bottom:1px solid #fff;
-    border-left:none;
-    border-right:none;
+    display:inline-block;
 }
 
 table a.delete {
     background:url('../images/icons/bin_closed.png') 0 0 no-repeat;
     width:16px;
     height:16px;
-    display:block;
+    display:inline-block;
 }
 
 table th.show, table th.delete, table th.edit {
     background-color: #F0F0F0;
+    border-top:none;
+    border-bottom:1px solid #fff;
+    border-left:none;
+    border-right:none;
+}
+
+table td.show, table td.delete, table td.edit {
+    text-align:center;
 }
 
 /**************************************
@@ -916,18 +912,4 @@ select#genre option[selected] {
     margin-left: -7px;
     border-left-color: rgb(25,25,25);
     border-left-color: rgba(25,25,25,0.92);
-}
-
-/* Webkit Hacks  */
-@media screen and (-webkit-min-device-pixel-ratio:0) {	
-    #tiptip_content {
-        padding: 4px 8px 5px 8px;
-        background-color: rgba(45,45,45,0.88);
-    }
-    #tiptip_holder.tip_bottom #tiptip_arrow_inner {
-        border-bottom-color: rgba(45,45,45,0.88);
-    }
-    #tiptip_holder.tip_top #tiptip_arrow_inner {
-        border-top-color: rgba(20,20,20,0.92);
-    }
 }
