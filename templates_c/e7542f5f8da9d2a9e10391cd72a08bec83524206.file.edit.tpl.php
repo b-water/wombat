@@ -1,23 +1,23 @@
-<?php /* Smarty version Smarty-3.0.6, created on 2011-07-25 20:41:12
+<?php /* Smarty version Smarty-3.0.6, created on 2011-07-31 19:34:49
          compiled from "./templates/movie/edit.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:13742495534e2db8c899ef43-88512135%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:12408883164e3592392b85c4-29897207%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     'e7542f5f8da9d2a9e10391cd72a08bec83524206' => 
     array (
       0 => './templates/movie/edit.tpl',
-      1 => 1311470558,
+      1 => 1312133685,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '13742495534e2db8c899ef43-88512135',
+  'nocache_hash' => '12408883164e3592392b85c4-29897207',
   'function' => 
   array (
   ),
   'has_nocache_code' => false,
 )); /*/%%SmartyHeaderCode%%*/?>
-<form id="edit" method="POST" action="movie/update/id/<?php echo $_smarty_tpl->getVariable('movie')->value->getId();?>
+<form id="edit" method="POST" action="movie/edit/update/id/<?php echo $_smarty_tpl->getVariable('movie')->value->getId();?>
 /" enctype="multipart/form-data" >
     <input id="id" name="id" value="<?php echo $_smarty_tpl->getVariable('movie')->value->getId();?>
 " type="hidden" />

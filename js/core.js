@@ -19,8 +19,9 @@
 $(document).ready(function() {
     core.init.form($('form#edit'));
     core.init.tooltip($('a'));
-    core.init.autoComplete($('#autoCompleteGenre'));
+//    core.init.autoComplete($('#autoCompleteGenre'));
     core.init.genreDelete($('span.genre'));
+    core.table.addEven($('table tr:even'));
 });
 
 /**
@@ -41,7 +42,7 @@ var core = {
                     $('.notice').show();
                     
                     setTimeout(function(){
-                        //                        core.http.redirectToUrl(window.location.pathname);
+                        core.http.redirectToUrl(window.location.pathname);
                         }, 2000);
                     
                 }
@@ -68,7 +69,7 @@ var core = {
         },
         autoComplete: function(obj)
         {
-            obj.autocomplete('movie/autoComplete/', {
+            obj.autocomplete('movie/autocomplete/genre/', {
                 width: 260,
                 selectFirst: true,
                 scroll: false
@@ -159,6 +160,12 @@ var core = {
         redirectToUrl : function(url)
         {
             window.location.href = url;
+        }
+    },
+    table : {
+        addEven : function(object)
+        {
+            object.addClass('even');
         }
     }
 

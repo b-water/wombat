@@ -233,13 +233,14 @@ body {
 **************************************
 html
     body
-        wrapper
+        section
             content /content
+        /section
     /body
 /html
 **************************************/
 
-div#wrapper {
+section{
     margin:auto;
     width:960px;
     overflow: hidden;
@@ -257,10 +258,10 @@ div#wrapper {
 }
 
 /**************************************
-                control
+                nav
 **************************************/
 
-div#control {
+nav {
     overflow:hidden;
     margin-bottom:20px;
 }
@@ -301,8 +302,6 @@ table th {
     border-right:1px solid #DFDFDF;
     border-bottom:1px solid #DFDFDF;
     border-top:1px solid #DFDFDF;
-    background-repeat: no-repeat;
-    background-position: center right;
 }
 
 table td {
@@ -336,9 +335,11 @@ table tr.even {
     background-color:#EAEAEA;
 }
 
-/*table.tablesorter tr:hover td {
-    background-color:#CFCFCF;
-}
+table.tablesorter tr:hover td {
+    background: url("../images/awesome/alert-overlay.png") repeat-x scroll 0 0 #2DAEBF;
+    color:#fff;
+    border-radius:3px;
+}/*
 
 table.tablesorter tr:hover td {
     color:#fff;
@@ -356,6 +357,13 @@ table a.show {
     width:16px;
     height:16px;
     display:block;
+}
+
+table th.show, table th.edit, table th.delete {
+    border-top:none;
+    border-bottom:1px solid #fff;
+    border-left:none;
+    border-right:none;
 }
 
 table a.delete {

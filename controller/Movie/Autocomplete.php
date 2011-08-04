@@ -27,7 +27,7 @@ class MovieAutoCompleteController extends MovieAbstractController {
     public function index() {}
 
     public function genre() {
-        $filter = 'type="movie" AND name like "' . $_REQUEST['q'] . '%"';
+        $filter = 'type="movie" AND name like "' . $_REQUEST['term'] . '%"';
         $data = $this->genreRepository->fetch(array('*'), $filter);
         foreach ($data as $item) {
             $name = $item['name'];

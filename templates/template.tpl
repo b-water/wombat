@@ -1,14 +1,14 @@
 {* head , css files, meta, dtd ect *}
 {include file='head.tpl'}
 <body>
-    <div id="wrapper">
-        <div id="control">
+    <section>
+        <nav>
             {include file='navigation.tpl'}
-        </div>
+        </nav>
          <div id="content">
             {* Content Bereich Laden *}
             {$content}
          </div>
-    </div>
+    </section>
 {* js Files and the closing tags *}
 {include file='foot.tpl'}
