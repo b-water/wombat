@@ -25,7 +25,7 @@ $(document).ready(function() {
     core.init.form($('form#edit'));
     core.init.tooltip($('a'));
     core.init.fancybox($('.fancybox'));
-    //    core.init.autoComplete($('#autoCompleteGenre'));
+    core.genre.autocomplete($('#autoCompleteGenre'),'movie/autocomplete/genre/',$('div#associatedGenres'));
     core.init.genreDelete($('span.genre'));
     // table init
     core.table.addEven($('table tr:even'));
@@ -75,16 +75,17 @@ var core = {
         },
         autoComplete: function(obj)
         {
-            obj.autocomplete('movie/autocomplete/genre/', {
-                width: 260,
-                selectFirst: true,
-                scroll: false
-            });
+        //            obj.autocomplete('movie/autocomplete/genre/', {
+        //                width: 260,
+        //                selectFirst: true,
+        //                scroll: false
+        //            });
 
-            obj.result(function(event, data) {
-                $('div#associatedGenres').append('<span class="genre"><input type="hidden" name="genre[]" value="'+data[1]+'" /><span class="text">'+data[0]+'</span><span class="delete">L&ouml;schen</span></span>');
-                obj.val('');
-            });
+
+        //            obj.result(function(event, data) {
+        //                $('div#associatedGenres').append('<span class="genre"><input type="hidden" name="genre[]" value="'+data[1]+'" /><span class="text">'+data[0]+'</span><span class="delete">L&ouml;schen</span></span>');
+        //                obj.val('');
+        //            });
         },
         contextMenu : function(obj) {
             $(obj).contextMenu({
@@ -193,6 +194,25 @@ var core = {
             }
         }
 
+    },
+    genre : {
+        autocomplete : function (obj,src,appObj)
+        {
+            if(obj.exists())
+            {
+                obj.autocomplete({
+                    source: src,
+                    minLength: 1,
+                    select: function(event, ui) {
+                        appObj.append('<span class="genre"><input type="hidden" name="genre[]" value="'+ui.item.value+'" /><span class="text">'+ui.item.label+'</span><span class="delete">L&ouml;schen</span></span>');
+                    },
+                    close : function() {
+                        obj.val('');
+                    }
+                });
+            }
+
+        }
     }
 
 }

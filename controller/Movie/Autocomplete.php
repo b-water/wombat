@@ -28,12 +28,15 @@ class MovieAutoCompleteController extends MovieAbstractController {
 
     public function genre() {
         $filter = 'type="movie" AND name like "' . $_REQUEST['term'] . '%"';
-        $data = $this->genreRepository->fetch(array('*'), $filter);
-        foreach ($data as $item) {
-            $name = $item['name'];
-            $id = $item['id'];
-            echo "$name|$id\n";
-        }
+        $data = $this->genreRepository->fetch(array('name as label','id as value'), $filter);
+        require_once('library/Zend/Json.php');
+//        foreach ($data as $item) {
+//            $name = $item['name'];
+//            $id = $item['id'];
+//            echo "$name|$id\n";
+//        }
+        $json = Zend_Json::encode($data);
+        echo $json;
     }
 
 }
