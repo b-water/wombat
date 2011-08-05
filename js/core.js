@@ -16,6 +16,10 @@
  * @license http://creativecommons.org/licenses/by-nc-nd/3.0/ Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License
  */
 
+/**
+ * Extend jQuery Scope with an
+ * isset like php Function.
+ **/
 jQuery.fn.exists = function(){
     return jQuery(this).length>0;
 }
@@ -25,19 +29,18 @@ $(document).ready(function() {
     core.init.form($('form#edit'));
     core.init.tooltip($('a'));
     core.init.fancybox($('.fancybox'));
-    core.genre.autocomplete($('#autoCompleteGenre'),'movie/autocomplete/genre/',$('div#associatedGenres'));
-    core.init.genreDelete($('span.genre'));
+
+    // genre init
+    core.genre.autocomplete($('#autocompleteGenre'),'movie/autocomplete/genre/',$('div#associatedGenres'));
+    core.genre.tokenDelete($('span.genre'));
     // table init
     core.table.addEven($('table tr:even'));
     core.table.addFancyDelete($('a.fancydelete'));
 });
 
 /**
- * Extend jQuery Scope with an
- * isset Function.
- **/
-
-
+ * 
+ */
 var core = {
     init : {
         form : function(obj)
@@ -56,7 +59,6 @@ var core = {
                     success: showResponse
                 };
 
-                // bind 'myForm' and provide a simple callback function 
                 obj.ajaxForm(options);  
             }
 
@@ -72,20 +74,6 @@ var core = {
                 }
 
             });
-        },
-        autoComplete: function(obj)
-        {
-        //            obj.autocomplete('movie/autocomplete/genre/', {
-        //                width: 260,
-        //                selectFirst: true,
-        //                scroll: false
-        //            });
-
-
-        //            obj.result(function(event, data) {
-        //                $('div#associatedGenres').append('<span class="genre"><input type="hidden" name="genre[]" value="'+data[1]+'" /><span class="text">'+data[0]+'</span><span class="delete">L&ouml;schen</span></span>');
-        //                obj.val('');
-        //            });
         },
         contextMenu : function(obj) {
             $(obj).contextMenu({
@@ -108,18 +96,7 @@ var core = {
             }
             });
         },
-        genreDelete : function(obj) {
-            if(obj.exists()) {
-                $('span.genre').each(function(index) {
-                    console.log(index + ': ' + $(this).text());
-                    $(this).click(function() {
-                        $(this).fadeOut("normal", function(){
-                            $(this).remove();  
-                        });
-                    });
-                });
-            }
-        },
+
         fancybox : function(obj) {
             obj.fancybox();
         }
@@ -208,10 +185,22 @@ var core = {
                     },
                     close : function() {
                         obj.val('');
+                        core.genre.tokenDelete($('span.genre'));
                     }
                 });
             }
 
+        },
+        tokenDelete : function(obj) {
+            if(obj.exists()) {
+                obj.each(function(index) {
+                    $(this).click(function() {
+                        $(this).fadeOut("normal", function(){
+                            $(this).remove();
+                        });
+                    });
+                });
+            }
         }
     }
 

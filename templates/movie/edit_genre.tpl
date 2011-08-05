@@ -1,5 +1,5 @@
 <label>Genre</label>
-<input type="text" name="autoCompleteGenre" id="autoCompleteGenre"/>
+<input type="text" name="autocompleteGenre" id="autocompleteGenre"/>
 <div id="associatedGenres">
     {foreach item=item from=$movie->getGenre()}
         <span class="genre">

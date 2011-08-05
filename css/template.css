@@ -457,7 +457,6 @@ form#edit div#center-fields {
 }
 
 form#edit div#right-fields fieldset.col {
-    width:330px;
     float:left;
     margin-right:10px;
 }
@@ -468,7 +467,8 @@ fieldset.col col-left {
 
 form#edit div#right-fields fieldset.col input[type=text], form#edit div#right-fields fieldset.col input[type=select], 
 form#edit div#right-fields fieldset.col textarea {
-    width:330px;
+    width:327px;
+    margin-bottom:10px;
 }
 
 form#edit fieldset {

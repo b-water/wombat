@@ -1,17 +1,17 @@
-<?php /* Smarty version Smarty-3.0.6, created on 2011-08-01 21:52:26
+<?php /* Smarty version Smarty-3.0.6, created on 2011-08-05 21:56:13
          compiled from "./templates/head.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:14081603394e3703fab8def6-40025312%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:7952679374e3c4add78aa63-08828250%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '1e1fef8537adc3ab5ce04d2eb1febd7509edaa2a' => 
     array (
       0 => './templates/head.tpl',
-      1 => 1312228339,
+      1 => 1312574151,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '14081603394e3703fab8def6-40025312',
+  'nocache_hash' => '7952679374e3c4add78aa63-08828250',
   'function' => 
   array (
   ),
@@ -33,7 +33,7 @@ $_smarty_tpl->decodeProperties(array (
         <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
         <link rel="stylesheet" href="css/template.css" type="text/css" media="screen" />
         <link rel="stylesheet" href="library/jquery/fancybox/jquery.fancybox-1.3.4.css" type="text/css" media="screen" />
-        <link rel="stylesheet" href="library/jquery/smoothness/jquery-ui-1.8.14.custom.css" type="text/css" media="screen" />
+        <link rel="stylesheet" href="library/jquery/jquery.ui/jquery-ui-1.8.14.custom.css" type="text/css" media="screen" />
     </head>
 
 
