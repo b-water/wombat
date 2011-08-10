@@ -31,7 +31,7 @@ $(document).ready(function() {
     core.init.fancybox($('.fancybox'));
 
     // genre init
-    core.genre.autocomplete($('#autocompleteGenre'),'movie/autocomplete/genre/',$('div#associatedGenres'));
+    core.genre.autocomplete($('#autocompleteGenre'),'genre/show/autocomplete/',$('div#associatedGenres'));
     core.genre.tokenDelete($('span.genre'));
     // table init
     core.table.addEven($('table tr:even'));

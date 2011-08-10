@@ -69,8 +69,6 @@ abstract class MovieAbstractController extends Controller {
     public function init() {
 
         $this->template = $this->config->get('template.mainfile');
-        $this->tableMovie = $this->config->get('database.tables.movie');
-        
 
         require_once('model/Movie/MovieDataMapper.php');
 

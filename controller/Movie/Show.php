@@ -30,7 +30,6 @@ class MovieShowController extends MovieAbstractController {
 
     public function overview() {
 
-
         try {
             $movies = $this->movieRepository->fetchByPage(array('id', 'title', 'rating', 'year'));
         } catch (MovieException $movieException) {
@@ -39,17 +38,7 @@ class MovieShowController extends MovieAbstractController {
             $this->smarty->display('exception template');
         }
 
-        require_once('model/Movie/MovieViewHelper.php');
-
-//        $viewHelper = new MovieViewHelper();
-//        $pageParams = array('countPages' => $this->movieRepository->getPageCount(),
-//            'currentPageNumber' => $this->movieRepository->getCurrentPageNumber(),
-//            'controller' => $this->urlParser->getController(),
-//            'action' => $this->urlParser->getAction());
-//        $pages = $viewHelper->buildPages('page', 'dflt_paginator_control.tpl', $pageParams);
-
-        $this->smarty->assign('paginator',$this->movieRepository->getPaginator()->getPages('sliding'));
-//        $this->smarty->assign('pages', $pages);
+        $this->smarty->assign('paginator', $this->movieRepository->getPaginator()->getPages('sliding'));
         $this->smarty->assign('movies', $movies);
         $this->smarty->assign('title', 'Filme');
 
@@ -63,7 +52,7 @@ class MovieShowController extends MovieAbstractController {
     public function single() {
 
         $this->smarty->assign('title', 'Film Detailansicht');
-        $filter = $this->tableMovie . '.' . $this->urlParser->getKey() . ' = "' . $this->urlParser->getValue() . '"';
+        $filter = $this->table . '.' . $this->urlParser->getKey() . ' = "' . $this->urlParser->getValue() . '"';
 
         try {
             $movie = $this->movieRepository->fetch(array('*'), $filter);
