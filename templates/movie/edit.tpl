@@ -1,6 +1,6 @@
 <form id="edit" method="POST" action="movie/edit/update/id/{$movie->getId()}/" enctype="multipart/form-data" >
     <input id="id" name="id" value="{$movie->getId()}" type="hidden" />
-    <div class="notice good">Die Änderungen wurden erfolgreich in die Datenbank übertragen! Bitte warten Sie nun einen kurzen Augenblick, die Seite wird nun neu geladen!</div>
+    <div class="alert-message success">Die Änderungen wurden erfolgreich in die Datenbank übertragen! Bitte warten Sie nun einen kurzen Augenblick, die Seite wird nun neu geladen!</div>
     <div id="left-fields">
         <fieldset>
             <div class="movie-image-container">
@@ -15,7 +15,7 @@
         </fieldset>
         <fieldset>
             <label>Titel</label>
-            <input type="text" name="title" value="{$movie->getTitle()}" />
+            <input type="text" readonly="readonly" name="title" value="{$movie->getTitle()}" />
         </fieldset>
         <fieldset>
             <label>Format</label>

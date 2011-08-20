@@ -50,10 +50,10 @@ var core = {
                 showResponse = function() {
                     $('.notice').show();
                     
-                    setTimeout(function(){
-                        core.http.redirectToUrl(window.location.pathname);
-                    }, 2000);
-                    
+//                    setTimeout(function(){
+//                        core.http.redirectToUrl(window.location.pathname);
+//                    }, 2000);
+//                    
                 }
                 var options = {
                     success: showResponse
@@ -75,28 +75,6 @@ var core = {
 
             });
         },
-        contextMenu : function(obj) {
-            $(obj).contextMenu({
-                menu: 'myMenu'
-            },
-            function(action, el) {
-                if(action == 'delete')
-                {
-                    $(obj).each(function(){
-
-                        $('option', this).each(function() {
-                            if($(this).attr('value') == el.attr('value')) {
-                                $(this).remove();
-                            }
-                        })
-                    });
-                }
-                if(action == 'add') {
-            
-            }
-            });
-        },
-
         fancybox : function(obj) {
             obj.fancybox();
         }

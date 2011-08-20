@@ -17,13 +17,6 @@
  * @license http://creativecommons.org/licenses/by-nc-nd/3.0/ Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License
  */
 
-/**
- * Description of Navigation
- *
- * @author  Nico Schmitz - nschmitz1991@gmail.com
- * @file    Navigation.php
- * @since   26.05.2011 - 18:33:39
- */
 class Navigation {
 
     /**
@@ -81,6 +74,7 @@ class Navigation {
         $sql = $this->db->query($select);
         $data = $sql->fetchAll();
         if (empty($data)) {
+            require_once('core/NavigationException.php');
             throw new NavigationException('(#1) : No Data found!');
         }
 
@@ -97,8 +91,8 @@ class Navigation {
         if (!empty($data)) {
             $this->smarty->assign('navigation', $data);
             if (isset($this->urlParser)) {
-                $slashpos = strpos($this->urlParser->getUrl(),'/');
-                $activ = substr($this->urlParser->getUrl(),0,$slashpos);
+                $slashpos = strpos($this->urlParser->getUrl(), '/');
+                $activ = substr($this->urlParser->getUrl(), 0, $slashpos);
                 $this->smarty->assign('activ', $activ);
             }
         } else {

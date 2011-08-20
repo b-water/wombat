@@ -1,27 +1,27 @@
-<?php /* Smarty version Smarty-3.0.6, created on 2011-07-23 16:30:20
+<?php /* Smarty version Smarty-3.0.6, created on 2011-08-20 10:57:14
          compiled from ".\templates\movie/edit.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:283114e2adafc7197b8-67359163%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:74584e4f76eaa8e983-23848182%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     'df4b0b48e76d7fe549ee68fc19b2c4f49a830454' => 
     array (
       0 => '.\\templates\\movie/edit.tpl',
-      1 => 1311431404,
+      1 => 1313830628,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '283114e2adafc7197b8-67359163',
+  'nocache_hash' => '74584e4f76eaa8e983-23848182',
   'function' => 
   array (
   ),
   'has_nocache_code' => false,
 )); /*/%%SmartyHeaderCode%%*/?>
-<form id="edit" method="POST" action="movie/update/id/<?php echo $_smarty_tpl->getVariable('movie')->value->getId();?>
+<form id="edit" method="POST" action="movie/edit/update/id/<?php echo $_smarty_tpl->getVariable('movie')->value->getId();?>
 /" enctype="multipart/form-data" >
     <input id="id" name="id" value="<?php echo $_smarty_tpl->getVariable('movie')->value->getId();?>
 " type="hidden" />
-    <div class="notice good">Die Änderungen wurden erfolgreich in die Datenbank übertragen! Bitte warten Sie nun einen kurzen Augenblick, die Seite wird nun neu geladen!</div>
+    <div class="alert-message success">Die Änderungen wurden erfolgreich in die Datenbank übertragen! Bitte warten Sie nun einen kurzen Augenblick, die Seite wird nun neu geladen!</div>
     <div id="left-fields">
         <fieldset>
             <div class="movie-image-container">
@@ -37,7 +37,7 @@ $_smarty_tpl->decodeProperties(array (
         </fieldset>
         <fieldset>
             <label>Titel</label>
-            <input type="text" name="title" value="<?php echo $_smarty_tpl->getVariable('movie')->value->getTitle();?>
+            <input type="text" readonly="readonly" name="title" value="<?php echo $_smarty_tpl->getVariable('movie')->value->getTitle();?>
 " />
         </fieldset>
         <fieldset>

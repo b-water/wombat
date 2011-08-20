@@ -7,5 +7,4 @@
       <script type="text/javascript" src="library/jquery/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
       <script type="text/javascript" src="library/jquery/jquery-ui-1.8.14.custom.min.js"></script>
       <script type="text/javascript" src="js/core.js"></script>
-    </body>
 </html>

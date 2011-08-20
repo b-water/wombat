@@ -25,11 +25,6 @@ class MovieShowController extends MovieAbstractController {
     }
 
     public function index() {
-        $this->overview();
-    }
-
-    public function overview() {
-
         try {
             $movies = $this->movieRepository->fetchByPage(array('id', 'title', 'rating', 'year'));
         } catch (MovieException $movieException) {
@@ -43,7 +38,7 @@ class MovieShowController extends MovieAbstractController {
         $this->smarty->assign('title', 'Filme');
 
         $content = $this->smarty->fetch($this->template_dir . 'overview.tpl');
-        $content .= $this->smarty->fetch('dflt_paginator_control.tpl');
+        $content .= $this->smarty->fetch('paginator_control.tpl');
         $this->smarty->assign('content', $content);
 
         $this->smarty->display($this->template);

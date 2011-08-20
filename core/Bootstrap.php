@@ -23,16 +23,19 @@ class Bootstrap {
      * @var type object 
      */
     public static $config = null;
+
     /**
      * Url Object
      * @var type object
      */
     public static $urlParser = null;
+
     /**
      * Database Object
      * @var type object
      */
     public static $db = null;
+
     /**
      * Smarty Object
      * @var type object
@@ -108,18 +111,21 @@ class Bootstrap {
      */
     public static function setupDatabase() {
 
-        require_once('library/Zend/Db/Adapter/Pdo/Mysql.php');
+        $include_path = $_SERVER['DOCUMENT_ROOT'] . '/wombat/library/';
+        set_include_path($include_path . PATH_SEPARATOR . get_include_path());
 
-        $params = array(
-            'host' => self::$config->get('database.host'),
-            'username' => self::$config->get('database.user'),
-            'password' => self::$config->get('database.password'),
-            'charset' => self::$config->get('database.charset'),
-            'dbname' => self::$config->get('database.dbname')
-        );
+        require_once('library/Zend/Db.php');
+        require_once('library/Zend/Loader.php');
 
         try {
-            self::$db = new \Zend_Db_Adapter_Pdo_Mysql($params);
+            self::$db = Zend_Db::factory('Pdo_Mysql', array(
+                        'host' => self::$config->get('database.host'),
+                        'username' => self::$config->get('database.user'),
+                        'password' => self::$config->get('database.password'),
+                        'charset' => 'utf8',
+                        'dbname' => self::$config->get('database.dbname'),
+                        'profiler' => false
+                    ));
         } catch (Zend_Db_Exception $dbException) {
             die($dbException);
         }
@@ -163,7 +169,7 @@ class Bootstrap {
      */
     public static function assignSmartyVariables() {
         self::$smarty->assign('file', 'bootstrap.php');
-        self::$smarty->assign('urlParser',self::$urlParser);
+        self::$smarty->assign('urlParser', self::$urlParser);
         self::$smarty->assign('maintitle', self::$config->get('html.title'));
         self::$smarty->assign('author', self::$config->get('html.author'));
         self::$smarty->assign('copyright', self::$config->get('html.copyright'));

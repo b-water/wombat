@@ -75,7 +75,7 @@ class MovieDataMapper implements DataMapper {
      * Where to Crop
      * @var string
      */
-    private $imageCrop = 193;
+    private $imageCrop = 272;
     /**
      * Url Parser
      * @var object
@@ -127,7 +127,7 @@ class MovieDataMapper implements DataMapper {
      * @param array $values 
      */
     public function update($movie) {
-
+        
         try {
             $this->genreRepository->deleteAssoc($movie->getId());
         } catch (Exception $exception) {
@@ -161,10 +161,12 @@ class MovieDataMapper implements DataMapper {
 
         if (isset($_FILES['cover']['name']) && !empty($_FILES['cover']['name'])) {
 
+            require_once('library/Zend/File/Transfer.php');
+            
             // prepare upload
             $upload = new Zend_File_Transfer();
             $upload->addValidator('Count', false, array('min' => 1, 'max' => 1));
-            $upload->addValidator('IsImage', true);
+//            $upload->addValidator('IsImage', true);
             $upload->addValidator('Size', false, array('max' => '6144kB'));
 
             /* get the file mimetype for the new name */
@@ -205,7 +207,7 @@ class MovieDataMapper implements DataMapper {
         }
 
         $affectedRows = $this->db->update($this->table, $data, ' id ="' . $movie->getId() . '"');
-
+        
         if ($affectedRows != 1) {
             throw new MovieException('(#1) : The dataset coud not habe been updated!');
         }
