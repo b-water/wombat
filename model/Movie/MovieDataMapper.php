@@ -26,71 +26,85 @@ class MovieDataMapper implements DataMapper {
      * @var String 
      */
     private $table = 'wombat_movie';
+
     /**
      * mysql table
      * @var String 
      */
     private $tableGenre = 'wombat_genre';
+
     /**
      * mysql table
      * @var String 
      */
     private $tableGenreAssoc = 'wombat_genre_assoc';
+
     /**
      * mysql table
      * @var String 
      */
     private $tableFormat = 'wombat_format';
+
     /**
      * mysql table
      * @var String 
      */
     private $tableRating = 'wombat_rating';
+
     /**
      * object from genre repo
      * @var object 
      */
     private $db = null;
+
     /**
      * Genre Repository
      * @var object
      */
     private $genreRepository = null;
+
     /**
      * Path to Cover Images
      * @var string
      */
     private $path = 'files/movie/';
+
     /**
      * Width of the Cropped/Resized Image
      * @var string
      */
     private $imageWidth = 193;
+
     /**
      * Height of the Cropped/Resized Image
      * @var string
      */
     private $imageHeight = 272;
+
     /**
      * Where to Crop
      * @var string
      */
     private $imageCrop = 272;
+
     /**
      * Url Parser
      * @var object
      */
     private $urlParser = null;
+
     /**
      * Items per Page
      * @var int
      */
-    private $itemCountPerPage = 20;
+    private $itemCountPerPage = 15;
+
     /**
      * Page Range
      * @var int
      */
     private $pageRange = 5;
+
     /**
      * Zend_Paginator
      * @var object
@@ -127,7 +141,7 @@ class MovieDataMapper implements DataMapper {
      * @param array $values 
      */
     public function update($movie) {
-        
+
         try {
             $this->genreRepository->deleteAssoc($movie->getId());
         } catch (Exception $exception) {
@@ -162,7 +176,7 @@ class MovieDataMapper implements DataMapper {
         if (isset($_FILES['cover']['name']) && !empty($_FILES['cover']['name'])) {
 
             require_once('library/Zend/File/Transfer.php');
-            
+
             // prepare upload
             $upload = new Zend_File_Transfer();
             $upload->addValidator('Count', false, array('min' => 1, 'max' => 1));
@@ -206,8 +220,12 @@ class MovieDataMapper implements DataMapper {
             $data['image'] = $filename;
         }
 
+
         $affectedRows = $this->db->update($this->table, $data, ' id ="' . $movie->getId() . '"');
-        
+        $profiler = $this->db->getProfiler();
+        $query = $profiler->getLastQueryProfile();
+        echo $query->getQuery();
+
         if ($affectedRows != 1) {
             throw new MovieException('(#1) : The dataset coud not habe been updated!');
         }

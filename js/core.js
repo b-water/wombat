@@ -20,22 +20,30 @@
  * Extend jQuery Scope with an
  * isset like php Function.
  **/
+
 jQuery.fn.exists = function(){
     return jQuery(this).length>0;
 }
 
 $(document).ready(function() {
     //jquery plugins
+    //    $('table#movies').tablesorter();
+    $('.nav-config').click(function(evt) {
+        evt.preventDefault();
+        $('.dropdown-config').toggle('slow',function() {});
+        
+    });
     core.init.form($('form#edit'));
     core.init.tooltip($('a'));
     core.init.fancybox($('.fancybox'));
 
     // genre init
-    core.genre.autocomplete($('#autocompleteGenre'),'genre/show/autocomplete/',$('div#associatedGenres'));
+    core.genre.autocomplete($('#genre'),'genre/show/autocomplete/',$('div#assocGenres'));
     core.genre.tokenDelete($('span.genre'));
     // table init
-    core.table.addEven($('table tr:even'));
-    core.table.addFancyDelete($('a.fancydelete'));
+//    core.table.addEven($('table tr:even'));
+//    core.table.addFancyDelete($('a.fancydelete'));
+    core.table.sort($('table'));
 });
 
 /**
@@ -53,7 +61,6 @@ var core = {
 //                    setTimeout(function(){
 //                        core.http.redirectToUrl(window.location.pathname);
 //                    }, 2000);
-//                    
                 }
                 var options = {
                     success: showResponse
@@ -147,8 +154,27 @@ var core = {
                 });
 
             }
+        },
+        sort : function(obj)
+        {
+            if(obj.exists())
+            {
+                obj.tablesorter( {
+                    sortList: [[0,0]],
+                    headers: {
+                        4: {
+                            sorter:false
+                        },
+                        5: {
+                            sorter:false
+                        },
+                        6: {
+                            sorter:false
+                        }  
+                    }
+                });
+            }
         }
-
     },
     genre : {
         autocomplete : function (obj,src,appObj)

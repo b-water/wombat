@@ -1,12 +1,12 @@
 {include file='head.tpl'}
 <body>
-    <section>
+    <section class="container">
         <nav>
-            {include file='navigation.tpl'}
+            {include file='nav.tpl'}
         </nav>
-        <div id="content">
+        <section class="content">
             {$content}
-        </div>
+        </section>
     </section>
 </body>
 {include file='foot.tpl'}

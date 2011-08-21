@@ -124,7 +124,7 @@ class Bootstrap {
                         'password' => self::$config->get('database.password'),
                         'charset' => 'utf8',
                         'dbname' => self::$config->get('database.dbname'),
-                        'profiler' => false
+                        'profiler' => true
                     ));
         } catch (Zend_Db_Exception $dbException) {
             die($dbException);

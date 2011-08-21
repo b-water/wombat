@@ -1,17 +1,17 @@
-<?php /* Smarty version Smarty-3.0.6, created on 2011-08-20 22:26:13
-         compiled from ".\templates\movie/show.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:242694e501865502b05-06443446%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /* Smarty version Smarty-3.0.6, created on 2011-08-20 22:40:24
+         compiled from ".\templates\movie/single.tpl" */ ?>
+<?php /*%%SmartyHeaderCode:76824e501bb89a0bf0-81976151%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
-    'eea1a3d46b2cb2771fac8720c855fb191bf16613' => 
+    'af6c7817662f57130df5fd2f8ef45829af58c4c4' => 
     array (
-      0 => '.\\templates\\movie/show.tpl',
+      0 => '.\\templates\\movie/single.tpl',
       1 => 1313871970,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '242694e501865502b05-06443446',
+  'nocache_hash' => '76824e501bb89a0bf0-81976151',
   'function' => 
   array (
   ),

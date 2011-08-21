@@ -18,19 +18,18 @@
  */
 require_once('controller/Movie/Abstract.php');
 
-class MovieEditController extends MovieAbstractController {
+class MovieDeleteController extends MovieAbstractController {
 
     public function __construct() {
         parent::__construct();
     }
 
     public function index() {
-        $this->single();
+        $this->confirm();
     }
 
-    public function single() {
-
-        $this->smarty->assign('title', 'Film Bearbeiten');
+    public function confirm() {
+        $this->smarty->assign('title', 'Film Löschen');
         $filter = $this->table . '.id = "' . $this->urlParser->getValue() . '"';
 
         try {
@@ -39,40 +38,25 @@ class MovieEditController extends MovieAbstractController {
             die($movieException);
         }
 
-        try {
-            $format = $this->formatRepository->fetch(array('*'), 'type="movie"');
-        } catch (FormatException $formatException) {
-            die($formatException);
-        }
-
-        try {
-            $rating = $this->ratingRepository->fetch(array('*'), 'type="movie"');
-        } catch (RatingException $ratingException) {
-            die($ratingException);
-        }
-
         $this->smarty->assign('movie', $movie[0]);
-        $this->smarty->assign('format', $format);
-        $this->smarty->assign('rating', $rating);
-        $content = $this->smarty->fetch($this->template_dir . 'edit.tpl');
+        $content = $this->smarty->fetch($this->template_dir . 'confirm.tpl');
         $this->smarty->assign('content', $content);
         $this->smarty->display($this->template);
     }
 
-    public function update() {
-        try {
-            $movie = MovieRepository::create($_REQUEST);
-        } catch (MovieException $movieException) {
-            die($movieException);
-        }
+    public function single() {
+
+        $id = $this->urlParser->getValue();
 
         try {
-            $this->movieRepository->update($movie);
+            $success = $this->movieRepository->delete($id);
         } catch (MovieException $movieException) {
-            die($movieException);
+            echo $movieException->getTraceAsString();
         }
+
+        $text = 'Der Film wurde erfolgreich aus der Datenbank gel&ouml;scht!';
+        $this->smarty->assign('text', $text);
+        $this->smarty->display('delete.tpl');
     }
-    
-
 
 }

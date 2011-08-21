@@ -1,17 +1,17 @@
-<?php /* Smarty version Smarty-3.0.6, created on 2011-08-20 10:34:03
+<?php /* Smarty version Smarty-3.0.6, created on 2011-08-20 16:03:50
          compiled from ".\templates\template.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:265164e4f717bbebf63-03976664%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:98904e4fbec6a855d2-60900243%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '5c37b1941bf97a066fe18f15fe457350d6d0f102' => 
     array (
       0 => '.\\templates\\template.tpl',
-      1 => 1313829163,
+      1 => 1313849027,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '265164e4f717bbebf63-03976664',
+  'nocache_hash' => '98904e4fbec6a855d2-60900243',
   'function' => 
   array (
   ),
@@ -20,15 +20,15 @@ $_smarty_tpl->decodeProperties(array (
 <?php $_template = new Smarty_Internal_Template('head.tpl', $_smarty_tpl->smarty, $_smarty_tpl, $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null);
  echo $_template->getRenderedTemplate();?><?php $_template->updateParentVariables(0);?><?php unset($_template);?>
 <body>
-    <section>
+    <section class="container">
         <nav>
-            <?php $_template = new Smarty_Internal_Template('navigation.tpl', $_smarty_tpl->smarty, $_smarty_tpl, $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null);
+            <?php $_template = new Smarty_Internal_Template('nav.tpl', $_smarty_tpl->smarty, $_smarty_tpl, $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null);
  echo $_template->getRenderedTemplate();?><?php $_template->updateParentVariables(0);?><?php unset($_template);?>
         </nav>
-        <div id="content">
+        <section class="content">
             <?php echo $_smarty_tpl->getVariable('content')->value;?>
 
-        </div>
+        </section>
     </section>
 </body>
 <?php $_template = new Smarty_Internal_Template('foot.tpl', $_smarty_tpl->smarty, $_smarty_tpl, $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null);

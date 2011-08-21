@@ -1,22 +1,23 @@
-<?php /* Smarty version Smarty-3.0.6, created on 2011-08-13 00:12:29
+<?php /* Smarty version Smarty-3.0.6, created on 2011-08-20 15:51:02
          compiled from ".\templates\movie/overview.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:74664dfbd8ee535d09-39499485%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:37854e4fbbc62fa108-21119230%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '55c56703acbb40bb296294473f880b9a3799ab75' => 
     array (
       0 => '.\\templates\\movie/overview.tpl',
-      1 => 1313182113,
+      1 => 1313848259,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '74664dfbd8ee535d09-39499485',
+  'nocache_hash' => '37854e4fbbc62fa108-21119230',
   'function' => 
   array (
   ),
   'has_nocache_code' => false,
 )); /*/%%SmartyHeaderCode%%*/?>
+<h1>Filme</h1>
 <table id="movies" class="tablesorter">
     <thead>
         <tr>

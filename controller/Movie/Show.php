@@ -37,8 +37,8 @@ class MovieShowController extends MovieAbstractController {
         $this->smarty->assign('movies', $movies);
         $this->smarty->assign('title', 'Filme');
 
-        $content = $this->smarty->fetch($this->template_dir . 'overview.tpl');
-        $content .= $this->smarty->fetch('paginator_control.tpl');
+        $content = $this->smarty->fetch($this->template_dir . 'index.tpl');
+        $content .= $this->smarty->fetch('paginator.tpl');
         $this->smarty->assign('content', $content);
 
         $this->smarty->display($this->template);
@@ -56,7 +56,7 @@ class MovieShowController extends MovieAbstractController {
         }
 
         $this->smarty->assign('movie', $movie[0]);
-        $content = $this->smarty->fetch($this->template_dir . 'show.tpl');
+        $content = $this->smarty->fetch($this->template_dir . 'single.tpl');
 
         $this->smarty->assign('content', $content);
 
