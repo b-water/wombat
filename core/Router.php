@@ -73,14 +73,26 @@ class Router {
     /**
      * Starts the Controller with the method
      * from the Action.
-     *
+     * @throws RouterException
      */
     public function run() {
+
+        if (substr($this->package, 0, 1) == '_') {
+            throw new RouterException('(#4) : You can not execute a protected package!');
+        }
+
+        if (substr($this->controller, 0, 1) == '_') {
+            throw new RouterException('(#4) : You can not execute a protected controller!');
+        }
+
+        if (substr($this->action, 0, 1) == '_') {
+            throw new RouterException('(#4) : You can not execute a protected action!');
+        }
 
         if (file_exists($this->controllerpath)) {
             require_once($this->controllerpath);
             if (!class_exists($this->classname)) {
-                throw new RouterException('System Error : Controller or Package not found!');
+                throw new RouterException('(#1) : Controller or Package not found!');
             }
 
             $controller = new $this->classname();
