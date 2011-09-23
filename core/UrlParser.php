@@ -23,29 +23,34 @@ class UrlParser {
      * @example /controller/Movie/
      * @var string
      */
-    private $package = null;
+    private $package;
     /**
      * The Controller file to load
      * @example /controller/Movie/ShowController.php
      * @var string
      */
-    private $controller = null;
+    private $controller;
     /**
      * The Action to call
      * @var string
      */
-    private $action = null;
+    private $action;
     /**
      * @example /movie/show/index/page/
      * @var string
      */
-    private $key = null;
+    private $key;
     /**
      * @example /movie/show/index/page/14
      * @var string
      */
-    private $value = null;
-    private $url = null;
+    private $value;
+    /**
+     * The whole Url
+     * @example /movie/show/index/page/14
+     * @var type string
+     */
+    private $url;
 
     /**
      * Get the Rewrite Params an saves

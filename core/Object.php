@@ -27,7 +27,7 @@
  */
 abstract class Object
 {
-    protected $id = null;
+    protected $id;
 
     /**
      * Get the ID of this object (unique to the

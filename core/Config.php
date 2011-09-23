@@ -35,7 +35,7 @@ class Config {
      * The running instance
      * @var object 
      */
-    protected static $instance = null;
+    protected static $instance;
 
     /**
      * Constructor, only calls once

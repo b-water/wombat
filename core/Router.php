@@ -24,33 +24,33 @@ class Router {
      * The Package
      * @var string
      */
-    private $package = null;
+    private $package;
     /**
      * The Method to Call
      * @var string 
      */
-    private $action = null;
+    private $action;
     /**
      * The Controller to call in 
      * the Directory controller/
      * @var string 
      */
-    private $controller = null;
+    private $controller;
     /**
      * Url Object
      * @var string
      */
-    private $urlParser = null;
+    private $urlParser;
     /**
      * The Path to the Controller Class
      * @var string
      */
-    private $controllerpath = null;
+    private $controllerpath;
     /**
      * The real Class name
      * @var string
      */
-    private $classname = null;
+    private $classname;
 
     /**
      * Loads the URL values from the

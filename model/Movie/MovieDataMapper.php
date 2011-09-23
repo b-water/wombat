@@ -55,13 +55,13 @@ class MovieDataMapper implements DataMapper {
      * object from genre repo
      * @var object 
      */
-    private $db = null;
+    private $db;
 
     /**
      * Genre Repository
      * @var object
      */
-    private $genreRepository = null;
+    private $genreRepository;
 
     /**
      * Path to Cover Images
@@ -91,7 +91,7 @@ class MovieDataMapper implements DataMapper {
      * Url Parser
      * @var object
      */
-    private $urlParser = null;
+    private $urlParser;
 
     /**
      * Items per Page
@@ -109,7 +109,7 @@ class MovieDataMapper implements DataMapper {
      * Zend_Paginator
      * @var object
      */
-    private $paginator = null;
+    private $paginator;
 
     /**
      * MovieDataMapper Constructor

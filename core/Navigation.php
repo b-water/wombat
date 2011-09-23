@@ -38,18 +38,18 @@ class Navigation {
      * Database Object
      * @var object 
      */
-    private $db = null;
+    private $db;
     /**
      * Smarty Object
      * @var object 
      */
-    private $smarty = null;
+    private $smarty;
     /**
      * MySQl Table
      * @var string
      */
     private $table = 'wombat_navigation';
-    private $urlParser = null;
+    private $urlParser;
 
     public function __construct() {
         $this->db = Registry::get('db');

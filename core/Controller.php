@@ -23,18 +23,22 @@ abstract class Controller {
      * Smarty Object
      * @var object 
      */
-    protected $smarty = null;
+    protected $smarty;
     /**
      * Configuration Object
      * @var object 
      */
-    protected $config = null;
+    protected $config;
     /**
      * Url Object
      * @var object
      */
-    protected $urlParser = null;
-    protected $db = null;
+    protected $urlParser;
+    /**
+     * Database Object
+     * @var type object
+     */
+    protected $db;
 
     public function __construct() {
 
