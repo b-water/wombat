@@ -55,4 +55,14 @@ abstract class Object
         }
         $this->id = $id;
     }
+    
+        /**
+     * Converts the Object into an Array
+     * 
+     * @param type $object
+     * @return array 
+     */
+    public function toArray($object) {
+        return get_object_vars($object);
+    }
 }
