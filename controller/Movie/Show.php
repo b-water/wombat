@@ -36,17 +36,9 @@ class MovieShowController extends MovieAbstractController {
         $this->view->paginator = $this->movieRepository->getPaginator()->getPages('sliding');
         $this->view->movies = $movies;
         $this->view->subTitle = 'Filme';
-//
-//        $this->smarty->display($this->template);
-////        $this->smarty->assign('paginator', );
-//        $this->smarty->assign('movies', $movies);
-//        $this->smarty->assign('title', 'Filme');
-//
-//        $content = $this->smarty->fetch($this->template_dir . 'index.tpl');
-//        $content .= $this->smarty->fetch('paginator.tpl');
-//        $this->smarty->assign('content', $content);
-//
-//        $this->smarty->display($this->template);
+        $this->view->content = $this->view->render('movie/index.phtml');
+        $this->view->content .= $this->view->render('paginator.phtml');
+        echo $this->view->render('index.phtml');
     }
 
     public function single() {

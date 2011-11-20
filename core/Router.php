@@ -62,10 +62,10 @@ class Router {
      *
      */
     public function __construct() {
-        $this->urlParser = Registry::get('urlParser');
-        $this->action = $this->urlParser->getAction();
-        $this->package = ucfirst($this->urlParser->getPackage());
-        $this->controller = ucfirst($this->urlParser->getController());
+        $this->url = Registry::get('url');
+        $this->action = $this->url->getAction();
+        $this->package = ucfirst($this->url->getPackage());
+        $this->controller = ucfirst($this->url->getController());
         $this->controllerpath = 'controller/' . $this->package . '/' . $this->controller . '.php';
         $this->classname = $this->package . $this->controller . 'Controller';
     }

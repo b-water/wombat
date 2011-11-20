@@ -33,7 +33,7 @@ abstract class Controller {
      * Url Object
      * @var object
      */
-    protected $urlParser;
+    protected $url;
     /**
      * Database Object
      * @var type object
@@ -44,7 +44,7 @@ abstract class Controller {
 
         $this->view = Registry::get('view');
         $this->config = Config::getInstance();
-        $this->urlParser = Registry::get('urlParser');
+        $this->url = Registry::get('url');
         $this->db = Registry::get('db');
         $this->init();
     }
