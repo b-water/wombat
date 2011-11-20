@@ -22,7 +22,7 @@ require_once('controller/Dashboard/Abstract.php');
 class DashboardShowController extends DashboardAbstractController {
 
     private $template_dir = 'dashboard/';
-    private $template;
+    private $layout;
     
     public function __construct() {
         parent::__construct();
@@ -33,11 +33,12 @@ class DashboardShowController extends DashboardAbstractController {
     }
 
     public function index() {
-        $this->smarty->assign('title', 'Dashboard');
-
-        $content = $this->smarty->fetch($this->template_dir . 'index.tpl');
-        $this->smarty->assign('content', $content);
-        $this->smarty->display($this->template);
+//        $this->smarty->assign('title', 'Dashboard');
+//
+//        $content = $this->smarty->fetch($this->template_dir . 'index.tpl');
+//        $this->smarty->assign('content', $content);
+//        $this->smarty->display($this->template);
+        echo $this->view->render('index.phtml');
     }
 
 

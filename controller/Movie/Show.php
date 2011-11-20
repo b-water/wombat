@@ -32,16 +32,21 @@ class MovieShowController extends MovieAbstractController {
             $this->smarty->assign('Exception');
             $this->smarty->display('exception template');
         }
-
-        $this->smarty->assign('paginator', $this->movieRepository->getPaginator()->getPages('sliding'));
-        $this->smarty->assign('movies', $movies);
-        $this->smarty->assign('title', 'Filme');
-
-        $content = $this->smarty->fetch($this->template_dir . 'index.tpl');
-        $content .= $this->smarty->fetch('paginator.tpl');
-        $this->smarty->assign('content', $content);
-
-        $this->smarty->display($this->template);
+        
+        $this->view->paginator = $this->movieRepository->getPaginator()->getPages('sliding');
+        $this->view->movies = $movies;
+        $this->view->subTitle = 'Filme';
+//
+//        $this->smarty->display($this->template);
+////        $this->smarty->assign('paginator', );
+//        $this->smarty->assign('movies', $movies);
+//        $this->smarty->assign('title', 'Filme');
+//
+//        $content = $this->smarty->fetch($this->template_dir . 'index.tpl');
+//        $content .= $this->smarty->fetch('paginator.tpl');
+//        $this->smarty->assign('content', $content);
+//
+//        $this->smarty->display($this->template);
     }
 
     public function single() {

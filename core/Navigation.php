@@ -10,8 +10,8 @@
  * 444 Castro Street, Suite 900, Mountain View, California, 94041, USA.
  * 
  * @name wombat
- * @author Nico Schmitz - nschmitz1991@gmail.com
- * @copyright  Copyright (c) 2010-2011 Nico Schmitz (nschmitz1991@gmail.com)
+ * @author Nico Schmitz - mail@nicoschmitz.eu
+ * @copyright  Copyright (c) 2010-2011 Nico Schmitz (mail@nicoschmitz.eu
  * @since 01.04.2010
  * @version 0.1
  * @license http://creativecommons.org/licenses/by-nc-nd/3.0/ Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License
@@ -19,6 +19,7 @@
 
 class Navigation {
 
+    const TABLE = 'wombat_navigation';
     /**
      * Fields
      * @var array 
@@ -40,21 +41,20 @@ class Navigation {
      */
     private $db;
     /**
-     * Smarty Object
+     * View Object
      * @var object 
      */
-    private $smarty;
+    private $view;
     /**
      * MySQl Table
      * @var string
      */
-    private $table = 'wombat_navigation';
-    private $urlParser;
+    private $url;
 
     public function __construct() {
         $this->db = Registry::get('db');
-        $this->smarty = Registry::get('smarty');
-        $this->urlParser = Registry::get('urlParser');
+        $this->view = Registry::get('view');
+        $this->url = Registry::get('url');
     }
 
     /**
@@ -65,7 +65,7 @@ class Navigation {
      */
     public function fetch() {
         $select = $this->db->select();
-        $select->from($this->table, $this->fields);
+        $select->from(self::TABLE, $this->fields);
         if (!empty($filter)) {
             $select->where($filter);
         }
@@ -83,17 +83,17 @@ class Navigation {
 
     /**
      * Assign the Menu Items
-     * to Smarty
+     * to the View
      *
      * @param array $data
      */
     public function create(array $data) {
         if (!empty($data)) {
-            $this->smarty->assign('navigation', $data);
+            $this->view->navigation = $data;
             if (isset($this->urlParser)) {
-                $slashpos = strpos($this->urlParser->getUrl(), '/');
-                $activ = substr($this->urlParser->getUrl(), 0, $slashpos);
-                $this->smarty->assign('activ', $activ);
+                $slashpos = strpos($this->url->getUrl(), '/');
+                $active = substr($this->url->getUrl(), 0, $slashpos);
+                $this->view->active = $active;
             }
         } else {
             throw new NavigationException('(#2) : You must assign the Data for the Menu!');

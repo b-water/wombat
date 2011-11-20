@@ -20,10 +20,10 @@
 abstract class Controller {
 
     /**
-     * Smarty Object
+     * View Object
      * @var object 
      */
-    protected $smarty;
+    protected $view;
     /**
      * Configuration Object
      * @var object 
@@ -42,7 +42,7 @@ abstract class Controller {
 
     public function __construct() {
 
-        $this->smarty = Registry::get('smarty');
+        $this->view = Registry::get('view');
         $this->config = Config::getInstance();
         $this->urlParser = Registry::get('urlParser');
         $this->db = Registry::get('db');

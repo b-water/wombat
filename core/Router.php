@@ -40,7 +40,7 @@ class Router {
      * Url Object
      * @var string
      */
-    private $urlParser;
+    private $url;
     /**
      * The Path to the Controller Class
      * @var string

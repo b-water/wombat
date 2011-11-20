@@ -17,4 +17,4 @@
  * @license http://creativecommons.org/licenses/by-nc-nd/3.0/ Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License
  */
 
-class UrlParserException extends Exception {}
+class UrlException extends Exception {}

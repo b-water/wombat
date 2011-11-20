@@ -16,7 +16,7 @@
  * @version 0.1
  * @license http://creativecommons.org/licenses/by-nc-nd/3.0/ Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License
  */
-class UrlParser {
+class Url {
 
     /**
      * The Package Directory

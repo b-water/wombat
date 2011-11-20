@@ -22,25 +22,26 @@ class Bootstrap {
      * Configuration Object
      * @var type object 
      */
-    public static $config = null;
+    public static $config;
 
     /**
      * Url Object
      * @var type object
      */
-    public static $urlParser = null;
+    public static $url;
 
     /**
      * Database Object
      * @var type object
      */
-    public static $db = null;
+    public static $db;
 
     /**
      * Smarty Object
      * @var type object
      */
-    public static $smarty = null;
+    public static $smarty;
+    public static $view;
 
     /**
      * Runs the Application
@@ -56,8 +57,9 @@ class Bootstrap {
         self::setupConfiguration();
         self::setupErrorReporting();
         self::setupDatabase();
-        self::setupSmarty();
-        self::setupUrlParser();
+//        self::setupSmarty();
+        self::setupView();
+        self::setupUrl();
         self::setRegistryObjects();
         self::setupNavigation();
         self::assignSmartyVariables();
@@ -98,13 +100,26 @@ class Bootstrap {
         self::$config = Config::getInstance('config.ini');
     }
 
-    /**
-     * Smarty
-     */
-    public static function setupSmarty() {
-        require_once('library/Smarty/Smarty.class.php');
-        self::$smarty = new Smarty();
+    public static function setupView() {
+        require_once('library/Zend/View.php');
+        self::$view = new Zend_View(array('basePath' => 'view'));
+//        self::$view->url
+        self::$view->title = self::$config->get('page.title');
+        self::$view->author = self::$config->get('page.author');
+        self::$view->copyright = self::$config->get('page.copyright');
+        self::$view->base = self::$config->get('path.base');
+        //        self::$smarty->assign('file', 'bootstrap.php');
+//        self::$smarty->assign('urlParser', self::$urlParser);
+//        self::$smarty->assign('controller', self::$urlParser->getController());
     }
+
+//    /**
+//     * Smarty
+//     */
+//    public static function setupSmarty() {
+//        require_once('library/Smarty/Smarty.class.php');
+//        self::$smarty = new Smarty();
+//    }
 
     /**
      * Database
@@ -134,13 +149,13 @@ class Bootstrap {
     /**
      * Url Parser
      */
-    public static function setupUrlParser() {
-        require_once('core/UrlParser.php');
-        self::$urlParser = new UrlParser();
+    public static function setupUrl() {
+        require_once('core/Url.php');
+        self::$url = new Url();
         try {
-            self::$urlParser->parse();
-        } catch (UrlParserException $urlParserException) {
-            die($urlParserException->getMessage());
+            self::$url->parse();
+        } catch (UrlException $urlException) {
+            die($urlException->getMessage());
         }
     }
 
@@ -160,21 +175,21 @@ class Bootstrap {
     public static function setRegistryObjects() {
         require_once('core/Registry.php');
         Registry::set('db', self::$db);
-        Registry::set('smarty', self::$smarty);
-        Registry::set('urlParser', self::$urlParser);
+        Registry::set('view', self::$view);
+        Registry::set('url', self::$url);
     }
 
     /**
      * Smarty Assigns
      */
     public static function assignSmartyVariables() {
-        self::$smarty->assign('file', 'bootstrap.php');
-        self::$smarty->assign('urlParser', self::$urlParser);
-        self::$smarty->assign('maintitle', self::$config->get('html.title'));
-        self::$smarty->assign('author', self::$config->get('html.author'));
-        self::$smarty->assign('copyright', self::$config->get('html.copyright'));
-        self::$smarty->assign('basepath', self::$config->get('path.base'));
-        self::$smarty->assign('controller', self::$urlParser->getController());
+//        self::$smarty->assign('file', 'bootstrap.php');
+//        self::$smarty->assign('urlParser', self::$urlParser);
+//        self::$smarty->assign('maintitle', self::$config->get('html.title'));
+//        self::$smarty->assign('author', self::$config->get('html.author'));
+//        self::$smarty->assign('copyright', self::$config->get('html.copyright'));
+//        self::$smarty->assign('basepath', self::$config->get('path.base'));
+//        self::$smarty->assign('controller', self::$urlParser->getController());
     }
 
     /**

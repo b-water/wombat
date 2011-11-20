@@ -110,6 +110,7 @@ class MovieDataMapper implements DataMapper {
      * @var object
      */
     private $paginator;
+    private $view;
 
     /**
      * MovieDataMapper Constructor
@@ -120,6 +121,7 @@ class MovieDataMapper implements DataMapper {
         $this->db = $db;
 
         $this->urlParser = Registry::get('urlParser');
+        $this->view = Registry::get('view');
 
         // setup datamapper for genre
         require_once('model/Genre/GenreDataMapper.php');
@@ -357,6 +359,9 @@ class MovieDataMapper implements DataMapper {
         }
 
         $this->paginator = new Zend_Paginator($selectAdapter);
+        Zend_View_Helper_PaginationControl::setDefaultViewPartial(
+                'paginator.phtml'
+        );
         $this->paginator->setItemCountPerPage($this->itemCountPerPage);
         $this->paginator->setCurrentPageNumber($this->urlParser->getValue());
         $this->paginator->setPageRange($this->pageRange);
@@ -364,6 +369,8 @@ class MovieDataMapper implements DataMapper {
         $this->pageCount = $this->paginator->count();
 
         $data = $this->paginator->getCurrentItems();
+        
+        $this->paginator->setView($this->view);
 
         if (empty($data)) {
             throw new MovieException('(#3) : No Movies found!');
