@@ -33,6 +33,7 @@ $(document).ready(function() {
         $('.dropdown-config').toggle('slow',function() {});
         
     });
+    
     core.init.form($('form#edit'));
     core.init.tooltip($('a'));
     core.init.fancybox($('.fancybox'));
@@ -41,8 +42,8 @@ $(document).ready(function() {
     core.genre.autocomplete($('#genre'),'genre/show/autocomplete/',$('div#assocGenres'));
     core.genre.tokenDelete($('span.genre'));
     // table init
-//    core.table.addEven($('table tr:even'));
-//    core.table.addFancyDelete($('a.fancydelete'));
+    //    core.table.addEven($('table tr:even'));
+    //    core.table.addFancyDelete($('a.fancydelete'));
     core.table.sort($('table'));
 });
 
@@ -58,9 +59,9 @@ var core = {
                 showResponse = function() {
                     $('.notice').show();
                     
-//                    setTimeout(function(){
-//                        core.http.redirectToUrl(window.location.pathname);
-//                    }, 2000);
+                //                    setTimeout(function(){
+                //                        core.http.redirectToUrl(window.location.pathname);
+                //                    }, 2000);
                 }
                 var options = {
                     success: showResponse
@@ -121,11 +122,11 @@ var core = {
                         }
                     });
 
-                        ajaxForm: function() {
-                            $('form#edit').ajaxForm(function() {});
-                        }
                 }
             });
+        },
+        ajaxForm: function() {
+            $('form#edit').ajaxForm(function() {});
         }
     },
     http : {

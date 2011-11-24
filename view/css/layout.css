@@ -38,10 +38,6 @@ button {
             site structure
 **************************************/
 
-/*div.container-fluid {
-    margin-top:60px;
-}*/
-
 .margin-fix {
     margin-top:60px;
 }
@@ -57,7 +53,7 @@ table a.edit {
     display:inline-block;
 }
 
-table a.show {
+table a.show-single {
     background:url('../images/icons/page.png') 0 0 no-repeat;
     width:16px;
     height:16px;
