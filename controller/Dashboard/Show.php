@@ -29,6 +29,7 @@ class DashboardShowController extends DashboardAbstractController {
     }
 
     public function init() {
+        var_dump($this);
         $this->template = $this->config->get('template.mainfile');
     }
 

@@ -1,5 +1,3 @@
-ErrorDocument 404 http://localhost/wombat/error/notfound/
-
 DirectoryIndex index.php
 
 RewriteEngine on

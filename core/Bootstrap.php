@@ -37,10 +37,9 @@ class Bootstrap {
     public static $db;
 
     /**
-     * Smarty Object
+     * View Object
      * @var type object
      */
-    public static $smarty;
     public static $view;
 
     /**
@@ -71,7 +70,6 @@ class Bootstrap {
      */
     public static function setupErrorReporting() {
         error_reporting(E_ALL);
-        self::$smarty->error_reporting = E_ALL;
     }
 
     /**

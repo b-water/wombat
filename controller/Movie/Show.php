@@ -35,7 +35,8 @@ class MovieShowController extends MovieAbstractController {
         
         $this->view->paginator = $this->movieRepository->getPaginator()->getPages('sliding');
         $this->view->movies = $movies;
-        $this->view->subTitle = 'Filme';
+        $this->view->pagetitle = 'Filme';
+        $this->view->pagesubtitle = 'Übersicht';
         $this->view->content = $this->view->render('movie/index.phtml');
         $this->view->content .= $this->view->render('paginator.phtml');
         echo $this->view->render('index.phtml');

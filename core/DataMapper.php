@@ -16,15 +16,7 @@
  * @version 0.1
  * @license http://creativecommons.org/licenses/by-nc-nd/3.0/ Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License
  */
-/**
- * Description of DataMapper
- *
- * @author  Nico Schmitz - nschmitz1991@gmail.com
- * @file    DataMapper.php
- * @since   09.06.2011 - 18:53:06
- */
 interface DataMapper {
-
 
     /**
      * Create new Object in Database

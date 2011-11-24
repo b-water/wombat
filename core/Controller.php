@@ -16,40 +16,13 @@
  * @version 0.1
  * @license http://creativecommons.org/licenses/by-nc-nd/3.0/ Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License
  */
-
-abstract class Controller {
-
-    /**
-     * View Object
-     * @var object 
-     */
-    protected $view;
-    /**
-     * Configuration Object
-     * @var object 
-     */
-    protected $config;
-    /**
-     * Url Object
-     * @var object
-     */
-    protected $url;
-    /**
-     * Database Object
-     * @var type object
-     */
-    protected $db;
+require_once('Base.php');
+abstract class Controller extends Base {
 
     public function __construct() {
-
-        $this->view = Registry::get('view');
-        $this->config = Config::getInstance();
-        $this->url = Registry::get('url');
-        $this->db = Registry::get('db');
+        parent::__construct();
         $this->init();
     }
 
-    // Custom constructor
     abstract function init();
-
 }

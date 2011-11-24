@@ -25,7 +25,6 @@
  * @since   13.05.2011 - 23:35:14
  */
 require_once('core/Controller.php');
-
 class DashboardAbstractController extends Controller {
 
     private $template_dir = 'dashboard/';

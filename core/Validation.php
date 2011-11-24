@@ -19,6 +19,10 @@
 
 class Validation {
 
+    /**
+     * Error Cache
+     * @var type array
+     */
     private $error = array();
 
     public function isValid(array $params) {
@@ -34,10 +38,19 @@ class Validation {
         return true;
     }
     
-    public function getErrorArray() {
+    /**
+     * Returns Error Cache
+     * @return type array
+     */
+    public function getErrorCache() {
         return $this->error;
     }
 
+    /**
+     * Date Validation
+     * @param type $value
+     * @param type $field 
+     */
     public function isDate($value, $field) {
         $date = explode('.', $value);
         if (!checkdate($date[1], $date[0], $date[2])) {
@@ -45,37 +58,67 @@ class Validation {
         }
     }
 
+    /**
+     *  Time Validation
+     * @param type $value
+     * @param type $field 
+     */
     public function isTime($value, $field) {
         if (empty($value)) {
             $this->error[$field] = 'Bitte geben Sie ein gültige Uhrzeit an.';
         }
     }
 
+    /**
+     * E-Mail Address Validation
+     * @param type $value
+     * @param type $field 
+     */
     public function isMail($value, $field) {
         if (filter_var($value, FILTER_VALIDATE_EMAIL)) {
             $this->error[$field] = 'Bitte geben Sie eine gültige E-Mail Adresse an.';
         }
     }
 
+    /**
+     * Integer Validation
+     * @param type $value
+     * @param type $field 
+     */
     public function isInt($value, $field) {
         if (empty($value) || !ctype_digit($value)) {
             $this->error[$field] = 'Bitte geben Sie einen gültigen Wert an.';
         }
     }
 
+    /**
+     * String Validation
+     * @param type $value
+     * @param type $field 
+     */
     public function isString($value, $field) {
         if (!isset($value) || empty($value)) {
             $this->error[$field] = 'Bitte geben Sie einen gültigen Wert an.';
         }
     }
 
+    /**
+     * Currency Validation
+     * @param type $value
+     * @param type $field 
+     */
     public function isCurrency($value, $field) {
         if (strpos($value, ',') || empty($value)) {
             $this->error[$field] = 'Bitte geben Sie eine gültige Währung an.';
         }
     }
 
-    public function isZip($value, $field) {
+    /**
+     * Zipcode Validation
+     * @param type $value
+     * @param type $field 
+     */
+    public function isZipcode($value, $field) {
         if (strlen($value) > 5 || !ctype_digit($value)) {
             $this->error[$field] = 'Bitte geben Sie eine gültige Postleitzahl an.';
         }

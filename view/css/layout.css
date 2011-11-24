@@ -38,8 +38,12 @@ button {
             site structure
 **************************************/
 
-section.content {
-    margin-top:60px !important;
+/*div.container-fluid {
+    margin-top:60px;
+}*/
+
+.margin-fix {
+    margin-top:60px;
 }
 
 /**************************************

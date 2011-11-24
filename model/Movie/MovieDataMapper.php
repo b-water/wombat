@@ -19,43 +19,37 @@
 require_once('core/DataMapper.php');
 require_once('MovieException.php');
 
-class MovieDataMapper implements DataMapper {
+class MovieDataMapper extends Base implements DataMapper {
 
     /**
      * mysql table
      * @var String 
      */
-    private $table = 'wombat_movie';
+    const TABLE = 'wombat_movie';
 
     /**
      * mysql table
      * @var String 
      */
-    private $tableGenre = 'wombat_genre';
+    const TABLE_GENRE = 'wombat_genre';
 
     /**
      * mysql table
      * @var String 
      */
-    private $tableGenreAssoc = 'wombat_genre_assoc';
+    const TABLE_GENRE_ASSOC = 'wombat_genre_assoc';
 
     /**
      * mysql table
      * @var String 
      */
-    private $tableFormat = 'wombat_format';
+    const TABLE_FORMAT = 'wombat_format';
 
     /**
      * mysql table
      * @var String 
      */
-    private $tableRating = 'wombat_rating';
-
-    /**
-     * object from genre repo
-     * @var object 
-     */
-    private $db;
+    const TABLE_RATING = 'wombat_rating';
 
     /**
      * Genre Repository
@@ -88,12 +82,6 @@ class MovieDataMapper implements DataMapper {
     private $imageCrop = 272;
 
     /**
-     * Url Parser
-     * @var object
-     */
-    private $url;
-
-    /**
      * Items per Page
      * @var int
      */
@@ -115,12 +103,9 @@ class MovieDataMapper implements DataMapper {
      * MovieDataMapper Constructor
      * @param Zend_Db_Adapter_Pdo_Mysql $db
      */
-    public function __construct(Zend_Db_Adapter_Pdo_Mysql $db) {
+    public function __construct() {
 
-        $this->db = $db;
-
-        $this->url = Registry::get('url');
-        $this->view = Registry::get('view');
+        parent::__construct();
 
         // setup datamapper for genre
         require_once('model/Genre/GenreDataMapper.php');
@@ -131,7 +116,6 @@ class MovieDataMapper implements DataMapper {
     }
 
     public function append($object) {
-        $this->db->select();
     }
 
     /**
@@ -277,17 +261,17 @@ class MovieDataMapper implements DataMapper {
         $select = $this->db->select();
 
         if (!empty($fields)) {
-            $select->from($this->table, $fields);
+            $select->from(self::TABLE, $fields);
         } else {
-            $select->from($this->table, '*');
+            $select->from(self::TABLE, '*');
         }
 
         if (!empty($filter)) {
             $select->where($filter);
         }
 
-        $select->joinLeft($this->tableRating, $this->tableRating . '.id = ' . $this->table . '.rating', $this->tableRating . '.name as rating');
-        $select->joinLeft($this->tableFormat, $this->tableFormat . '.id = ' . $this->table . '.format', $this->tableFormat . '.name as format');
+        $select->joinLeft(self::TABLE_RATING, self::TABLE_RATING . '.id = ' . self::TABLE . '.rating', self::TABLE_RATING . '.name as rating');
+        $select->joinLeft(self::TABLE_FORMAT, self::TABLE_FORMAT . '.id = ' . self::TABLE . '.format', self::TABLE_FORMAT . '.name as format');
 
         if (!empty($orderby)) {
             $select->order($orderby);
@@ -327,18 +311,18 @@ class MovieDataMapper implements DataMapper {
         $select = $this->db->select();
 
         if (!empty($fields)) {
-            $select->from($this->table, $fields);
+            $select->from(self::TABLE, $fields);
         } else {
-            $select->from($this->table, '*');
+            $select->from(self::TABLE, '*');
         }
 
         if (!empty($filter)) {
             $select->where($filter);
         }
 
-        $select->joinLeft($this->tableRating, $this->tableRating . '.id = ' . $this->table . '.rating', $this->tableRating . '.name as rating');
-        $select->joinLeft($this->tableFormat, $this->tableFormat . '.id = ' . $this->table . '.format', $this->tableFormat . '.name as format');
-
+      $select->joinLeft(self::TABLE_RATING, self::TABLE_RATING . '.id = ' . self::TABLE . '.rating', self::TABLE_RATING . '.name as rating');
+        $select->joinLeft(self::TABLE_FORMAT, self::TABLE_FORMAT . '.id = ' . self::TABLE . '.format', self::TABLE_FORMAT . '.name as format');
+        
         if (!empty($orderby)) {
             $select->order($orderby);
         }
