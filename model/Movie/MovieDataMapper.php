@@ -20,7 +20,6 @@ require_once('core/DataMapper.php');
 require_once('MovieException.php');
 
 class MovieDataMapper extends Base implements DataMapper {
-
     /**
      * mysql table
      * @var String 
@@ -52,16 +51,16 @@ class MovieDataMapper extends Base implements DataMapper {
     const TABLE_RATING = 'wombat_rating';
 
     /**
+     * Path to Cover Images
+     * @var string
+     */
+    const PATH = 'files/movie/';
+
+    /**
      * Genre Repository
      * @var object
      */
     private $genreRepository;
-
-    /**
-     * Path to Cover Images
-     * @var string
-     */
-    private $path = 'files/movie/';
 
     /**
      * Width of the Cropped/Resized Image
@@ -85,13 +84,13 @@ class MovieDataMapper extends Base implements DataMapper {
      * Items per Page
      * @var int
      */
-    private $itemCountPerPage = 15;
+    private $itemCountPerPage = 100000000000000000000;
 
     /**
      * Page Range
      * @var int
      */
-    private $pageRange = 5;
+    private $pageRange = 1;
 
     /**
      * Zend_Paginator
@@ -116,6 +115,7 @@ class MovieDataMapper extends Base implements DataMapper {
     }
 
     public function append($object) {
+        
     }
 
     /**
@@ -320,9 +320,9 @@ class MovieDataMapper extends Base implements DataMapper {
             $select->where($filter);
         }
 
-      $select->joinLeft(self::TABLE_RATING, self::TABLE_RATING . '.id = ' . self::TABLE . '.rating', self::TABLE_RATING . '.name as rating');
+        $select->joinLeft(self::TABLE_RATING, self::TABLE_RATING . '.id = ' . self::TABLE . '.rating', self::TABLE_RATING . '.name as rating');
         $select->joinLeft(self::TABLE_FORMAT, self::TABLE_FORMAT . '.id = ' . self::TABLE . '.format', self::TABLE_FORMAT . '.name as format');
-        
+
         if (!empty($orderby)) {
             $select->order($orderby);
         }
@@ -349,7 +349,7 @@ class MovieDataMapper extends Base implements DataMapper {
         $this->pageCount = $this->paginator->count();
 
         $data = $this->paginator->getCurrentItems();
-        
+
         if (empty($data)) {
             throw new MovieException('(#3) : No Movies found!');
         } else {

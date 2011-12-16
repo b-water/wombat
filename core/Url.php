@@ -19,12 +19,6 @@
 class Url {
 
     /**
-     * The Package Directory
-     * @example /controller/Movie/
-     * @var string
-     */
-    private $package;
-    /**
      * The Controller file to load
      * @example /controller/Movie/ShowController.php
      * @var string
@@ -60,20 +54,11 @@ class Url {
         if (isset($_GET['p']) && !empty($_GET['p'])) {
             $url = explode('/', $_GET['p']);
         }
-        $this->package = isset($url[0]) && !empty($url[0]) ? $url[0] : "dashboard";
-        $this->controller = isset($url[1]) && !empty($url[1]) ? $url[1] : "show";
-        $this->action = isset($url[2]) && !empty($url[2]) ? $url[2] : "index";
-        $this->key = isset($url[3]) && !empty($url[3]) ? $url[3] : '';
-        $this->value = isset($url[4]) && !empty($url[4]) ? $url[4] : '';
-        $this->url = $this->package.'/'.$this->controller.'/'.$this->action.'/';
-    }
-
-    /**
-     *  Returns the package
-     * @return string
-     */
-    public function getPackage() {
-        return $this->package;
+        $this->controller = isset($url[0]) && !empty($url[0]) ? $url[0] : "dashboard";
+        $this->action = isset($url[1]) && !empty($url[1]) ? $url[1] : "index";
+        $this->key = isset($url[2]) && !empty($url[2]) ? $url[2] : '';
+        $this->value = isset($url[3]) && !empty($url[3]) ? $url[3] : '';
+        $this->url = $this->controller.'/'.$this->action.'/';
     }
 
     /**

@@ -21,31 +21,30 @@ require_once('RouterException.php');
 class Router {
 
     /**
-     * The Package
-     * @var string
-     */
-    private $package;
-    /**
      * The Method to Call
      * @var string 
      */
     private $action;
+
     /**
      * The Controller to call in 
      * the Directory controller/
      * @var string 
      */
     private $controller;
+
     /**
      * Url Object
      * @var string
      */
     private $url;
+
     /**
      * The Path to the Controller Class
      * @var string
      */
     private $controllerpath;
+
     /**
      * The real Class name
      * @var string
@@ -64,10 +63,9 @@ class Router {
     public function __construct() {
         $this->url = Registry::get('url');
         $this->action = $this->url->getAction();
-        $this->package = ucfirst($this->url->getPackage());
         $this->controller = ucfirst($this->url->getController());
-        $this->controllerpath = 'controller/' . $this->package . '/' . $this->controller . '.php';
-        $this->classname = $this->package . $this->controller . 'Controller';
+        $this->controllerpath = 'controller/' . $this->controller . '.php';
+        $this->classname =$this->controller . 'Controller';
     }
 
     /**
@@ -76,19 +74,6 @@ class Router {
      * @throws RouterException
      */
     public function run() {
-
-        if (substr($this->package, 0, 1) == '_') {
-            throw new RouterException('(#4) : You can not execute a protected package!');
-        }
-
-        if (substr($this->controller, 0, 1) == '_') {
-            throw new RouterException('(#4) : You can not execute a protected controller!');
-        }
-
-        if (substr($this->action, 0, 1) == '_') {
-            throw new RouterException('(#4) : You can not execute a protected action!');
-        }
-
         if (file_exists($this->controllerpath)) {
             require_once($this->controllerpath);
             if (!class_exists($this->classname)) {

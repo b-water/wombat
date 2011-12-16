@@ -181,6 +181,7 @@ class Bootstrap {
      * Close Database Connection
      */
     public static function closeDatabaseConnection() {
+        echo memory_get_usage()/1024;
         self::$db->closeConnection();
     }
 
