@@ -84,7 +84,7 @@ class MovieDataMapper extends Base implements DataMapper {
      * Items per Page
      * @var int
      */
-    private $itemCountPerPage = 100000000000000000000;
+    private $itemCountPerPage = 12;
 
     /**
      * Page Range
