@@ -24,5 +24,5 @@ abstract class Controller extends Base {
         $this->init();
     }
 
-    abstract function init();
+    abstract protected function init();
 }
