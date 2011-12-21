@@ -1,3 +1,4 @@
+AddOutputFilterByType DEFLATE text/html text/plain text/xml 
 DirectoryIndex index.php
 
 RewriteEngine on
