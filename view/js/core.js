@@ -30,7 +30,7 @@ $(document).ready(function() {
     
     core.init.form($('form#edit'));
     core.init.tooltip($('a'));
-//    core.init.fancybox($('.fancybox'));
+    //    core.init.fancybox($('.fancybox'));
         
     //genre init
     core.genre.autocomplete($('#genre'),'genre/autocomplete/',$('div#assocGenres'));
@@ -40,6 +40,12 @@ $(document).ready(function() {
     core.table.addFancyDelete($('a.fancydelete'));
     core.table.sort($('table'));
     
+    $('#file').customFileInput({
+        button_position : 'right',
+        feedback_text : 'Keine Datei ausgewählt!',
+        button_text : 'Durchsuchen',
+        button_change_text : 'Durchsuchen'
+    });
     
     //jquery plugins
     //    $('table#movies').tablesorter();
@@ -95,9 +101,9 @@ var core = {
                 showResponse = function() {
                     $('.notice').show();
                             
-                    setTimeout(function(){
-                        core.http.redirectToUrl(window.location.pathname);
-                    }, 2000);
+//                    setTimeout(function(){
+//                        core.http.redirectToUrl(window.location.pathname);
+//                    }, 2000);
                 }
                 var options = {
                     success: showResponse
@@ -222,7 +228,7 @@ var core = {
                     source: src,
                     minLength: 1,
                     select: function(event, ui) {
-                        appObj.append('<span class="genre"><input type="hidden" name="genre[]" value="'+ui.item.value+'" /><span class="text">'+ui.item.label+'</span><span class="delete">L&ouml;schen</span></span>');
+                        appObj.prepend('<span class="genre label success"><input type="hidden" name="genre[]" value="'+ui.item.value+'" /><span class="text">'+ui.item.label+'</span><span class="delete">L&ouml;schen</span></span>');
                     },
                     close : function() {
                         obj.val('');

@@ -133,6 +133,8 @@ class MovieDataMapper extends Base implements DataMapper {
             die($exception);
         }
 
+//        var_dump($movie);die;
+        
         foreach ($movie->getGenre() as $key => $val) {
 
             $params = array(
@@ -205,11 +207,11 @@ class MovieDataMapper extends Base implements DataMapper {
             $data['image'] = $filename;
         }
 
-
-        $affectedRows = $this->db->update($this->table, $data, ' id ="' . $movie->getId() . '"');
-        $profiler = $this->db->getProfiler();
-        $query = $profiler->getLastQueryProfile();
-        echo $query->getQuery();
+        var_dump($data);
+        $affectedRows = $this->db->update(self::TABLE, $data, ' id ="' . $movie->getId() . '"');
+//        $profiler = $this->db->getProfiler();
+//        $query = $profiler->getLastQueryProfile();
+//        echo $query->getQuery();
 
         if ($affectedRows != 1) {
             throw new MovieException('(#1) : The dataset coud not habe been updated!');
