@@ -14,17 +14,5 @@
  * @copyright  Copyright (c) 2010-2012 Nico Schmitz
  * @license http://creativecommons.org/licenses/by-nc-nd/3.0/ Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License
  */
-abstract class Base {
-    
-    protected $view;
-    protected $config;
-    protected $url;
-    protected $db;
-    
-    public function __construct() {
-        $this->view = Registry::get('view');
-        $this->config = Config::getInstance();
-        $this->url = Registry::get('url');
-        $this->db = Registry::get('db');
-    }
-}
+class AuthenticationException extends Exception {}
+

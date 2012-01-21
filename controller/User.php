@@ -10,21 +10,12 @@
  * 444 Castro Street, Suite 900, Mountain View, California, 94041, USA.
  * 
  * @name wombat
- * @author Nico Schmitz - nschmitz1991@gmail.com
- * @copyright  Copyright (c) 2010-2011 Nico Schmitz (nschmitz1991@gmail.com)
- * @since 01.04.2010
- * @version 0.1
+ * @author Nico Schmitz - mail@nicoschmitz.eu
+ * @copyright  Copyright (c) 2010-2012 Nico Schmitz
  * @license http://creativecommons.org/licenses/by-nc-nd/3.0/ Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License
  */
-
-/**
- * Description of UserController
- *
- * @author  Nico Schmitz - nschmitz1991@gmail.com
- * @file    UserController.php
- * @since   13.05.2011 - 23:35:14
- */
-class UserController extends BaseController {
+require_once('core/Controller.php');
+class UserController extends Controller {
 
      private $template_dir = 'user/';
 

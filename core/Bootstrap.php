@@ -11,9 +11,7 @@
  * 
  * @name wombat
  * @author Nico Schmitz - mail@nicoschmitz.eu
- * @copyright  Copyright (c) 2010-2011 Nico Schmitz
- * @since   03.06.2011 - 23:58:40
- * @version 0.1
+ * @copyright  Copyright (c) 2010-2012 Nico Schmitz
  * @license http://creativecommons.org/licenses/by-nc-nd/3.0/ Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License
  */
 class Bootstrap {

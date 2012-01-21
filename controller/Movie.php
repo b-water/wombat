@@ -137,7 +137,6 @@ class MovieController extends Controller {
 
     public function single() {
 
-        $this->view->title = 'Film Detailansicht';
         $filter = self::TABLE . '.id = "' . $this->url->getValue() . '"';
 
         try {
@@ -173,11 +172,11 @@ class MovieController extends Controller {
         } catch (RatingException $ratingException) {
             die($ratingException);
         }
-        
+
         $this->view->movie = $movie[0];
         $this->view->format = $format;
         $this->view->rating = $rating;
-        $this->view->content = $this->view->render(self::VIEW_DIR.'edit.phtml');
+        $this->view->content = $this->view->render(self::VIEW_DIR . 'edit.phtml');
         echo $this->view->render('index.phtml');
     }
 
@@ -200,36 +199,38 @@ class MovieController extends Controller {
 //        $this->confirm();
 //    }
 //
-//    public function confirm() {
-//        $this->smarty->assign('title', 'Film Löschen');
-//        $filter = $this->table . '.id = "' . $this->urlParser->getValue() . '"';
-//
-//        try {
-//            $movie = $this->movieRepository->fetch(array('*'), $filter);
-//        } catch (MovieException $movieException) {
-//            die($movieException);
-//        }
-//
-//        $this->smarty->assign('movie', $movie[0]);
-//        $content = $this->smarty->fetch($this->template_dir . 'confirm.tpl');
-//        $this->smarty->assign('content', $content);
-//        $this->smarty->display($this->template);
-//    }
-//
-//    public function single() {
-//
-//        $id = $this->urlParser->getValue();
-//
+    public function confirm() {
+        $this->smarty->assign('title', 'Film Löschen');
+        $filter = $this->table . '.id = "' . $this->urlParser->getValue() . '"';
+
+        try {
+            $movie = $this->movieRepository->fetch(array('*'), $filter);
+        } catch (MovieException $movieException) {
+            die($movieException);
+        }
+
+        $this->smarty->assign('movie', $movie[0]);
+        $content = $this->smarty->fetch($this->template_dir . 'confirm.tpl');
+        $this->smarty->assign('content', $content);
+        $this->smarty->display($this->template);
+    }
+
+    public function delete() {
+        
+        $id = $this->url->getValue();
+
 //        try {
 //            $success = $this->movieRepository->delete($id);
 //        } catch (MovieException $movieException) {
 //            echo $movieException->getTraceAsString();
 //        }
-//
-//        $text = 'Der Film wurde erfolgreich aus der Datenbank gel&ouml;scht!';
-//        $this->smarty->assign('text', $text);
-//        $this->smarty->display('delete.tpl');
-//    }
+
+        $text = 'Der Film wurde erfolgreich aus der Datenbank gel&ouml;scht!';
+
+        $this->view->content = $this->view->render(self::VIEW_DIR . 'delete.phtml');
+        echo $this->view->render('index.phtml');
+    }
+
     // update
 //        public function index() {
 //        $this->single();
