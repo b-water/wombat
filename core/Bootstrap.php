@@ -118,7 +118,7 @@ class Bootstrap {
         require_once('library/Zend/Loader.php');
 
         try {
-            self::$db = Zend_Db::factory('Pdo_Mysql', array(
+            self::$db = Zend_Db::factory(self::$config->get('database.adapter'), array(
                         'host' => self::$config->get('database.host'),
                         'username' => self::$config->get('database.user'),
                         'password' => self::$config->get('database.password'),
@@ -173,7 +173,9 @@ class Bootstrap {
         try {
             $router->run();
         } catch (RouterException $routerException) {
-            die($routerException->getMessage());
+            print_r($routerException->getMessage());
+            print_r($routerException->getTraceAsString());
+//            ExceptionHandler::display($routerException);
         }
     }
 
@@ -181,7 +183,6 @@ class Bootstrap {
      * Close Database Connection
      */
     public static function closeDatabaseConnection() {
-//        echo memory_get_usage()/1024;
         self::$db->closeConnection();
     }
 

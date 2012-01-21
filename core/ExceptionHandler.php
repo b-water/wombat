@@ -16,15 +16,11 @@
  * @version 0.1
  * @license http://creativecommons.org/licenses/by-nc-nd/3.0/ Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License
  */
-require_once('Base.php');
-abstract class Controller extends Base {
+class ExceptionHandler extends Base {
     
-    const VIEW_MAIN = 'index.phtml';
+    const VIEW = 'error.phtml';
 
-    public function __construct() {
-        parent::__construct();
-        $this->init();
-    }
-
-    abstract protected function init();
+    public static function display($exception) {
+//        $this-
+    } 
 }

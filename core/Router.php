@@ -77,17 +77,17 @@ class Router {
         if (file_exists($this->controllerpath)) {
             require_once($this->controllerpath);
             if (!class_exists($this->classname)) {
-                throw new RouterException('(#1) : Controller or Package not found!');
+                throw new RouterException('Controller Class "'.$this->classname.'" not found!');
             }
 
             $controller = new $this->classname();
             if (in_array($this->action, get_class_methods($controller))) {
                 $controller->{$this->action}();
             } else {
-                throw new RouterException('(#2) : Action not found!');
+                throw new RouterException('Action "'.$this->action.'" not found!');
             }
         } else {
-            throw new RouterException('(#3) : Controller not found!');
+            throw new RouterException('Controller File "'.$this->controllerpath.'" not found!');
         }
     }
 

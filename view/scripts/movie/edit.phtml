@@ -1,37 +1,37 @@
 <div class="page-header">
     <h1>Film <small>Bearbeiten</small></h1>
 </div>
-<form id="edit" method="POST" action="movie/edit/update/id/{$movie->getId()}/" enctype="multipart/form-data" >
-    <input id="id" name="id" value="{$movie->getId()}" type="hidden" />
+<form id="edit" method="POST" action="movie/edit/update/id/<?php echo $this->movie->getId(); ?>/" enctype="multipart/form-data" >
+    <input id="id" name="id" value="<?php echo $this->movie->getId(); ?>" type="hidden" />
     <div class="alert-message success none">Die Änderungen wurden erfolgreich in die Datenbank übertragen! Bitte warten Sie nun einen kurzen Augenblick, die Seite wird nun neu geladen!</div>
     <div class="clearfix">
         <div class="input">
-            <img src="{$movie->getImage()}" alt="Aktuelles Bild" />
+            <img src="<?php echo $this->movie->getImage(); ?>" alt="Aktuelles Bild" />
         </div>
     </div>
     <div class="clearfix">
         <label for="title">Titel</label>
         <div class="input">
-            <input type="text" class="xxlarge" name="title" value="{$movie->getTitle()}" />
+            <input type="text" class="xxlarge" name="title" value="<?php echo $this->movie->getTitle(); ?>" />
         </div>
     </div>
     <div class="clearfix">
         <label for="image">Bild</label>
         <div class="input">
-            <input type="file" class="xxlarge" name="image" value="{$movie->getImage()}" />
+            <input type="file" class="xxlarge" name="image" value="" />
         </div>
     </div>
     <div class="clearfix">
         <label for="format">Format</label>
         <div class="input">
             <select name="format" id="format" class="format xxlarge">
-                {foreach item=item from=$format}
-                    {if $item->getName() == $movie->getFormat()}
-                        <option value="{$item->getId()}" selected="selected">{$item->getName()}</option>
-                    {else}
-                        <option value="{$item->getId()}">{$item->getName()}</option>
-                    {/if}
-                {/foreach}
+                <?php foreach ($this->format as $format): ?>
+                    <?php if ($format->getName() == $this->movie->getFormat()): ?>
+                        <option value="<?php echo $format->getId(); ?>" selected="selected"><?php echo $format->getName(); ?></option>
+                    <?php else: ?>
+                        <option value="<?php echo $format->getId(); ?>"><?php echo $format->getName(); ?></option>
+                    <?php endif; ?>
+                <?php endforeach; ?>
             </select>
         </div>
     </div>
@@ -39,39 +39,39 @@
         <label for="rating">Bewertung</label>
         <div class="input">
             <select name="rating" id="rating" class="xxlarge">
-                {foreach item=item from=$rating}
-                    {if $item->getName() == $movie->getRating()}
-                        <option value="{$item->getId()}" selected="selected">{$item->getName()}</option>
-                    {else}
-                        <option value="{$item->getId()}">{$item->getName()}</option>
-                    {/if}
-                {/foreach}
+                <?php foreach ($this->rating as $rating): ?>
+                    <?php if ($rating->getName() == $this->movie->getRating()): ?>
+                        <option value="<?php echo $rating->getId(); ?>" selected="selected"><?php echo $rating->getName(); ?></option>
+                    <?php else: ?>
+                        <option value="<?php echo $rating->getId(); ?>"><?php echo $rating->getName(); ?></option>
+                    <?php endif; ?>
+                <?php endforeach; ?>
             </select>
         </div>
     </div>
     <div class="clearfix">
         <label for="duration">Länge</label>
         <div class="input">
-            <input type="text" name="duration" id="duration" class="xxlarge" value="{$movie->getDuration()}" />
+            <input type="text" name="duration" id="duration" class="xxlarge" value="<?php echo $this->movie->getDuration(); ?>" />
             <span class="help-inline">in Minuten</span>
         </div>
     </div>
     <div class="clearfix">
         <label for="year">Jahr</label>
         <div class="input">
-            <input type="text" name="year" id="year" class="xxlarge" value="{$movie->getYear()}" />
+            <input type="text" name="year" id="year" class="xxlarge" value="<?php echo $this->movie->getYear(); ?>" />
         </div>
     </div>
     <div class="clearfix">
         <label for="trailer">Trailer</label>
         <div class="input">
-            <input type="text" name="trailer" id="trailer" class="xxlarge" value="{$movie->getTrailer()}" />
+            <input type="text" name="trailer" id="trailer" class="xxlarge" value="<?php echo $this->movie->getTrailer(); ?>" />
         </div>
     </div>
     <div class="clearfix">
         <label for="description">Beschreibung</label>
         <div class="input">
-            <textarea id="description" class="xxlarge" name="description">{$movie->getDescription()}</textarea>
+            <textarea id="description" class="xxlarge" name="description"><?php echo $this->movie->getDescription(); ?></textarea>
         </div>
     </div>
     <div class="clearfix">
@@ -82,11 +82,11 @@
         </div>
     </div>
     <div class="clearfix">
-        {foreach item=item from=$movie->getGenre()}
+        <?php foreach ($this->movie->getGenre() as $genre): ?>
             <div class="input">
-                <input type="text" disabled="disabled" class="xxlarge" value="{$item->getName()}" />
+                <input type="text" disabled="disabled" class="xxlarge" value="<?php echo $genre->getName(); ?>" />
             </div>
-        {/foreach}
+        <?php endforeach; ?>
     </div>
     <div class="clearfix">
         <label for="artist">Schauspieler</label>
@@ -97,7 +97,7 @@
         <div id="assocArtist">
         </div>
     </div>
-    <div class="clearfix">
+    <div class="actions clearfix">
         <button class="btn primary" type="submit">Speichern</button>
         <button class="btn" type="reset">Zurücksetzen</button>
         <a href="movie/" class="btn">Abbrechen</a>

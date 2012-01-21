@@ -50,27 +50,7 @@ abstract class GenreAbstractController extends Controller {
         parent::__construct();
     }
 
-    /**
-     * Custom constructor
-     */
-    public function init() {
 
-        $this->template = $this->config->get('template.mainfile');
-
-        require_once('model/Genre/GenreDataMapper.php');
-        try {
-            $genreDataMapper = new GenreDataMapper($this->db);
-        } catch (MovieException $movieException) {
-            die($movieException);
-        }
-
-        require_once('model/Genre/GenreRepository.php');
-        try {
-            $this->genreRepository = new GenreRepository($genreDataMapper);
-        } catch (MovieException $movieException) {
-            die($movieException);
-        }
-    }
 
     abstract function index();
 }

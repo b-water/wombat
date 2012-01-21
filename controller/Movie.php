@@ -178,7 +178,7 @@ class MovieController extends Controller {
         $this->view->format = $format;
         $this->view->rating = $rating;
         $this->view->content = $this->view->render(self::VIEW_DIR.'edit.phtml');
-        echo $this->view-render('index.phtml');
+        echo $this->view->render('index.phtml');
     }
 
     public function update() {
