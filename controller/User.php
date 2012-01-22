@@ -15,36 +15,45 @@
  * @license http://creativecommons.org/licenses/by-nc-nd/3.0/ Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License
  */
 require_once('core/Controller.php');
+
 class UserController extends Controller {
+    
+    const VIEW_DIR = 'user/';
+    private $dataMapper;
+    private $repository;
 
-     private $template_dir = 'user/';
-
-    //put your code here
-
-    public function __construct($registry) {
-        parent::__construct($registry);
+    public function __construct() {
+        parent::__construct();
     }
 
     public function init() {
-
+//        require_once('model/User/UserDataMapper.php');
+//
+//        try {
+//            $this->dataMapper = new UserDataMapper();
+//        } catch (UserException $userException) {
+//            echo $userException->getTraceAsString();
+//        }
+//
+//        require_once('model/User/UserRepository.php');
+//
+//        try {
+//            $this->repository = new UserRepository($this->dataMapper);
+//        } catch (UserException $userException) {
+//            echo $userException->getTraceAsString();
+//        }
     }
 
-    public function signin() {
-        $this->smarty->assign('title', 'Anmelden');
-
-        $content = $this->smarty->fetch($this->template_dir . 'signin_form.tpl');
-
-        $this->smarty->assign('content',$content);
-        $this->smarty->display($this->template_dir . 'signin.tpl');
+    public function login() {
         
     }
 
-    public function index() {
-
+    public function logout() {
+        
     }
 
-    public function set() {
-
+    public function register() {
+        
     }
 
 }
