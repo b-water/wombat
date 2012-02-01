@@ -20,6 +20,7 @@ abstract class Base {
     protected $config;
     protected $url;
     protected $db;
+    protected $auth;
     
     public function __construct() {
         $this->view = Registry::get('view');

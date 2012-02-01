@@ -16,35 +16,17 @@
  */
 require_once('Base.php');
 
-class Authentication extends Base {
+class Auth {
 
-    private $dataMapper;
-    private $repository;
+    private static $restricted_controller = array('dashboard', 'movie', 'user');
+    private static $restricted_action = array('show', 'delete', 'edit', 'update', 'add', 'index');
 
     public function __construct() {
-        parent::__construct();
-
-//        require_once('model/User/UserDataMapper.php');
-//
-//        try {
-//            $this->dataMapper = new UserDataMapper();
-//        } catch (UserException $userException) {
-//            echo $userException->getTraceAsString();
-//        }
-//
-//        require_once('model/User/UserRepository.php');
-//
-//        try {
-//            $this->repository = new UserRepository($this->dataMapper);
-//        } catch (UserException $userException) {
-//            echo $userException->getTraceAsString();
-//        }
-    }
-
-    public function run() {
+        
     }
 
     private function getUserData($fbid) {
+        
     }
 
     private function login() {
@@ -72,6 +54,14 @@ class Authentication extends Base {
             return false;
         }
         return true;
+    }
+
+    public function requiresAccess($controller, $action) {
+        if (in_array($controller, self::$restricted_controller) && in_array($action, self::$restricted_action)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public function isLoggedIn() {

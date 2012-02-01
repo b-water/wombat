@@ -132,7 +132,7 @@ class MovieController extends Controller {
         $this->view->pagetitle = 'Filme';
         $this->view->pagesubtitle = 'Übersicht';
         $this->view->content = $this->view->render('movie/index.phtml');
-        echo $this->view->render('index.phtml');
+        echo $this->view->render('frame.phtml');
     }
 
     public function single() {
@@ -147,7 +147,7 @@ class MovieController extends Controller {
 
         $this->view->movie = $movie[0];
         $this->view->content = $this->view->render('movie/single.phtml');
-        echo $this->view->render('index.phtml');
+        echo $this->view->render('frame.phtml');
     }
 
     public function edit() {
@@ -177,7 +177,7 @@ class MovieController extends Controller {
         $this->view->format = $format;
         $this->view->rating = $rating;
         $this->view->content = $this->view->render(self::VIEW_DIR . 'edit.phtml');
-        echo $this->view->render('index.phtml');
+        echo $this->view->render('frame.phtml');
     }
 
     public function update() {
@@ -228,7 +228,7 @@ class MovieController extends Controller {
         $text = 'Der Film wurde erfolgreich aus der Datenbank gel&ouml;scht!';
 
         $this->view->content = $this->view->render(self::VIEW_DIR . 'delete.phtml');
-        echo $this->view->render('index.phtml');
+        echo $this->view->render('frame.phtml');
     }
 
     // update

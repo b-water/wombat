@@ -68,6 +68,10 @@ class Url {
     public function getController() {
         return $this->controller;
     }
+    
+    public function setController($controller) {
+        $this->controller = $controller;
+    }
 
     /**
      *  Returns the package
@@ -75,6 +79,10 @@ class Url {
      */
     public function getAction() {
         return $this->action;
+    }
+    
+    public function setAction($action) {
+        $this->action = $action;
     }
 
     /**

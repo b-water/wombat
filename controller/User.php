@@ -17,7 +17,6 @@
 require_once('core/Controller.php');
 
 class UserController extends Controller {
-    
     const VIEW_DIR = 'user/';
     private $dataMapper;
     private $repository;
@@ -42,6 +41,13 @@ class UserController extends Controller {
 //        } catch (UserException $userException) {
 //            echo $userException->getTraceAsString();
 //        }
+    }
+
+    public function entry() {
+        $this->view->pagetitle = 'Filme';
+        $this->view->pagesubtitle = 'Übersicht';
+        $this->view->content = $this->view->render(self::VIEW_DIR.'entry.phtml');
+        echo $this->view->render(self::VIEW_DIR.'frame.phtml');
     }
 
     public function login() {

@@ -41,6 +41,12 @@ class Bootstrap {
     public static $view;
 
     /**
+     * Authentication Object
+     * @var type object
+     */
+    public static $auth;
+
+    /**
      * Runs the Application
      */
     public static function run() {
@@ -57,7 +63,8 @@ class Bootstrap {
         self::setupUrl();
         self::setupView();
         self::setRegistryObjects();
-        self::setupNavigation();
+//        self::setupNavigation();
+        self::setupAuth();
         self::setupRouter();
         self::closeDatabaseConnection();
     }
@@ -145,11 +152,22 @@ class Bootstrap {
     /**
      * Navigation Menu
      */
-    public static function setupNavigation() {
-        require_once('core/Navigation.php');
-        $navi = new Navigation();
-        $data = $navi->fetch();
-        $navi->create($data);
+//    public static function setupNavigation() {
+//        require_once('core/Navigation.php');
+//        $navi = new Navigation();
+//        $data = $navi->fetch();
+//        $navi->create($data);
+//    }
+
+    public static function setupAuth() {
+        require_once('core/Auth.php');
+        self::$auth = new Auth();
+        if (self::$auth->requiresAccess(self::$url->getController(), self::$url->getAction())) {
+            if (!self::$auth->isLoggedIn()) {
+                self::$url->setController('user');
+                self::$url->setAction('entry');
+            }
+        }
     }
 
     /**

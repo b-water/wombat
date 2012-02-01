@@ -38,7 +38,7 @@ class DashboardController extends DashboardAbstractController {
 //        $content = $this->smarty->fetch($this->template_dir . 'index.tpl');
 //        $this->smarty->assign('content', $content);
 //        $this->smarty->display($this->template);
-        echo $this->view->render('index.phtml');
+        echo $this->view->render('frame.phtml');
     }
 
 

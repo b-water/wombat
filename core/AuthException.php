@@ -14,5 +14,5 @@
  * @copyright  Copyright (c) 2010-2012 Nico Schmitz
  * @license http://creativecommons.org/licenses/by-nc-nd/3.0/ Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License
  */
-class AuthenticationException extends Exception {}
+class AuthException extends Exception {}
 
