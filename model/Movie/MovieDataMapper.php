@@ -24,6 +24,7 @@ class MovieDataMapper extends Base implements DataMapper {
      * mysql table
      * @var String 
      */
+
     const TABLE = 'wombat_movie';
 
     /**
@@ -134,7 +135,7 @@ class MovieDataMapper extends Base implements DataMapper {
         }
 
 //        var_dump($movie);die;
-        
+
         foreach ($movie->getGenre() as $key => $val) {
 
             $params = array(
@@ -249,6 +250,21 @@ class MovieDataMapper extends Base implements DataMapper {
         }
     }
 
+    public function count($filter = '') {
+        $select = $this->db->select();
+
+        $select->from(self::TABLE, 'COUNT(*) as count');
+
+        if (!empty($filter)) {
+            $select->where($filter);
+        }
+
+        $sql = $this->db->query($select);
+        $data = $sql->fetch();
+        
+        return $data['count'];
+    }
+
     /**
      * Gather Movies from Database
      *
@@ -258,7 +274,7 @@ class MovieDataMapper extends Base implements DataMapper {
      * @param   string  $limit
      * @return  array   movies
      */
-    public function fetch(array $fields, $filter='', $orderby='', $limit='', $offset='') {
+    public function fetch(array $fields, $filter = '', $orderby = '', $limit = '', $offset = '') {
 
         $select = $this->db->select();
 
@@ -279,10 +295,12 @@ class MovieDataMapper extends Base implements DataMapper {
             $select->order($orderby);
         }
 
-        if (!empty($limit) && !empty($offset)) {
+        if (!empty($limit) && !empty($offset) || $offset == 0) {
             $select->limit($limit, $offset);
         }
         $sql = $this->db->query($select);
+//        $profiler = $this->db->getProfiler();
+//        var_dump($profiler->getLastQueryProfile());
         $data = $sql->fetchAll();
         if (empty($data)) {
             throw new MovieException('(#3) : No Movies found!');
@@ -308,7 +326,7 @@ class MovieDataMapper extends Base implements DataMapper {
      * @param   string  $limit
      * @return  array   movies
      */
-    public function fetchByPage(array $fields, $filter='', $orderby='', $limit='', $offset='') {
+    public function fetchByPage(array $fields, $filter = '', $orderby = '', $limit = '', $offset = '') {
 
         $select = $this->db->select();
 

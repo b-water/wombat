@@ -17,28 +17,19 @@
  * @license http://creativecommons.org/licenses/by-nc-nd/3.0/ Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License
  */
 class Url {
-
     /**
      * The Controller file to load
      * @example /controller/Movie/ShowController.php
      * @var string
      */
     private $controller;
+
     /**
      * The Action to call
      * @var string
      */
     private $action;
-    /**
-     * @example /movie/show/index/page/
-     * @var string
-     */
-    private $key;
-    /**
-     * @example /movie/show/index/page/14
-     * @var string
-     */
-    private $value;
+
     /**
      * The whole Url
      * @example /movie/show/index/page/14
@@ -56,9 +47,7 @@ class Url {
         }
         $this->controller = isset($url[0]) && !empty($url[0]) ? $url[0] : "dashboard";
         $this->action = isset($url[1]) && !empty($url[1]) ? $url[1] : "index";
-        $this->key = isset($url[2]) && !empty($url[2]) ? $url[2] : '';
-        $this->value = isset($url[3]) && !empty($url[3]) ? $url[3] : '';
-        $this->url = $this->controller.'/'.$this->action.'/';
+        $this->url = $this->controller . '/' . $this->action . '/';
     }
 
     /**
@@ -68,7 +57,7 @@ class Url {
     public function getController() {
         return $this->controller;
     }
-    
+
     public function setController($controller) {
         $this->controller = $controller;
     }
@@ -80,25 +69,9 @@ class Url {
     public function getAction() {
         return $this->action;
     }
-    
+
     public function setAction($action) {
         $this->action = $action;
-    }
-
-    /**
-     *  Returns the package
-     * @return string
-     */
-    public function getKey() {
-        return $this->key;
-    }
-
-    /**
-     *  Returns the package
-     * @return string
-     */
-    public function getValue() {
-        return $this->value;
     }
 
     /**
@@ -108,5 +81,4 @@ class Url {
     public function getUrl() {
         return $this->url;
     }
-
 }

@@ -26,6 +26,17 @@ body {
 .sidebar-nav {
     padding: 9px 0;
 }
+
+a.btn {
+    height:20px;
+}
+
+table th.edit {
+    width:7%;
+}
+.search-query {
+    border-radius:6px;
+}
 /*
 
  Override some defaults 

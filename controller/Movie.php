@@ -23,6 +23,7 @@ class MovieController extends Controller {
      * Image Path
      * @var string 
      */
+
     const VIEW_DIR = 'movie/';
 
     /**
@@ -121,11 +122,26 @@ class MovieController extends Controller {
     }
 
     public function index() {
-        try {
-            $movies = $this->movieRepository->fetch(array('id', 'title', 'rating', 'year'));
-        } catch (MovieException $movieException) {
-            die($movieException);
+
+        $count = $this->movieRepository->count('');
+
+        if (isset($_REQUEST['page']) && intval($_REQUEST['page'] !== 0)) {
+            $page = $_REQUEST['page'];
+        } else {
+            $page = 1;
         }
+
+        require_once('library/paginator.class.php');
+        $pages = new Paginator;
+        $pages->items_total = $count;
+        $pages->mid_range = 10;
+        $pages->paginate();
+        echo $pages->display_pages();
+       
+        require_once('core/Pagination.php');
+        $pagination = new Pagination(15, $count, $page, 10);
+
+        $movies = $this->movieRepository->fetch(array('id', 'title', 'rating', 'year'), '', '', $pagination->entriesPerPage, $pagination->getCurrentEntry());
 
         $this->view->movies = $movies;
         $this->view->movie_count = count($movies);
@@ -216,7 +232,7 @@ class MovieController extends Controller {
     }
 
     public function delete() {
-        
+
         $id = $this->url->getValue();
 
 //        try {

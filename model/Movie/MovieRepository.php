@@ -75,6 +75,11 @@ class MovieRepository implements Repository {
         $movie = $this->dataMapper->fetch($fields, $filter, $orderby, $limit, $offset);
         return $movie;
     }
+    
+    public function count($filter) {
+        $count = $this->dataMapper->count($filter);
+        return $count;
+    }
 
     /**
      * Fetches Movie Data
