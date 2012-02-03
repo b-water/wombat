@@ -25,10 +25,6 @@ class Auth {
         
     }
 
-    private function getUserData($fbid) {
-        
-    }
-
     private function login() {
         $user = $this->getUserData($this->facebook->getUser());
         if ($user !== false) {

@@ -1,29 +1,16 @@
-<!--<div class="page-header">
-    <h1>Film <small>Detailansicht</small></h1>
-</div>-->
 <div class="page-header">
-    <h1><?php echo $this->movie->getTitle(); ?>   <small>Detailansicht</small></h1>
+    <h1>Film <small>Detailansicht</small></h1>
 </div>
 <div class="movie-container">
     <div class="general-information">
-        <div class="movie-image-container left">
-            <div class="dvd-case">
-            </div>
-            <?php if ($this->movie->getImage() != ''): ?>
-                <img class="movie-image left" src="<?php echo $this->movie->getImage(); ?>" alt="Film Bild" />
-            <?php else: ?>
-                <img class="movie-image left" src="images/movie-default.png" alt="Film Bild" />
-            <?php endif; ?>
-        </div>
         <p><span>Titel:</span> <?php echo $this->movie->getTitle(); ?></p>
         <p><span>Format:</span> <?php echo $this->movie->getFormat(); ?></p>
         <p><span>Genre:</span> <?php echo $this->movie->getGenre(); ?></p>
         <p><span>Bewertung:</span> <?php echo $this->movie->getRating(); ?></p>
     </div>
     <p class="description"><?php echo $this->movie->getDescription(); ?></p>
-    <form class="form-stacked">
-        <div class="clearfix actions">
-            <a href="movie/" class="btn primary large">Zurück</a>
-        </div>
-    </form>
+</div>
+<div class="form-actions">
+    <a class="btn btn-primary" href="movie/edit/id/<?php echo $this->movie->getId(); ?>">Bearbeiten</a>
+    <a class="btn" href="movie/">Zurück</a>
 </div>

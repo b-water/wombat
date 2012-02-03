@@ -1,22 +1,29 @@
-<ul class="nav">
-    <li <?php echo ($this->url->getController() == 'dashboard') ? 'class="active"' : ''; ?>><a href="dashboard/">Dashboard</a></li>
-    <li <?php echo ($this->url->getController() == 'movie') ? 'class="active"' : ''; ?>><a href="movie/">Filme</a></li>
-    <li <?php echo ($this->url->getController() == 'movie') ? 'class="active"' : ''; ?>><a href="movie/">Bilder</a></li>
-    <li <?php echo ($this->url->getController() == 'movie') ? 'class="active"' : ''; ?>><a href="movie/">Dokumente</a></li>
-    <li <?php echo ($this->url->getController() == 'movie') ? 'class="active"' : ''; ?>><a href="movie/">Musik</a></li>
-    <li <?php echo ($this->url->getController() == 'movie') ? 'class="active"' : ''; ?>><a href="movie/">Kontakte</a></li>
-    <form action="" class="pull-left">
-        <input type="text" placeholder="Suche">
-    </form>
-    <ul class="nav secondary-nav">
-        <li class="dropdown">
-            <a class="dropdown-toggle" href="#">Einstellungen</a>
-            <ul class="dropdown-menu">
-                <li><a href="#">Secondary link</a></li>
-                <li><a href="#">Something else here</a></li>
-                <li class="divider"></li>
-                <li><a href="#">Another link</a></li>
-            </ul>
+<a class="brand" href="#">wombat</a>
+<div class="nav-collapse">
+    <ul class="nav">
+        <li <?php echo ($this->url->getController() == 'dashboard') ? 'class="active"' : ''; ?>>
+            <a href="dashboard/">
+                <i class="icon-home icon-white"></i> Dashboard
+            </a>
+        </li>
+        <li <?php echo ($this->url->getController() == 'movie') ? 'class="active"' : ''; ?>>
+            <a href="movie/"><i class="icon-film icon-white"></i> Filme</a>
+        </li>
+        <li <?php echo ($this->url->getController() == 'picture') ? 'class="active"' : ''; ?>>
+            <a href="movie/"><i class="icon-picture icon-white"></i> Bilder</a>
+        </li>
+        <li <?php echo ($this->url->getController() == 'document') ? 'class="active"' : ''; ?>>
+            <a href="movie/"><i class="icon-file icon-white"></i> Dokumente</a>
+        </li>
+        <li <?php echo ($this->url->getController() == 'music') ? 'class="active"' : ''; ?>>
+            <a href="movie/"><i class="icon-music icon-white"></i> Musik</a>
+        </li>
+        <li <?php echo ($this->url->getController() == 'contact') ? 'class="active"' : ''; ?>>
+            <a href="movie/"><i class="icon-user icon-white"></i> Kontakte</a>
         </li>
     </ul>
 </ul>
+</div>
+<div class="nav-collapse">
+    <p class="navbar-text pull-right">eingeloggt als <a href="#">Nico Schmitz</a></p>
+</div>

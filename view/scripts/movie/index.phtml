@@ -1,16 +1,16 @@
 <div class="page-header">
     <h1>Filme    <small>Übersicht</small></h1>
 </div>
-<table id="movies" class="common-table zebra-striped tablesorter">
+<table id="movies" class="table table-bordered table-striped">
     <thead>
         <tr>
             <th class="blue title">Titel</th>
             <th class="yellow genre">Genre</th>
             <th class="green rating">Bewertung</th>
             <th class="red format">Format</th>
-            <th></th>
-            <th></th>
-            <th></th>
+            <th class="span1"></th>
+            <th class="span1"></th>
+            <th class="span1"></th>
         </tr>
     </thead>
     <tbody>
@@ -40,9 +40,9 @@
                         -
                     <?php endif; ?>
                 </td>
-                <td class="show-single"><a class="show-single" title="Anzeige" href="movie/single/id/<?php echo $movie->getId() ?>"></a></td>
-                <td class="edit"><a class="edit" title="Bearbeiten" href="movie/edit/id/<?php echo $movie->getId() ?>/"></a></td>
-                <td class="delete"><a class="delete fancydelete" title="L&ouml;schen" href="movie/delete/id/<?php echo $movie->getId() ?>/"></a></td>
+                <td class="show-single"><a class="show-single" title="Anzeige" href="movie/single/id/<?php echo $movie->getId() ?>"><i class="icon-share-alt"></i> Anzeigen</a></td>
+                <td class="edit"><a class="edit" title="Bearbeiten" href="movie/edit/id/<?php echo $movie->getId() ?>/"><i class="icon-edit"></i> Bearbeiten</a></td>
+                <td class="delete"><a class="delete fancydelete" title="L&ouml;schen" href="movie/delete/id/<?php echo $movie->getId() ?>/"><i class="icon-trash"></i> Löschen</a></td>
             </tr>
         <?php endforeach; ?>
     </tbody>

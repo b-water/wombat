@@ -17,25 +17,36 @@
  *
 */
 
-/* Override some defaults */
+
+
+body {
+    padding-top: 60px;
+    padding-bottom: 40px;
+}
+.sidebar-nav {
+    padding: 9px 0;
+}
+/*
+
+ Override some defaults 
 html, body {
     background-color: #eee;
 }
 body {
-    padding-top: 40px; /* 40px to make the container go all the way to the bottom of the topbar */
+    padding-top: 40px;  40px to make the container go all the way to the bottom of the topbar 
 }
 .container > footer p {
-    text-align: center; /* center align it with the container */
+    text-align: center;  center align it with the container 
 }
 .container {
-    width: 820px; /* downsize our container to make the content feel a bit tighter and more cohesive. NOTE: this removes two full columns from the grid, meaning you only go to 14 columns and not 16. */
+    width: 820px;  downsize our container to make the content feel a bit tighter and more cohesive. NOTE: this removes two full columns from the grid, meaning you only go to 14 columns and not 16. 
 }
 
-/* The white background content wrapper */
+ The white background content wrapper 
 .container > .content {
     background-color: #fff;
     padding: 20px;
-    margin: 0 -20px; /* negative indent the amount of the padding to maintain the grid system */
+    margin: 0 -20px;  negative indent the amount of the padding to maintain the grid system 
     -webkit-border-radius: 0 0 6px 6px;
     -moz-border-radius: 0 0 6px 6px;
     border-radius: 0 0 6px 6px;
@@ -44,19 +55,40 @@ body {
     box-shadow: 0 1px 2px rgba(0,0,0,.15);
 }
 
-/* Page header tweaks */
+div#entry {
+    margin-top:200px;
+    width:400px;
+}
+
+div#entry .topbar h3 a, .topbar .brand { 
+    margin:0;
+}
+
+div#entry .topbar {
+    position: static;
+}
+
+div#entry .content {
+    border-radius:6px;
+}
+
+div#entry .topbar .fill {
+    border-radius:6px 6px 0 0;
+}
+
+ Page header tweaks 
 .page-header {
     background-color: #f5f5f5;
     padding: 20px 20px 10px;
     margin: -20px -20px 20px;
 }
 
-/* Styles you shouldn't keep as they are for displaying this base example only */
-/*.content .span10,
+ Styles you shouldn't keep as they are for displaying this base example only 
+.content .span10,
 .content .span4 {
     min-height: 500px;
-}*/
-/* Give a quick and non-cross-browser friendly divider */
+}
+ Give a quick and non-cross-browser friendly divider 
 .content .span4 {
     margin-left: 0;
     padding-left: 19px;
@@ -88,17 +120,17 @@ form .input {
     margin-left: 150px;
 }
 
-/**************************************
+*************************************
               buttons
-**************************************/
+*************************************
 
 button {
     cursor:pointer;
 }
 
-/**************************************
+*************************************
             generic classes
-**************************************/
+*************************************
 
 .none {
     display:none;
@@ -116,17 +148,17 @@ button {
     width:543px;
 }
 
-/**************************************
+*************************************
             site structure
-**************************************/
+*************************************
 
-/*.margin-fix {
+.margin-fix {
     margin-top:60px;
-}*/
+}
 
-/**************************************
+*************************************
               table
-**************************************/
+*************************************
 
 table a.edit {
     background:url('../images/icons/pencil.png') 0 0 no-repeat;
@@ -149,7 +181,7 @@ table a.delete {
     display:inline-block;
 }
 
-/*span.genre {
+span.genre {
     background-color:#E6E6E6;
     padding:2px 5px;
     border-radius:2px;
@@ -161,23 +193,23 @@ table a.delete {
 
 span.genre:hover {
     background-color:#30BCCC;
-}*/
+}
 
-/*span.genre span.delete {
+span.genre span.delete {
     background:url('../images/icons/delete.png') 0 -2px no-repeat;
     height:16px;
     width:16px;
     display: inline-block;
     text-indent: 2000em;
     cursor:pointer; 
-}*/
+}
 
 
 
-/*span.genre span.text {
+span.genre span.text {
     padding-top:4px;
     display:inline-block;
-}*/
+}
 
 
 span.genre span.delete {
@@ -203,11 +235,11 @@ span.overview-genre {
     text-align: center;
 }
 
-/**************************************
+*************************************
           jQuery TipTip
-**************************************/
+*************************************
 
-/* TipTip CSS - Version 1.2 */
+ TipTip CSS - Version 1.2 
 
 #tiptip_holder {
     display: none;
@@ -245,9 +277,9 @@ span.overview-genre {
     border-radius: 3px;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
-    /*    box-shadow: 0 0 3px #555;
+        box-shadow: 0 0 3px #555;
         -webkit-box-shadow: 0 0 3px #555;
-        -moz-box-shadow: 0 0 3px #555;*/
+        -moz-box-shadow: 0 0 3px #555;
 }
 
 #tiptip_arrow, #tiptip_arrow_inner {
@@ -305,4 +337,4 @@ span.overview-genre {
     margin-left: -7px;
     border-left-color: rgb(25,25,25);
     border-left-color: rgba(25,25,25,0.92);
-}
+}*/
