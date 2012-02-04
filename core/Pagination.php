@@ -28,6 +28,10 @@ class Pagination {
     private $nextText = 'Nächste';
     private $optionBasicFields = array('entriesMax', 'currentPage', 'pageRange', 'entriesPerPage');
     private $optionAdditionFields = array('previousText', 'nextText');
+    public $firstPage = 1;
+    public $lastPage = 0;
+    public $prevPage = 0;
+    public $nextPage = 0;
 
     /**
      *
@@ -60,15 +64,30 @@ class Pagination {
             }
         }
 
+
+        // set the previous page
+        if ($this->currentPage > 1) {
+            $this->prevPage = $this->currentPage-1;
+        }
+        
+        if($this->currentPage < $this->pages) {
+            $this->nextPage = $this->currentPage+1;
+        }
+
+        // set the last page
+            $this->lastPage = $this->pages;
+
         // calc the current entry
         $this->currentEntry = ($this->currentPage - 1) * $this->entriesPerPage;
-        $this->pages = ceil($this->entriesMax/$this->entriesPerPage);
+        // calc all available pages
+        $this->pages = ceil($this->entriesMax / $this->entriesPerPage);
 
+        // build the pagination-range
         for ($i = $this->currentPage; $i >= 1 || $this->pageRange - $i == 0; $i--) {
             $this->pagesInRange[$i] = $i;
         }
 
-        for ($i = $this->currentPage; $i <= $this->currentPage+$this->pageRange && $i < $this->pages; $i++) {
+        for ($i = $this->currentPage; $i <= $this->currentPage + $this->pageRange && $i < $this->pages; $i++) {
             $this->pagesInRange[$i] = $i;
         }
     }
