@@ -1,6 +1,3 @@
-<div class="page-header">
-    <h1>Film <small>Bearbeiten</small></h1>
-</div>
 <form id="edit" class="form-stacked" method="POST" action="movie/update/id/<?php echo $this->movie->getId(); ?>/" enctype="multipart/form-data" >
     <input id="id" name="id" value="<?php echo $this->movie->getId(); ?>" type="hidden" />
     <div class="clearfix">
@@ -88,6 +85,7 @@
     </div>
     <div class="form-actions">
         <button class="btn btn-primary" type="submit"><i class="icon-ok icon-white"></i> Speichern</button>
+        <button class="btn btn-danger" type="submit"><i class="icon-ok icon-white"></i> Löschen</button>
         <a href="movie/" class="btn"><i class="icon-share-alt"></i> Zurück</a>
     </div>
 </form>
