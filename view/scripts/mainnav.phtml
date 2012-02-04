@@ -1,32 +1,61 @@
 <a class="brand" href="#">wombat</a>
 <div class="nav-collapse">
     <ul class="nav">
+        <li class="divider-vertical"></li>
         <li <?php echo ($this->url->getController() == 'dashboard') ? 'class="active"' : ''; ?>>
             <a href="dashboard/">
                 <i class="icon-home icon-white"></i> Dashboard
             </a>
         </li>
+        <li class="divider-vertical"></li>
         <li <?php echo ($this->url->getController() == 'movie') ? 'class="active"' : ''; ?>>
             <a href="movie/"><i class="icon-film icon-white"></i> Filme</a>
         </li>
+        <li class="divider-vertical"></li>
         <li <?php echo ($this->url->getController() == 'picture') ? 'class="active"' : ''; ?>>
             <a href="movie/"><i class="icon-picture icon-white"></i> Bilder</a>
         </li>
+        <li class="divider-vertical"></li>
         <li <?php echo ($this->url->getController() == 'document') ? 'class="active"' : ''; ?>>
             <a href="movie/"><i class="icon-file icon-white"></i> Dokumente</a>
         </li>
+        <li class="divider-vertical"></li>
         <li <?php echo ($this->url->getController() == 'music') ? 'class="active"' : ''; ?>>
             <a href="movie/"><i class="icon-music icon-white"></i> Musik</a>
         </li>
+        <li class="divider-vertical"></li>
         <li <?php echo ($this->url->getController() == 'contact') ? 'class="active"' : ''; ?>>
             <a href="movie/"><i class="icon-user icon-white"></i> Kontakte</a>
         </li>
+        <li class="divider-vertical"></li>
     </ul>
 </ul>
 </div>
-<form action="" class="navbar-search pull-left">
+<form action="" class="navbar-search">
     <input type="text" placeholder="Suchbegriff eingeben ..." class="search-query span3">
+    <button id="search-btn" data-placement="bottom" title="Hinweis" data-content="Die Suche greift immer nur auf den aktuellen Datenbestand zu." class="btn" type="submit">
+        <i class="icon-search"></i> Suchen
+    </button>
 </form>
+<ul class="nav pull-right">
+    <li class="dropdown">
+        <a data-toggle="dropdown" class="dropdown-toggle" href="#"><i class="icon-cog icon-white"></i> Einstellungen <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+            <li><a href="#">Benutzer</a></li>
+            <li class="divider"></li>
+            <li><a href="#">Genre</a></li>
+            <li><a href="#">Format</a></li>
+            <li><a href="#">Künstler</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li class="divider"></li>
+            <li><a href="#"><i class="icon-cog"></i> Administration</a></li>
+            <li class="divider"></li>
+            <li><a href="#"><i class="icon-off"></i> Abmelden</a></li>
+        </ul>
+    </li>
+</ul>
+<!--
 <div class="nav-collapse">
     <p class="navbar-text pull-right">eingeloggt als <a href="#">Nico Schmitz</a></p>
-</div>
+</div>-->

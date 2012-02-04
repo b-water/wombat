@@ -27,27 +27,29 @@ jQuery.fn.exists = function(){
 
 $(document).ready(function() {  
     core.init.form($('form#edit'));
-    core.init.tooltip($('a'));
+//    core.init.tooltip($('a'));
     //    core.init.fancybox($('.fancybox'));
     //genre init
     core.genre.autocomplete($('#genre'),'genre/autocomplete/',$('div#assocGenres'));
     core.genre.tokenDelete($('span.genre'));
     //table init
-    core.table.addEven($('table tr:even'));
-    core.table.addFancyDelete($('a.fancydelete'));
-    core.table.sort($('table'));
-    $('#file').customFileInput({
-        button_position : 'right',
-        feedback_text : 'Keine Datei ausgewählt!',
-        button_text : 'Durchsuchen',
-        button_change_text : 'Durchsuchen'
-    });
+//    core.table.addEven($('table tr:even'));
+//    core.table.addFancyDelete($('a.fancydelete'));
+//    core.table.sort($('table'));
+//    $('#file').customFileInput({
+//        button_position : 'right',
+//        feedback_text : 'Keine Datei ausgewählt!',
+//        button_text : 'Durchsuchen',
+//        button_change_text : 'Durchsuchen'
+//    });
     //jquery plugins
     //    $('table#movies').tablesorter();
     $('.nav-config').click(function(evt) {
         evt.preventDefault();
         $('.dropdown-config').toggle('slow',function() {});
     });
+    
+    $('#search-btn').popover();
 //    if($('table.tablesorter').exists()) {
 //        $('table.tablesorter').tablesorter({
 //            sortList: [[0,0]],

@@ -37,6 +37,10 @@ table th.edit {
 .search-query {
     border-radius:6px;
 }
+
+.navbar .btn, .navbar .btn-group {
+    margin-top:0px;
+}
 /*
 
  Override some defaults 

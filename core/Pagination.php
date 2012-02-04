@@ -25,38 +25,47 @@ class Pagination {
     private $pagesInRange = array();
     private $previousText = 'Vorherige';
     private $nextText = 'Nächste';
+    private $optionBasicFields = array('entriesMax', 'currentPage', 'pageRange', 'entriesPerPage');
+    private $optionAdditionFields = array('previousText', 'nextText');
 
     /**
      *
      * @param array $options
      * 
-     * Avaible Options :
-     *  
+     * ------------Basic Options (that must be set-------------
+     * 
      * entriesPerPage = maximum entries that are show on a page
      * entriesMax = the total amount of all entries
      * currentPage = the current page number
      * pageRange = how many pages should be shown
+     * ------------Additional Options-------------------------
+     * 
      * previousText = the text from the "previous" link
      * nextText = the text from the "next" link
      */
     public function __construct(array $options) {
-        $this->entriesMax = $options['entriesMax'];
-        $this->entriesPerPage = $options['entriesPerPage'];
-        $this->currentPage = $options['currentPage'];
-        $this->pageRange = $options['pageRange'];
 
+        foreach ($this->optionBasicFields as $key => $val) {
+            if (array_key_exists($val, $options) && !empty($options[$val])) {
+                $this->$val = $options[$val];
+            } else {
+                return false;
+            }
+        }
+
+        foreach ($this->optionAdditionFields as $key => $val) {
+            if (array_key_exists($val, $options) && !empty($options[$val])) {
+                $this->$val = $options[$val];
+            }
+        }
+
+        // calc the current entry
         $this->currentEntry = ($this->currentPage - 1) * $this->entriesPerPage;
-// pages before current page
 
-        for ($i = $this->entriesPerPage; $i >= 1; $i--) {
+        $pagesIndex = $this->pageRange/2;
+        
+        for ($i = $pagesIndex; $i >= 1; $i--) {
             
-        }
-        for ($i = $currentPage; $i >= 1; $i--) {
-            $this->pagesInRange[$i] = $i;
-        }
-
-        for ($i = $currentPage; $i >= 1; $i--) {
-            $this->pagesInRange[$i] = $i;
         }
     }
 
