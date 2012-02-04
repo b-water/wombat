@@ -32,6 +32,10 @@ class Pagination {
             $this->pagesInRange[$i] = $i;
         }
     }
+    
+    public function getEntriesPerPage() {
+        return $this->entriesPerPage;
+    }
 
     public function getCurrentEntry() {
         return $this->currentEntry;
