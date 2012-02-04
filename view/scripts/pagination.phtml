@@ -1,9 +1,22 @@
 <div class="pagination">
     <ul>
-        <li class="disabled"><a href="#">«</a></li>
+        <?php if ($this->pagination->prevPage > 0): ?>
+            <li><a href="<?php echo $this->url->getController(); ?>?page=<?php echo $this->pagination->prevPage; ?>">«</a></li>
+        <?php else: ?>
+            <li class="disabled"><a href="" onclick="return false;">«</a></li>
+        <?php endif; ?>
         <?php foreach ($this->pagination->getPagesInRange() as $key => $val): ?>
-            <li><a href="<?php echo $this->url->getController(); ?>?page=<?php echo $val; ?>"><?php echo $val; ?></a></li>
+            <?php if (isset($_REQUEST['page']) && $_REQUEST['page'] == $val): ?>
+                <li class="active"><a href="" onclick="return false;"><?php echo $val; ?></a></li>
+            <?php else: ?>
+                <li><a href="<?php echo $this->url->getController(); ?>?page=<?php echo $val; ?>"><?php echo $val; ?></a></li>
+
+            <?php endif; ?>
         <?php endforeach; ?>
-        <li><a href="#">»</a></li>
+        <?php if ($this->pagination->nextPage > 0): ?>
+            <li><a href="<?php echo $this->url->getController(); ?>?page=<?php echo $this->pagination->nextPage; ?>">»</a></li>
+        <?php else: ?>
+            <li class="disabled"><a href="" onclick="return false;">»</a></li>
+        <?php endif; ?>
     </ul>
 </div>
