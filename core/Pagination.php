@@ -22,6 +22,7 @@ class Pagination {
     private $currentPage;
     private $pageRange;
     private $pageNumber;
+    private $pages;
     private $pagesInRange = array();
     private $previousText = 'Vorherige';
     private $nextText = 'Nächste';
@@ -61,11 +62,14 @@ class Pagination {
 
         // calc the current entry
         $this->currentEntry = ($this->currentPage - 1) * $this->entriesPerPage;
+        $this->pages = ceil($this->entriesMax/$this->entriesPerPage);
 
-        $pagesIndex = $this->pageRange/2;
-        
-        for ($i = $pagesIndex; $i >= 1; $i--) {
-            
+        for ($i = $this->currentPage; $i >= 1 || $this->pageRange - $i == 0; $i--) {
+            $this->pagesInRange[$i] = $i;
+        }
+
+        for ($i = $this->currentPage; $i <= $this->currentPage+$this->pageRange && $i < $this->pages; $i++) {
+            $this->pagesInRange[$i] = $i;
         }
     }
 
@@ -78,7 +82,7 @@ class Pagination {
     }
 
     public function getPagesInRange() {
-        
+        return $this->pagesInRange;
     }
 
 }
