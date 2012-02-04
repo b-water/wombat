@@ -168,7 +168,11 @@ class MovieController extends Controller {
     public function edit() {
 
 //        $this->smarty->assign('title', 'Film Bearbeiten');
-        $filter = self::TABLE . '.id = "' . $this->url->getValue() . '"';
+        if (isset($_REQUEST['id']) && intval($_REQUEST['id']) != 0) {
+            $filter = self::TABLE . '.id = "' . $_REQUEST['id'] . '"';
+        } else {
+            throw new MovieException('Id not set!');
+        }
 
         try {
             $movie = $this->movieRepository->fetch(array('*'), $filter);

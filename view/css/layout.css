@@ -41,6 +41,22 @@ table th.edit {
 .navbar .btn, .navbar .btn-group {
     margin-top:0px;
 }
+
+ul.breadcrumb form {
+    margin:0;
+}
+
+.row-fluid .span1-5 {
+    width:6.882978723%;
+}
+
+tr:hover[onclick] {
+    cursor:pointer;
+}
+
+ul.breadcrumb input, ul.breadcrumb select {
+    margin-bottom:0;
+}
 /*
 
  Override some defaults 
