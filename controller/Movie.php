@@ -130,9 +130,15 @@ class MovieController extends Controller {
         } else {
             $page = 1;
         }
-       
+
         require_once('core/Pagination.php');
-        $pagination = new Pagination(15, $count, $page, 10);
+        $options = array(
+            'entriesPerPage' => 15,
+            'entriesMax' => $count,
+            'currentPage' => $page,
+            'pageRange' => 10
+        );
+        $pagination = new Pagination($options);
 
         $movies = $this->movieRepository->fetch(array('id', 'title', 'rating', 'year'), '', '', $pagination->getEntriesPerPage(), $pagination->getCurrentEntry());
 
