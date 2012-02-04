@@ -1,0 +1,7 @@
+<div class="pagination">
+    <ul>
+        <?php foreach ($this->pagination->getPagesInRange() as $key => $val): ?>
+            <li><a href="<?php echo $this->url->getController(); ?>?page=<?php echo $val; ?>"><?php echo $val; ?></a></li>
+        <?php endforeach; ?>
+    </ul>
+</div>

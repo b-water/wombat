@@ -138,12 +138,12 @@ class MovieController extends Controller {
             'currentPage' => $page,
             'pageRange' => 10
         );
+        
         $pagination = new Pagination($options);
-
         $movies = $this->movieRepository->fetch(array('id', 'title', 'rating', 'year'), '', '', $pagination->getEntriesPerPage(), $pagination->getCurrentEntry());
 
+        $this->view->pagination = $pagination;
         $this->view->movies = $movies;
-        $this->view->movie_count = count($movies);
         $this->view->pagetitle = 'Filme';
         $this->view->pagesubtitle = 'Übersicht';
         $this->view->content = $this->view->render('movie/index.phtml');
