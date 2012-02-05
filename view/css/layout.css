@@ -23,24 +23,34 @@ body {
     padding-top: 60px;
     padding-bottom: 40px;
 }
-.sidebar-nav {
+/*.sidebar-nav {
     padding: 9px 0;
-}
+}*/
 
 a.btn {
     height:20px;
 }
+a.btn-large {
+    height:22px;
+}
 
+a.btn-large i, button.btn-large i
+{
+    margin-top:2px;
+}
+
+
+/*
 table th.edit {
     width:7%;
-}
-.search-query {
+}*/
+/*.search-query {
     border-radius:6px;
-}
-
+}*/
+/*
 .navbar .btn, .navbar .btn-group {
     margin-top:0px;
-}
+}*/
 
 ul.breadcrumb form {
     margin:0;
