@@ -45,15 +45,11 @@ class UserController extends Controller {
 //        }
     }
 
-    public function entry() {
-        $this->view->pagetitle = 'Filme';
-        $this->view->pagesubtitle = 'Übersicht';
+    public function login() {
+        $this->view->pagetitle = 'Login';
+        $this->view->pagesubtitle = '';
         $this->view->content = $this->view->render(self::VIEW_DIR . 'login.phtml');
         echo $this->view->render(self::VIEW_DIR . 'frame.phtml');
-    }
-
-    public function login() {
-        
     }
 
     public function logout() {
@@ -62,7 +58,7 @@ class UserController extends Controller {
 
     public function register() {
         $this->view->pagetitle = 'Registrierung';
-        $this->view->pagesubtitle = 'Übersicht';
+        $this->view->pagesubtitle = '';
         $this->view->content = $this->view->render(self::VIEW_DIR . 'register.phtml');
         echo $this->view->render(self::VIEW_DIR . 'frame.phtml');
     }

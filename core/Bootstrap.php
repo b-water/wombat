@@ -165,7 +165,7 @@ class Bootstrap {
         if (self::$auth->requiresAccess(self::$url->getController(), self::$url->getAction())) {
             if (!self::$auth->isLoggedIn()) {
                 self::$url->setController('user');
-                self::$url->setAction('entry');
+                self::$url->setAction('login');
             }
         }
     }

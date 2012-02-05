@@ -20,7 +20,7 @@
 <html lang="de">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-        <title><?php echo $this->title ?></title>
+        <title><?php echo $this->title ?><?php echo (!empty($this->pagetitle)) ? ' - '.$this->pagetitle : '' ?><?php echo (!empty($this->pagesubtitle)) ? ' - '.$this->pagesubtitle : '' ?></title>
         <base href="<?php echo $this->base ?>" />
         <meta name="Author" content="<?php echo $this->author ?>" />
         <meta name="Copyright" content="<?php echo $this->copyright ?>" />

@@ -1,22 +1,21 @@
-<div class="hero-unit">
-    <h1>wombat</h1>
-    <br>
-    <p>Um Zugriff auf die Anwendung zu erhalten, benötigst du ein Benutzerkonto. Dafür kannst du dich einfach registrieren. Jedoch muss dieses
-        Benutzerkonto erst von einem Administrator <strong>freigeschaltet</strong> werden.</p>
-    <br>
+<div class="span10">
+    <h1>Registrierung</h1><br>
+    <p>Nach dem abschicken des Formulars erhälst du eine E-Mail an die unten angegebene Adresse. Innerhalb der E-Mail findest du einen Bestätigungslink
+        mit dem du dein Benutzerkonto aktivieren kannst.</p>
     <form id="form-entry" class="">
-        <div class="input-prepend">
-            <span class="add-on"><i class="icon-user"></i></span>
-            <input type="text" placeholder="Benutzername" class="span10" name="username" value="" />
-        </div>
-        <div class="input-prepend">
-            <span class="add-on"><i class="icon-question-sign"></i></span>
-            <input type="password" placeholder="Passwort" class="span10" name="password" value="" />
-        </div>
+        <fieldset>
+            <input type="text" placeholder="Vorname" class="span5" name="username" value="" />&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="text" placeholder="Nachname" class="span5" name="username" value="" />
+        </fieldset>
+        <input type="text" placeholder="E-Mail Adresse" class="span10" name="username" value="" />
+        <input type="text" placeholder="Benutzername" class="span10" name="username" value="" />
+        <fieldset>
+            <input type="password" placeholder="Passwort" class="span5" name="password" value="" />&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="password" placeholder="Passwort wiederholen" class="span5" name="password" value="" />
+        </fieldset>
         <div class="form-actions">
-            <button class="btn btn-large btn-primary" type="submit"><i class="icon-ok-sign icon-white"></i> Anmelden</button>
-            <a class="btn btn-large" href="user/pw_forgotten/"><i class="icon-info-sign"></i> Passwort vergessen</a>
-            <a class="btn btn-large" href="user/register/"><i class="icon-pencil"></i> Registrieren</a>
+            <button class="btn btn-large btn-primary" type="submit"><i class="icon-ok-sign icon-white"></i> Benutzerkonto anlegen</button>
+            <a class="btn btn-large" href="user/login/"><i class="icon-share-alt"></i> Zurück</a>
         </div>
     </form>
 </div>
