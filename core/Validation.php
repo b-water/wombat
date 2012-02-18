@@ -12,116 +12,121 @@
  * @name wombat
  * @author Nico Schmitz - mail@nicoschmitz.eu
  * @copyright  Copyright (c) 2010-2011 Nico Schmitz
- * @since   03.11.2011 - 23:12:14
- * @version 0.1
  * @license http://creativecommons.org/licenses/by-nc-nd/3.0/ Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License
  */
+require_once('Base.php');
 
-class Validation {
+class Validation extends Base {
+
+    const TABLE_USER = 'wombat_user';
+    const FIELD_EMAIL = 'email';
+    const FIELD_USER_NAME = 'user_name';
+
+    private $log = array();
+    private $fields = array();
+
+    public function __construct() {
+        require_once('library/Zend/Validate.php');
+        require_once('library/Zend/Validate/Db/RecordExists.php');
+        parent::__construct();
+    }
 
     /**
-     * Error Cache
-     * @var type array
+     * Add a Field to Validation
+     * 
+     * Needed Params : key, value, name, validator (array)
+     * @param array $params
+     * @return boolean 
      */
-    private $error = array();
-
-    public function isValid(array $params) {
-        foreach ($params as $validate) {
-            $method = 'is' . ucfirst($validate['type']);
-            $this->$method($validate['value'], $validate['name']);
-        }
-
-        if (!empty($this->error)) {
+    public function addField(array $params) {
+        if (array_key_exists('key', $params) && array_key_exists('value', $params)
+                && array_key_exists('name', $params) && array_key_exists('validator', $params)
+                && is_array($params['validator'])) {
+            $this->fields[] = $params;
+            return true;
+        } else {
             return false;
         }
+    }
+
+    public function isValid() {
+        if (!empty($this->fields)) {
+            foreach ($this->fields as $key => $field) {
+                var_dump($this->validate($field));
+            }
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * Validates a Data Field
+     * 
+     * @param array $field
+     * @return boolean 
+     */
+    private function validate(array $field) {
+        foreach ($field['validator'] as $key => $validator) {
+            switch ($validator) {
+                case 'numeric':
+                    break;
+                case 'email':
+                    break;
+                // check if email address is already in use
+                case 'email_exist':
+
+                    $params = array(
+                        'table' => self::TABLE_USER,
+                        'field' => self::FIELD_EMAIL,
+                        'adapter' => $this->db
+                    );
+
+                    $email_exist = new Zend_Validate_Db_RecordExists($params);
+
+                    if ($email_exist->isValid($field['value'])) {
+                        return false;
+                    }
+
+                    break;
+                case 'empty':
+                    break;
+                case 'date':
+                    break;
+                case 'user_name_exist':
+                    return $this->emailRecordExists($field['value']);
+                    break;
+                default:
+            }
+
+            return true;
+        }
+    }
+
+    private function userRecordExists() {
         
-        return true;
     }
-    
-    /**
-     * Returns Error Cache
-     * @return type array
-     */
-    public function getErrorCache() {
-        return $this->error;
+
+    private function emailRecordExists($value) {
+        $params = array(
+            'table' => self::TABLE_USER,
+            'field' => self::FIELD_USER_NAME,
+            'adapter' => $this->db
+        );
+
+        $user_name_exist = new Zend_Validate_Db_RecordExists($params);
+
+        if ($user_name_exist->isValid($value)) {
+            return false;
+        }
+        break;
     }
 
     /**
-     * Date Validation
-     * @param type $value
-     * @param type $field 
+     * Returns the Error Log
+     * @return type 
      */
-    public function isDate($value, $field) {
-        $date = explode('.', $value);
-        if (!checkdate($date[1], $date[0], $date[2])) {
-            $this->error[$field] = 'Bitte geben Sie ein gültiges Datum an.';
-        }
-    }
-
-    /**
-     *  Time Validation
-     * @param type $value
-     * @param type $field 
-     */
-    public function isTime($value, $field) {
-        if (empty($value)) {
-            $this->error[$field] = 'Bitte geben Sie ein gültige Uhrzeit an.';
-        }
-    }
-
-    /**
-     * E-Mail Address Validation
-     * @param type $value
-     * @param type $field 
-     */
-    public function isMail($value, $field) {
-        if (filter_var($value, FILTER_VALIDATE_EMAIL)) {
-            $this->error[$field] = 'Bitte geben Sie eine gültige E-Mail Adresse an.';
-        }
-    }
-
-    /**
-     * Integer Validation
-     * @param type $value
-     * @param type $field 
-     */
-    public function isInt($value, $field) {
-        if (empty($value) || !ctype_digit($value)) {
-            $this->error[$field] = 'Bitte geben Sie einen gültigen Wert an.';
-        }
-    }
-
-    /**
-     * String Validation
-     * @param type $value
-     * @param type $field 
-     */
-    public function isString($value, $field) {
-        if (!isset($value) || empty($value)) {
-            $this->error[$field] = 'Bitte geben Sie einen gültigen Wert an.';
-        }
-    }
-
-    /**
-     * Currency Validation
-     * @param type $value
-     * @param type $field 
-     */
-    public function isCurrency($value, $field) {
-        if (strpos($value, ',') || empty($value)) {
-            $this->error[$field] = 'Bitte geben Sie eine gültige Währung an.';
-        }
-    }
-
-    /**
-     * Zipcode Validation
-     * @param type $value
-     * @param type $field 
-     */
-    public function isZipcode($value, $field) {
-        if (strlen($value) > 5 || !ctype_digit($value)) {
-            $this->error[$field] = 'Bitte geben Sie eine gültige Postleitzahl an.';
-        }
+    public function getLog() {
+        return $this->log;
     }
 
 }
