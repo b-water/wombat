@@ -2,19 +2,19 @@
     <h1>Registrierung</h1><br>
     <p>Nach dem abschicken des Formulars erhälst du eine E-Mail an die unten angegebene Adresse. Innerhalb der E-Mail findest du einen Bestätigungslink
         mit dem du dein Benutzerkonto aktivieren kannst.</p>
-    <form id="form-entry" class="">
+    <form id="form-entry" class="" method="POST" action="user/register">
         <fieldset>
-            <input type="text" placeholder="Vorname" class="span5" name="username" value="" />&nbsp;&nbsp;&nbsp;&nbsp;
-            <input type="text" placeholder="Nachname" class="span5" name="username" value="" />
+            <input type="text" placeholder="Vorname" class="span5" name="first_name" value="" />&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="text" placeholder="Nachname" class="span5" name="last_name" value="" />
         </fieldset>
-        <input type="text" placeholder="E-Mail Adresse" class="span10" name="username" value="" />
-        <input type="text" placeholder="Benutzername" class="span10" name="username" value="" />
+        <input type="text" placeholder="E-Mail Adresse" class="span10" name="email" value="" />
+        <input type="text" placeholder="Benutzername" class="span10" name="user_name" value="" />
         <fieldset>
             <input type="password" placeholder="Passwort" class="span5" name="password" value="" />&nbsp;&nbsp;&nbsp;&nbsp;
             <input type="password" placeholder="Passwort wiederholen" class="span5" name="password" value="" />
         </fieldset>
         <div class="form-actions">
-            <button class="btn btn-large btn-primary" type="submit"><i class="icon-ok-sign icon-white"></i> Benutzerkonto anlegen</button>
+            <button class="btn btn-large btn-primary" type="submit" name="submit" value="true"><i class="icon-ok-sign icon-white"></i> Benutzerkonto anlegen</button>
             <a class="btn btn-large" href="user/login/"><i class="icon-share-alt"></i> Zurück</a>
         </div>
     </form>
