@@ -10,13 +10,17 @@
  * 444 Castro Street, Suite 900, Mountain View, California, 94041, USA.
  * 
  * @name wombat
- * @author Nico Schmitz - nschmitz1991@gmail.com
- * @copyright  Copyright (c) 2010-2011 Nico Schmitz (nschmitz1991@gmail.com)
+ * @author Nico Schmitz - mail@nicoschmitz.eu
+ * @copyright  Copyright (c) 2010-2011 Nico Schmitz
  * @license http://creativecommons.org/licenses/by-nc-nd/3.0/ Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License
  */
-abstract class Object
-{
+abstract class Object {
+
     protected $id;
+    protected $last_change;
+    protected $last_change_user;
+    protected $created;
+    protected $created_user;
 
     /**
      * Get the ID of this object (unique to the
@@ -24,8 +28,7 @@ abstract class Object
      *
      * @return int
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -34,18 +37,44 @@ abstract class Object
      *
      * @param int $id
      * @return int
-     * @throws Exception	If the id on the object is already set
      */
-    public function setId($id)
-    {
-        if (!is_null($this->id)) {
-            require_once('ObjectException.php');
-            throw new ObjectException('(#1) : ID is immutable');
-        }
+    public function setId($id) {
         $this->id = $id;
     }
     
-        /**
+    public function setCreated($value) {
+        $this->created = $value;
+    }
+    
+    public function getCreated($value) {
+        return $this->created;
+    }
+    
+    public function setCreatedUser($value) {
+        $this->created_user = $value;
+    }
+    
+    public function getCreatedUser() {
+        return $this->created_user;
+    }
+    
+    public function setLastChange($value) {
+        $this->last_change = $value;
+    }
+    
+    public function getLastChange($value) {
+        return $this->last_change;
+    }
+    
+    public function setLastChangeUser($value) {
+        $this->last_change_user = $value;
+    }
+    
+    public function getLastChangeUser($value) {
+        return $this->last_change_user;
+    }
+
+    /**
      * Converts the Object into an Array
      * 
      * @param type $object
@@ -54,4 +83,5 @@ abstract class Object
     public function toArray($object) {
         return get_object_vars($object);
     }
+
 }
