@@ -25,7 +25,9 @@
  * @since   13.05.2011 - 23:35:14
  */
 class Config {
-
+    
+    
+    const FILE = 'config.ini';
     /**
      * Configuration Entry 
      * @var array 
@@ -41,9 +43,9 @@ class Config {
      * Constructor, only calls once
      * @param string $file 
      */
-    private function __construct($file) {
+    private function __construct() {
         try {
-            $this->read($file);
+            $this->read(self::FILE);
         } catch (ConfigException $configException) {
             die($configException);
         }
