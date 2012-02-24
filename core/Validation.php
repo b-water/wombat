@@ -26,6 +26,7 @@ class Validation extends Base {
     private $fields = array();
 
     public function __construct() {
+        require_once('core/ValidationLogObject.php');
         require_once('library/Zend/Validate.php');
         require_once('library/Zend/Validate/Db/RecordExists.php');
         parent::__construct();
@@ -52,10 +53,17 @@ class Validation extends Base {
     public function isValid() {
         if (!empty($this->fields)) {
             foreach ($this->fields as $key => $field) {
-                var_dump($this->validate($field));
+                $this->validate($field);
+            }
+
+            if (!empty($this->log)) {
+                return false;
+            } else {
+                return true;
             }
         } else {
-            return false;
+            require_once('ValidationException.php');
+            throw new ValidationException('No Fields to validate!');
         }
     }
 
@@ -72,41 +80,37 @@ class Validation extends Base {
                     break;
                 case 'email':
                     break;
-                // check if email address is already in use
-                case 'email_exist':
-
-                    $params = array(
-                        'table' => self::TABLE_USER,
-                        'field' => self::FIELD_EMAIL,
-                        'adapter' => $this->db
-                    );
-
-                    $email_exist = new Zend_Validate_Db_RecordExists($params);
-
-                    if ($email_exist->isValid($field['value'])) {
-                        return false;
+                case 'user_name_exist':
+                    if ($this->userRecordExists($field['value']) === false) {
+                        $field['message'] = 'Benutzername wird bereits verwendet!';
+                        $this->addLogEntry($field);
                     }
-
                     break;
                 case 'empty':
+                    if (empty($field['value'])) {
+                        $field['message'] = 'Bitte füllen Sie das Feld ' . $field['name'] . '!';
+                        $this->addLogEntry($field);
+                    }
                     break;
                 case 'date':
                     break;
-                case 'user_name_exist':
-                    return $this->emailRecordExists($field['value']);
+                case 'email_exist':
+                    if ($this->emailRecordExists($field['value']) === false) {
+                        $field['message'] = 'E-Mail Adresse wird bereits verwendet!';
+                        $this->addLogEntry($field);
+                    }
                     break;
                 default:
             }
-
-            return true;
         }
     }
 
-    private function userRecordExists() {
-        
-    }
-
-    private function emailRecordExists($value) {
+    /**
+     *
+     * @param type $value
+     * @return boolean 
+     */
+    private function userRecordExists($value) {
         $params = array(
             'table' => self::TABLE_USER,
             'field' => self::FIELD_USER_NAME,
@@ -118,7 +122,37 @@ class Validation extends Base {
         if ($user_name_exist->isValid($value)) {
             return false;
         }
-        break;
+
+        return true;
+    }
+
+    /**
+     *
+     * @param type $value
+     * @return boolean 
+     */
+    private function emailRecordExists($value) {
+        $params = array(
+            'table' => self::TABLE_USER,
+            'field' => self::FIELD_EMAIL,
+            'adapter' => $this->db
+        );
+
+        $email_exist = new Zend_Validate_Db_RecordExists($params);
+
+        if ($email_exist->isValid($value)) {
+            return false;
+        }
+
+        return true;
+    }
+
+    private function addLogEntry(array $field) {
+        $log_entry = new ValidationLogObject();
+        $log_entry->message = $field['message'];
+        $log_entry->name = $field['name'];
+        $log_entry->field = $field['field'];
+        $this->log[] = $log_entry;
     }
 
     /**
