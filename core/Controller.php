@@ -25,6 +25,14 @@ abstract class Controller extends Base {
         parent::__construct();
         $this->init();
     }
+    
+    protected function isPost() {
+        if(isset($_REQUEST['submit'])) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     abstract protected function init();
 }
