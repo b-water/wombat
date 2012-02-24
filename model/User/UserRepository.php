@@ -2,67 +2,64 @@
 
 /**
  * wombat
- *
+ * 
  * LICENCE
- *
- * This work is licensed under the Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License.
- * To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-nd/3.0/ or send a letter to Creative Commons,
+ * 
+ * This work is licensed under the Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License. 
+ * To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-nd/3.0/ or send a letter to Creative Commons, 
  * 444 Castro Street, Suite 900, Mountain View, California, 94041, USA.
- *
+ * 
  * @name wombat
  * @author Nico Schmitz - mail@nicoschmitz.eu
  * @copyright  Copyright (c) 2010-2011 Nico Schmitz
- * @since 01.04.2010
- * @version 0.1
  * @license http://creativecommons.org/licenses/by-nc-nd/3.0/ Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License
  */
 require_once('core/Repository.php');
 
-class MovieRepository implements Repository {
+class UserRepository implements Repository {
 
     private $dataMapper;
 
     /**
-     * Constructor, needs MovieDataMapper Object
-     * @param MovieDataMapper $dataMapper 
+     * Constructor, needs UserDataMapper Object
+     * @param UserDataMapper $dataMapper 
      */
-    public function __construct(MovieDataMapper $dataMapper) {
+    public function __construct(UserDataMapper $dataMapper) {
         $this->dataMapper = $dataMapper;
     }
 
     /**
-     * Creates a Movie Object
+     * Creates a User Object
      * @param array $data
-     * @return Movie object or throws an Exception 
+     * @return User object or throws an Exception 
      */
     public static function create(array $data) {
-        require_once('Movie.php');
-
-        $movie = new Movie();
-
-        $movie->setId($data['id']);
-
-        (isset($data['title'])) ? $movie->setTitle($data['title']) : '';
-        (isset($data['description'])) ? $movie->setDescription($data['description']) : '';
-        (isset($data['image'])) ? $movie->setImage($data['image']) : '';
-        (isset($data['format'])) ? $movie->setFormat($data['format']) : '';
-        (isset($data['rating'])) ? $movie->setRating($data['rating']) : '';
-        (isset($data['trailer'])) ? $movie->setTrailer($data['trailer']) : '';
-        (isset($data['year'])) ? $movie->setYear($data['year']) : '';
-        (isset($data['duration'])) ? $movie->setDuration($data['duration']) : '';
-        (isset($data['genre']) && is_array($data['genre'])) ? $movie->setGenre($data['genre']) : '';
-        (isset($data['trailer'])) ? $movie->setTrailer($data['trailer']) : '';
-
-        if ($movie->isValid()) {
-            return $movie;
-        } else {
-            require_once('MovieException.php');
-            throw new MovieException('Movie Object is not valid!');
+        require_once('User.php');
+        $user = new User();
+        $class_methods = array();
+        $methods = get_class_methods('User');
+        foreach ($methods as $key => $val) {
+            if (substr($val, 0, 3) == 'set') {
+                $method = $val;
+                $field = strtolower(substr($val, 3));
+                if (isset($data[$field]) && !empty($data[$field])) {
+                    $user->$method($data[$field]);
+                }
+            }
         }
+
+        if ($user->isValid($user)) {
+            return $user;
+        } else {
+            require_once('UserException.php');
+            throw new UserException('User Object is not valid!');
+        }
+
+        return $user;
     }
 
     /**
-     * Fetches Movie Data
+     * Fetches User Data
      *
      * @param array $fields
      * @param type $filter
@@ -71,11 +68,11 @@ class MovieRepository implements Repository {
      * @param type $offset
      * @return type 
      */
-    public function fetch(array $fields, $filter='', $orderby='', $limit='', $offset='') {
+    public function fetch(array $fields, $filter = '', $orderby = '', $limit = '', $offset = '') {
         $movie = $this->dataMapper->fetch($fields, $filter, $orderby, $limit, $offset);
         return $movie;
     }
-    
+
     public function count($filter) {
         $count = $this->dataMapper->count($filter);
         return $count;
@@ -91,7 +88,7 @@ class MovieRepository implements Repository {
      * @param type $offset
      * @return type
      */
-    public function fetchByPage(array $fields, $filter='', $orderby='', $limit='', $offset='') {
+    public function fetchByPage(array $fields, $filter = '', $orderby = '', $limit = '', $offset = '') {
         $movie = $this->dataMapper->fetchByPage($fields, $filter, $orderby, $limit, $offset);
         return $movie;
     }
@@ -116,12 +113,12 @@ class MovieRepository implements Repository {
     }
 
     /**
-     * Creates a new Movie
+     * Creates a new User
      * @param  object $movie
      * @return bool $success
      */
-    public function append($movie) {
-        $success = $this->dataMapper->append($movie);
+    public function append($user) {
+        $success = $this->dataMapper->append($user);
         return $success;
     }
 

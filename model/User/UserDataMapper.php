@@ -12,20 +12,18 @@
  * @name wombat
  * @author Nico Schmitz - mail@nicoschmitz.eu
  * @copyright  Copyright (c) 2010-2011 Nico Schmitz
- * @since 01.04.2010
- * @version 0.1
  * @license http://creativecommons.org/licenses/by-nc-nd/3.0/ Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License
  */
 require_once('core/DataMapper.php');
 require_once('MovieException.php');
 
-class MovieDataMapper extends Base implements DataMapper {
+class UserDataMapper extends Base implements DataMapper {
     /**
      * mysql table
      * @var String 
      */
 
-    const TABLE = 'wombat_movie';
+    const TABLE = 'wombat_user';
 
     /**
      * mysql table
@@ -55,7 +53,7 @@ class MovieDataMapper extends Base implements DataMapper {
      * Path to Cover Images
      * @var string
      */
-    const PATH = 'files/movie/';
+    const PATH = 'files/user/';
 
     /**
      * Genre Repository
@@ -100,7 +98,7 @@ class MovieDataMapper extends Base implements DataMapper {
     private $paginator;
 
     /**
-     * MovieDataMapper Constructor
+     * UserDataMapper Constructor
      * @param Zend_Db_Adapter_Pdo_Mysql $db
      */
     public function __construct() {

@@ -2,233 +2,75 @@
 
 /**
  * wombat
- *
+ * 
  * LICENCE
- *
- * This work is licensed under the Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License.
- * To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-nd/3.0/ or send a letter to Creative Commons,
+ * 
+ * This work is licensed under the Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License. 
+ * To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-nd/3.0/ or send a letter to Creative Commons, 
  * 444 Castro Street, Suite 900, Mountain View, California, 94041, USA.
- *
+ * 
  * @name wombat
  * @author Nico Schmitz - mail@nicoschmitz.eu
  * @copyright  Copyright (c) 2010-2011 Nico Schmitz
- * @since 01.04.2010
- * @version 0.1
  * @license http://creativecommons.org/licenses/by-nc-nd/3.0/ Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License
  */
 require_once('core/Object.php');
+class User extends Object {
 
-class Movie extends Object {
+    private $user_name;
+    private $first_name;
+    private $last_name;
+    private $password;
+    private $email;
+    private $enabled;
+    private $last_login;
 
-    /**
-     * Title of the
-     * Movie Object
-     * @var string
-     */
-    private $title;
-    /**
-     * Description of the
-     * Movie Object
-     * @var string
-     */
-    private $description;
-    /**
-     * Key value for star rating
-     * @var int
-     */
-    private $rating;
-    /**
-     * Key value relation to 
-     * mysql table format
-     * @var int 
-     */
-    private $format;
-    /**
-     * Trailer link of the
-     * Movie Object
-     * @var string 
-     */
-    private $trailer;
-    /**
-     * Path of the Image of the
-     * Movie Object
-     * @var string
-     */
-    private $image;
-    /**
-     * Year of the
-     * Movie Object
-     * @var int 
-     */
-    private $year;
-    /**
-     * Duration of the
-     * Movie Object
-     * @var type 
-     */
-    private $duration;
-    /**
-     * Associated Genres of the
-     * Movie Object
-     * @var array
-     */
-    private $genre = array();
-
-    /**
-     * Validates the Movie object
-     * returns an array with the error
-     * messages.
-     * @return array error
-     */
-    public function isValid() {
-        require_once('MovieValidate.php');
-        $validation = new MovieValidate();
-        $output = $validation->isValid($this);
-        return $output;
+    public function setUserName($value) {
+        $this->user_name = $value;
     }
 
-    /**
-     * Sets the Duration
-     * @param string $value 
-     */
-    public function setDuration($value) {
-        $this->duration = $value;
+    public function getUserName() {
+        return $this->user_name;
     }
 
-    /**
-     * Gets the Duration
-     * @return type string
-     */
-    public function getDuration() {
-        return $this->duration;
+    public function setFirstName($value) {
+        $this->first_name = $value;
     }
 
-    /**
-     * Sets the Description
-     * @param string $value 
-     */
-    public function setDescription($value) {
-        $this->description = $value;
+    public function getFirstName() {
+        return $this->first_name;
     }
 
-    /**
-     * Gets the Description
-     * @return type string
-     */
-    public function getDescription() {
-        return $this->description;
+    public function setLastName($value) {
+        $this->last_name = $value;
     }
 
-    /**
-     * Sets the Year
-     * @return type string
-     */
-    public function setYear($value) {
-        $this->year = $value;
+    public function getLastName() {
+        return $this->last_name;
     }
 
-    /**
-     * Gets the Year
-     * @return type string
-     */
-    public function getYear() {
-        return $this->year;
+    public function setPassword($value) {
+        $this->password = $value;
     }
 
-    /**
-     * Sets the Format
-     * @return type string
-     */
-    public function setFormat($value) {
-        $this->format = $value;
+    public function getPassword() {
+        return $this->password;
     }
 
-    /**
-     * Gets the Format
-     * @return type string
-     */
-    public function getFormat() {
-        return $this->format;
+    public function setEmail($value) {
+        $this->email = $value;
     }
 
-    /**
-     * Sets the Trailer
-     * @return type string
-     */
-    public function setTrailer($value) {
-        $this->trailer = $value;
+    public function getEmail() {
+        return $this->email;
     }
 
-    /**
-     * Gets the Trailer
-     * @return type string
-     */
-    public function getTrailer() {
-        return $this->trailer;
+    public function setEnabled($value) {
+        $this->enabled = $value;
     }
 
-    /**
-     * Sets the Image
-     * @return type string
-     */
-    public function setImage($value) {
-        $this->image = $value;
-    }
-
-    /**
-     * Gets the Image
-     * @return type string
-     */
-    public function getImage() {
-        return $this->image;
-    }
-
-    /**
-     * Sets the Rating
-     * @return type string
-     */
-    public function setRating($value) {
-        $this->rating = $value;
-    }
-
-    /**
-     * Gets the Rating
-     * @return type string
-     */
-    public function getRating() {
-        return $this->rating;
-    }
-
-    /**
-     * Sets the Genre
-     * @return type string
-     */
-    public function setGenre(array $array) {
-        $this->genre = $array;
-    }
-
-    /**
-     * Gets the Genre
-     * @return type string
-     */
-    public function getGenre() {
-        return $this->genre;
-    }
-
-    /**
-     * Sets the Title
-     * @return type string
-     */
-    public function setTitle($value) {
-        $this->title = $value;
-    }
-
-    /**
-     * Gets the Title
-     * @return type string
-     */
-    public function getTitle() {
-        return $this->title;
+    public function getEnabled() {
+        return $this->enabled;
     }
 
 }
