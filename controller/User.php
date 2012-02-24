@@ -28,21 +28,21 @@ class UserController extends Controller {
     }
 
     public function init() {
-//        require_once('model/User/UserDataMapper.php');
-//
-//        try {
-//            $this->dataMapper = new UserDataMapper();
-//        } catch (UserException $userException) {
-//            echo $userException->getTraceAsString();
-//        }
-//
-//        require_once('model/User/UserRepository.php');
-//
-//        try {
-//            $this->repository = new UserRepository($this->dataMapper);
-//        } catch (UserException $userException) {
-//            echo $userException->getTraceAsString();
-//        }
+        require_once('model/User/UserDataMapper.php');
+
+        try {
+            $this->dataMapper = new UserDataMapper();
+        } catch (UserException $userException) {
+            echo $userException->getTraceAsString();
+        }
+
+        require_once('model/User/UserRepository.php');
+
+        try {
+            $this->repository = new UserRepository($this->dataMapper);
+        } catch (UserException $userException) {
+            echo $userException->getTraceAsString();
+        }
     }
 
     public function login() {
@@ -57,6 +57,19 @@ class UserController extends Controller {
     }
 
     public function register() {
+        if ($this->isPost()) {
+            require_once('core/Validation.php');
+            $validation = new Validation($this->db);
+            $validation->addField(array('key' => 'email', 'name' => 'E-Mail Adresse', 'value' => $_REQUEST['email'], 'validator' => array('email', 'email_exist')));
+            $validation->addField(array('key' => 'first_name', 'name' => 'Vorname', 'value' => $_REQUEST['first_name'], 'validator' => array('empty')));
+            $validation->addField(array('key' => 'last_name', 'name' => 'Name', 'value' => $_REQUEST['last_name'], 'validator' => array('empty')));
+            $validation->addField(array('key' => 'user_name', 'name' => 'Benutzername', 'value' => $_REQUEST['user_name'], 'validator' => array('empty', 'username_exist')));
+            if ($validation->isValid()) {
+                
+            } else {
+                $this->view->error = $validation->getLog();
+            }
+        }
         $this->view->pagetitle = 'Registrierung';
         $this->view->pagesubtitle = '';
         $this->view->content = $this->view->render(self::VIEW_DIR . 'register.phtml');
