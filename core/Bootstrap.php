@@ -164,12 +164,12 @@ class Bootstrap {
     public static function setupAuth() {
         require_once('core/Auth.php');
         self::$auth = new Auth();
-//        if (self::$auth->requiresAccess(self::$url->getController(), self::$url->getAction())) {
-//            if (!self::$auth->isLoggedIn()) {
-//                self::$url->setController('user');
-//                self::$url->setAction('login');
-//            }
-//        }
+        if (self::$auth->requiresAccess(self::$url->getController(), self::$url->getAction())) {
+            if (!self::$auth->isLoggedIn()) {
+                self::$url->setController('user');
+                self::$url->setAction('login');
+            }
+        }
     }
 
     /**
