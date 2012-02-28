@@ -16,23 +16,34 @@
  */
 require_once('Base.php');
 
-class Auth {
+class Auth extends Base {
 
     private static $restricted_controller = array('dashboard', 'movie', 'user');
     private static $restricted_action = array('show', 'delete', 'edit', 'update', 'add', 'index');
+    private $userRepository;
+    private $userDataMapper;
 
     public function __construct() {
-        
+        require_once('model/User/UserDataMapper.php');
+
+        try {
+            $this->userDataMapper = new UserDataMapper();
+        } catch (UserException $userException) {
+            echo $userException->getTraceAsString();
+        }
+
+        require_once('model/User/UserRepository.php');
+
+        try {
+            $this->userRepository = new UserRepository($this->userDataMapper);
+        } catch (UserException $userException) {
+            echo $userException->getTraceAsString();
+        }
     }
 
     private function login() {
-        $user = $this->getUserData($this->facebook->getUser());
         if ($user !== false) {
-            $this->view->facebook_logout_url = $this->facebook->getLogoutUrl($this->logoutParams);
             $_SESSION['user'] = $user;
-            $this->view->fb_id = $_SESSION['user']['fbid'];
-//            $this->view->facebook_logout_url = 'https://www.facebook.com/logout.php?next=' . $this->config->get('path.base') . 'user/logout/&access_token=' . $this->facebook->getAccessToken();
-            $this->view->user_profil_url = 'user/show_profil/';
         }
     }
 
