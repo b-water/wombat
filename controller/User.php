@@ -20,8 +20,8 @@ class UserController extends Controller {
 
     const VIEW_DIR = 'user/';
 
-    private $dataMapper;
-    private $repository;
+    private $userDataMapper;
+    private $userRepository;
 
     public function __construct() {
         parent::__construct();
@@ -31,7 +31,7 @@ class UserController extends Controller {
         require_once('model/User/UserDataMapper.php');
 
         try {
-            $this->dataMapper = new UserDataMapper();
+            $this->userDataMapper = new UserDataMapper();
         } catch (UserException $userException) {
             echo $userException->getTraceAsString();
         }
@@ -39,17 +39,21 @@ class UserController extends Controller {
         require_once('model/User/UserRepository.php');
 
         try {
-            $this->repository = new UserRepository($this->dataMapper);
+            $this->userRepository = new UserRepository($this->userDataMapper);
         } catch (UserException $userException) {
             echo $userException->getTraceAsString();
         }
     }
 
     public function login() {
-        $this->view->pagetitle = 'Login';
-        $this->view->pagesubtitle = '';
-        $this->view->content = $this->view->render(self::VIEW_DIR . 'login.phtml');
-        echo $this->view->render(self::VIEW_DIR . 'frame.phtml');
+        if ($this->isPost()) {
+            var_dump($_REQUEST);
+        } else {
+            $this->view->pagetitle = 'Login';
+            $this->view->pagesubtitle = '';
+            $this->view->content = $this->view->render(self::VIEW_DIR . 'login.phtml');
+            echo $this->view->render(self::VIEW_DIR . 'frame.phtml');
+        }
     }
 
     public function logout() {
@@ -65,7 +69,12 @@ class UserController extends Controller {
             $validation->addField(array('key' => 'last_name', 'name' => 'Name', 'value' => $_REQUEST['last_name'], 'validator' => array('empty')));
             $validation->addField(array('key' => 'user_name', 'name' => 'Benutzername', 'value' => $_REQUEST['user_name'], 'validator' => array('empty', 'username_exist')));
             if ($validation->isValid()) {
-                
+                $user = UserRepository::create($_REQUEST);
+                if ($this->userRepository->append($user) === true) {
+                    echo 'ok';
+                } else {
+                    echo 'fehler';
+                }
             } else {
                 $this->view->error = $validation->getLog();
             }
