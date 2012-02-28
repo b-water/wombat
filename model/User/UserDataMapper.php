@@ -15,7 +15,7 @@
  * @license http://creativecommons.org/licenses/by-nc-nd/3.0/ Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License
  */
 require_once('core/DataMapper.php');
-require_once('MovieException.php');
+require_once('UserException.php');
 
 class UserDataMapper extends Base implements DataMapper {
     /**
@@ -54,6 +54,8 @@ class UserDataMapper extends Base implements DataMapper {
      * @var string
      */
     const PATH = 'files/user/';
+    
+    const DATE_TIME = 'Y-m-d H:i:s';
 
     /**
      * Genre Repository
@@ -113,8 +115,21 @@ class UserDataMapper extends Base implements DataMapper {
         $this->genreRepository = new GenreRepository($genreDataMapper);
     }
 
-    public function append($object) {
-        
+    public function append($user) {
+        $user->set_last_login(date(self::DATE_TIME));
+        $user->set_created(date(self::DATE_TIME));
+        $user->set_created_user('SYSTEM');
+        $user->set_last_change(date(self::DATE_TIME));
+        $user->set_last_change_user('SYSTEM');
+        $user->set_enabled(0);
+        $user->set_password(sha1($user->get_password()));
+        $user_array = $user->toArray();
+        $this->db->insert(self::TABLE, $user_array);
+        if ($this->db->lastInsertId() != 0) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -259,7 +274,7 @@ class UserDataMapper extends Base implements DataMapper {
 
         $sql = $this->db->query($select);
         $data = $sql->fetch();
-        
+
         return $data['count'];
     }
 
