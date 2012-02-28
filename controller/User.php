@@ -48,6 +48,7 @@ class UserController extends Controller {
     public function login() {
         if ($this->isPost()) {
             var_dump($_REQUEST);
+            $this->auth->verify($_REQUEST['user_name'],$_REQUEST['password']);
         } else {
             $this->view->pagetitle = 'Login';
             $this->view->pagesubtitle = '';
