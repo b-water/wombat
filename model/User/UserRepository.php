@@ -41,7 +41,7 @@ class UserRepository implements Repository {
         foreach ($methods as $key => $val) {
             if (substr($val, 0, 3) == 'set') {
                 $method = $val;
-                $field = strtolower(substr($val, 3));
+                $field = strtolower(substr($val, 4));
                 if (isset($data[$field]) && !empty($data[$field])) {
                     $user->$method($data[$field]);
                 }
