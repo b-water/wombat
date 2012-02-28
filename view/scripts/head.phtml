@@ -11,8 +11,6 @@
  * @name wombat
  * @author Nico Schmitz - mail@nicoschmitz.eu
  * @copyright  Copyright (c) 2010-2011 Nico Schmitz (mail@nicoschmitz.eu
- * @since 01.04.2010
- * @version 0.1
  * @license http://creativecommons.org/licenses/by-nc-nd/3.0/ Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License
  */
 ?>
@@ -20,10 +18,10 @@
 <html lang="de">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-        <title><?php echo $this->title ?><?php echo (!empty($this->pagetitle)) ? ' - '.$this->pagetitle : '' ?><?php echo (!empty($this->pagesubtitle)) ? ' - '.$this->pagesubtitle : '' ?></title>
+        <title>wombat <?php echo (!empty($this->pagetitle)) ? ' - '.$this->pagetitle : '' ?><?php echo (!empty($this->pagesubtitle)) ? ' - '.$this->pagesubtitle : '' ?></title>
         <base href="<?php echo $this->base ?>" />
-        <meta name="Author" content="<?php echo $this->author ?>" />
-        <meta name="Copyright" content="<?php echo $this->copyright ?>" />
+        <meta name="Author" content="Nico Schmitz" />
+        <meta name="Copyright" content="<?php echo date('Y'); ?> Nico Schmitz - mail@nicoschmitz.eu" />
         <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
         <link rel="stylesheet" href="view/css/bootstrap.min.css" type="text/css"/>
         <link rel="stylesheet" href="view/css/layout.css" type="text/css"/>
