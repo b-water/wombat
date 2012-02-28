@@ -15,6 +15,7 @@
  * @license http://creativecommons.org/licenses/by-nc-nd/3.0/ Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License
  */
 require_once('core/Object.php');
+
 class User extends Object {
 
     private $user_name;
@@ -25,52 +26,74 @@ class User extends Object {
     private $enabled;
     private $last_login;
 
-    public function setUserName($value) {
+    public function isValid() {
+        return true;
+    }
+
+    public function set_user_name($value) {
         $this->user_name = $value;
     }
 
-    public function getUserName() {
+    public function get_user_name() {
         return $this->user_name;
     }
 
-    public function setFirstName($value) {
+    public function set_first_name($value) {
         $this->first_name = $value;
     }
 
-    public function getFirstName() {
+    public function get_first_name() {
         return $this->first_name;
     }
 
-    public function setLastName($value) {
+    public function set_last_name($value) {
         $this->last_name = $value;
     }
 
-    public function getLastName() {
+    public function get_last_name() {
         return $this->last_name;
     }
 
-    public function setPassword($value) {
+    public function set_password($value) {
         $this->password = $value;
     }
 
-    public function getPassword() {
+    public function get_password() {
         return $this->password;
     }
 
-    public function setEmail($value) {
+    public function set_email($value) {
         $this->email = $value;
     }
 
-    public function getEmail() {
+    public function get_email() {
         return $this->email;
     }
 
-    public function setEnabled($value) {
+    public function set_enabled($value) {
         $this->enabled = $value;
     }
 
-    public function getEnabled() {
+    public function get_enabled() {
         return $this->enabled;
+    }
+    
+    public function set_last_login($value) {
+        $this->last_login = $value;
+    }
+    
+    public function get_last_login() {
+        return $this->last_login;
+    }
+
+    /**
+     * Converts the Object into an Array
+     * 
+     * @param type $object
+     * @return array 
+     */
+    public function toArray() {
+        return get_object_vars($this);
     }
 
 }
