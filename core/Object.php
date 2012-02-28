@@ -41,47 +41,36 @@ abstract class Object {
     public function setId($id) {
         $this->id = $id;
     }
-    
-    public function setCreated($value) {
+
+    public function set_created($value) {
         $this->created = $value;
     }
-    
-    public function getCreated($value) {
+
+    public function get_created($value) {
         return $this->created;
     }
-    
-    public function setCreatedUser($value) {
+
+    public function set_created_user($value) {
         $this->created_user = $value;
     }
-    
-    public function getCreatedUser() {
+
+    public function get_created_user() {
         return $this->created_user;
     }
-    
-    public function setLastChange($value) {
+
+    public function set_last_change($value) {
         $this->last_change = $value;
     }
-    
-    public function getLastChange($value) {
+
+    public function get_last_change($value) {
         return $this->last_change;
     }
-    
-    public function setLastChangeUser($value) {
+
+    public function set_last_change_user($value) {
         $this->last_change_user = $value;
     }
-    
-    public function getLastChangeUser($value) {
+
+    public function get_last_change_user($value) {
         return $this->last_change_user;
     }
-
-    /**
-     * Converts the Object into an Array
-     * 
-     * @param type $object
-     * @return array 
-     */
-    public function toArray($object) {
-        return get_object_vars($object);
-    }
-
 }
