@@ -14,34 +14,43 @@
  * @copyright  Copyright (c) 2010-2012 Nico Schmitz
  * @license http://creativecommons.org/licenses/by-nc-nd/3.0/ Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License
  */
-require_once('Base.php');
-
-class Auth extends Base {
+class Auth {
 
     private static $restricted_controller = array('dashboard', 'movie', 'user');
     private static $restricted_action = array('show', 'delete', 'edit', 'update', 'add', 'index');
-    private $userRepository;
-    private $userDataMapper;
 
     public function __construct() {
-        require_once('model/User/UserDataMapper.php');
+        
+    }
+
+    public function verify($user_name, $password) {
+
+        require_once('model/User/DataMapper.php');
 
         try {
-            $this->userDataMapper = new UserDataMapper();
+            $user_data_mapper = new UserDataMapper();
         } catch (UserException $userException) {
             echo $userException->getTraceAsString();
         }
 
-        require_once('model/User/UserRepository.php');
+        require_once('model/User/Repository.php');
 
         try {
-            $this->userRepository = new UserRepository($this->userDataMapper);
+            $repository = new UserRepository($user_data_mapper);
         } catch (UserException $userException) {
             echo $userException->getTraceAsString();
+        }
+
+        $user = $repository->fetch(array('*'), 'user_name="' . $user_name . '" AND password="' . sha1($password) . '"', '', 1, 0);
+        if (is_object($user)) {
+            $this->login($user);
+            return true;
+        } else {
+            return false;
         }
     }
 
-    private function login() {
+    private function login(UserObject $user) {
         if ($user !== false) {
             $_SESSION['user'] = $user;
         }
@@ -50,7 +59,7 @@ class Auth extends Base {
     public function logout() {
         session_destroy();
         foreach ($_COOKIE as $key => $val) {
-            $test = setcookie($key, '', time() - 3600, '/');
+            setcookie($key, '', time() - 3600, '/');
         }
     }
 
