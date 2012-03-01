@@ -16,6 +16,7 @@
  */
 require_once('core/DataMapper.php');
 require_once('UserException.php');
+require_once('core/Base.php');
 
 class UserDataMapper extends Base implements DataMapper {
     /**
