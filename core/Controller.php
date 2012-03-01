@@ -17,21 +17,33 @@
  * @license http://creativecommons.org/licenses/by-nc-nd/3.0/ Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License
  */
 require_once('Base.php');
+
 abstract class Controller extends Base {
-    
+
     const VIEW_MAIN = 'index.phtml';
 
     public function __construct() {
         parent::__construct();
         $this->init();
     }
-    
+
     protected function isPost() {
-        if(isset($_REQUEST['submit'])) {
+        if (isset($_REQUEST['submit'])) {
             return true;
         } else {
             return false;
         }
+    }
+
+    protected function redirect($controller, $action) {
+        $url = $this->config->get('path.base');
+        if (!empty($controller)) {
+            $url .= $controller . '/';
+        }
+        if (!empty($action)) {
+            $url .= $action . '/';
+        }
+        header('Location: ' . $url . '');
     }
 
     abstract protected function init();
