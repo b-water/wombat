@@ -15,6 +15,7 @@
  * @license http://creativecommons.org/licenses/by-nc-nd/3.0/ Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License
  */
 require_once('core/Controller.php');
+
 class UserController extends Controller {
 
     const VIEW_DIR = 'user/';
@@ -47,14 +48,18 @@ class UserController extends Controller {
 
     public function login() {
         if ($this->isPost()) {
-            if($this->auth->verify($_REQUEST['user_name'], $_REQUEST['password'])) {
+            if ($this->auth->verify($_REQUEST['user_name'], $_REQUEST['password'])) {
                 $this->redirect('dashboard');
             } else {
-                
+                $this->view->page_title = 'Login';
+                $this->view->error = true;
+                $this->view->page_sub_title = '';
+                $this->view->content = $this->view->render(self::VIEW_DIR . 'login.phtml');
+                echo $this->view->render(self::VIEW_DIR . 'frame.phtml');
             }
         } else {
-            $this->view->pagetitle = 'Login';
-            $this->view->pagesubtitle = '';
+            $this->view->page_title = 'Login';
+            $this->view->page_sub_title = '';
             $this->view->content = $this->view->render(self::VIEW_DIR . 'login.phtml');
             echo $this->view->render(self::VIEW_DIR . 'frame.phtml');
         }
