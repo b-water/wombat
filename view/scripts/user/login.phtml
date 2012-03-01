@@ -4,6 +4,14 @@
     <p>Um Zugriff auf die Anwendung zu erhalten, benötigst du ein <em>Benutzerkonto</em>. Dafür kannst du dich einfach registrieren. Jedoch muss dieses
         Benutzerkonto erst von einem Administrator <strong>freigeschaltet</strong> werden.</p>
     <br>
+    <?php if ($this->error): ?>
+        <div class="alert alert-error">
+            <a data-dismiss="alert" class="close">×</a>
+            <strong>Authentifizierung fehlgeschlagen!</strong> Das System konnte keinen Benutzer mit den angegebenen Benutzernamen
+            und Passwort finden. Bitte überprüfen Sie das die von Ihnen eingebenen Daten korrekt sind und vergewissern Sie sich das Ihr
+            Benutzer auch freigeschaltet ist.
+        </div>
+    <?php endif; ?>
     <form id="form-entry" method="POST" action="user/login/">
         <input type="text" placeholder="Benutzername" class="span11" name="user_name" value="" />
         <input type="password" placeholder="Passwort" class="span11" name="password" value="" />
