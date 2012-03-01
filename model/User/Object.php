@@ -16,7 +16,7 @@
  */
 require_once('core/Object.php');
 
-class User extends Object {
+class UserObject extends Object {
 
     private $user_name;
     private $first_name;
@@ -30,59 +30,59 @@ class User extends Object {
         return true;
     }
 
-    public function set_user_name($value) {
+    public function setUserName($value) {
         $this->user_name = $value;
     }
 
-    public function get_user_name() {
+    public function getUserName() {
         return $this->user_name;
     }
 
-    public function set_first_name($value) {
+    public function setFirstName($value) {
         $this->first_name = $value;
     }
 
-    public function get_first_name() {
+    public function getFirstName() {
         return $this->first_name;
     }
 
-    public function set_last_name($value) {
+    public function setLastName($value) {
         $this->last_name = $value;
     }
 
-    public function get_last_name() {
+    public function getLastName() {
         return $this->last_name;
     }
 
-    public function set_password($value) {
+    public function setPassword($value) {
         $this->password = $value;
     }
 
-    public function get_password() {
+    public function getPassword() {
         return $this->password;
     }
 
-    public function set_email($value) {
+    public function setEmail($value) {
         $this->email = $value;
     }
 
-    public function get_email() {
+    public function getEmail() {
         return $this->email;
     }
 
-    public function set_enabled($value) {
+    public function setEnabled($value) {
         $this->enabled = $value;
     }
 
-    public function get_enabled() {
+    public function getEnabled() {
         return $this->enabled;
     }
     
-    public function set_last_login($value) {
+    public function setLastLogin($value) {
         $this->last_login = $value;
     }
     
-    public function get_last_login() {
+    public function getLastLogin() {
         return $this->last_login;
     }
 

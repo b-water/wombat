@@ -15,54 +15,16 @@
  * @license http://creativecommons.org/licenses/by-nc-nd/3.0/ Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License
  */
 require_once('core/DataMapper.php');
-require_once('UserException.php');
+require_once('Exception.php');
 require_once('core/Base.php');
 
 class UserDataMapper extends Base implements DataMapper {
     /**
-     * mysql table
-     * @var String 
-     */
-
-    const TABLE = 'wombat_user';
-
-    /**
-     * mysql table
-     * @var String 
-     */
-    const TABLE_GENRE = 'wombat_genre';
-
-    /**
-     * mysql table
-     * @var String 
-     */
-    const TABLE_GENRE_ASSOC = 'wombat_genre_assoc';
-
-    /**
-     * mysql table
-     * @var String 
-     */
-    const TABLE_FORMAT = 'wombat_format';
-
-    /**
-     * mysql table
-     * @var String 
-     */
-    const TABLE_RATING = 'wombat_rating';
-
-    /**
      * Path to Cover Images
      * @var string
      */
-    const PATH = 'files/user/';
-    
-    const DATE_TIME = 'Y-m-d H:i:s';
 
-    /**
-     * Genre Repository
-     * @var object
-     */
-    private $genreRepository;
+    const PATH = 'files/user/';
 
     /**
      * Width of the Cropped/Resized Image
@@ -107,25 +69,18 @@ class UserDataMapper extends Base implements DataMapper {
     public function __construct() {
 
         parent::__construct();
-
-        // setup datamapper for genre
-        require_once('model/Genre/GenreDataMapper.php');
-        $genreDataMapper = new GenreDataMapper($this->db);
-
-        require_once('model/Genre/GenreRepository.php');
-        $this->genreRepository = new GenreRepository($genreDataMapper);
     }
 
     public function append($user) {
-        $user->set_last_login(date(self::DATE_TIME));
-        $user->set_created(date(self::DATE_TIME));
-        $user->set_created_user('SYSTEM');
-        $user->set_last_change(date(self::DATE_TIME));
-        $user->set_last_change_user('SYSTEM');
-        $user->set_enabled(0);
-        $user->set_password(sha1($user->get_password()));
+        $user->setLastLogin(date(self::DATE_TIME));
+        $user->setCreated(date(self::DATE_TIME));
+        $user->setCreatedUser('SYSTEM');
+        $user->setLastChange(date(self::DATE_TIME));
+        $user->setLastChange_user('SYSTEM');
+        $user->setEnabled(0);
+        $user->setPassword(sha1($user->getPassword()));
         $user_array = $user->toArray();
-        $this->db->insert(self::TABLE, $user_array);
+        $this->db->insert(self::TABLE_USER, $user_array);
         if ($this->db->lastInsertId() != 0) {
             return true;
         } else {
@@ -223,7 +178,7 @@ class UserDataMapper extends Base implements DataMapper {
         }
 
         var_dump($data);
-        $affectedRows = $this->db->update(self::TABLE, $data, ' id ="' . $movie->getId() . '"');
+        $affectedRows = $this->db->update(self::TABLE_USER, $data, ' id ="' . $movie->getId() . '"');
 //        $profiler = $this->db->getProfiler();
 //        $query = $profiler->getLastQueryProfile();
 //        echo $query->getQuery();
@@ -267,7 +222,7 @@ class UserDataMapper extends Base implements DataMapper {
     public function count($filter = '') {
         $select = $this->db->select();
 
-        $select->from(self::TABLE, 'COUNT(*) as count');
+        $select->from(self::TABLE_USER, 'COUNT(*) as count');
 
         if (!empty($filter)) {
             $select->where($filter);
@@ -293,17 +248,14 @@ class UserDataMapper extends Base implements DataMapper {
         $select = $this->db->select();
 
         if (!empty($fields)) {
-            $select->from(self::TABLE, $fields);
+            $select->from(self::TABLE_USER, $fields);
         } else {
-            $select->from(self::TABLE, '*');
+            $select->from(self::TABLE_USER, '*');
         }
 
         if (!empty($filter)) {
             $select->where($filter);
         }
-
-        $select->joinLeft(self::TABLE_RATING, self::TABLE_RATING . '.id = ' . self::TABLE . '.rating', self::TABLE_RATING . '.name as rating');
-        $select->joinLeft(self::TABLE_FORMAT, self::TABLE_FORMAT . '.id = ' . self::TABLE . '.format', self::TABLE_FORMAT . '.name as format');
 
         if (!empty($orderby)) {
             $select->order($orderby);
@@ -317,18 +269,23 @@ class UserDataMapper extends Base implements DataMapper {
 //        var_dump($profiler->getLastQueryProfile());
         $data = $sql->fetchAll();
         if (empty($data)) {
-            throw new MovieException('(#3) : No Movies found!');
+            return array();
         } else {
-            $movies = array();
+            if (count($data) == 1) {
+                $user = $user = UserRepository::create($data[0]);
+                return $user;
+                
+            } else {
+                $users = array();
 
-            for ($index = 0; $index <= count($data) - 1; $index++) {
-                $data[$index]['genre'] = $this->genreRepository->fetchAssoc($data[$index]['id']);
+                for ($index = 0; $index <= count($data) - 1; $index++) {
 
-                $movie = MovieRepository::create($data[$index]);
-                $movies[] = $movie;
+                    $user = UserRepository::create($data[$index]);
+                    $users[] = $user;
+                }
+                return $users;
             }
         }
-        return $movies;
     }
 
     /**
@@ -345,17 +302,17 @@ class UserDataMapper extends Base implements DataMapper {
         $select = $this->db->select();
 
         if (!empty($fields)) {
-            $select->from(self::TABLE, $fields);
+            $select->from(self::TABLE_USER, $fields);
         } else {
-            $select->from(self::TABLE, '*');
+            $select->from(self::TABLE_USER, '*');
         }
 
         if (!empty($filter)) {
             $select->where($filter);
         }
 
-        $select->joinLeft(self::TABLE_RATING, self::TABLE_RATING . '.id = ' . self::TABLE . '.rating', self::TABLE_RATING . '.name as rating');
-        $select->joinLeft(self::TABLE_FORMAT, self::TABLE_FORMAT . '.id = ' . self::TABLE . '.format', self::TABLE_FORMAT . '.name as format');
+        $select->joinLeft(self::TABLE_RATING, self::TABLE_RATING . '.id = ' . self::TABLE_USER . '.rating', self::TABLE_RATING . '.name as rating');
+        $select->joinLeft(self::TABLE_FORMAT, self::TABLE_FORMAT . '.id = ' . self::TABLE_USER . '.format', self::TABLE_FORMAT . '.name as format');
 
         if (!empty($orderby)) {
             $select->order($orderby);

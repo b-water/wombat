@@ -42,35 +42,35 @@ abstract class Object {
         $this->id = $id;
     }
 
-    public function set_created($value) {
+    public function setCreated($value) {
         $this->created = $value;
     }
 
-    public function get_created($value) {
+    public function getCreated($value) {
         return $this->created;
     }
 
-    public function set_created_user($value) {
+    public function setCreatedUser($value) {
         $this->created_user = $value;
     }
 
-    public function get_created_user() {
+    public function getCreatedUser() {
         return $this->created_user;
     }
 
-    public function set_last_change($value) {
+    public function setLastChange($value) {
         $this->last_change = $value;
     }
 
-    public function get_last_change($value) {
+    public function getLastChange($value) {
         return $this->last_change;
     }
 
-    public function set_last_change_user($value) {
+    public function setLastChangeUser($value) {
         $this->last_change_user = $value;
     }
 
-    public function get_last_change_user($value) {
+    public function getLastChangeUser($value) {
         return $this->last_change_user;
     }
 }
