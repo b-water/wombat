@@ -12,14 +12,11 @@
  * @name wombat
  * @author Nico Schmitz - mail@nicoschmitz.eu
  * @copyright  Copyright (c) 2010-2011 Nico Schmitz
- * @since 01.04.2010
- * @version 0.1
  * @license http://creativecommons.org/licenses/by-nc-nd/3.0/ Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License
  */
 
-require_once('controller/DashboardAbstract.php');
-
-class DashboardController extends DashboardAbstractController {
+require_once('core/Controller.php');
+class DashboardController extends Controller {
 
     private $template_dir = 'dashboard/';
     private $layout;
@@ -38,6 +35,7 @@ class DashboardController extends DashboardAbstractController {
 //        $content = $this->smarty->fetch($this->template_dir . 'index.tpl');
 //        $this->smarty->assign('content', $content);
 //        $this->smarty->display($this->template);
+        echo 'test';
         echo $this->view->render('frame.phtml');
     }
 
