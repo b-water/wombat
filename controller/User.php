@@ -15,31 +15,31 @@
  * @license http://creativecommons.org/licenses/by-nc-nd/3.0/ Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License
  */
 require_once('core/Controller.php');
-
 class UserController extends Controller {
 
     const VIEW_DIR = 'user/';
 
-    private $userDataMapper;
-    private $userRepository;
+    private $user_data_mapper;
+    private $user_repository;
 
     public function __construct() {
         parent::__construct();
     }
 
     public function init() {
-        require_once('model/User/UserDataMapper.php');
+
+        require_once('model/User/DataMapper.php');
 
         try {
-            $this->userDataMapper = new UserDataMapper();
+            $this->user_data_mapper = new UserDataMapper();
         } catch (UserException $userException) {
             echo $userException->getTraceAsString();
         }
 
-        require_once('model/User/UserRepository.php');
+        require_once('model/User/Repository.php');
 
         try {
-            $this->userRepository = new UserRepository($this->userDataMapper);
+            $this->user_repository = new UserRepository($this->user_data_mapper);
         } catch (UserException $userException) {
             echo $userException->getTraceAsString();
         }
@@ -47,8 +47,11 @@ class UserController extends Controller {
 
     public function login() {
         if ($this->isPost()) {
-            var_dump($_REQUEST);
-            $this->auth->verify($_REQUEST['user_name'],$_REQUEST['password']);
+            if($this->auth->verify($_REQUEST['user_name'], $_REQUEST['password'])) {
+                $this->redirect('dashboard');
+            } else {
+                
+            }
         } else {
             $this->view->pagetitle = 'Login';
             $this->view->pagesubtitle = '';
@@ -58,7 +61,7 @@ class UserController extends Controller {
     }
 
     public function logout() {
-        
+        $this->auth->logout();
     }
 
     public function register() {
