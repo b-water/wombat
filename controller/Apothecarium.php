@@ -18,247 +18,123 @@
  */
 require_once('core/Controller.php');
 
-class MovieController extends Controller {
-    /**
-     * Image Path
-     * @var string 
-     */
+class ApothecariumController extends Controller {
 
-    const VIEW_DIR = 'movie/';
+    const VIEW_DIR = 'apothecarium/';
 
-    /**
-     * Tablename
-     * @var string
-     */
-    const TABLE = 'wombat_movie';
-
-    /**
-     * Movie Repository
-     * @var object
-     */
-    protected $movieRepository = null;
-
-    /**
-     * Genre Repository
-     * @var object
-     */
-    protected $genreRepository = null;
-
-    /**
-     * Format Repository
-     * @var object 
-     */
-    protected $formatRepository = null;
-
-    /**
-     * Rating Repository
-     * @var object 
-     */
-    protected $ratingRepository = null;
+    private $armory;
 
     public function __construct() {
         parent::__construct();
     }
 
     protected function init() {
-        require_once('model/Movie/MovieDataMapper.php');
 
-        try {
-            $movieDataMapper = new MovieDataMapper($this->db);
-        } catch (MovieException $movieException) {
-            die($movieException);
-        }
+        $GLOBALS['wowarmory']['db']['driver'] = 'mysql'; // Dont change. Only mysql supported so far.
+        $GLOBALS['wowarmory']['db']['hostname'] = '127.0.0.1'; // Hostname of server. 
+        $GLOBALS['wowarmory']['db']['dbname'] = 'wombat'; //Name of your database
+        $GLOBALS['wowarmory']['db']['username'] = 'root'; //Insert your database username
+        $GLOBALS['wowarmory']['db']['password'] = ''; //Insert your database password
+        // Only use the two below if you have received API keys from Blizzard.
+        $GLOBALS['wowarmory']['keys']['private'] = ''; // if you have an API key from Blizzard
+        $GLOBALS['wowarmory']['keys']['public'] = ''; // if you have an API key from Blizzard
 
-        require_once('model/Movie/MovieRepository.php');
-        try {
-            $this->movieRepository = new MovieRepository($movieDataMapper);
-        } catch (MovieException $movieException) {
-            die($movieException);
-        }
+        require_once('library/wowarmoryapi/BattlenetArmory.class.php');
 
-        require_once('model/Genre/GenreDataMapper.php');
-        try {
-            $genreDataMapper = new GenreDataMapper($this->db);
-        } catch (MovieException $movieException) {
-            die($movieException);
-        }
-
-        require_once('model/Genre/GenreRepository.php');
-        try {
-            $this->genreRepository = new GenreRepository($genreDataMapper);
-        } catch (MovieException $movieException) {
-            die($movieException);
-        }
-
-        require_once('model/Format/FormatDataMapper.php');
-
-        try {
-            $formatDataMapper = new FormatDataMapper($this->db);
-        } catch (MovieException $movieException) {
-            die($movieException);
-        }
-
-        require_once('model/Format/FormatRepository.php');
-        try {
-            $this->formatRepository = new FormatRepository($formatDataMapper);
-        } catch (MovieException $movieException) {
-            die($movieException);
-        }
-
-        require_once('model/Rating/RatingDataMapper.php');
-
-        try {
-            $ratingDataMapper = new RatingDataMapper($this->db);
-        } catch (RatingException $ratingException) {
-            die($ratingException);
-        }
-
-        require_once('model/Rating/RatingRepository.php');
-        try {
-            $this->ratingRepository = new RatingRepository($ratingDataMapper);
-        } catch (RatingException $ratingException) {
-            die($ratingException);
-        }
+        $this->armory = new BattlenetArmory('EU', 'Vek\'lor');
+        $this->armory->setLocale('de_DE');
     }
 
     public function index() {
 
-        $count = $this->movieRepository->count('');
+        $character = $this->armory->getCharacter('Sharnazadh');
 
-        if (isset($_REQUEST['page']) && intval($_REQUEST['page'] !== 0)) {
-            $page = $_REQUEST['page'];
-        } else {
-            $page = 1;
+        if ($character->isValid()) {
+
+            $gear = array();
+            $slots = array('head' => 'Kopf', 'neck' => 'Hals', 'shoulder' => 'Schultern', 'back' => 'Umhang', 'chest' => 'Brust',
+                'wrist' => 'Armschienen', 'hands' => 'Handschuhe', 'waist' => 'Taille', 'legs' => 'Beine', 'feet' => 'Füße', 'finger1' => 'Ring', 'finger2' => 'Ring',
+                'trinket1' => 'Trinket', 'trinket2' => 'Trinket', 'mainHand' => 'Main Hand', 'offHand' => 'Off Hand', 'ranged' => 'Ranged');
+
+            $wowhead_url = $this->config->get('wow.wowhead.url');
+            $this->view->wowhead_url = $wowhead_url;
+
+            foreach ($slots as $slot => $slot_de) {
+                $gear[$slot] = $character->getItemSlot($slot);
+                $item = $this->armory->getItem($gear[$slot]['id']);
+                $gear[$slot]['icon_img'] = $item->getIcon(18);
+                $gear[$slot]['slot_en'] = $slot;
+                $gear[$slot]['slot_de'] = $slot_de;
+                $gear[$slot]['enchant'] = array();
+                $gear[$slot]['gems'] = array();
+                $gear[$slot]['url'] = $wowhead_url . 'item=' . $gear[$slot]['id'] . '';
+                $gear[$slot]['url_gems'] = 'gems=';
+                $gear[$slot]['url_enchant'] = 'ench=';
+                $gear[$slot]['url_set'] = 'pcs=';
+                foreach ($gear[$slot]['tooltipParams'] as $type => $param) {
+                    if (substr($type, 0, 3) == 'gem') {
+                        $gear[$slot]['url_gems'] .= $param . ':';
+                        $gear[$slot]['gems'][] = $this->armory->getItem($param);
+                    } elseif ($type == 'enchant') {
+                        $gear[$slot]['url_enchant'] .= $param . ':';
+                        $gear[$slot]['enchant'] = $this->armory->getItem($param);
+                    } elseif (is_array($param) && $type == 'set') {
+                        foreach ($param as $set_item) {
+                            $gear[$slot]['url_set'] .= $set_item . ':';
+                        }
+                    }
+                }
+            }
+
+            var_dump($gear);
+
+//            $talents = $character->getTalents();
+
+//            $speccs = array($talents[0]['name'],$talents[1]['name']);
+//            var_dump($gear);
+
+            $this->view->level = $character->getLevel();
+            $this->view->gear = $gear;
+            $this->view->pagetitle = 'Apothecarium';
+            $this->view->pagesubtitle = 'Übersicht';
+            $this->view->thumbnail = $character->getProfileInsetURL();
+            $this->view->class = $character->getClassName();
+            $this->view->race = $character->getRaceName();
+            $this->view->content = $this->view->render(self::VIEW_DIR . 'index.phtml');
+            echo $this->view->render('frame.phtml');
         }
 
-        require_once('core/Pagination.php');
-        $options = array(
-            'entriesPerPage' => 15,
-            'entriesMax' => $count,
-            'currentPage' => $page,
-            'pageRange' => 10
-        );
-        
-        $pagination = new Pagination($options);
-        $movies = $this->movieRepository->fetch(array('id', 'title', 'rating', 'year'), '', '', $pagination->getEntriesPerPage(), $pagination->getCurrentEntry());
-
-        $this->view->pagination = $pagination;
-        $this->view->movies = $movies;
-        $this->view->pagetitle = 'Filme';
-        $this->view->pagesubtitle = 'Übersicht';
-        $this->view->content = $this->view->render('movie/index.phtml');
-        echo $this->view->render('frame.phtml');
+//        var_dump($raidprogress = $character->getRaidStats());
+//        var_dump($stats = $character->getStats());
+//        var_dump($headslot = $character->getItemSlot('head'));
+//        var_dump($talents = $character->getTalents());
+//        var_dump($character);
     }
 
-    public function single() {
-
-        $filter = self::TABLE . '.id = "' . $this->url->getValue() . '"';
-
-        try {
-            $movie = $this->movieRepository->fetch(array('*'), $filter);
-        } catch (MovieException $movieException) {
-            die($movieException);
-        }
-
-        $this->view->movie = $movie[0];
-        $this->view->content = $this->view->render('movie/single.phtml');
-        echo $this->view->render('frame.phtml');
-    }
-
-    public function edit() {
-
-//        $this->smarty->assign('title', 'Film Bearbeiten');
-        if (isset($_REQUEST['id']) && intval($_REQUEST['id']) != 0) {
-            $filter = self::TABLE . '.id = "' . $_REQUEST['id'] . '"';
-        } else {
-            throw new MovieException('Id not set!');
-        }
-
-        try {
-            $movie = $this->movieRepository->fetch(array('*'), $filter);
-        } catch (MovieException $movieException) {
-            die($movieException);
-        }
-
-        try {
-            $format = $this->formatRepository->fetch(array('*'), 'type="movie"');
-        } catch (FormatException $formatException) {
-            die($formatException);
-        }
-
-        try {
-            $rating = $this->ratingRepository->fetch(array('*'), 'type="movie"');
-        } catch (RatingException $ratingException) {
-            die($ratingException);
-        }
-
-        $this->view->movie = $movie[0];
-        $this->view->format = $format;
-        $this->view->rating = $rating;
-        $this->view->content = $this->view->render(self::VIEW_DIR . 'edit.phtml');
-        echo $this->view->render('frame.phtml');
-    }
-
-    public function update() {
-        try {
-            $movie = MovieRepository::create($_REQUEST);
-        } catch (MovieException $movieException) {
-            die($movieException);
-        }
-
-        try {
-            $this->movieRepository->update($movie);
-        } catch (MovieException $movieException) {
-            die($movieException);
-        }
-    }
-
-    // delete
-//      public function index() {
-//        $this->confirm();
-//    }
-//
-    public function confirm() {
-        $this->smarty->assign('title', 'Film Löschen');
-        $filter = $this->table . '.id = "' . $this->urlParser->getValue() . '"';
-
-        try {
-            $movie = $this->movieRepository->fetch(array('*'), $filter);
-        } catch (MovieException $movieException) {
-            die($movieException);
-        }
-
-        $this->smarty->assign('movie', $movie[0]);
-        $content = $this->smarty->fetch($this->template_dir . 'confirm.tpl');
-        $this->smarty->assign('content', $content);
-        $this->smarty->display($this->template);
-    }
-
-    public function delete() {
-
-        $id = $this->url->getValue();
-
-//        try {
-//            $success = $this->movieRepository->delete($id);
-//        } catch (MovieException $movieException) {
-//            echo $movieException->getTraceAsString();
-//        }
-
-        $text = 'Der Film wurde erfolgreich aus der Datenbank gel&ouml;scht!';
-
-        $this->view->content = $this->view->render(self::VIEW_DIR . 'delete.phtml');
-        echo $this->view->render('frame.phtml');
-    }
-
-    // update
-//        public function index() {
-//        $this->single();
-//    }
 //
 //    public function single() {
 //
-//        $this->smarty->assign('title', 'Film Bearbeiten');
-//        $filter = $this->table . '.id = "' . $this->urlParser->getValue() . '"';
+//        $filter = self::TABLE . '.id = "' . $this->url->getValue() . '"';
+//
+//        try {
+//            $movie = $this->movieRepository->fetch(array('*'), $filter);
+//        } catch (MovieException $movieException) {
+//            die($movieException);
+//        }
+//
+//        $this->view->movie = $movie[0];
+//        $this->view->content = $this->view->render('movie/single.phtml');
+//        echo $this->view->render('frame.phtml');
+//    }
+//
+//    public function edit() {
+//
+////        $this->smarty->assign('title', 'Film Bearbeiten');
+//        if (isset($_REQUEST['id']) && intval($_REQUEST['id']) != 0) {
+//            $filter = self::TABLE . '.id = "' . $_REQUEST['id'] . '"';
+//        } else {
+//            throw new MovieException('Id not set!');
+//        }
 //
 //        try {
 //            $movie = $this->movieRepository->fetch(array('*'), $filter);
@@ -278,12 +154,11 @@ class MovieController extends Controller {
 //            die($ratingException);
 //        }
 //
-//        $this->smarty->assign('movie', $movie[0]);
-//        $this->smarty->assign('format', $format);
-//        $this->smarty->assign('rating', $rating);
-//        $content = $this->smarty->fetch($this->template_dir . 'edit.tpl');
-//        $this->smarty->assign('content', $content);
-//        $this->smarty->display($this->template);
+//        $this->view->movie = $movie[0];
+//        $this->view->format = $format;
+//        $this->view->rating = $rating;
+//        $this->view->content = $this->view->render(self::VIEW_DIR . 'edit.phtml');
+//        echo $this->view->render('frame.phtml');
 //    }
 //
 //    public function update() {
@@ -298,5 +173,42 @@ class MovieController extends Controller {
 //        } catch (MovieException $movieException) {
 //            die($movieException);
 //        }
+//    }
+//
+//    // delete
+////      public function index() {
+////        $this->confirm();
+////    }
+////
+//    public function confirm() {
+//        $this->smarty->assign('title', 'Film Löschen');
+//        $filter = $this->table . '.id = "' . $this->urlParser->getValue() . '"';
+//
+//        try {
+//            $movie = $this->movieRepository->fetch(array('*'), $filter);
+//        } catch (MovieException $movieException) {
+//            die($movieException);
+//        }
+//
+//        $this->smarty->assign('movie', $movie[0]);
+//        $content = $this->smarty->fetch($this->template_dir . 'confirm.tpl');
+//        $this->smarty->assign('content', $content);
+//        $this->smarty->display($this->template);
+//    }
+//
+//    public function delete() {
+//
+//        $id = $this->url->getValue();
+//
+////        try {
+////            $success = $this->movieRepository->delete($id);
+////        } catch (MovieException $movieException) {
+////            echo $movieException->getTraceAsString();
+////        }
+//
+//        $text = 'Der Film wurde erfolgreich aus der Datenbank gel&ouml;scht!';
+//
+//        $this->view->content = $this->view->render(self::VIEW_DIR . 'delete.phtml');
+//        echo $this->view->render('frame.phtml');
 //    }
 }
