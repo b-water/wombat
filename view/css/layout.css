@@ -23,6 +23,24 @@ body {
     padding-top: 60px;
     padding-bottom: 40px;
 }
+
+.left {
+    float:left;
+}
+
+.right {
+    float:right;
+}
+
+.margin-10-right {
+    margin-right:10px;
+}
+
+.margin-10-left {
+    margin-left:10px;
+}
+
+
 /*.sidebar-nav {
     padding: 9px 0;
 }*/
@@ -66,6 +84,13 @@ tr:hover[onclick] {
 
 ul.breadcrumb input, ul.breadcrumb select {
     margin-bottom:0;
+}
+
+/*form.toolbar {
+    margin-left:10px;
+}*/
+a.toolbar-left, a.toolbar-right, div.pages {
+    margin-top:8px;
 }
 /*
 
@@ -379,3 +404,27 @@ span.overview-genre {
     border-left-color: rgb(25,25,25);
     border-left-color: rgba(25,25,25,0.92);
 }*/
+
+div.wow.thumbnail {
+    width:230px;
+}
+
+div.wow.itemdesc {
+    display:inline-block;
+    float:left;
+}
+
+a.wow.item_img img {
+    float:left;
+    margin-right:10px;
+}
+
+a.wow.item_img span {
+    float:left;
+
+} 
+
+a.wow.item {
+    float:left;
+    margin-right:10px;
+}

@@ -49,7 +49,7 @@ $(document).ready(function() {
         $('.dropdown-config').toggle('slow',function() {});
     });
     
-    $('#search-btn').popover();
+    $('.tip').popover();
 //    if($('table.tablesorter').exists()) {
 //        $('table.tablesorter').tablesorter({
 //            sortList: [[0,0]],
