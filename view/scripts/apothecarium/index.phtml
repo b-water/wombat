@@ -1,0 +1,52 @@
+<?php require_once('view/scripts/toolbar.phtml'); ?>
+<table id="movies" class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th class="blue title">Titel</th>
+            <th class="yellow genre">Genre</th>
+            <th class="green rating">Bewertung</th>
+            <th class="red format">Format</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach ($this->movies as $movie): ?>
+            <tr id="<?php echo $movie->getId() ?>" onclick="core.http.redirectToUrl('movie/edit?id=<?php echo $movie->getId(); ?>');">
+                <td class="name"><?php echo $movie->getTitle() ?></td>
+                <td class="genre">
+                    <?php if ($movie->getGenre()): ?>
+                        <?php foreach ($movie->getGenre() as $genre): ?>
+                            <span class="overview-genre"><?php echo $genre->getName() ?></span>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        -
+                    <?php endif; ?>
+                </td>
+                <td class="rating">
+                    <?php if ($movie->getRating() != ''): ?>
+                        <?php echo $movie->getRating() ?>
+                    <?php else: ?>
+                        -
+                    <?php endif; ?>
+                </td>
+                <td class="format">
+                    <?php if ($movie->getFormat() != ''): ?>
+                        <?php echo $movie->getFormat() ?>
+                    <?php else: ?>
+                        -
+                    <?php endif; ?>
+                </td>
+<!--                <td class="edit">-->
+<!--                    <a class="btn btn-primary edit" title="Bearbeiten" href="movie/edit/id/<?php echo $movie->getId() ?>/">-->
+<!--                        <i class="icon-edit icon-white"></i>-->
+<!--                    </a>-->
+<!--                </td>-->
+<!--                <td class="delete">-->
+<!--                    <a class="btn btn-danger delete fancydelete" title="L&ouml;schen" href="movie/delete/id/<?php echo $movie->getId() ?>/">-->
+<!--                        <i class="icon-trash icon-white"></i>-->
+<!--                    </a>-->
+<!--                </td>-->
+            </tr>
+        <?php endforeach; ?>
+    </tbody>
+</table>
+<?php require_once('view/scripts/pagination.phtml'); ?>
