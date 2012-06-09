@@ -11,8 +11,8 @@
  *
  * @name wombat
  * @author Nico Schmitz - mail@nicoschmitz.eu
- * @copyright  Copyright (c) 2010-2011 Nico Schmitz
- * @since 01.04.2010
+ * @copyright  Copyright (c) 2010-2012 Nico Schmitz
+ * @since 10.06.2012
  * @version 0.1
  * @license http://creativecommons.org/licenses/by-nc-nd/3.0/ Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License
  */
@@ -21,6 +21,13 @@ require_once('core/Controller.php');
 class ApothecariumController extends Controller {
 
     const VIEW_DIR = 'apothecarium/';
+    const REALM = 'Vek\'lor';
+    const LOCALE = 'de_DE';
+    const REGION = 'EU';
+    const CHARACTER = 'Sharnazadh';
+    const USE_CACHE = true;
+    const UTF8 = true;
+    const CACHE_TTL = 86400; 
 
     private $armory;
 
@@ -30,24 +37,31 @@ class ApothecariumController extends Controller {
 
     protected function init() {
 
-        $GLOBALS['wowarmory']['db']['driver'] = 'mysql'; // Dont change. Only mysql supported so far.
-        $GLOBALS['wowarmory']['db']['hostname'] = '127.0.0.1'; // Hostname of server. 
-        $GLOBALS['wowarmory']['db']['dbname'] = 'wombat'; //Name of your database
-        $GLOBALS['wowarmory']['db']['username'] = 'root'; //Insert your database username
-        $GLOBALS['wowarmory']['db']['password'] = ''; //Insert your database password
+        $GLOBALS['wowarmory']['db']['driver'] = $this->config->get('database.driver'); // Dont change. Only mysql supported so far.
+        $GLOBALS['wowarmory']['db']['hostname'] = $this->config->get('database.host'); // Hostname of server. 
+        $GLOBALS['wowarmory']['db']['dbname'] = $this->config->get('database.dbname'); //Name of your database
+        $GLOBALS['wowarmory']['db']['username'] = $this->config->get('database.user'); //Insert your database username
+        $GLOBALS['wowarmory']['db']['password'] = $this->config->get('database.password'); //Insert your database password
         // Only use the two below if you have received API keys from Blizzard.
-        $GLOBALS['wowarmory']['keys']['private'] = ''; // if you have an API key from Blizzard
-        $GLOBALS['wowarmory']['keys']['public'] = ''; // if you have an API key from Blizzard
+        $GLOBALS['wowarmory']['keys']['private'] = $this->config->get('wow.blizzard.api.private'); // if you have an API key from Blizzard
+        $GLOBALS['wowarmory']['keys']['public'] = $this->config->get('wow.blizzard.api.public'); // if you have an API key from Blizzard
 
         require_once('library/wowarmoryapi/BattlenetArmory.class.php');
 
-        $this->armory = new BattlenetArmory('EU', 'Vek\'lor');
-        $this->armory->setLocale('de_DE');
+        $this->armory = new BattlenetArmory(self::REGION, self::REALM);
+        $this->armory->setLocale(self::LOCALE);
+        $this->armory->useCache(self::USE_CACHE);
+        $this->armory->UTF8(self::UTF8);
+        $this->armory->setCharactersCacheTTL(self::CACHE_TTL);
+        $this->armory->setGuildsCacheTTL(self::CACHE_TTL);
+        $this->armory->setArenaTeamsCacheTTL(self::CACHE_TTL);
+        $this->armory->setAchievementsCacheTTL(self::CACHE_TTL);
+        $this->armory->setItemsCacheTTL(self::CACHE_TTL);
     }
 
     public function index() {
 
-        $character = $this->armory->getCharacter('Sharnazadh');
+        $character = $this->armory->getCharacter(self::CHARACTER);
 
         if ($character->isValid()) {
 
@@ -86,10 +100,8 @@ class ApothecariumController extends Controller {
                 }
             }
 
-            var_dump($gear);
-
+//            var_dump($gear);
 //            $talents = $character->getTalents();
-
 //            $speccs = array($talents[0]['name'],$talents[1]['name']);
 //            var_dump($gear);
 
@@ -111,104 +123,4 @@ class ApothecariumController extends Controller {
 //        var_dump($character);
     }
 
-//
-//    public function single() {
-//
-//        $filter = self::TABLE . '.id = "' . $this->url->getValue() . '"';
-//
-//        try {
-//            $movie = $this->movieRepository->fetch(array('*'), $filter);
-//        } catch (MovieException $movieException) {
-//            die($movieException);
-//        }
-//
-//        $this->view->movie = $movie[0];
-//        $this->view->content = $this->view->render('movie/single.phtml');
-//        echo $this->view->render('frame.phtml');
-//    }
-//
-//    public function edit() {
-//
-////        $this->smarty->assign('title', 'Film Bearbeiten');
-//        if (isset($_REQUEST['id']) && intval($_REQUEST['id']) != 0) {
-//            $filter = self::TABLE . '.id = "' . $_REQUEST['id'] . '"';
-//        } else {
-//            throw new MovieException('Id not set!');
-//        }
-//
-//        try {
-//            $movie = $this->movieRepository->fetch(array('*'), $filter);
-//        } catch (MovieException $movieException) {
-//            die($movieException);
-//        }
-//
-//        try {
-//            $format = $this->formatRepository->fetch(array('*'), 'type="movie"');
-//        } catch (FormatException $formatException) {
-//            die($formatException);
-//        }
-//
-//        try {
-//            $rating = $this->ratingRepository->fetch(array('*'), 'type="movie"');
-//        } catch (RatingException $ratingException) {
-//            die($ratingException);
-//        }
-//
-//        $this->view->movie = $movie[0];
-//        $this->view->format = $format;
-//        $this->view->rating = $rating;
-//        $this->view->content = $this->view->render(self::VIEW_DIR . 'edit.phtml');
-//        echo $this->view->render('frame.phtml');
-//    }
-//
-//    public function update() {
-//        try {
-//            $movie = MovieRepository::create($_REQUEST);
-//        } catch (MovieException $movieException) {
-//            die($movieException);
-//        }
-//
-//        try {
-//            $this->movieRepository->update($movie);
-//        } catch (MovieException $movieException) {
-//            die($movieException);
-//        }
-//    }
-//
-//    // delete
-////      public function index() {
-////        $this->confirm();
-////    }
-////
-//    public function confirm() {
-//        $this->smarty->assign('title', 'Film Löschen');
-//        $filter = $this->table . '.id = "' . $this->urlParser->getValue() . '"';
-//
-//        try {
-//            $movie = $this->movieRepository->fetch(array('*'), $filter);
-//        } catch (MovieException $movieException) {
-//            die($movieException);
-//        }
-//
-//        $this->smarty->assign('movie', $movie[0]);
-//        $content = $this->smarty->fetch($this->template_dir . 'confirm.tpl');
-//        $this->smarty->assign('content', $content);
-//        $this->smarty->display($this->template);
-//    }
-//
-//    public function delete() {
-//
-//        $id = $this->url->getValue();
-//
-////        try {
-////            $success = $this->movieRepository->delete($id);
-////        } catch (MovieException $movieException) {
-////            echo $movieException->getTraceAsString();
-////        }
-//
-//        $text = 'Der Film wurde erfolgreich aus der Datenbank gel&ouml;scht!';
-//
-//        $this->view->content = $this->view->render(self::VIEW_DIR . 'delete.phtml');
-//        echo $this->view->render('frame.phtml');
-//    }
 }
