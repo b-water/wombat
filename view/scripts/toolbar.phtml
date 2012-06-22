@@ -1,44 +1,29 @@
-<form class="form-inline toolbar">
+<form class="form-inline toolbar" action="<?php echo $this->url->getUrl(); ?>" method="POST" accept-charset="utf-8">
     <ul class="breadcrumb">
         <li>Du bist hier :</li>
         <li><a href="#">Filme</a> <span class="divider">/</span></li>
         <li><a href="#">Übersicht</a> <span class="divider">/</span></li>
-        <!--    <li class="active">Data</li>-->
     </ul>
-    <a class="btn left toolbar-left margin-10-right margin-10-left" title="Eine Seite vorwärts" href="movie/"><i class="icon-arrow-left"></i></a>
-    <div class="btn-group left margin-10-right pages">
-        <a href="#" data-toggle="dropdown" class="btn btn-success dropdown-toggle">Seiten <span class="caret"></span></a>
-        <ul class="dropdown-menu">
-            <li><a href="#">Anfang</a></li>
-            <li class="divider"></li>
-            <li><a href="#">Seite 1</a></li>
-            <li><a href="#">Seite 2</a></li>
-            <li><a href="#">Seite 3</a></li>
-            <li class="divider"></li>
-            <li><a href="#">Ende</a></li>
-        </ul>
-    </div>
-    <a class="btn left margin-10-right toolbar-right" href="movie/"><i class="icon-arrow-right"></i></a>
+    <a class="btn left toolbar-left margin-10-right margin-10-left" title="Eine Seite vorwärts" href="<?php echo $this->url->getController(); ?>?page=<?php echo $this->pagination->prevPage; ?>"><i class="icon-arrow-left"></i></a>
+    <a class="btn left margin-10-right toolbar-right" href="<?php echo $this->url->getController(); ?>?page=<?php echo $this->pagination->nextPage; ?>"><i class="icon-arrow-right"></i></a>
     <div class="btn-group left margin-10-right pages">
         <a href="#" data-toggle="dropdown" class="btn btn-info dropdown-toggle">Einträge pro Seite <span class="caret"></span></a>
         <ul class="dropdown-menu">
-            <li><a href="#">10</a></li>
-            <li><a href="#">20</a></li>
-            <li><a href="#">30</a></li>
-            <li class="divider"></li>
-            <li><a href="#">Alle Einträge</a></li>
+            <li <?php echo (isset($_GET['epp']) && $_GET['epp'] == '10') ? 'class="active"' : ''; ?>><a href="<?php echo $this->url->getUrl(); ?>&epp=10">10</a></li>
+            <li <?php echo (isset($_GET['epp']) && $_GET['epp'] == '20') ? 'class="active"' : ''; ?>><a href="<?php echo $this->url->getUrl(); ?>&epp=20">20</a></li>
+            <li <?php echo (isset($_GET['epp']) && $_GET['epp'] == '30') ? 'class="active"' : ''; ?>><a href="<?php echo $this->url->getUrl(); ?>&epp=30">30</a></li>
         </ul>
     </div>
     <ul class="breadcrumb">
-        <a class="btn left margin-10-right" href="movie/"><i class="icon-plus-sign"></i> Hinzufügen</a>
-        <input type="text" value="" class="span3" placeholder="Bitte Suchbegriff eingeben ..." />
+        <a class="btn left margin-10-right" href="<?php echo $this->url->getController(); ?>/add/"><i class="icon-plus-sign"></i> Hinzufügen</a>
+        <input type="text" class="span3" name="search_value" placeholder="<?php echo $this->search_value; ?>" />
         <button id="search-btn" data-placement="bottom" title="Hinweis" data-content="Die Suche greift immer nur auf den aktuellen Datenbestand zu." class="btn tip" type="submit">
             <i class="icon-search"></i> Suchen
         </button>
-        <button id="filter-btn" data-placement="bottom" title="Hinweis" data-content="Selektieren Sie den aktuellen Datenbestand." class="btn tip" type="submit">
+        <button id="filter-btn" data-placement="bottom" title="Hinweis" data-content="Selektieren Sie den aktuellen Datenbestand." class="btn tip" type="button">
             <i class="icon-eye-open"></i> Filter
         </button>
-        <button id="tool-btn" data-placement="bottom" title="Hinweis" data-content="Wählen Sie verschiedene Werkzeuge um Ihre Daten zu verwalten." class="btn tip" type="submit">
+        <button id="tool-btn" data-placement="bottom" title="Hinweis" data-content="Wählen Sie verschiedene Werkzeuge um Ihre Daten zu verwalten." class="btn tip" type="button">
             <i class="icon-retweet"></i> Werkzeuge
         </button>
 
