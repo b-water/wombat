@@ -20,7 +20,7 @@ require_once('Base.php');
 
 abstract class Controller extends Base {
 
-    const VIEW_MAIN = 'index.phtml';
+    const VIEW_MAIN = 'frame.phtml';
 
     public function __construct() {
         parent::__construct();

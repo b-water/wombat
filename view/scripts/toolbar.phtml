@@ -16,7 +16,7 @@
     </div>
     <ul class="breadcrumb">
         <a class="btn left margin-10-right" href="<?php echo $this->url->getController(); ?>/add/"><i class="icon-plus-sign"></i> Hinzufügen</a>
-        <input type="text" class="span3" name="search_value" placeholder="<?php echo $this->search_value; ?>" />
+        <input type="text" class="span3 search_value margin-10-right" name="search_value" placeholder="<?php echo (!empty($this->search_value)) ? $this->search_value : 'Bitte Suchbegriff eingeben ...'; ?>" />
         <button id="search-btn" data-placement="bottom" title="Hinweis" data-content="Die Suche greift immer nur auf den aktuellen Datenbestand zu." class="btn tip" type="submit">
             <i class="icon-search"></i> Suchen
         </button>

@@ -14,30 +14,23 @@
  * @copyright  Copyright (c) 2010-2011 Nico Schmitz
  * @license http://creativecommons.org/licenses/by-nc-nd/3.0/ Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License
  */
-
 require_once('core/Controller.php');
+
 class DashboardController extends Controller {
 
-    private $template_dir = 'dashboard/';
-    private $layout;
-    
+    const VIEW_DIR = 'dashboard/';
+
     public function __construct() {
         parent::__construct();
     }
 
     public function init() {
-        $this->template = $this->config->get('template.mainfile');
+        
     }
 
     public function index() {
-//        $this->smarty->assign('title', 'Dashboard');
-//
-//        $content = $this->smarty->fetch($this->template_dir . 'index.tpl');
-//        $this->smarty->assign('content', $content);
-//        $this->smarty->display($this->template);
-        echo $this->view->render('frame.phtml');
+        echo $this->view->render(self::VIEW_MAIN);
     }
-
 
 }
 

@@ -164,8 +164,17 @@ class MovieController extends Controller {
         $this->view->pagetitle = 'Filme';
         $this->view->pagesubtitle = 'Übersicht';
         $this->view->search_value = $search_value;
-        $this->view->content = $this->view->render('movie/index.phtml');
-        echo $this->view->render('frame.phtml');
+        $this->view->content = $this->view->render(self::VIEW_DIR.'index.phtml');
+        echo $this->view->render(self::VIEW_MAIN);
+    }
+
+    public function add() {
+        $this->view->content = $this->view->render(self::VIEW_DIR.'add.phtml');
+        echo $this->view->render(self::VIEW_MAIN);
+    }
+
+    public function append() {
+        
     }
 
     public function single() {
@@ -231,11 +240,6 @@ class MovieController extends Controller {
         }
     }
 
-    // delete
-//      public function index() {
-//        $this->confirm();
-//    }
-//
     public function confirm() {
         $this->smarty->assign('title', 'Film Löschen');
         $filter = $this->table . '.id = "' . $this->urlParser->getValue() . '"';
@@ -256,65 +260,10 @@ class MovieController extends Controller {
 
         $id = $this->url->getValue();
 
-//        try {
-//            $success = $this->movieRepository->delete($id);
-//        } catch (MovieException $movieException) {
-//            echo $movieException->getTraceAsString();
-//        }
-
         $text = 'Der Film wurde erfolgreich aus der Datenbank gel&ouml;scht!';
 
         $this->view->content = $this->view->render(self::VIEW_DIR . 'delete.phtml');
         echo $this->view->render('frame.phtml');
     }
 
-    // update
-//        public function index() {
-//        $this->single();
-//    }
-//
-//    public function single() {
-//
-//        $this->smarty->assign('title', 'Film Bearbeiten');
-//        $filter = $this->table . '.id = "' . $this->urlParser->getValue() . '"';
-//
-//        try {
-//            $movie = $this->movieRepository->fetch(array('*'), $filter);
-//        } catch (MovieException $movieException) {
-//            die($movieException);
-//        }
-//
-//        try {
-//            $format = $this->formatRepository->fetch(array('*'), 'type="movie"');
-//        } catch (FormatException $formatException) {
-//            die($formatException);
-//        }
-//
-//        try {
-//            $rating = $this->ratingRepository->fetch(array('*'), 'type="movie"');
-//        } catch (RatingException $ratingException) {
-//            die($ratingException);
-//        }
-//
-//        $this->smarty->assign('movie', $movie[0]);
-//        $this->smarty->assign('format', $format);
-//        $this->smarty->assign('rating', $rating);
-//        $content = $this->smarty->fetch($this->template_dir . 'edit.tpl');
-//        $this->smarty->assign('content', $content);
-//        $this->smarty->display($this->template);
-//    }
-//
-//    public function update() {
-//        try {
-//            $movie = MovieRepository::create($_REQUEST);
-//        } catch (MovieException $movieException) {
-//            die($movieException);
-//        }
-//
-//        try {
-//            $this->movieRepository->update($movie);
-//        } catch (MovieException $movieException) {
-//            die($movieException);
-//        }
-//    }
 }

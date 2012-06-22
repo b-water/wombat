@@ -1,0 +1,90 @@
+<form id="edit" class="form-stacked" method="POST" action="movie/append/" enctype="multipart/form-data" >
+    <div class="clearfix">
+        <label for="title">Titel</label>
+        <div class="input">
+            <input type="text" placeholder="Titel" class="span12" name="title" value="<?php echo $this->movie->getTitle(); ?>" />
+        </div>
+    </div>
+    <div class="clearfix">
+        <label for="format">Format</label>
+        <div class="input">
+            <select name="format" id="format" class="format span12">
+                <?php foreach ($this->format as $format): ?>
+                    <?php if ($format->getName() == $this->movie->getFormat()): ?>
+                        <option value="<?php echo $format->getId(); ?>" selected="selected"><?php echo $format->getName(); ?></option>
+                    <?php else: ?>
+                        <option value="<?php echo $format->getId(); ?>"><?php echo $format->getName(); ?></option>
+                    <?php endif; ?>
+                <?php endforeach; ?>
+            </select>
+        </div>
+    </div>
+    <div class="clearfix">
+        <label for="rating">Bewertung</label>
+        <div class="input">
+            <select name="rating" id="rating" class="span12">
+                <?php foreach ($this->rating as $rating): ?>
+                    <?php if ($rating->getName() == $this->movie->getRating()): ?>
+                        <option value="<?php echo $rating->getId(); ?>" selected="selected"><?php echo $rating->getName(); ?></option>
+                    <?php else: ?>
+                        <option value="<?php echo $rating->getId(); ?>"><?php echo $rating->getName(); ?></option>
+                    <?php endif; ?>
+                <?php endforeach; ?>
+            </select>
+        </div>
+    </div>
+    <div class="clearfix">
+        <label for="duration">Länge</label>
+        <div class="input">
+            <input type="text" name="duration" id="duration" class="span12" value="<?php echo $this->movie->getDuration(); ?>" />
+        </div>
+    </div>
+    <div class="clearfix">
+        <label for="year">Jahr</label>
+        <div class="input">
+            <input type="text" name="year" id="year" class="span12" value="<?php echo $this->movie->getYear(); ?>" />
+        </div>
+    </div>
+    <div class="clearfix">
+        <label for="trailer">Trailer</label>
+        <div class="input">
+            <input type="text" name="trailer" id="trailer" class="span12" value="<?php echo $this->movie->getTrailer(); ?>" />
+        </div>
+    </div>
+    <div class="clearfix">
+        <label for="description">Beschreibung</label>
+        <div class="input">
+            <textarea id="description" class="span12" name="description"><?php echo $this->movie->getDescription(); ?></textarea>
+        </div>
+    </div>
+    <div class="clearfix">
+        <label for="autocompleteGenre">Genre</label>
+        <div class="input">
+            <input type="text" name="genre" class="span12" id="genre"/>
+        </div>
+    </div>
+    <div class="clearfix">
+        <div id="assocGenres">
+            <?php foreach ($this->movie->getGenre() as $genre): ?>
+                <span class="genre label">
+                    <input type="hidden" name="genre[]" value="<?php echo $genre->getId(); ?>" />
+                    <span class="text"><?php echo $genre->getName(); ?></span>
+                    <span class="delete">L&ouml;schen</span>
+                </span>
+            <?php endforeach; ?>
+        </div>
+    </div>
+    <div class="clearfix">
+        <label for="artist">Schauspieler</label>
+        <div class="input">
+            <input type="text" name="artist" id="artist" class="span12"/>
+        </div>
+        <div id="assocArtist">
+        </div>
+    </div>
+    <div class="form-actions">
+        <button class="btn btn-primary" type="submit"><i class="icon-ok icon-white"></i> Speichern</button>
+        <button class="btn btn-danger" type="submit"><i class="icon-ok icon-white"></i> Löschen</button>
+        <a href="movie/" class="btn"><i class="icon-share-alt"></i> Zurück</a>
+    </div>
+</form>

@@ -57,6 +57,10 @@ a.btn-large i, button.btn-large i
     margin-top:2px;
 }
 
+input.search_value {
+    float:left !important;
+}
+
 
 /*
 table th.edit {
