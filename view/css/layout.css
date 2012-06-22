@@ -405,26 +405,3 @@ span.overview-genre {
     border-left-color: rgba(25,25,25,0.92);
 }*/
 
-div.wow.thumbnail {
-    width:230px;
-}
-
-div.wow.itemdesc {
-    display:inline-block;
-    float:left;
-}
-
-a.wow.item_img img {
-    float:left;
-    margin-right:10px;
-}
-
-a.wow.item_img span {
-    float:left;
-
-} 
-
-a.wow.item {
-    float:left;
-    margin-right:10px;
-}
