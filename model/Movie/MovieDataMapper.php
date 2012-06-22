@@ -303,7 +303,7 @@ class MovieDataMapper extends Base implements DataMapper {
 //        var_dump($profiler->getLastQueryProfile());
         $data = $sql->fetchAll();
         if (empty($data)) {
-            throw new MovieException('(#3) : No Movies found!');
+            return array();
         } else {
             $movies = array();
 
