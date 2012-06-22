@@ -19,7 +19,6 @@ class Pagination {
     private $entriesPerPage;
     private $entriesMax;
     private $currentEntry;
-    private $currentPage;
     private $pageRange;
     private $pageNumber;
     private $pages;
@@ -32,6 +31,7 @@ class Pagination {
     public $lastPage = 0;
     public $prevPage = 0;
     public $nextPage = 0;
+    public $currentPage;
 
     /**
      *
@@ -71,17 +71,18 @@ class Pagination {
 
         // set the previous page
         if ($this->currentPage > 1) {
-            $this->prevPage = $this->currentPage-1;
+            $this->prevPage = $this->currentPage - 1;
         }
 
+        // set next page
         if ($this->currentPage < $this->pages) {
-            $this->nextPage = $this->currentPage+1;
+            $this->nextPage = $this->currentPage + 1;
         }
         // set the last page
         $this->lastPage = $this->pages;
 
         // build the pagination-range
-        for ($i = $this->currentPage; $i >= 1 || $this->pageRange - $i == 0; $i--) {
+        for ($i = 1; $i <= $this->currentPage || $this->pageRange - $i == 0; $i++) {
             $this->pagesInRange[$i] = $i;
         }
 
@@ -100,6 +101,10 @@ class Pagination {
 
     public function getPagesInRange() {
         return $this->pagesInRange;
+    }
+
+    public function getMaxPages() {
+        return $this->pages;
     }
 
 }
