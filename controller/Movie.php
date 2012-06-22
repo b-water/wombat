@@ -123,7 +123,15 @@ class MovieController extends Controller {
 
     public function index() {
 
-        $count = $this->movieRepository->count('');
+        if (isset($_REQUEST['search_value']) && !empty($_REQUEST['search_value'])) {
+            $filter = self::TABLE . '.title like "%' . $_REQUEST['search_value'] . '%"';
+            $search_value = mysql_real_escape_string($_REQUEST['search_value']);
+        } else {
+            $filter = '';
+            $search_value = '';
+        }
+
+        $count = $this->movieRepository->count($filter);
 
         if (isset($_REQUEST['page']) && intval($_REQUEST['page'] !== 0)) {
             $page = $_REQUEST['page'];
@@ -131,21 +139,31 @@ class MovieController extends Controller {
             $page = 1;
         }
 
+        if (isset($_REQUEST['epp']) && !empty($_REQUEST['epp'])) {
+            $entriesPerPage = intval($_REQUEST['epp']);
+        } else {
+            $entriesPerPage = 10;
+            $_GET['epp'] = 10;
+        }
+
+
+
         require_once('core/Pagination.php');
         $options = array(
-            'entriesPerPage' => 15,
+            'entriesPerPage' => $entriesPerPage,
             'entriesMax' => $count,
             'currentPage' => $page,
             'pageRange' => 10
         );
-        
+
         $pagination = new Pagination($options);
-        $movies = $this->movieRepository->fetch(array('id', 'title', 'rating', 'year'), '', '', $pagination->getEntriesPerPage(), $pagination->getCurrentEntry());
+        $movies = $this->movieRepository->fetch(array('id', 'title', 'rating', 'year'), $filter, '', $pagination->getEntriesPerPage(), $pagination->getCurrentEntry());
 
         $this->view->pagination = $pagination;
         $this->view->movies = $movies;
         $this->view->pagetitle = 'Filme';
         $this->view->pagesubtitle = 'Übersicht';
+        $this->view->search_value = $search_value;
         $this->view->content = $this->view->render('movie/index.phtml');
         echo $this->view->render('frame.phtml');
     }
