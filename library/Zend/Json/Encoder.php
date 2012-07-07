@@ -14,9 +14,9 @@
  *
  * @category   Zend
  * @package    Zend_Json
- * @copyright  Copyright (c) 2005-2011 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Encoder.php 23775 2011-03-01 17:25:24Z ralph $
+ * @version    $Id: Encoder.php 24594 2012-01-05 21:27:01Z matthew $
  */
 
 /**
@@ -24,7 +24,7 @@
  *
  * @category   Zend
  * @package    Zend_Json
- * @copyright  Copyright (c) 2005-2011 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Json_Encoder
@@ -151,7 +151,8 @@ class Zend_Json_Encoder
             }
         }
 
-        return '{"__className":"' . get_class($value) . '"'
+        $className = get_class($value);
+        return '{"__className":' . $this->_encodeString($className)
                 . $props . '}';
     }
 
