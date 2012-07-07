@@ -31,6 +31,7 @@ class MovieController extends Controller {
      * @var string
      */
     const TABLE = 'wombat_movie';
+    const ITEMS_PER_PAGE = 10;
 
     /**
      * Movie Repository
@@ -131,45 +132,26 @@ class MovieController extends Controller {
             $search_value = '';
         }
 
-        $count = $this->movieRepository->count($filter);
+        $page = $this->getCurrentPage();
+        $movies = $this->movieRepository->fetch(array('id', 'title', 'rating', 'year'), $filter, '');
 
-        if (isset($_REQUEST['page']) && intval($_REQUEST['page'] !== 0)) {
-            $page = $_REQUEST['page'];
-        } else {
-            $page = 1;
-        }
+        require_once('library/Zend/Paginator.php');
+        require_once('library/Zend/Paginator/Adapter/Array.php');
+        $pagination = new Zend_Paginator(new Zend_Paginator_Adapter_Array($movies));
+        $pagination->setCurrentPageNumber($page);
+        $pagination->setItemCountPerPage(self::ITEMS_PER_PAGE);
 
-        if (isset($_REQUEST['epp']) && !empty($_REQUEST['epp'])) {
-            $entriesPerPage = intval($_REQUEST['epp']);
-        } else {
-            $entriesPerPage = 10;
-            $_GET['epp'] = 10;
-        }
-
-
-
-        require_once('core/Pagination.php');
-        $options = array(
-            'entriesPerPage' => $entriesPerPage,
-            'entriesMax' => $count,
-            'currentPage' => $page,
-            'pageRange' => 10
-        );
-
-        $pagination = new Pagination($options);
-        $movies = $this->movieRepository->fetch(array('id', 'title', 'rating', 'year'), $filter, '', $pagination->getEntriesPerPage(), $pagination->getCurrentEntry());
-
-        $this->view->pagination = $pagination;
-        $this->view->movies = $movies;
+        $this->view->pagination = $pagination->getPages();
+        $this->view->movies = $pagination->getCurrentItems();
         $this->view->pagetitle = 'Filme';
         $this->view->pagesubtitle = 'Übersicht';
         $this->view->search_value = $search_value;
-        $this->view->content = $this->view->render(self::VIEW_DIR.'index.phtml');
+        $this->view->content = $this->view->render(self::VIEW_DIR . 'index.phtml');
         echo $this->view->render(self::VIEW_MAIN);
     }
 
     public function add() {
-        $this->view->content = $this->view->render(self::VIEW_DIR.'add.phtml');
+        $this->view->content = $this->view->render(self::VIEW_DIR . 'add.phtml');
         echo $this->view->render(self::VIEW_MAIN);
     }
 
