@@ -82,13 +82,14 @@ class Pagination {
         $this->lastPage = $this->pages;
 
         // build the pagination-range
-        for ($i = 1; $i <= $this->currentPage || $this->pageRange - $i == 0; $i++) {
+        for ($i = 1; $i <= $this->currentPage || $this->pageRange / 2 - 1 - $i == 0; $i++) {
             $this->pagesInRange[$i] = $i;
         }
 
-        for ($i = $this->currentPage; $i <= $this->currentPage + $this->pageRange && $i < $this->pages; $i++) {
+        for ($i = $this->currentPage; $i <= $this->currentPage + $this->pageRange / 2 - 1 && $i < $this->pages; $i++) {
             $this->pagesInRange[$i] = $i;
         }
+
     }
 
     public function getEntriesPerPage() {
