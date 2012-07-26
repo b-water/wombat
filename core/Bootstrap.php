@@ -100,7 +100,7 @@ class Bootstrap {
     public static function setupConfiguration() {
         require_once('core/Config.php');
         self::$config = Config::getInstance('config.ini');
-        $path = 'http://' . $_SERVER['SERVER_NAME'];
+        $path = 'http://' . $_SERVER['SERVER_NAME'].'/';
         self::$config->set('path.base', $path);
     }
 
