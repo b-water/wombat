@@ -46,7 +46,7 @@ body {
 }*/
 
 a.btn {
-    height:20px;
+    height:18px;
 }
 a.btn-large {
     height:22px;
@@ -59,6 +59,12 @@ a.btn-large i, button.btn-large i
 
 input.search_value {
     float:left !important;
+}
+
+form.toolbar button.close {
+    float: left;
+    margin-left: -30px;
+    margin-top: 5px;
 }
 
 
@@ -90,12 +96,18 @@ ul.breadcrumb input, ul.breadcrumb select {
     margin-bottom:0;
 }
 
+form.center {
+    margin:auto;
+/*    width:600px;*/
+}
+
 /*form.toolbar {
     margin-left:10px;
 }*/
 a.toolbar-left, a.toolbar-right, div.pages {
     margin-top:8px;
 }
+
 /*
 
  Override some defaults 
@@ -194,15 +206,15 @@ form .input {
               buttons
 *************************************
 
-button {
+*/button {
     cursor:pointer;
-}
+}/*
 
 *************************************
             generic classes
 *************************************
 
-.none {
+*/.none {
     display:none;
 }
 
@@ -212,7 +224,7 @@ button {
 
 .left {
     float:left;
-}
+}/*
 
 .file-input-large {
     width:543px;
@@ -251,9 +263,7 @@ table a.delete {
     display:inline-block;
 }
 
-span.genre {
-    background-color:#E6E6E6;
-    padding:2px 5px;
+*/span.genre {
     border-radius:2px;
     display: inline-block;
     vertical-align: center;
@@ -262,150 +272,13 @@ span.genre {
 }
 
 span.genre:hover {
-    background-color:#30BCCC;
+    opacity:0.9;
 }
 
-span.genre span.delete {
-    background:url('../images/icons/delete.png') 0 -2px no-repeat;
-    height:16px;
-    width:16px;
-    display: inline-block;
-    text-indent: 2000em;
+span.genre i.delete {
     cursor:pointer; 
 }
-
-
 
 span.genre span.text {
-    padding-top:4px;
     display:inline-block;
 }
-
-
-span.genre span.delete {
-    background:url('../images/icons/delete.png') 0 -1px no-repeat;
-    height:16px;
-    width:16px;
-    display: inline-block;
-    text-indent: 2000em;
-    cursor:pointer; 
-}
-
-span.genre.label {
-    font-size: 12px;
-    font-weight: normal;
-    padding: 5px;
-    text-transform: none;
-    margin-right:5px;
-}
-
-span.overview-genre {
-    padding:2px 3px;
-    display: inline-block;
-    text-align: center;
-}
-
-*************************************
-          jQuery TipTip
-*************************************
-
- TipTip CSS - Version 1.2 
-
-#tiptip_holder {
-    display: none;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 99999;
-}
-
-#tiptip_holder.tip_top {
-    padding-bottom: 5px;
-}
-
-#tiptip_holder.tip_bottom {
-    padding-top: 5px;
-}
-
-#tiptip_holder.tip_right {
-    padding-left: 5px;
-}
-
-#tiptip_holder.tip_left {
-    padding-right: 5px;
-}
-
-#tiptip_content {
-    font-size: 11px;
-    color: #fff;
-    text-shadow: 0 0 2px #000;
-    padding: 4px 8px;
-    border: 1px solid rgba(255,255,255,0.25);
-    background-color: rgb(25,25,25);
-    background-color: rgba(25,25,25,0.92);
-    background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(transparent), to(#000));
-    border-radius: 3px;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-        box-shadow: 0 0 3px #555;
-        -webkit-box-shadow: 0 0 3px #555;
-        -moz-box-shadow: 0 0 3px #555;
-}
-
-#tiptip_arrow, #tiptip_arrow_inner {
-    position: absolute;
-    border-color: transparent;
-    border-style: solid;
-    border-width: 6px;
-    height: 0;
-    width: 0;
-}
-
-#tiptip_holder.tip_top #tiptip_arrow {
-    border-top-color: #fff;
-    border-top-color: rgba(255,255,255,0.35);
-}
-
-#tiptip_holder.tip_bottom #tiptip_arrow {
-    border-bottom-color: #fff;
-    border-bottom-color: rgba(255,255,255,0.35);
-}
-
-#tiptip_holder.tip_right #tiptip_arrow {
-    border-right-color: #fff;
-    border-right-color: rgba(255,255,255,0.35);
-}
-
-#tiptip_holder.tip_left #tiptip_arrow {
-    border-left-color: #fff;
-    border-left-color: rgba(255,255,255,0.35);
-}
-
-#tiptip_holder.tip_top #tiptip_arrow_inner {
-    margin-top: -7px;
-    margin-left: -6px;
-    border-top-color: rgb(25,25,25);
-    border-top-color: rgba(25,25,25,0.92);
-}
-
-#tiptip_holder.tip_bottom #tiptip_arrow_inner {
-    margin-top: -5px;
-    margin-left: -6px;
-    border-bottom-color: rgb(25,25,25);
-    border-bottom-color: rgba(25,25,25,0.92);
-}
-
-#tiptip_holder.tip_right #tiptip_arrow_inner {
-    margin-top: -6px;
-    margin-left: -5px;
-    border-right-color: rgb(25,25,25);
-    border-right-color: rgba(25,25,25,0.92);
-}
-
-#tiptip_holder.tip_left #tiptip_arrow_inner {
-    margin-top: -6px;
-    margin-left: -7px;
-    border-left-color: rgb(25,25,25);
-    border-left-color: rgba(25,25,25,0.92);
-}*/
-

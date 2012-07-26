@@ -1,31 +1,15 @@
 <form class="form-inline toolbar" action="<?php echo $this->url->getUrl(); ?>" method="POST" accept-charset="utf-8">
-    <ul class="breadcrumb">
-        <li>Du bist hier :</li>
-        <li><a href="#">Filme</a> <span class="divider">/</span></li>
-        <li><a href="#">Übersicht</a> <span class="divider">/</span></li>
-    </ul>
-    <a class="btn left toolbar-left margin-10-right margin-10-left" title="Eine Seite vorwärts" href="<?php echo $this->url->getController(); ?>?page=<?php echo $this->pagination->prevPage; ?>"><i class="icon-arrow-left"></i></a>
-    <a class="btn left margin-10-right toolbar-right" href="<?php echo $this->url->getController(); ?>?page=<?php echo $this->pagination->nextPage; ?>"><i class="icon-arrow-right"></i></a>
-    <div class="btn-group left margin-10-right pages">
-        <a href="#" data-toggle="dropdown" class="btn btn-info dropdown-toggle">Einträge pro Seite <span class="caret"></span></a>
-        <ul class="dropdown-menu">
-            <li <?php echo (isset($_GET['epp']) && $_GET['epp'] == '10') ? 'class="active"' : ''; ?>><a href="<?php echo $this->url->getUrl(); ?>&epp=10">10</a></li>
-            <li <?php echo (isset($_GET['epp']) && $_GET['epp'] == '20') ? 'class="active"' : ''; ?>><a href="<?php echo $this->url->getUrl(); ?>&epp=20">20</a></li>
-            <li <?php echo (isset($_GET['epp']) && $_GET['epp'] == '30') ? 'class="active"' : ''; ?>><a href="<?php echo $this->url->getUrl(); ?>&epp=30">30</a></li>
-        </ul>
+    <div class="page-header">
+        <h1>Filme <small>Übersicht</small></h1>
     </div>
     <ul class="breadcrumb">
-        <a class="btn left margin-10-right" href="<?php echo $this->url->getController(); ?>/add/"><i class="icon-plus-sign"></i> Hinzufügen</a>
+        <a class="btn btn-success left margin-10-right" href="<?php echo $this->url->getController(); ?>/add/"><i class="icon-plus-sign icon-white"></i> Hinzufügen</a>
         <input type="text" class="span3 search_value margin-10-right" name="search_value" placeholder="<?php echo (!empty($this->search_value)) ? $this->search_value : 'Bitte Suchbegriff eingeben ...'; ?>" />
-        <button id="search-btn" data-placement="bottom" title="Hinweis" data-content="Die Suche greift immer nur auf den aktuellen Datenbestand zu." class="btn tip" type="submit">
+        <?php if (!empty($this->search_value)): ?>
+            <button type="submit" value="cancel" class="close">&times;</button>
+        <?php endif; ?>
+        <button id="search-btn" data-placement="bottom" title="Hinweis" class="btn" type="submit">
             <i class="icon-search"></i> Suchen
         </button>
-        <button id="filter-btn" data-placement="bottom" title="Hinweis" data-content="Selektieren Sie den aktuellen Datenbestand." class="btn tip" type="button">
-            <i class="icon-eye-open"></i> Filter
-        </button>
-        <button id="tool-btn" data-placement="bottom" title="Hinweis" data-content="Wählen Sie verschiedene Werkzeuge um Ihre Daten zu verwalten." class="btn tip" type="button">
-            <i class="icon-retweet"></i> Werkzeuge
-        </button>
-
     </ul>
 </form>

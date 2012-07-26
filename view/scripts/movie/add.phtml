@@ -2,19 +2,15 @@
     <div class="clearfix">
         <label for="title">Titel</label>
         <div class="input">
-            <input type="text" placeholder="Titel" class="span12" name="title" value="<?php echo $this->movie->getTitle(); ?>" />
+            <input type="text" placeholder="Titel" class="span8" name="title"  />
         </div>
     </div>
     <div class="clearfix">
         <label for="format">Format</label>
         <div class="input">
-            <select name="format" id="format" class="format span12">
+            <select name="format" id="format" class="format span8">
                 <?php foreach ($this->format as $format): ?>
-                    <?php if ($format->getName() == $this->movie->getFormat()): ?>
-                        <option value="<?php echo $format->getId(); ?>" selected="selected"><?php echo $format->getName(); ?></option>
-                    <?php else: ?>
-                        <option value="<?php echo $format->getId(); ?>"><?php echo $format->getName(); ?></option>
-                    <?php endif; ?>
+                    <option value="<?php echo $format->getId(); ?>"><?php echo $format->getName(); ?></option>
                 <?php endforeach; ?>
             </select>
         </div>
@@ -22,13 +18,9 @@
     <div class="clearfix">
         <label for="rating">Bewertung</label>
         <div class="input">
-            <select name="rating" id="rating" class="span12">
+            <select name="rating" id="rating" class="span8">
                 <?php foreach ($this->rating as $rating): ?>
-                    <?php if ($rating->getName() == $this->movie->getRating()): ?>
-                        <option value="<?php echo $rating->getId(); ?>" selected="selected"><?php echo $rating->getName(); ?></option>
-                    <?php else: ?>
-                        <option value="<?php echo $rating->getId(); ?>"><?php echo $rating->getName(); ?></option>
-                    <?php endif; ?>
+                    <option value="<?php echo $rating->getId(); ?>"><?php echo $rating->getName(); ?></option>
                 <?php endforeach; ?>
             </select>
         </div>
@@ -36,50 +28,31 @@
     <div class="clearfix">
         <label for="duration">Länge</label>
         <div class="input">
-            <input type="text" name="duration" id="duration" class="span12" value="<?php echo $this->movie->getDuration(); ?>" />
+            <input type="text" name="duration" id="duration" class="span8"  />
         </div>
     </div>
     <div class="clearfix">
         <label for="year">Jahr</label>
         <div class="input">
-            <input type="text" name="year" id="year" class="span12" value="<?php echo $this->movie->getYear(); ?>" />
+            <input type="text" name="year" id="year" class="span8" />
         </div>
     </div>
     <div class="clearfix">
         <label for="trailer">Trailer</label>
         <div class="input">
-            <input type="text" name="trailer" id="trailer" class="span12" value="<?php echo $this->movie->getTrailer(); ?>" />
+            <input type="text" name="trailer" id="trailer" class="span8"  />
         </div>
     </div>
     <div class="clearfix">
         <label for="description">Beschreibung</label>
         <div class="input">
-            <textarea id="description" class="span12" name="description"><?php echo $this->movie->getDescription(); ?></textarea>
+            <textarea id="description" class="span8" name="description"></textarea>
         </div>
     </div>
     <div class="clearfix">
         <label for="autocompleteGenre">Genre</label>
         <div class="input">
-            <input type="text" name="genre" class="span12" id="genre"/>
-        </div>
-    </div>
-    <div class="clearfix">
-        <div id="assocGenres">
-            <?php foreach ($this->movie->getGenre() as $genre): ?>
-                <span class="genre label">
-                    <input type="hidden" name="genre[]" value="<?php echo $genre->getId(); ?>" />
-                    <span class="text"><?php echo $genre->getName(); ?></span>
-                    <span class="delete">L&ouml;schen</span>
-                </span>
-            <?php endforeach; ?>
-        </div>
-    </div>
-    <div class="clearfix">
-        <label for="artist">Schauspieler</label>
-        <div class="input">
-            <input type="text" name="artist" id="artist" class="span12"/>
-        </div>
-        <div id="assocArtist">
+            <input type="text" name="genre" class="span8" id="genre"/>
         </div>
     </div>
     <div class="form-actions">
