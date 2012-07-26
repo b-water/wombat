@@ -74,6 +74,7 @@ class Bootstrap {
      * Print out all Error Messages
      */
     public static function setupErrorReporting() {
+        ini_set('display_errors',1);
         error_reporting(E_ALL);
     }
 
@@ -99,7 +100,7 @@ class Bootstrap {
     public static function setupConfiguration() {
         require_once('core/Config.php');
         self::$config = Config::getInstance('config.ini');
-        $path = 'http://' . $_SERVER['SERVER_NAME'] . '/wombat/';
+        $path = 'http://' . $_SERVER['SERVER_NAME'];
         self::$config->set('path.base', $path);
     }
 
