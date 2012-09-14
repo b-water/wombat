@@ -100,8 +100,6 @@ class Bootstrap {
     public static function setupConfiguration() {
         require_once('core/Config.php');
         self::$config = Config::getInstance('config.ini');
-        $path = 'http://' . $_SERVER['SERVER_NAME'].'/';
-        self::$config->set('path.base', $path);
     }
 
     public static function setupView() {
@@ -132,7 +130,7 @@ class Bootstrap {
                         'password' => self::$config->get('database.password'),
                         'charset' => 'utf8',
                         'dbname' => self::$config->get('database.dbname'),
-                        'profiler' => true
+                        'profiler' => (bool) self::$config->get('database.profiler')
                     ));
         } catch (Zend_Db_Exception $dbException) {
             die($dbException);
@@ -151,16 +149,6 @@ class Bootstrap {
             die($urlException->getMessage());
         }
     }
-
-    /**
-     * Navigation Menu
-     */
-//    public static function setupNavigation() {
-//        require_once('core/Navigation.php');
-//        $navi = new Navigation();
-//        $data = $navi->fetch();
-//        $navi->create($data);
-//    }
 
     public static function setupAuth() {
         require_once('core/Auth.php');
