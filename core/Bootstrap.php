@@ -74,7 +74,7 @@ class Bootstrap {
      * Print out all Error Messages
      */
     public static function setupErrorReporting() {
-        ini_set('display_errors',1);
+        ini_set('display_errors',self::$config->get('generic.display_errors'));
         error_reporting(E_ALL);
     }
 
