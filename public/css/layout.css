@@ -101,6 +101,10 @@ form.center {
 /*    width:600px;*/
 }
 
+a.brand {
+    font-family: 'Lemon', cursive;
+}
+
 /*form.toolbar {
     margin-left:10px;
 }*/
