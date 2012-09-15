@@ -102,8 +102,8 @@ form.center {
 }
 
 a.brand {
-    font-family: 'Lemon', cursive;
-    color:#fff;
+    font-family: 'Ranchers', cursive;
+    color:#fff !important;
 }
 
 /*form.toolbar {
