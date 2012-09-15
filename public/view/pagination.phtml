@@ -1,29 +1,21 @@
 <div class="pagination">
     <ul>
         <li>
-            <a href="<?php echo $this->url->getController(); ?>?page=<?php echo $this->pagination->first; ?>">
-                &laquo;
-            </a>
+            <a href="<?php echo $this->url->getController(); ?>?page=<?php echo $this->pagination->first; ?>">&laquo;</a>
         </li>
         <?php foreach ($this->pagination->pagesInRange as $key => $val): ?>
             <?php if (isset($_REQUEST['page']) && $_REQUEST['page'] == $val): ?>
                 <li class="active">
-                    <a href="" onclick="return false;">
-                        <?php echo $val; ?>
-                    </a>
+                    <a href="" onclick="return false;"><?php echo $val; ?></a>
                 </li>
             <?php else: ?>
                 <li>
-                    <a href="<?php echo $this->url->getController(); ?>?page=<?php echo $val; ?>">
-                        <?php echo $val; ?>
-                    </a>
+                    <a href="<?php echo $this->url->getController(); ?>?page=<?php echo $val; ?>"><?php echo $val; ?></a>
                 </li>
             <?php endif; ?>
         <?php endforeach; ?>
         <li>
-            <a href="<?php echo $this->url->getController(); ?>?page=<?php echo $this->pagination->last; ?>">
-                &raquo;
-            </a>
+            <a href="<?php echo $this->url->getController(); ?>?page=<?php echo $this->pagination->last; ?>">&raquo;</a>
         </li>
     </ul>
 </div>
