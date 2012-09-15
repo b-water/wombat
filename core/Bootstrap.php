@@ -104,7 +104,7 @@ class Bootstrap {
 
     public static function setupView() {
         require_once('library/Zend/View.php');
-        self::$view = new Zend_View(array('basePath' => 'public'));
+        self::$view = new Zend_View(array('basePath' => 'public', 'scriptPath' => 'public/view/'));
         self::$view->url = self::$url;
         self::$view->title = self::$config->get('page.title');
         self::$view->author = self::$config->get('page.author');
