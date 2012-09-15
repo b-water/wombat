@@ -126,7 +126,7 @@ class MovieController extends Controller {
 
         if (isset($_REQUEST['search_value']) && !empty($_REQUEST['search_value'])) {
             $filter = self::TABLE . '.title like "%' . $_REQUEST['search_value'] . '%"';
-            $search_value = mysql_real_escape_string($_REQUEST['search_value']);
+            $search_value = $_REQUEST['search_value'];
         } else {
             $filter = '';
             $search_value = '';
