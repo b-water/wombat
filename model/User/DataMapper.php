@@ -64,9 +64,13 @@ class UserDataMapper extends Base implements DataMapper {
         $data = $user->toArray();
 
         $affectedRows = $this->db->update(self::TABLE_USER, $data, ' id ="' . $user->getId() . '"');
-
+//        $profiler = $this->db->getProfiler();
+//        $query = $profiler->getLastQueryProfile();
+//        echo $query->getQuery();
         if ($affectedRows != 1) {
-            throw new UserException('(#1) : The dataset coud not habe been updated!');
+            return false;
+        } else {
+            return $affectedRows;
         }
     }
 

@@ -51,18 +51,48 @@ class UserController extends Controller {
             if ($this->auth->verify($_REQUEST['user_name'], $_REQUEST['password'])) {
                 $this->redirect('dashboard');
             } else {
-                var_dump($_POST);
-                $this->view->page_title = 'Login';
-                $this->view->error = true;
-                $this->view->page_sub_title = '';
-                $this->view->content = $this->view->render(self::VIEW_DIR . 'login.phtml');
-                echo $this->view->render(self::VIEW_DIR . 'frame.phtml');
+
+                $this->layout->getView()->error_title = 'Authentifizierung fehlgeschlagen!';
+                $this->layout->getView()->error_msg = 'Das System konnte keinen Benutzer mit den angegebenen Benutzernamen
+                und Passwort finden. Bitte überprüfen Sie das die von Ihnen eingebenen Daten korrekt sind und vergewissern Sie sich das Ihr
+                Benutzer auch freigeschaltet ist.';
+
+                $user = $this->userRepository->fetch(array('*'), 'user_name="' . $_POST['user_name'] . '"', '', 1, 0);
+                if (is_object($user) && $user->getAttempts() > 0) {
+                    if ($user->getAttempts() >= 5 && $user->getAttempts() < 10) {
+                        die('aaa');
+                        $this->layout->getView()->info = true;
+                        $this->layout->getView()->info_title = 'Captcha aktiviert!';
+                        $this->layout->getView()->info_msg = 'Zu viele fehlerhafte Versuche. Bitte fülle nun zusätlich das Captcha aus. Das System muss prüfen, ob Du ein Mensch bist!';
+                        
+                    } elseif ($user->getAttempts() >= 10) {
+
+                        $this->layout->getView()->info = true;
+                        $this->layout->getView()->error_title = 'Benutzer gesperrt!';
+                        $this->layout->getView()->error_msg = 'Zu viele fehlerhafte Versuche. Dein Benutzerkonto wurde gesperrt!';
+
+                        $user->setEnabled(0);
+                        $this->userRepository->update($user);
+                    }
+                }
+
+                $this->layout->getView()->page_title = 'Login';
+                $this->layout->getView()->error = true;
+                $this->layout->getView()->page_sub_title = '';
+                $this->layout->content = $this->layout->getView()->render(self::VIEW_DIR . 'login.phtml');
+
+                $this->layout->head = $this->layout->getView()->render('head.phtml');
+                $this->layout->foot = $this->layout->getView()->render('foot.phtml');
+                $this->layout->setLayout('login');
+                echo $this->layout->render();
             }
         } else {
-            $this->view->page_title = 'Login';
-            $this->view->page_sub_title = '';
-            $this->view->content = $this->view->render(self::VIEW_DIR . 'login.phtml');
-            echo $this->view->render(self::VIEW_DIR . 'frame.phtml');
+
+            $this->layout->content = $this->layout->getView()->render(self::VIEW_DIR . 'login.phtml');
+            $this->layout->head = $this->layout->getView()->render('head.phtml');
+            $this->layout->foot = $this->layout->getView()->render('foot.phtml');
+            $this->layout->setLayout('login');
+            echo $this->layout->render();
         }
     }
 

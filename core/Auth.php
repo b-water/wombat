@@ -49,7 +49,7 @@ class Auth {
             $user = $userRepository->fetch(array('*'), 'user_name="' . $user_name . '"', '', 1, 0);
             if(is_object($user))  {
                 $user->setAttempts($user->getAttempts()+1);
-                $repository->update($user);
+                $userRepository->update($user);
             }
             return false;
         }
