@@ -46,6 +46,13 @@ class Auth {
             $this->login($user);
             return true;
         } else {
+            $user = $repository->fetch(array('*'), 'user_name="' . $user_name . '"', '', 1, 0);
+            if(is_object($user))  {
+                
+            }
+            echo '<pre>';
+            print_r($user);
+            echo '</pre>';die;
             return false;
         }
     }
