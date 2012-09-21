@@ -11,6 +11,9 @@
     <form id="form-entry" method="POST" action="user/login/">
         <input type="text" placeholder="Benutzername" class="span11" name="user_name" value="" />
         <input type="password" placeholder="Passwort" class="span11" name="password" value="" />
+        <?php if($this->reCaptcha): ?>
+            <?php echo $this->reCaptcha_html; ?>
+        <?php endif; ?>
         <div class="form-actions">
             <button class="btn btn-large btn-primary" type="submit" name="submit"><i class="icon-ok-sign icon-white"></i> Anmelden</button>
             <a class="btn btn-large" href="user/pw_forgotten/"><i class="icon-info-sign"></i> Passwort vergessen</a>

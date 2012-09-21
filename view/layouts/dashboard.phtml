@@ -1,8 +1,15 @@
 <?php echo $this->layout()->head; ?>
-<div id="entry" class="container">
-    <div class="content">
-        <div class="user_layout">
-            <?php echo $this->layout()->content ?>
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container-fluid">
+            <?php echo $this->layout()->mainnav; ?>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="content">
+            <?php echo $this->layout()->content; ?>
         </div>
     </div>
 </div>
