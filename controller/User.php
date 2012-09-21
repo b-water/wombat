@@ -15,6 +15,7 @@
  * @license http://creativecommons.org/licenses/by-nc-nd/3.0/ Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License
  */
 require_once('core/Controller.php');
+require_once('library/Zend/Service/ReCaptcha.php');
 
 class UserController extends Controller {
 
@@ -48,9 +49,19 @@ class UserController extends Controller {
 
     public function login() {
         if ($this->isPost()) {
-            if ($this->auth->verify($_REQUEST['user_name'], $_REQUEST['password'])) {
+            if (isset($_POST['recaptcha_challenge_field']) && isset($_POST['recaptcha_response_field'])) {
+                $reCaptcha = new Zend_Service_ReCaptcha($this->config->get('recaptcha.public_key'), $this->config->get('recaptcha.private_key'));
+                $reCaptcha_Response = $reCaptcha->verify($_POST['recaptcha_challenge_field'], $_POST['recaptcha_response_field']);
+
+                if (!$reCaptcha_Response->isValid()) {
+                    $_POST['password'] = '_';
+                }
+            }
+            if ($this->auth->verify($_POST['user_name'], $_POST['password'])) {
                 $this->redirect('dashboard');
             } else {
+
+                $this->layout->getView()->error = true;
 
                 $this->layout->getView()->error_title = 'Authentifizierung fehlgeschlagen!';
                 $this->layout->getView()->error_msg = 'Das System konnte keinen Benutzer mit den angegebenen Benutzernamen
@@ -59,15 +70,16 @@ class UserController extends Controller {
 
                 $user = $this->userRepository->fetch(array('*'), 'user_name="' . $_POST['user_name'] . '"', '', 1, 0);
                 if (is_object($user) && $user->getAttempts() > 0) {
-                    if ($user->getAttempts() >= 5 && $user->getAttempts() < 10) {
-                        die('aaa');
+                    if ($user->getAttempts() >= 5 && $user->getAttempts() < 100) {
                         $this->layout->getView()->info = true;
                         $this->layout->getView()->info_title = 'Captcha aktiviert!';
                         $this->layout->getView()->info_msg = 'Zu viele fehlerhafte Versuche. Bitte fülle nun zusätlich das Captcha aus. Das System muss prüfen, ob Du ein Mensch bist!';
-                        
+
+                        $reCaptcha = new Zend_Service_ReCaptcha($this->config->get('recaptcha.public_key'), $this->config->get('recaptcha.private_key'));
+                        $this->layout->getView()->reCaptcha = true;
+                        $this->layout->getView()->reCaptcha_html = $reCaptcha->getHTML();
                     } elseif ($user->getAttempts() >= 10) {
 
-                        $this->layout->getView()->info = true;
                         $this->layout->getView()->error_title = 'Benutzer gesperrt!';
                         $this->layout->getView()->error_msg = 'Zu viele fehlerhafte Versuche. Dein Benutzerkonto wurde gesperrt!';
 
@@ -77,7 +89,6 @@ class UserController extends Controller {
                 }
 
                 $this->layout->getView()->page_title = 'Login';
-                $this->layout->getView()->error = true;
                 $this->layout->getView()->page_sub_title = '';
                 $this->layout->content = $this->layout->getView()->render(self::VIEW_DIR . 'login.phtml');
 
@@ -98,6 +109,7 @@ class UserController extends Controller {
 
     public function logout() {
         $this->auth->logout();
+        $this->redirect('');
     }
 
     public function register() {
@@ -119,10 +131,14 @@ class UserController extends Controller {
                 $this->view->error = $validation->getLog();
             }
         }
-        $this->view->pagetitle = 'Registrierung';
-        $this->view->pagesubtitle = '';
-        $this->view->content = $this->view->render(self::VIEW_DIR . 'register.phtml');
-        echo $this->view->render(self::VIEW_DIR . 'frame.phtml');
+        $this->layout->getView()->page_title = 'Registrieren';
+        $this->layout->getView()->page_sub_title = '';
+
+        $this->layout->content = $this->layout->getView()->render(self::VIEW_DIR . 'register.phtml');
+        $this->layout->head = $this->layout->getView()->render('head.phtml');
+        $this->layout->foot = $this->layout->getView()->render('foot.phtml');
+        $this->layout->setLayout('login');
+        echo $this->layout->render();
     }
 
 }
