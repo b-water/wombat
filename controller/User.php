@@ -20,8 +20,8 @@ class UserController extends Controller {
 
     const VIEW_DIR = 'user/';
 
-    private $user_data_mapper;
-    private $user_repository;
+    private $userDataMapper;
+    private $userRepository;
 
     public function __construct() {
         parent::__construct();
@@ -32,7 +32,7 @@ class UserController extends Controller {
         require_once('model/User/DataMapper.php');
 
         try {
-            $this->user_data_mapper = new UserDataMapper();
+            $this->userDataMapper = new UserDataMapper();
         } catch (UserException $userException) {
             echo $userException->getTraceAsString();
         }
@@ -40,7 +40,7 @@ class UserController extends Controller {
         require_once('model/User/Repository.php');
 
         try {
-            $this->user_repository = new UserRepository($this->user_data_mapper);
+            $this->userRepository = new UserRepository($this->userDataMapper);
         } catch (UserException $userException) {
             echo $userException->getTraceAsString();
         }
@@ -51,6 +51,7 @@ class UserController extends Controller {
             if ($this->auth->verify($_REQUEST['user_name'], $_REQUEST['password'])) {
                 $this->redirect('dashboard');
             } else {
+                var_dump($_POST);
                 $this->view->page_title = 'Login';
                 $this->view->error = true;
                 $this->view->page_sub_title = '';

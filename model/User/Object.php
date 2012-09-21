@@ -25,6 +25,7 @@ class UserObject extends Object {
     private $email;
     private $enabled;
     private $last_login;
+    private $attempts = 0;
 
     public function isValid() {
         return true;
@@ -84,6 +85,14 @@ class UserObject extends Object {
     
     public function getLastLogin() {
         return $this->last_login;
+    }
+    
+    public function getAttempts() {
+        return $this->attempts;
+    }
+    
+    public function setAttempts($value) {
+        $this->attempts = $value;
     }
 
     /**

@@ -27,42 +27,6 @@ class UserDataMapper extends Base implements DataMapper {
     const PATH = 'files/user/';
 
     /**
-     * Width of the Cropped/Resized Image
-     * @var string
-     */
-    private $imageWidth = 193;
-
-    /**
-     * Height of the Cropped/Resized Image
-     * @var string
-     */
-    private $imageHeight = 272;
-
-    /**
-     * Where to Crop
-     * @var string
-     */
-    private $imageCrop = 272;
-
-    /**
-     * Items per Page
-     * @var int
-     */
-    private $itemCountPerPage = 12;
-
-    /**
-     * Page Range
-     * @var int
-     */
-    private $pageRange = 1;
-
-    /**
-     * Zend_Paginator
-     * @var object
-     */
-    private $paginator;
-
-    /**
      * UserDataMapper Constructor
      * @param Zend_Db_Adapter_Pdo_Mysql $db
      */
@@ -74,9 +38,9 @@ class UserDataMapper extends Base implements DataMapper {
     public function append($user) {
         $user->setLastLogin(date(self::DATE_TIME));
         $user->setCreated(date(self::DATE_TIME));
-        $user->setCreatedUser('SYSTEM');
+        $user->setCreatedUser(1);
         $user->setLastChange(date(self::DATE_TIME));
-        $user->setLastChange_user('SYSTEM');
+        $user->setLastChangeUser(1);
         $user->setEnabled(0);
         $user->setPassword(sha1($user->getPassword()));
         $user_array = $user->toArray();
@@ -89,102 +53,20 @@ class UserDataMapper extends Base implements DataMapper {
     }
 
     /**
-     * Updates a Movie from the 
-     * Database and Uploads a 
-     * Picture and generates a Thumbnail for it.
+     * Updates a User Data
      *
-     * @param array $values 
+     * @param $user object 
      */
-    public function update($movie) {
+    public function update($user) {
 
-        try {
-            $this->genreRepository->deleteAssoc($movie->getId());
-        } catch (Exception $exception) {
-            die($exception);
-        }
+        $user->setLastChange(date(self::DATE_TIME));
+        $user->setLastChangeUser(1);
+        $data = $user->toArray();
 
-//        var_dump($movie);die;
-
-        foreach ($movie->getGenre() as $key => $val) {
-
-            $params = array(
-                'genre_id' => $val,
-                'table_id' => $movie->getId(),
-                'table' => 'movie'
-            );
-
-            try {
-                $this->genreRepository->appendAssoc($params);
-            } catch (Exception $exception) {
-                die($exception);
-            }
-        }
-
-        $data = array(
-            'title' => $movie->getTitle(),
-            'format' => $movie->getFormat(),
-            'year' => $movie->getYear(),
-            'duration' => $movie->getDuration(),
-            'trailer' => $movie->getTrailer(),
-            'rating' => $movie->getRating(),
-            'description' => $movie->getDescription()
-        );
-
-        if (isset($_FILES['cover']['name']) && !empty($_FILES['cover']['name'])) {
-
-            require_once('library/Zend/File/Transfer.php');
-
-            // prepare upload
-            $upload = new Zend_File_Transfer();
-            $upload->addValidator('Count', false, array('min' => 1, 'max' => 1));
-//            $upload->addValidator('IsImage', true);
-            $upload->addValidator('Size', false, array('max' => '6144kB'));
-
-            /* get the file mimetype for the new name */
-            $info = $upload->getFileInfo();
-            $point = strpos($info['cover']['name'], '.');
-            $ending = substr($info['cover']['name'], $point);
-            $filename = $this->path . $movie->getId() . $ending;
-            $upload->addFilter('Rename', $filename);
-
-            // delete exisiting file
-            if (file_exists($filename)) {
-                unlink($filename);
-            }
-
-            if (!$upload->isValid()) {
-                throw new Exception(implode(',', $upload->getMessages()));
-            }
-
-            /* upload the file */
-            try {
-                $upload->receive();
-            } catch (Zend_File_Transfer_Exception $zendFileTransferException) {
-                die($zendFileTransferException);
-            }
-
-            // creating the thumbnail
-            require_once('library/phpthumb/ThumbLib.inc.php');
-
-            try {
-                $thumb = PhpThumbFactory::create($filename);
-            } catch (Exception $thumbnailException) {
-                die($thumbnailException);
-            }
-
-            $thumb->adaptiveResize($this->imageWidth, $this->imageHeight)->cropFromCenter($this->imageCrop)->save($filename);
-
-            $data['image'] = $filename;
-        }
-
-        var_dump($data);
-        $affectedRows = $this->db->update(self::TABLE_USER, $data, ' id ="' . $movie->getId() . '"');
-//        $profiler = $this->db->getProfiler();
-//        $query = $profiler->getLastQueryProfile();
-//        echo $query->getQuery();
+        $affectedRows = $this->db->update(self::TABLE_USER, $data, ' id ="' . $user->getId() . '"');
 
         if ($affectedRows != 1) {
-            throw new MovieException('(#1) : The dataset coud not habe been updated!');
+            throw new UserException('(#1) : The dataset coud not habe been updated!');
         }
     }
 
@@ -274,7 +156,6 @@ class UserDataMapper extends Base implements DataMapper {
             if (count($data) == 1) {
                 $user = $user = UserRepository::create($data[0]);
                 return $user;
-                
             } else {
                 $users = array();
 

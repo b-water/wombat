@@ -15,7 +15,6 @@
  * @license http://creativecommons.org/licenses/by-nc-nd/3.0/ Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License
  */
 require_once('core/Repository.php');
-
 class UserRepository implements Repository {
 
     private $dataMapper;
@@ -25,7 +24,7 @@ class UserRepository implements Repository {
      * @param UserDataMapper $dataMapper 
      */
     public function __construct(UserDataMapper $dataMapper) {
-        $this->data_mapper = $dataMapper;
+        $this->dataMapper = $dataMapper;
     }
 
     /**
@@ -77,66 +76,37 @@ class UserRepository implements Repository {
      * @return type 
      */
     public function fetch(array $fields, $filter = '', $orderby = '', $limit = '', $offset = '') {
-        $movie = $this->data_mapper->fetch($fields, $filter, $orderby, $limit, $offset);
-        return $movie;
-    }
-
-    public function count($filter) {
-        $count = $this->data_mapper->count($filter);
-        return $count;
-    }
-
-    /**
-     * Fetches Movie Data
-     *
-     * @param array $fields
-     * @param type $filter
-     * @param type $orderby
-     * @param type $limit
-     * @param type $offset
-     * @return type
-     */
-    public function fetchByPage(array $fields, $filter = '', $orderby = '', $limit = '', $offset = '') {
-        $movie = $this->data_mapper->fetchByPage($fields, $filter, $orderby, $limit, $offset);
+        $movie = $this->dataMapper->fetch($fields, $filter, $orderby, $limit, $offset);
         return $movie;
     }
 
     /**
-     * Return the Zend_Paginator
-     * @return object
-     */
-    public function getPaginator() {
-        $paginator = $this->data_mapper->getPaginator();
-        return $paginator;
-    }
-
-    /**
-     * Updates a Movie
+     * Updates a USer
      * @param  object $movie
      * @return bool $success
      */
-    public function update($movie) {
-        $success = $this->data_mapper->update($movie);
+    public function update($user) {
+        $success = $this->dataMapper->update($user);
         return $success;
     }
 
     /**
      * Creates a new User
-     * @param  object $movie
+     * @param  object $user
      * @return bool $success
      */
     public function append($user) {
-        $success = $this->data_mapper->append($user);
+        $success = $this->dataMapper->append($user);
         return $success;
     }
 
     /**
-     * Deletes a Movie
+     * Deletes a User
      * @param  int $id
      * @return bool $success
      */
     public function delete($id) {
-        $success = $this->data_mapper->delete($id);
+        $success = $this->dataMapper->delete($id);
         return $success;
     }
 
