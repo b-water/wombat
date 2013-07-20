@@ -81,7 +81,7 @@ class Movie extends Object {
      * @return array error
      */
     public function isValid() {
-        require_once('MovieValidate.php');
+        require_once('Validate.php');
         $validation = new MovieValidate();
         $output = $validation->isValid($this);
         return $output;

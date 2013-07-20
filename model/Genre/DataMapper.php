@@ -17,6 +17,8 @@
  * @license http://creativecommons.org/licenses/by-nc-nd/3.0/ Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License
  */
 require_once('core/DataMapper.php');
+require_once('Exception.php');
+
 class GenreDataMapper implements DataMapper {
 
     /**

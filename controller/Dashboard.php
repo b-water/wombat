@@ -29,11 +29,7 @@ class DashboardController extends Controller {
     }
 
     public function index() {
-        $this->layout->mainnav = $this->layout->getView()->render('mainnav.phtml');
-        $this->layout->head = $this->layout->getView()->render('head.phtml');
-        $this->layout->foot = $this->layout->getView()->render('foot.phtml');
-        $this->layout->setLayout('dashboard');
-        echo $this->layout->render();
+        echo $this->view->render(self::VIEW_MAIN);
     }
 
 }

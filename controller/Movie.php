@@ -17,7 +17,6 @@
  * @license http://creativecommons.org/licenses/by-nc-nd/3.0/ Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License
  */
 require_once('core/Controller.php');
-
 class MovieController extends Controller {
     /**
      * Image Path
@@ -62,7 +61,7 @@ class MovieController extends Controller {
     }
 
     protected function init() {
-        require_once('model/Movie/MovieDataMapper.php');
+        require_once('model/Movie/DataMapper.php');
 
         try {
             $movieDataMapper = new MovieDataMapper($this->db);
@@ -70,28 +69,28 @@ class MovieController extends Controller {
             die($movieException);
         }
 
-        require_once('model/Movie/MovieRepository.php');
+        require_once('model/Movie/Repository.php');
         try {
             $this->movieRepository = new MovieRepository($movieDataMapper);
         } catch (MovieException $movieException) {
             die($movieException);
         }
 
-        require_once('model/Genre/GenreDataMapper.php');
+        require_once('model/Genre/DataMapper.php');
         try {
             $genreDataMapper = new GenreDataMapper($this->db);
         } catch (MovieException $movieException) {
             die($movieException);
         }
 
-        require_once('model/Genre/GenreRepository.php');
+        require_once('model/Genre/Repository.php');
         try {
             $this->genreRepository = new GenreRepository($genreDataMapper);
         } catch (MovieException $movieException) {
             die($movieException);
         }
 
-        require_once('model/Format/FormatDataMapper.php');
+        require_once('model/Format/DataMapper.php');
 
         try {
             $formatDataMapper = new FormatDataMapper($this->db);
@@ -99,14 +98,14 @@ class MovieController extends Controller {
             die($movieException);
         }
 
-        require_once('model/Format/FormatRepository.php');
+        require_once('model/Format/Repository.php');
         try {
             $this->formatRepository = new FormatRepository($formatDataMapper);
         } catch (MovieException $movieException) {
             die($movieException);
         }
 
-        require_once('model/Rating/RatingDataMapper.php');
+        require_once('model/Rating/DataMapper.php');
 
         try {
             $ratingDataMapper = new RatingDataMapper($this->db);
@@ -114,7 +113,7 @@ class MovieController extends Controller {
             die($ratingException);
         }
 
-        require_once('model/Rating/RatingRepository.php');
+        require_once('model/Rating/Repository.php');
         try {
             $this->ratingRepository = new RatingRepository($ratingDataMapper);
         } catch (RatingException $ratingException) {

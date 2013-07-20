@@ -115,7 +115,7 @@ class Genre extends Object {
     }
 
     public function isValid() {
-        require_once('GenreValidate.php');
+        require_once('Validate.php');
         $validate = new GenreValidate();
         $success = $validate->isValid($this);
         return $success;

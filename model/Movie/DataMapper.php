@@ -17,7 +17,7 @@
  * @license http://creativecommons.org/licenses/by-nc-nd/3.0/ Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License
  */
 require_once('core/DataMapper.php');
-require_once('MovieException.php');
+require_once('Exception.php');
 
 class MovieDataMapper extends Base implements DataMapper {
     /**
@@ -108,10 +108,10 @@ class MovieDataMapper extends Base implements DataMapper {
         parent::__construct();
 
         // setup datamapper for genre
-        require_once('model/Genre/GenreDataMapper.php');
+        require_once('model/Genre/DataMapper.php');
         $genreDataMapper = new GenreDataMapper($this->db);
 
-        require_once('model/Genre/GenreRepository.php');
+        require_once('model/Genre/Repository.php');
         $this->genreRepository = new GenreRepository($genreDataMapper);
     }
 

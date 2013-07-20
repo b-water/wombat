@@ -55,14 +55,14 @@ abstract class Base {
      */
     const DATE_TIME = 'Y-m-d H:i:s';
 
-    protected $layout;
+    protected $view;
     protected $config;
     protected $url;
     protected $db;
     protected $auth;
 
     public function __construct() {
-        $this->layout = Registry::get('layout');
+        $this->view = Registry::get('view');
         $this->config = Config::getInstance();
         $this->url = Registry::get('url');
         $this->db = Registry::get('db');

@@ -14,16 +14,5 @@
  * @copyright  Copyright (c) 2010-2012 Nico Schmitz
  * @license http://creativecommons.org/licenses/by-nc-nd/3.0/ Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License
  */
-require_once('library/Zend/View/Helper/Abstract.php');
-
-class View_Helper_ViewAlert extends Zend_View_Helper_Abstract {
-
-    public function viewAlert($type, $title, $msg) {
-        $this->view->type = $type;
-        $this->view->title = $title;
-        $this->view->msg = $msg;
-
-        return $this->view->render('alert.phtml');
-    }
-
-}
+require 'core/Bootstrap.php';
+Bootstrap::run();

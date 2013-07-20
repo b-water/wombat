@@ -47,12 +47,6 @@ class Bootstrap {
     public static $auth;
 
     /**
-     * layout Object
-     * @var type object
-     */
-    public static $layout;
-
-    /**
      * Runs the Application
      */
     public static function run() {
@@ -68,7 +62,6 @@ class Bootstrap {
         self::setupErrorReporting();
         self::setupDatabase();
         self::setupUrl();
-        self::setupLayout();
         self::setupView();
         self::setRegistryObjects();
         self::setupAuth();
@@ -81,7 +74,7 @@ class Bootstrap {
      * Print out all Error Messages
      */
     public static function setupErrorReporting() {
-        ini_set('display_errors', self::$config->get('generic.display_errors'));
+        ini_set('display_errors',(int) self::$config->get('generic.display_errors'));
         error_reporting(E_ALL);
     }
 
@@ -110,40 +103,13 @@ class Bootstrap {
     }
 
     public static function setupView() {
-        
-        require_once('library/Zend/Layout.php');
-        
-        self::$layout = new Zend_Layout();
-        self::$layout->setLayoutPath('view/layouts/');
-        
         require_once('library/Zend/View.php');
-        self::$view = new Zend_View();
-        
-        self::$view->setBasePath('view');
-        self::$view->setScriptPath('view/scripts/');
-        self::$view->setHelperPath('view/helper/','View_Helper');
-        
+        self::$view = new Zend_View(array('basePath' => 'public', 'scriptPath' => 'public/view/'));
         self::$view->url = self::$url;
         self::$view->title = self::$config->get('page.title');
         self::$view->author = self::$config->get('page.author');
         self::$view->copyright = self::$config->get('page.copyright');
         self::$view->base = self::$config->get('path.base');
-        
-        self::$layout->setView(self::$view);
-    }
-
-    public static function setupLayout() {
-        
-        require_once('library/Zend/Layout.php');
-        
-        self::$layout = new Zend_Layout();
-        self::$layout->setLayoutPath('view/layouts/');
-        
-//        self::$view->url = self::$url;
-//        self::$view->title = self::$config->get('page.title');
-//        self::$view->author = self::$config->get('page.author');
-//        self::$view->copyright = self::$config->get('page.copyright');
-//        self::$view->base = self::$config->get('path.base');
     }
 
     /**
@@ -156,9 +122,11 @@ class Bootstrap {
 
         require_once('library/Zend/Db.php');
         require_once('library/Zend/Loader.php');
-
+        
+//        var_dump(self::$config->get('database.adapter'));die;
+        
         try {
-            self::$db = Zend_Db::factory(self::$config->get('database.adapter'), array(
+            self::$db = Zend_Db::factory("Pdo_Mysql", array(
                         'host' => self::$config->get('database.host'),
                         'username' => self::$config->get('database.user'),
                         'password' => self::$config->get('database.password'),
@@ -202,8 +170,7 @@ class Bootstrap {
     public static function setRegistryObjects() {
         require_once('core/Registry.php');
         Registry::set('db', self::$db);
-        Registry::set('layout', self::$layout);
-//        Registry::set('view', self::$view);
+        Registry::set('view', self::$view);
         Registry::set('url', self::$url);
     }
 

@@ -16,7 +16,7 @@
  */
 require_once('core/Controller.php');
 
-class UserController extends Controller {
+class UserAdministration extends Controller {
 
     const VIEW_DIR = 'user/';
 
@@ -47,7 +47,6 @@ class UserController extends Controller {
     }
 
     public function login() {
-        var_dump($_SESSION);
         if ($this->isPost()) {
             if ($this->auth->verify($_REQUEST['user_name'], $_REQUEST['password'])) {
                 $this->redirect('dashboard');

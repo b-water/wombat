@@ -36,7 +36,7 @@ class MovieRepository implements Repository {
      * @return Movie object or throws an Exception 
      */
     public static function create(array $data) {
-        require_once('Movie.php');
+        require_once('Object.php');
 
         $movie = new Movie();
 
@@ -56,7 +56,7 @@ class MovieRepository implements Repository {
         if ($movie->isValid()) {
             return $movie;
         } else {
-            require_once('MovieException.php');
+            require_once('Exception.php');
             throw new MovieException('Movie Object is not valid!');
         }
     }

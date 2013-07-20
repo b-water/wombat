@@ -48,7 +48,7 @@ class GenreRepository implements Repository {
      */
     public static function create(array $data) {
 
-        require_once('Genre.php');
+        require_once('Object.php');
 
         $genre = new Genre();
 
@@ -67,7 +67,7 @@ class GenreRepository implements Repository {
         if (!empty($data['id'])) {
             $genre->setId($data['id']);
         }
-        require_once('GenreValidate.php');
+        require_once('Validate.php');
         if ($genre->isValid()) {
             return $genre;
         } else {

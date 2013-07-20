@@ -28,7 +28,7 @@ class Auth {
         require_once('model/User/DataMapper.php');
 
         try {
-            $userDataMapper = new UserDataMapper();
+            $user_data_mapper = new UserDataMapper();
         } catch (UserException $userException) {
             echo $userException->getTraceAsString();
         }
@@ -36,20 +36,19 @@ class Auth {
         require_once('model/User/Repository.php');
 
         try {
-            $userRepository = new UserRepository($userDataMapper);
+            $repository = new UserRepository($user_data_mapper);
         } catch (UserException $userException) {
             echo $userException->getTraceAsString();
         }
 
-        $user = $userRepository->fetch(array('*'), 'user_name="' . $user_name . '" AND password="' . sha1($password) . '" and enabled="1"', '', 1, 0);
+        $user = $repository->fetch(array('*'), 'user_name="' . $user_name . '" AND password="' . sha1($password) . '"', '', 1, 0);
         if (is_object($user)) {
             $this->login($user);
             return true;
         } else {
-            $user = $userRepository->fetch(array('*'), 'user_name="' . $user_name . '"', '', 1, 0);
-            if(is_object($user))  {
-                $user->setAttempts($user->getAttempts()+1);
-                $userRepository->update($user);
+            $user = $repository->fetch(array('*'), 'user_name="' . $user_name . '"', '', 1, 0);
+            if (is_object($user)) {
+                return true;
             }
             return false;
         }
