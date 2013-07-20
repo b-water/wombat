@@ -9,6 +9,7 @@
         <label for="format">Format</label>
         <div class="input">
             <select name="format" id="format" class="format span8">
+                <?php var_dump($this->format); ?>
                 <?php foreach ($this->format as $format): ?>
                     <option value="<?php echo $format->getId(); ?>"><?php echo $format->getName(); ?></option>
                 <?php endforeach; ?>

@@ -35,7 +35,7 @@ class FormatRepository implements Repository {
     }
 
     public static function create(array $data) {
-        require_once('Format.php');
+        require_once('Object.php');
         $format = new Format();
         $format->setId($data['id']);
         $format->setType($data['type']);
@@ -44,7 +44,7 @@ class FormatRepository implements Repository {
         if ($format->isValid()) {
             return $format;
         } else {
-            require_once('FormatException.php');
+            require_once('Exception.php');
             throw new FormatException('Format Object is not valid!');
         }
     }

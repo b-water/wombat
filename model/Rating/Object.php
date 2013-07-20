@@ -80,7 +80,7 @@ class Rating extends Object {
      * @return array error
      */
     public function isValid() {
-        require_once('RatingValidate.php');
+        require_once('Validate.php');
         $validation = new RatingValidate();
         $output = $validation->isValid($this);
         return $output;

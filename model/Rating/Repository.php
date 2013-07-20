@@ -36,7 +36,7 @@ class RatingRepository implements Repository {
 
     public static function create(array $data) {
 
-        require_once('Rating.php');
+        require_once('Object.php');
         $rating = new Rating();
 
         if (!empty($data['type'])) {
@@ -58,8 +58,8 @@ class RatingRepository implements Repository {
         if ($rating->isValid()) {
             return $rating;
         } else {
-            require_once('RatingException.php');
-            throw new RatingException('Can´t create Movie Object, data is not valid');
+            require_once('Exception.php');
+            throw new RatingException('Can´t create Rating Object, data is not valid');
         }
     }
 

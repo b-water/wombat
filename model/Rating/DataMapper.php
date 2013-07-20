@@ -83,7 +83,7 @@ class RatingDataMapper implements DataMapper {
             $ratings = array();
 
             for ($index = 0; $index <= count($data) - 1; $index++) {
-                require_once('RatingRepository.php');
+                require_once('Repository.php');
                 $rating = RatingRepository::create($data[$index]);
                 $ratings[] = $rating;
             }

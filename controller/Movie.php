@@ -17,6 +17,7 @@
  * @license http://creativecommons.org/licenses/by-nc-nd/3.0/ Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License
  */
 require_once('core/Controller.php');
+
 class MovieController extends Controller {
     /**
      * Image Path
@@ -150,6 +151,21 @@ class MovieController extends Controller {
     }
 
     public function add() {
+
+        try {
+            $format = $this->formatRepository->fetch(array('*'), 'type="movie"');
+        } catch (FormatException $formatException) {
+            die($formatException);
+        }
+
+        try {
+            $rating = $this->ratingRepository->fetch(array('*'), 'type="movie"');
+        } catch (RatingException $ratingException) {
+            die($ratingException);
+        }
+
+        $this->view->format = $format;
+        $this->view->rating = $rating;
         $this->view->content = $this->view->render(self::VIEW_DIR . 'add.phtml');
         echo $this->view->render(self::VIEW_MAIN);
     }

@@ -80,7 +80,7 @@ class Format extends Object {
      * @return array error
      */
     public function isValid() {
-        require_once('FormatValidate.php');
+        require_once('Validate.php');
         $validation = new FormatValidate();
         $output = $validation->isValid($this);
         return $output;
